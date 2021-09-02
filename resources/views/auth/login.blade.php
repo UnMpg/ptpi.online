@@ -1,0 +1,57 @@
+@extends('layouts.auth.app')
+@section('title', 'Login')
+@section('content')
+<div class="login-box">
+    <div class="login-logo mb-4">
+        <img src="{{ asset('assets/auth/img/logo-ptpi.png') }}" alt="" width="75px">
+    </div>
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">Masuk untuk memulai sesi</p>
+
+            <form action="{{ action('AuthController@login') }}" method="post">
+                @csrf
+                <div class="input-group mb-0">
+                    <input type="text" class="form-control" name="email" placeholder="Email">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group mb-3 mt-3">
+                    <input type="password" name="password" class="form-control" placeholder="Password">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-8">
+                        <div class="icheck-primary">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">
+                                Ingat saya
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <p class="mb-0">
+                <a href="{{ action('AuthController@getRegister') }}" class="text-center">Pendaftaran anggota baru</a>
+                <br>
+                <a href="/" class="text-center">Kembali ke Home</a>
+            </p>
+        </div>
+    </div>
+    <p style="text-align:center; font-size:12px;">Copyright &copy; 2019 Persatuan Teknik Perumahsakitan Indonesia</p>
+</div>
+@endsection
