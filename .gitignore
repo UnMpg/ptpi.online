@@ -1,6 +1,13 @@
 /node_modules
-/public/assets
-/public/hot
+/public/assets/activities
+/public/assets/articles
+/public/assets/background
+/public/assets/members
+/public/assets/news
+/public/assets/sertifikat
+/public/assets/sponsor
+/public/assets/surat
+/public/assets/ttd
 /public/storage
 /storage/*.key
 /vendor
