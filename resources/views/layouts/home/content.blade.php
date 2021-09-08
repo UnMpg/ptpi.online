@@ -15,7 +15,8 @@
                 <div class="col-md-2">
                     <img src="{{ asset('assets/home/img/prof_eko.png') }}" class="rounded" alt="presiden_ptpi">
                     <div class="text-center">
-                        <a href="{{ action('HomeController@profilePresidenPtpi') }}" class="btn btn-sm btn-info mt-3">Info lengkap</a>
+                        <a href="{{ action('HomeController@profilePresidenPtpi') }}"
+                            class="btn btn-sm btn-info mt-3">Info lengkap</a>
                     </div>
                 </div>
                 <div class="col-md-10">
@@ -26,13 +27,21 @@
                             </a>
                             <p style="text-align: justify;">
                                 Perkumpulan Teknik Perumahsakitan Indonesia (PTPI) atau dalam bahasa inggris dinamakan
-                                <em>Indonesian Association of Hospital Engineering (IAHE)</em> merupakan wadah para ahli teknik dan
-                                institusi perumahsakitan yang menginisiasi dan mendorong terciptanya kebijakan, sumber daya
-                                manusia, sistem manajemen dan kerja sama untuk mewujudkan rumah sakit di indonesia yang <strong>S</strong>elamat, Ber<strong>M</strong>utu, <strong>A</strong>man, <strong>R</strong>amah Lingkungan, dan <strong>T</strong>erjangkau <strong>(SMART)</strong>. <br> Hal ini sesuai dengan amanah Undang-Undang Kesehatan dan Undang-Undang Rumah Sakit tahun 2009. Melalui situs resmi ini, besar harapan kami untuk mengajak seluruh pihak yang berkaitan dengan teknik perumahsakitan untuk bergabung dan memberi kontribusi positif bagi perkembangan dan kemajuan rumah sakit di tanah air.
+                                <em>Indonesian Association of Hospital Engineering (IAHE)</em> merupakan wadah para ahli
+                                teknik dan
+                                institusi perumahsakitan yang menginisiasi dan mendorong terciptanya kebijakan, sumber
+                                daya
+                                manusia, sistem manajemen dan kerja sama untuk mewujudkan rumah sakit di indonesia yang
+                                <strong>S</strong>elamat, Ber<strong>M</strong>utu, <strong>A</strong>man,
+                                <strong>R</strong>amah Lingkungan, dan <strong>T</strong>erjangkau
+                                <strong>(SMART)</strong>. <br> Hal ini sesuai dengan amanah Undang-Undang Kesehatan dan
+                                Undang-Undang Rumah Sakit tahun 2009. Melalui situs resmi ini, besar harapan kami untuk
+                                mengajak seluruh pihak yang berkaitan dengan teknik perumahsakitan untuk bergabung dan
+                                memberi kontribusi positif bagi perkembangan dan kemajuan rumah sakit di tanah air.
                                 <hr>
-                            <p>Salam hangat</p><br><br>
-                            <p>(Prof. Dr.-Ing. Eko Supriyanto)</p>
-                            <p>President</p>
+                                <p>Salam hangat</p><br><br>
+                                <p>(Prof. Dr.-Ing. Eko Supriyanto)</p>
+                                <p>President</p>
                             </p>
                         </div>
                     </div>
@@ -59,7 +68,8 @@
                     <div class="single-blog">
                         <div class="single-blog-img">
                             <a href="">
-                                <img src="{{ asset('assets/news/' . $new->image) }}" alt="" style="border-radius: 25px; width: 100%; height: 300px;">
+                                <img src="{{ asset('assets/news/' . $new->image) }}" alt=""
+                                    style="border-radius: 25px; width: 100%; height: 300px;">
                             </a>
                         </div>
                         <div class="blog-meta">
@@ -74,12 +84,12 @@
                         </div>
                         <div class="blog-text">
                             <h4>
-                                <a href=""> {{ $new->judul }}</a>
+                                <a href="{{ action('HomeController@showBerita', $new->id) }}"> {{ $new->judul }}</a>
                             </h4>
-                            <span>{!! str_limit($new->konten, 0) !!}</span>
                         </div>
                         <span>
-                            <a href="" class="ready-btn">Read more</a>
+                            <a href="{{ action('HomeController@showBerita', $new->id) }}" class="ready-btn">Read
+                                more</a>
                         </span>
                     </div>
                     <!-- Start single blog -->
@@ -112,7 +122,8 @@
                                     <div class="single-well">
                                         <div class="single-well-img">
                                             <a href="">
-                                                <img src="{{ asset('assets/articles/' . $article->image) }}" alt="" style="border-radius: 25px; width: 100%; height: 300px;">
+                                                <img src="{{ asset('assets/articles/' . $article->image) }}" alt=""
+                                                    style="border-radius: 25px; width: 100%; height: 300px;">
                                             </a>
                                         </div>
                                         <div class="blog-meta">
@@ -123,12 +134,14 @@
                                         </div>
                                         <div class="blog-text">
                                             <h4>
-                                                <a href="">{!! str_limit($article->judul, 20) !!}</a>
+                                                <a href="{{ action('HomeController@showArtikel', $article->id) }}">{!!
+                                                    str_limit($article->judul, 20) !!}</a>
                                             </h4>
-                                            {{ str_limit($article->konten, 20) }}
                                         </div>
                                         <span>
-                                            <a href="" class="ready-btn">Read more</a>
+                                            <a href="{{ action('HomeController@showArtikel', $article->id) }}"
+                                                class="ready-btn">Read
+                                                more</a>
                                         </span>
                                     </div>
                                     <!-- Start single blog -->
@@ -203,7 +216,8 @@
                             <div class="single-icon">
                                 <i class="fa fa-map-marker"></i>
                                 <p>
-                                    Location: Gedung Wisma NH Lantai 1, Jl. Raya Pasar Minggu No.2B-C, RT 002/RW 002, Pancoran, Kec. Pancoran Kota,<br>
+                                    Location: Gedung Wisma NH Lantai 1, Jl. Raya Pasar Minggu No.2B-C, RT 002/RW 002,
+                                    Pancoran, Kec. Pancoran Kota,<br>
                                     <span>Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12780</span>
                                 </p>
                             </div>
@@ -215,7 +229,9 @@
                     <!-- Start Google Map -->
                     <div class="col-md-6 col-sm-6 col-xs-12 map">
                         <!-- Start Map -->
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15864.55806494695!2d106.83961308947755!3d-6.245338386548261!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3b85bf3e09d%3A0x160234e756fdf17b!2sWisma%20NH!5e0!3m2!1sid!2sid!4v1616080917235!5m2!1sid!2sid" width="530" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15864.55806494695!2d106.83961308947755!3d-6.245338386548261!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3b85bf3e09d%3A0x160234e756fdf17b!2sWisma%20NH!5e0!3m2!1sid!2sid!4v1616080917235!5m2!1sid!2sid"
+                            width="530" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                         <!-- End Map -->
                     </div>
                     <!-- End Google Map -->
@@ -225,19 +241,26 @@
                         <div class="form contact-form">
                             <form action="" method="post" role="form" class="contactForm contact-form">
                                 <div class="form-group">
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                    <input type="text" name="name" class="form-control" id="name"
+                                        placeholder="Your Name" data-rule="minlen:4"
+                                        data-msg="Please enter at least 4 chars" />
                                     <div class="validation"></div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                    <input type="email" class="form-control" name="email" id="email"
+                                        placeholder="Your Email" data-rule="email"
+                                        data-msg="Please enter a valid email" />
                                     <div class="validation"></div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                                    <input type="text" class="form-control" name="subject" id="subject"
+                                        placeholder="Subject" data-rule="minlen:4"
+                                        data-msg="Please enter at least 8 chars of subject" />
                                     <div class="validation"></div>
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                                    <textarea class="form-control" name="message" rows="5" data-rule="required"
+                                        data-msg="Please write something for us" placeholder="Message"></textarea>
                                     <div class="validation"></div>
                                 </div>
                                 <div class="text-center"><button class="ready-btn mt-0" type="submit">Send
