@@ -61,7 +61,7 @@ Route::get("/cert", function () {
         ['nama' => 'Adrian Tri Prasetya, S.Kom', 'email' => 'ian88_ja@yahoo.com'],
         ['nama' => 'Fefen Suhedi', 'email' => 'fefen.suhedi@pu.go.id'],
     ];
-    
+
     $_users = [];
     $orderNum = [
         1,
@@ -144,7 +144,7 @@ Route::get('auth', function () {
     return bcrypt('secret');
     $time = time();
     $data = DataCenter::whereNull('created_at')->get();
-    foreach($data as $item) {
+    foreach ($data as $item) {
         $item->created_at = "2021-05-19 10:44:53";
         $item->save();
     }
@@ -152,7 +152,7 @@ Route::get('auth', function () {
 });
 
 Route::get('referral/{referral}', function ($referral = null) {
-    
+
     $client = new \GuzzleHttp\Client();
     $request = $client->get('https://www.sehat-ri.net/api/institution/referral/check/code/' . $referral, ['http_errors' => false]);
     $result = \GuzzleHttp\json_decode($request->getBody());
@@ -200,13 +200,18 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('/tujuan-fungsi', 'HomeController@tujuanFungsi');
     Route::get('/dasar-hukum', 'HomeController@dasarHukum');
     Route::get('/visi-misi', 'HomeController@visiMisi');
-    Route::get('/struktur-organisasi', 'HomeController@strukturOrganisasi');
+    Route::get('/organisma', 'HomeController@strukturOrganisasi');
+    Route::get('/sel', 'HomeController@sel');
+    Route::get('/bidang-keahlian', 'HomeController@bidangKeahlian');
+    Route::get('/sertifikasi', 'HomeController@sertifikasi');
+    Route::get('/jejaring', 'HomeController@jejaring');
     Route::get('/sertifikat', 'HomeController@getSertifikat');
     Route::post('/sertifikat/entri/{referral?}', 'HomeController@sertifikat');
     Route::get('/check-referral', 'HomeController@checkReferral');
     Route::get('/sertifikat/scan/{email}/{certificate}', 'HomeController@scanSertifikat');
     Route::get('/sertifikat/ttd/scan/{unique_id}', 'HomeController@scanSignSertifikat');
     Route::get('/artikel', 'HomeController@artikel');
+    Route::get('/artikel/{article}', 'HomeController@showArtikel');
     Route::get('/berita', 'HomeController@berita');
     Route::get('/berita/{new}', 'HomeController@showBerita');
     Route::get('/aktifitas', 'HomeController@aktifitas');
@@ -242,11 +247,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/member/accept/{member}', 'MemberController@accept');
     Route::get('/member/decline/{member}', 'MemberController@decline');
     Route::get('/member/download/cv/{user}', 'MemberController@downloadCv');
-   
+
     // laporan
     Route::resource('laporan', 'LaporanController');
     Route::post('laporan/update/saldo', 'LaporanController@updateSaldo');
-    
+
     // kontribusi
     Route::get('/kontribusi/sehat_ri', 'UserController@kontribusiSehatRI');
     Route::get('/kontribusi/sehat_ri/create', 'UserController@createKontribusiSehatRI');

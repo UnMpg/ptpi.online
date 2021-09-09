@@ -28,12 +28,12 @@ class HomeController extends Controller
         $articles = Article::orderByDesc('created_at')->take(6)->get();
         return view('home.index', compact('articles', 'news'));
     }
-    
+
     public function roomZoom()
     {
         return view('home.room-zoom');
     }
-    
+
     public function laporan(Request $request)
     {
         $saldo = \DB::table('laporan_saldo')->first()->saldo;
@@ -85,6 +85,23 @@ class HomeController extends Controller
     public function strukturOrganisasi()
     {
         return view('home.struktur');
+    }
+
+    public function sel()
+    {
+        return view('home.sel');
+    }
+    public function bidangKeahlian()
+    {
+        return view('home.bidangkeahlian');
+    }
+    public function sertifikasi()
+    {
+        return view('home.sertifikasi');
+    }
+    public function jejaring()
+    {
+        return view('home.jejaring');
     }
 
     public function getSertifikat()
@@ -148,8 +165,16 @@ class HomeController extends Controller
 
     public function artikel()
     {
-        $articles = Article::paginate(5);
-        return view('home.artikel', compact('articles'));
+        $articles = Article::orderByDesc('created_at')->paginate(5);
+        $articleAll = Article::orderByDesc('created_at')->take(5)->get();
+        // $articleAll = Article::orderByDesc('created_at')->take(5)->get();
+        return view('home.artikel', compact('articles', 'articleAll'));
+    }
+
+    public function showArtikel(Article $article)
+    {
+        $articleAll = Article::orderByDesc('created_at')->take(5)->get();
+        return view('home.show-artikel', compact('article', 'articleAll'));
     }
 
     public function downloadCvAnggota()
@@ -207,7 +232,7 @@ class HomeController extends Controller
         }
         $categories = Category::all();
         $topics = $topics->paginate(5);
-        return view('home.faq-timeline', compact('categories', 'topics', 'category_id'));
+        return view('home.question-answer', compact('categories', 'topics', 'category_id'));
     }
 
     public function draftEmail(Request $request)
@@ -330,7 +355,7 @@ class HomeController extends Controller
                         $dataURIBackDdrc = 'data:image/' . $ImageTypeBackDdrc . ';base64,' . base64_encode($dataDdrc);
                         $backgroundDdrc = $dataURIBackDdrc;
                     }
-                    
+
                     $referral = $request->referral;
                     if ($referral !== null) {
                         $client = new \GuzzleHttp\Client();
@@ -355,7 +380,7 @@ class HomeController extends Controller
                 $dataParticipantPivot = $queryNewCertificate->certificates()->updateExistingPivot($seminar_id, ['download' => true]);
                 $order = $queryNewCertificate->certificates->where('id', $seminar_id)->first()->pivot;
 
-                 $pdf = PDF::loadView('home.sertifikat.seminar' . $seminar_id . '', compact('queryNewCertificate', 'background', 'speaker_1', 'speaker_2', 'querySeminar', 'backgroundPtpi', 'backgroundKemenkes', 'backgroundIakmi', 'backgroundIcan', 'backgroundKominfo', 'backgroundEsdm', 'order', 'backgroundKsp', 'backgroundUi', 'backgroundKemenhut', 'backgroundDdrc'))->setPaper('letter', 'landscape')->stream('certificate.pdf');
+                $pdf = PDF::loadView('home.sertifikat.seminar' . $seminar_id . '', compact('queryNewCertificate', 'background', 'speaker_1', 'speaker_2', 'querySeminar', 'backgroundPtpi', 'backgroundKemenkes', 'backgroundIakmi', 'backgroundIcan', 'backgroundKominfo', 'backgroundEsdm', 'order', 'backgroundKsp', 'backgroundUi', 'backgroundKemenhut', 'backgroundDdrc'))->setPaper('letter', 'landscape')->stream('certificate.pdf');
                 return $pdf;
             }
         }
@@ -476,7 +501,7 @@ class HomeController extends Controller
         }
         return view('home.sertifikat.404');
     }
-    
+
     public function checkReferral(Request $request)
     {
         $inputNotEmpty = false;
@@ -494,16 +519,20 @@ class HomeController extends Controller
         }
         return view('home.check-referral', compact('referral_code', 'inputNotEmpty'));
     }
-    
+
     public function questionAnswer(Request $request)
     {
-        $date = null;
-        $questions = QuestionAnswer::query();
+        $topics = Topic::where('publish', true);
         $category_id = null;
-        if ($request->date) {
-            $questions = QuestionAnswer::whereIn('date', $request->date);
+        if ($request->category_id) {
+            $category_id = $request->category_id;
+            $users = User::where('category_id', $category_id)->pluck('id');
+            $topics = Topic::whereIn('user_id', $users)->where('publish', true);
         }
+        $categories = Category::all();
+        $topics = $topics->paginate(5);
+        $questions = QuestionAnswer::query();
         $questions = $questions->paginate(5);
-        return view('home.question-answer', compact('questions', 'date'));
+        return view('home.question-answer', compact('questions', 'categories', 'topics', 'category_id'));
     }
 }

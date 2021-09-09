@@ -12,8 +12,7 @@
                         <h5>
                             <i class="fas fa-tags"></i>
                             Articles - {{ $article->judul }}
-                            <a href="{{ action('ArticleController@index') }}"
-                                class="btn btn-sm btn-outline-secondary float-right">
+                            <a href="{{ action('ArticleController@index') }}" class="btn btn-sm btn-outline-secondary float-right">
                                 <i class="fas fa-arrow-left"></i>
                             </a>
                         </h5>
@@ -24,8 +23,7 @@
                                 <div class="col-2"></div>
                                 <div class="col-8 text-center">
                                     <a href="#" class="thumbnail">
-                                        <img src="{{ asset('assets/articles/' . $article->image) }}" class="img-fluid"
-                                            alt="">
+                                        <img src="{{ asset('assets/articles/' . $article->image) }}" class="img-fluid" alt="">
                                     </a>
                                 </div>
                             </div>

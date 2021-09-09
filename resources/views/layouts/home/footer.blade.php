@@ -9,27 +9,29 @@
                                 <h2><img src="{{ asset('assets/home/img/logo-ptpi.png') }}" alt="" width="33px"> IAHE
                                 </h2>
                             </div>
-                            <p><i>Indonesian Association of Hospital Engineering</i><br>
-                                Wadah para ahli teknik dan institusi perumahsakitan untuk mewujudkan rumah sakit di
-                                indonesia yang selamat, bermutu, aman, berekabaru, dan terjangkau (SMART)</p>
-                            <div class="footer-icons">
-                                <ul>
-                                    <li>
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-google"></i></a>
-                                    </li>
-                                </ul>
+                            <div class="footer-text">
+                                <p><i>Indonesian Association of Hospital Engineering</i><br>
+                                    Wadah para ahli teknik dan institusi perumahsakitan untuk mewujudkan rumah sakit di
+                                    indonesia yang selamat, bermutu, aman, ramah lingkungan, dan terjangkau (SMART)</p>
+                                <div class="footer-icons">
+                                    <ul>
+                                        <li>
+                                            <a href="https://www.facebook.com/PT-Karya-Indonesia-Cerdas-105967367795487" target="_blank"><i class="fa fa-facebook"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="https://twitter.com/PtCerdas" target="_blank"><i class="fa fa-twitter"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.youtube.com/channel/UCF9Sna9RP4yJvBa18Ktvo1g" target="_blank"><i class="fa fa-youtube"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- end single footer -->
-                <div class="col-md-6 col-sm-4 col-xs-12">
+                <!-- <div class="col-md-6 col-sm-4 col-xs-12">
                     <div class="footer-content">
                         <div class="footer-head">
                             <h4>informasi</h4>
@@ -44,7 +46,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

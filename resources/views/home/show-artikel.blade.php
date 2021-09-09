@@ -43,34 +43,23 @@
                         <div class="left-blog">
                             <h4>recent post</h4>
                             <div class="recent-post">
+                                @foreach ($articleAll as $item)
                                 <!-- start single post -->
-                                @foreach ($articles as $article)
                                 <div class="recent-single-post">
                                     <div class="post-img">
-                                        <a href="{{ action('HomeController@showArtikel', $article->id) }}">
-                                            <img src="{{ asset('assets/articles/images/' . $article->gambar) }}" alt="" style="border-radius: 25px;">
+                                        <a href="">
+                                            <img src="{{ asset('assets/article/' . $item->image) }}" alt="" style="border-radius: 25px;">
                                         </a>
                                     </div>
                                     <div class="pst-content">
-                                        <p><a href="{{ action('HomeController@showArtikel', $article->id) }}">{{ $article->judul }}</a></p>
+                                        <p><a href="">{{ $item->judul }}</a></p>
                                     </div>
                                 </div>
-                                @endforeach
                                 <!-- End single post -->
+                                @endforeach
                             </div>
                         </div>
                         <!-- recent end -->
-                    </div>
-
-                    <div class="single-blog-page">
-                        <div class="left-blog">
-                            <h4>archive</h4>
-                            <ul>
-                                <li>
-                                    <a href="#"><?= date("d F Y"); ?></a>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -79,35 +68,29 @@
             <!-- Start single blog -->
             <div class="col-md-8 col-sm-8 col-xs-12">
                 <div class="row">
-                    @foreach ($articles as $article)
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="single-blog">
                             <div class="single-blog-img">
                                 <a href="">
-                                    <img src="{{ asset('assets/articles/images/' . $article->gambar) }}" alt="" style="border-radius: 25px; height: 350px; width: 100%;">
+                                    <img src="{{ asset('assets/articles/images/' . $article->image) }}" alt="image" style="width: 100%; height: 350px;">
                                 </a>
                             </div>
                             <div class="blog-meta">
                                 <span class="date-type">
-                                    <i class="fa fa-calendar"></i>
-                                    {{ $article->created_at->format('d F Y / H:i:s') }}
+                                    <i class="fa fa-calendar"></i><?= date("d F Y / H:i:s"); ?>
                                 </span>
                             </div>
                             <div class="blog-text">
                                 <h4>
-                                    <a href="">{{ $article->judul }} </a>
+                                    <a href="">{{ $article->judul }}</a>
                                 </h4>
                                 <p>
-                                    {!! str_limit($article->konten, 600) !!}
+                                    {!! $article->konten !!}
                                 </p>
                             </div>
-                            <span>
-                                <a href="{{ action('HomeController@showArtikel', $article->id) }}" class="ready-btn">Read
-                                    more</a>
-                            </span>
                         </div>
                     </div>
-                    @endforeach
+
                 </div>
             </div>
         </div>

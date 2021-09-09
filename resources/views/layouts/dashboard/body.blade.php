@@ -55,7 +55,7 @@
 <!-- Custom Script Js -->
 <script src="{{ asset('js/script.js') }}"></script>
 <script>
-    $(function () {
+    $(function() {
         $("#tables").DataTable({
             "responsive": true,
             "autoWidth": false,
@@ -64,24 +64,24 @@
                 'copy', 'excel'
             ]
         });
-        
-    var table = $("#example1").DataTable({
-      "responsive": true,
-      "autoWidth": false,
+
+        var table = $("#example1").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+        });
+        $('a.toggle-vis').on('click', function(e) {
+            e.preventDefault();
+
+            // Get the column API object
+            var column = table.column($(this).attr('data-column'));
+
+            // Toggle the visibility
+            column.visible(!column.visible());
+        });
+        $('.select2').select2();
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
     });
-    $('a.toggle-vis').on( 'click', function (e) {
-    e.preventDefault();
-
-    // Get the column API object
-    var column = table.column( $(this).attr('data-column') );
-
-    // Toggle the visibility
-    column.visible( ! column.visible() );
-    } );
-    $('.select2').select2();
-    //Initialize Select2 Elements
-    $('.select2bs4').select2({
-    theme: 'bootstrap4'
-    })
-  });
 </script>

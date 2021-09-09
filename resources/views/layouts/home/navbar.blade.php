@@ -4,7 +4,7 @@
 
         <div class="logo mr-auto">
             <a href="/">
-                <h1><img src="{{ asset('assets/home/img/topbar5.png') }}" alt="" width="350px"></h1>
+                <h1><img src="{{ asset('assets/home/img/topbar5.png') }}" alt="" width="300px"></h1>
             </a>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
@@ -16,8 +16,8 @@
                     <ul>
                         <li><a href="{{ action('HomeController@visiMisi') }}">Visi & Misi</a></li>
                         <li><a href="{{ action('HomeController@dasarHukum') }}">Dasar Hukum</a></li>
-                        <li><a href="{{ action('HomeController@tujuanFungsi') }}">Tujuan Dan Fungsi</a></li>
-                        <li><a href="{{ action('HomeController@strukturOrganisasi') }}">Struktur Organisasi</a></li>
+                        <li><a href="{{ action('HomeController@tujuanFungsi') }}">Fungsi</a></li>
+                        <li><a href="{{ action('HomeController@strukturOrganisasi') }}">Organisma</a></li>
                     </ul>
                 </li>
                 <li class="drop-down"><a href="#" class="menu_link">Informasi</a>
@@ -26,25 +26,46 @@
                         <li><a href="{{ action('HomeController@artikel') }}">Artikel</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ action('HomeController@kontribusiSehatRI') }}" class="menu_link">Kontribusi Sehat-RI</a></li>
+                <li class="drop-down"><a href="#" class="menu_link">Keanggotaan</a>
+                    <ul>
+                        <!-- <li><a href="{{ action('HomeController@kontribusiSehatRI') }}">Sel</a></li> -->
+                        <li><a href="{{ action('HomeController@sel') }}">Sel</a></li>
+                        <li><a href="{{ action('HomeController@bidangKeahlian') }}">Bidang Keahlian</a></li>
+                        <li><a href="{{ action('HomeController@sertifikasi') }}">Sertifikat</a></li>
+                        <li><a href="{{ action('HomeController@jejaring') }}">Jejaring</a></li>
+                        <li><a href="{{action('AuthController@getRegister')}}">Pendaftaran</a></li>
+                        <li><a href="{{ action('HomeController@checkReferral') }}">Cek Referral Sehat-RI</a></li>
+                        <!-- <li><a href="">Pendaftaran</a></li> -->
+                    </ul>
+                </li>
+                <li class="drop-down"><a href="#" class="menu_link">Kegiatan</a>
+                    <ul>
+                        <li><a href="#">Rapat Rutin</a></li>
+                        <li><a href="#">Workshop</a></li>
+                        <li><a href="#">Seminar</a></li>
+                        <li><a href="https://hospital-engineering-expo.com/public/" target="_blank">Forum Nasional</a></li>
+                        <li><a href="#">Konsultasi</a></li>
+                        <li><a href="#">Penelitian</a></li>
+                    </ul>
+                </li>
+                <!-- <li><a href="{{ action('HomeController@laporan') }}" class="menu_link">Laporan</a></li> -->
+                <!-- <li><a href="{{ action('HomeController@kontribusiSehatRI') }}" class="menu_link"></a></li> -->
                 {{-- <li><a href="/#contact" class="menu_link">Hubungi Kami</a></li> --}}
                 <li class="drop-down"><a href="#" class="menu_link">Konsultasi</a>
                     <ul>
                         <li><a href="{{ action('HomeController@questionAnswer') }}">Tanya Jawab</a></li>
                         <li><a href="{{ action('HomeController@faq') }}">Pertanyaan</a></li>
-                        <li><a href="{{ action('HomeController@faqTimeLine') }}">FAQs</a></li>
+                        <!-- <li><a href="{{ action('HomeController@faqTimeLine') }}">Konsultasi Timeline</a></li> -->
                     </ul>
                 </li>
                 <li class="drop-down"><a href="" class="menu_link">Unduh</a>
                     <ul>
-                        <li><a href="{{ asset('assets/members/doc/AD_PTPI.pdf') }}">Anggaran Dasar (AD)</a></li>
-                        <li><a href="{{ asset('assets/members/doc/ART_PTPI.pdf') }}">Anggaran Rumah Tangga (ART)</a>
-                        </li>
-                        <li><a href="{{ asset('assets/members/doc/Akta_Pendirian_PTPI.pdf') }}">Akta Pendirian</a></li>
+                        <!-- <li><a href="{{ asset('assets/members/doc/AD_PTPI.pdf') }}">Anggaran Dasar (AD)</a></li> -->
+                        <!-- <li><a href="{{ asset('assets/members/doc/ART_PTPI.pdf') }}">Anggaran Rumah Tangga (ART)</a></li> -->
+                        <!-- <li><a href="{{ asset('assets/members/doc/Akta_Pendirian_PTPI.pdf') }}">Akta Pendirian</a></li> -->
                         <li><a href="{{ action('HomeController@getSertifikat') }}">Sertifikat Seminar</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ action('HomeController@laporan') }}" class="menu_link">Laporan</a></li>
                 <li><a href="{{ action('AuthController@getLogin') }}" class="menu_link">Login</a></li>
 
             </ul>

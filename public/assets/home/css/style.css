@@ -129,6 +129,22 @@ body {
     line-height: 22px;
 }
 
+/* Side-map and contact form */
+.side-map{
+    display: flex;
+    justify-content: space-between;
+    /* grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-gap: 10px; */
+}
+
+/* .contact-form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+} */
+
+
+
 /* Back to top button */
 .back-to-top {
     position: fixed;
@@ -549,6 +565,17 @@ div#preloader {
     color: #fff;
     position: relative;
     text-align: center;
+}
+
+.slider .slider-img{
+    max-height: 100vh;
+}
+
+/* Tambahan style slide */
+.slider-img > img{
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
 }
 
 .slider-content {
@@ -2847,3 +2874,26 @@ span.email-notes {
     opacity: 1;
 }
 
+/* .footer-text{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    grid-gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+} */
+
+/* .text-foot{
+    padding: 0px 100px 0px 0px;
+} */
+
+/* .footer-text p{
+    margin-right: 10px;
+} */
+
+/* .footer-icons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: end;
+    margin-left: 10px;
+} */
