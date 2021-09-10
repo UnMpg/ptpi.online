@@ -15,7 +15,8 @@
                 <div class="col-md-2">
                     <img src="{{ asset('assets/home/img/prof_eko.png') }}" class="rounded" alt="presiden_ptpi">
                     <div class="text-center">
-                        <a href="{{ action('HomeController@profilePresidenPtpi') }}" class="btn btn-sm btn-info mt-3">Info lengkap</a>
+                        <a href="{{ action('HomeController@profilePresidenPtpi') }}"
+                            class="btn btn-sm btn-info mt-3">Info lengkap</a>
                     </div>
                 </div>
                 <div class="col-md-10">
@@ -38,9 +39,9 @@
                                 mengajak seluruh pihak yang berkaitan dengan teknik perumahsakitan untuk bergabung dan
                                 memberi kontribusi positif bagi perkembangan dan kemajuan rumah sakit di tanah air.
                                 <hr>
-                            <p>Salam hangat</p><br><br>
-                            <p>(Prof. Dr.-Ing. Eko Supriyanto)</p>
-                            <p>President</p>
+                                <p>Salam hangat</p><br><br>
+                                <p>(Prof. Dr.-Ing. Eko Supriyanto)</p>
+                                <p>President</p>
                             </p>
                         </div>
                     </div>
@@ -66,13 +67,10 @@
                 <div class="col-md-4 col-sm-4 col-xs-12 mb-5">
                     <div class="single-blog">
                         <div class="single-blog-img">
-                            <<<<<<< HEAD <a href="{{ action('HomeController@showBerita', $new->id) }}">
-                                <img src="{{ asset('assets/news/' . $new->image) }}" alt="" style="border-radius: 25px; width: 100%; height: 300px;">
-                                =======
-                                <a href="">
-                                    <img src="{{ asset('assets/news/' . $new->image) }}" alt="" style="border-radius: 25px; width: 100%; height: 300px;">
-                                    >>>>>>> 42b3d9592cc61b5ed51bfd04642a3e4d4bc4d17b
-                                </a>
+                            <a href="{{ action('HomeController@showBerita', $new->id) }}">
+                                <img src="{{ asset('assets/news/' . $new->image) }}" alt=""
+                                    style="border-radius: 25px; width: 100%; height: 300px;" />
+                            </a>
                         </div>
                         <div class="blog-meta">
                             <!-- <span class="comments-type">
@@ -90,11 +88,10 @@
                             </h4>
                         </div>
                         <span>
-                            <<<<<<< HEAD <a href="{{ action('HomeController@showBerita', $new->id) }}" class="ready-btn">Read more</a>
-                                =======
-                                <a href="{{ action('HomeController@showBerita', $new->id) }}" class="ready-btn">Read
-                                    more</a>
-                                >>>>>>> 42b3d9592cc61b5ed51bfd04642a3e4d4bc4d17b
+                            <a href="{{ action('HomeController@showBerita', $new->id) }}" class="ready-btn">Read
+                                more</a>
+                            <a href="{{ action('HomeController@showBerita', $new->id) }}" class="ready-btn">Read
+                                more</a>
                         </span>
                     </div>
                     <!-- Start single blog -->
@@ -127,7 +124,8 @@
                                     <div class="single-well">
                                         <div class="single-well-img">
                                             <a href="{{ action('HomeController@showArtikel', $article->id) }}">
-                                                <img src="{{ asset('assets/articles/' . $article->image) }}" alt="" style="border-radius: 25px; width: 100%; height: 300px;">
+                                                <img src="{{ asset('assets/articles/' . $article->image) }}" alt=""
+                                                    style="border-radius: 25px; width: 100%; height: 300px;">
                                             </a>
                                         </div>
                                         <div class="blog-meta">
@@ -138,11 +136,13 @@
                                         </div>
                                         <div class="blog-text">
                                             <h4>
-                                                <a href="{{ action('HomeController@showArtikel', $article->id) }}">{!! str_limit($article->judul, 20) !!}</a>
+                                                <a href="{{ action('HomeController@showArtikel', $article->id) }}">{!!
+                                                    str_limit($article->judul, 20) !!}</a>
                                             </h4>
                                         </div>
                                         <span>
-                                            <a href="{{ action('HomeController@showArtikel', $article->id) }}" class="ready-btn">Read more</a>
+                                            <a href="{{ action('HomeController@showArtikel', $article->id) }}"
+                                                class="ready-btn">Read more</a>
                                         </span>
                                     </div>
                                     <!-- Start single blog -->
@@ -230,7 +230,9 @@
                     <!-- Start Google Map -->
                     <div class="col-md-6 col-sm-6 col-xs-12 map">
                         <!-- Start Map -->
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15864.55806494695!2d106.83961308947755!3d-6.245338386548261!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3b85bf3e09d%3A0x160234e756fdf17b!2sWisma%20NH!5e0!3m2!1sid!2sid!4v1616080917235!5m2!1sid!2sid" width="530" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15864.55806494695!2d106.83961308947755!3d-6.245338386548261!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3b85bf3e09d%3A0x160234e756fdf17b!2sWisma%20NH!5e0!3m2!1sid!2sid!4v1616080917235!5m2!1sid!2sid"
+                            width="530" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                         <!-- End Map -->
                     </div>
                     <!-- End Google Map -->
@@ -238,7 +240,8 @@
                     <!-- Start  contact -->
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="form contact-form">
-                            <form action="{{ action('HomeController@sendEmail') }}" method="POST" role="form" class="contactForm contact-form">
+                            <form action="{{ action('HomeController@sendEmail') }}" method="POST" role="form"
+                                class="contactForm contact-form">
                                 {{ csrf_field() }}
 
                                 @if(session()->has('message'))
@@ -249,19 +252,26 @@
 
 
                                 <div class="form-group">
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                    <input type="text" name="name" class="form-control" id="name"
+                                        placeholder="Your Name" data-rule="minlen:4"
+                                        data-msg="Please enter at least 4 chars" />
                                     <div class="validation"></div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                    <input type="email" class="form-control" name="email" id="email"
+                                        placeholder="Your Email" data-rule="email"
+                                        data-msg="Please enter a valid email" />
                                     <div class="validation"></div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                                    <input type="text" class="form-control" name="subject" id="subject"
+                                        placeholder="Subject" data-rule="minlen:4"
+                                        data-msg="Please enter at least 8 chars of subject" />
                                     <div class="validation"></div>
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" name="content" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                                    <textarea class="form-control" name="content" rows="5" data-rule="required"
+                                        data-msg="Please write something for us" placeholder="Message"></textarea>
                                     <div class="validation"></div>
                                 </div>
                                 <div class="text-center"><button class="ready-btn mt-0" type="submit">Send
