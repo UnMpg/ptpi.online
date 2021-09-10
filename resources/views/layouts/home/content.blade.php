@@ -120,15 +120,20 @@
                             <div class="row">
                                 <!-- Start Left Blog -->
                                 @foreach ($articles as $article)
-                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                    <div class="single-well">
-                                        <div class="single-well-img">
+                                <!-- Start Left Blog -->
+                                <div class="col-md-4 col-sm-4 col-xs-12 mb-5">
+                                    <div class="single-blog">
+                                        <div class="single-blog-img">
                                             <a href="{{ action('HomeController@showArtikel', $article->id) }}">
                                                 <img src="{{ asset('assets/articles/' . $article->image) }}" alt=""
-                                                    style="border-radius: 25px; width: 100%; height: 300px;">
+                                                    style="border-radius: 25px; width: 100%; height: 300px;" />
                                             </a>
                                         </div>
                                         <div class="blog-meta">
+                                            <!-- <span class="comments-type">
+                                                                <i class="fa fa-comment-o"></i>
+                                                                <a href="#">13 comments</a>
+                                                            </span> -->
                                             <span class="date-type">
                                                 <i class="fa fa-calendar"></i>
                                                 {{ $article->created_at->format('d M Y') }}
@@ -136,17 +141,22 @@
                                         </div>
                                         <div class="blog-text">
                                             <h4>
-                                                <a href="{{ action('HomeController@showArtikel', $article->id) }}">{!!
-                                                    str_limit($article->judul, 20) !!}</a>
+                                                <a href="{{ action('HomeController@showArtikel', $article->id) }}">
+                                                    {{ $article->judul }}</a>
                                             </h4>
                                         </div>
                                         <span>
                                             <a href="{{ action('HomeController@showArtikel', $article->id) }}"
-                                                class="ready-btn">Read more</a>
+                                                class="ready-btn">Read
+                                                more</a>
+                                            <a href="{{ action('HomeController@showArtikel', $article->id) }}"
+                                                class="ready-btn">Read
+                                                more</a>
                                         </span>
                                     </div>
                                     <!-- Start single blog -->
                                 </div>
+                                <!-- End Left Blog-->
                                 @endforeach
                                 <!-- End Left Blog-->
                             </div>
