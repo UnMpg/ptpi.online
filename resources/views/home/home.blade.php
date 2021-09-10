@@ -83,9 +83,9 @@
                             Melalui situs resmi ini, besar harapan kami untuk mengajak seluruh pihak yang berkaitan dengan teknik perumahsakitan untuk bergabung dan memberi kontribusi positif bagi perkembangan dan kemajuan rumah sakit di tanah air. <br><br>
 
 
-                            <p>Salam hangat</p><br><br><br>
-                            <p>(Prof. Dr.-Ing. Eko Supriyanto)</p>
-                            <p>President</p>
+                        <p>Salam hangat</p><br><br><br>
+                        <p>(Prof. Dr.-Ing. Eko Supriyanto)</p>
+                        <p>President</p>
 
                         </p>
                     </div>

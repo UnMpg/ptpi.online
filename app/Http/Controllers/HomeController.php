@@ -16,6 +16,7 @@ use App\User;
 use App\Laporan;
 use App\QuestionAnswer;
 use Carbon\Carbon;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use PDF;
@@ -27,6 +28,30 @@ class HomeController extends Controller
         $news = News::orderByDesc('created_at')->take(6)->get();
         $articles = Article::orderByDesc('created_at')->take(6)->get();
         return view('home.index', compact('articles', 'news'));
+    }
+
+    public function sendEmail(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'subject' => 'required',
+            'email' => 'required|email',
+            'content' => 'required',
+        ]);
+
+        $data = [
+            'subject' => $request->subject,
+            'name' => $request->name,
+            'email' => $request->email,
+            'content' => $request->content
+        ];
+
+        Mail::send('home.email-templete', $data, function ($message) use ($data) {
+            $message->to($data['email'])
+                ->subject($data['subject']);
+        });
+
+        return back()->with(['message' => 'Email successfully sent!']);
     }
 
     public function roomZoom()
@@ -94,6 +119,14 @@ class HomeController extends Controller
     public function bidangKeahlian()
     {
         return view('home.bidangkeahlian');
+    }
+    public function laporanKeuangan()
+    {
+        return view('home.laporan-keuangan');
+    }
+    public function laporanKegiatan()
+    {
+        return view('home.laporan-kegiatan');
     }
     public function sertifikasi()
     {

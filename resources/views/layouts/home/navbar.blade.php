@@ -48,7 +48,6 @@
                         <li><a href="#">Penelitian</a></li>
                     </ul>
                 </li>
-                <!-- <li><a href="{{ action('HomeController@laporan') }}" class="menu_link">Laporan</a></li> -->
                 <!-- <li><a href="{{ action('HomeController@kontribusiSehatRI') }}" class="menu_link"></a></li> -->
                 {{-- <li><a href="/#contact" class="menu_link">Hubungi Kami</a></li> --}}
                 <li class="drop-down"><a href="#" class="menu_link">Konsultasi</a>
@@ -64,6 +63,9 @@
                         <!-- <li><a href="{{ asset('assets/members/doc/ART_PTPI.pdf') }}">Anggaran Rumah Tangga (ART)</a></li> -->
                         <!-- <li><a href="{{ asset('assets/members/doc/Akta_Pendirian_PTPI.pdf') }}">Akta Pendirian</a></li> -->
                         <li><a href="{{ action('HomeController@getSertifikat') }}">Sertifikat Seminar</a></li>
+                        <li><a href="{{ action('HomeController@laporanKegiatan') }}">Laporan Kegiatan</a></li>
+                        <li><a href="{{ action('HomeController@laporanKeuangan') }}">Laporan Keuangan</a></li>
+                        <li><a href="{{ action('HomeController@laporan') }}" class="menu_link">Laporan</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ action('AuthController@getLogin') }}" class="menu_link">Login</a></li>

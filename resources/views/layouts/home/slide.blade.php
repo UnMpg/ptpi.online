@@ -2,11 +2,10 @@
 <div id="home" class="slider-area">
     <div class="bend niceties preview-2 slider">
         <div id="ensign-nivoslider" class="slides slider-img">
-            <img src="{{ asset('assets/home/slider/6_bidang.jpeg') }}" alt="" title="#slider-direction-1" />
-            <img src="{{ asset('assets/home/slider/poster_ve1.jpeg') }}" alt="" title="#slider-direction-1" />
-            <!-- <img src="{{ asset('assets/home/slider/poster_ve2.jpeg') }}" alt="" title="#slider-direction-1" /> -->
-            <!-- <img src="{{ asset('assets/home/slider/poster_ve3.jpeg') }}" alt="" title="#slider-direction-1" /> -->
-            <img src="{{ asset('assets/home/slider/poster_ve4.jpeg') }}" alt="" title="#slider-direction-1" />
+            <img src="{{ asset('assets/home/slider/munas.jpg') }}" alt="" title="#slider-direction-1" />
+            <img src="{{ asset('assets/home/slider/6_bidang.png') }}" alt="" title="#slider-direction-1" />
+            <img src="{{ asset('assets/home/slider/ve1.png') }}" alt="" title="#slider-direction-1" />
+            <img src="{{ asset('assets/home/slider/ve4.png') }}" alt="" title="#slider-direction-1" />
         </div>
 
         <!-- direction 1 -->

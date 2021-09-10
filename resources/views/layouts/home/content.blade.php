@@ -58,7 +58,7 @@
                 <div class="col-md-4 col-sm-4 col-xs-12 mb-5">
                     <div class="single-blog">
                         <div class="single-blog-img">
-                            <a href="">
+                            <a href="{{ action('HomeController@showBerita', $new->id) }}">
                                 <img src="{{ asset('assets/news/' . $new->image) }}" alt="" style="border-radius: 25px; width: 100%; height: 300px;">
                             </a>
                         </div>
@@ -74,12 +74,12 @@
                         </div>
                         <div class="blog-text">
                             <h4>
-                                <a href=""> {{ $new->judul }}</a>
+                                <a href="{{ action('HomeController@showBerita', $new->id) }}"> {{ $new->judul }}</a>
                             </h4>
                             <span>{!! str_limit($new->konten, 0) !!}</span>
                         </div>
                         <span>
-                            <a href="" class="ready-btn">Read more</a>
+                            <a href="{{ action('HomeController@showBerita', $new->id) }}" class="ready-btn">Read more</a>
                         </span>
                     </div>
                     <!-- Start single blog -->
@@ -111,7 +111,7 @@
                                 <div class="col-md-4 col-sm-4 col-xs-12">
                                     <div class="single-well">
                                         <div class="single-well-img">
-                                            <a href="">
+                                            <a href="{{ action('HomeController@showArtikel', $article->id) }}">
                                                 <img src="{{ asset('assets/articles/' . $article->image) }}" alt="" style="border-radius: 25px; width: 100%; height: 300px;">
                                             </a>
                                         </div>
@@ -123,12 +123,12 @@
                                         </div>
                                         <div class="blog-text">
                                             <h4>
-                                                <a href="">{!! str_limit($article->judul, 20) !!}</a>
+                                                <a href="{{ action('HomeController@showArtikel', $article->id) }}">{!! str_limit($article->judul, 20) !!}</a>
                                             </h4>
                                             {{ str_limit($article->konten, 20) }}
                                         </div>
                                         <span>
-                                            <a href="" class="ready-btn">Read more</a>
+                                            <a href="{{ action('HomeController@showArtikel', $article->id) }}" class="ready-btn">Read more</a>
                                         </span>
                                     </div>
                                     <!-- Start single blog -->
@@ -223,7 +223,16 @@
                     <!-- Start  contact -->
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="form contact-form">
-                            <form action="" method="post" role="form" class="contactForm contact-form">
+                            <form action="{{ action('HomeController@sendEmail') }}" method="POST" role="form" class="contactForm contact-form">
+                                {{ csrf_field() }}
+
+                                @if(session()->has('message'))
+                                <div class="alert alert-success">
+                                    {{ session()->get('message') }}
+                                </div>
+                                @endif
+
+
                                 <div class="form-group">
                                     <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
                                     <div class="validation"></div>
@@ -237,7 +246,7 @@
                                     <div class="validation"></div>
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                                    <textarea class="form-control" name="content" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
                                     <div class="validation"></div>
                                 </div>
                                 <div class="text-center"><button class="ready-btn mt-0" type="submit">Send

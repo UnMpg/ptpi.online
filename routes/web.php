@@ -168,6 +168,8 @@ Route::get('referral/{referral}', function ($referral = null) {
 
 Route::get('/', 'HomeController@index');
 
+Route::post('/', 'HomeController@sendEmail');
+
 Route::get('/register', 'AuthController@getRegister');
 
 Route::get('/confirmation', 'AuthController@registerConfirmation');
@@ -218,6 +220,8 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('/frequently-asked-questions', 'HomeController@faq');
     Route::get('/kontribusi_sehat_ri', 'HomeController@kontribusiSehatRI');
     Route::get('/laporan', 'HomeController@laporan');
+    Route::get('/laporan-keuangan', 'HomeController@laporanKeuangan');
+    Route::get('/laporan-kegiatan', 'HomeController@laporanKegiatan');
     Route::get('/surat-permohonan', 'HomeController@downloadSuratPermohonan');
     Route::get('/surat-permohonan/lengkap', 'HomeController@suratPermohonanLengkap');
     Route::get('/konsultasi-timeline', 'HomeController@faqTimeLine');
