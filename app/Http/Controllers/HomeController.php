@@ -46,10 +46,16 @@ class HomeController extends Controller
             'content' => $request->content
         ];
 
-        Mail::send('home.email-templete', $data, function ($message) use ($data) {
-            $message->to($data['email'])
-                ->subject($data['subject']);
+        Mail::send('home.email-templete', ['email' => $data['email'], 'content' => $data['content']], function ($message) use ($data) {
+            $message->from($data['email'], $data['name'])->subject($data['subject']);
+            $message->to(env('MAIL_USERNAME'), env('MAIL_FROM_NAME'));
         });
+
+        // Mail::send('home.email-templete', $data, function ($message) use ($data) {
+        //     $message->to(env('MAIL_USERNAME'))
+        //         ->subject($data['subject']);
+        //     $message->from($data['email']);
+        // });
 
         return back()->with(['message' => 'Email successfully sent!']);
     }

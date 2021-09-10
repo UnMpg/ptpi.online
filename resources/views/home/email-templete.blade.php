@@ -3,8 +3,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <span>Halo, kami adalah akun email official dari PTPI.</span>
-                    <span>Kunjungi <a href="https://www.iahe.or.id/">Official Website PTPI.</a></span>
+                    <span>Dari: {{ $email }}</span>
                 </div>
                 <div class="card-body">
                     @if (session('resent'))
