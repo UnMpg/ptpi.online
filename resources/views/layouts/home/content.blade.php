@@ -26,9 +26,17 @@
                             </a>
                             <p style="text-align: justify;">
                                 Perkumpulan Teknik Perumahsakitan Indonesia (PTPI) atau dalam bahasa inggris dinamakan
-                                <em>Indonesian Association of Hospital Engineering (IAHE)</em> merupakan wadah para ahli teknik dan
-                                institusi perumahsakitan yang menginisiasi dan mendorong terciptanya kebijakan, sumber daya
-                                manusia, sistem manajemen dan kerja sama untuk mewujudkan rumah sakit di indonesia yang <strong>S</strong>elamat, Ber<strong>M</strong>utu, <strong>A</strong>man, <strong>R</strong>amah Lingkungan, dan <strong>T</strong>erjangkau <strong>(SMART)</strong>. <br> Hal ini sesuai dengan amanah Undang-Undang Kesehatan dan Undang-Undang Rumah Sakit tahun 2009. Melalui situs resmi ini, besar harapan kami untuk mengajak seluruh pihak yang berkaitan dengan teknik perumahsakitan untuk bergabung dan memberi kontribusi positif bagi perkembangan dan kemajuan rumah sakit di tanah air.
+                                <em>Indonesian Association of Hospital Engineering (IAHE)</em> merupakan wadah para ahli
+                                teknik dan
+                                institusi perumahsakitan yang menginisiasi dan mendorong terciptanya kebijakan, sumber
+                                daya
+                                manusia, sistem manajemen dan kerja sama untuk mewujudkan rumah sakit di indonesia yang
+                                <strong>S</strong>elamat, Ber<strong>M</strong>utu, <strong>A</strong>man,
+                                <strong>R</strong>amah Lingkungan, dan <strong>T</strong>erjangkau
+                                <strong>(SMART)</strong>. <br> Hal ini sesuai dengan amanah Undang-Undang Kesehatan dan
+                                Undang-Undang Rumah Sakit tahun 2009. Melalui situs resmi ini, besar harapan kami untuk
+                                mengajak seluruh pihak yang berkaitan dengan teknik perumahsakitan untuk bergabung dan
+                                memberi kontribusi positif bagi perkembangan dan kemajuan rumah sakit di tanah air.
                                 <hr>
                             <p>Salam hangat</p><br><br>
                             <p>(Prof. Dr.-Ing. Eko Supriyanto)</p>
@@ -58,9 +66,13 @@
                 <div class="col-md-4 col-sm-4 col-xs-12 mb-5">
                     <div class="single-blog">
                         <div class="single-blog-img">
-                            <a href="{{ action('HomeController@showBerita', $new->id) }}">
+                            <<<<<<< HEAD <a href="{{ action('HomeController@showBerita', $new->id) }}">
                                 <img src="{{ asset('assets/news/' . $new->image) }}" alt="" style="border-radius: 25px; width: 100%; height: 300px;">
-                            </a>
+                                =======
+                                <a href="">
+                                    <img src="{{ asset('assets/news/' . $new->image) }}" alt="" style="border-radius: 25px; width: 100%; height: 300px;">
+                                    >>>>>>> 42b3d9592cc61b5ed51bfd04642a3e4d4bc4d17b
+                                </a>
                         </div>
                         <div class="blog-meta">
                             <!-- <span class="comments-type">
@@ -76,10 +88,13 @@
                             <h4>
                                 <a href="{{ action('HomeController@showBerita', $new->id) }}"> {{ $new->judul }}</a>
                             </h4>
-                            <span>{!! str_limit($new->konten, 0) !!}</span>
                         </div>
                         <span>
-                            <a href="{{ action('HomeController@showBerita', $new->id) }}" class="ready-btn">Read more</a>
+                            <<<<<<< HEAD <a href="{{ action('HomeController@showBerita', $new->id) }}" class="ready-btn">Read more</a>
+                                =======
+                                <a href="{{ action('HomeController@showBerita', $new->id) }}" class="ready-btn">Read
+                                    more</a>
+                                >>>>>>> 42b3d9592cc61b5ed51bfd04642a3e4d4bc4d17b
                         </span>
                     </div>
                     <!-- Start single blog -->
@@ -125,7 +140,6 @@
                                             <h4>
                                                 <a href="{{ action('HomeController@showArtikel', $article->id) }}">{!! str_limit($article->judul, 20) !!}</a>
                                             </h4>
-                                            {{ str_limit($article->konten, 20) }}
                                         </div>
                                         <span>
                                             <a href="{{ action('HomeController@showArtikel', $article->id) }}" class="ready-btn">Read more</a>
@@ -203,7 +217,8 @@
                             <div class="single-icon">
                                 <i class="fa fa-map-marker"></i>
                                 <p>
-                                    Location: Gedung Wisma NH Lantai 1, Jl. Raya Pasar Minggu No.2B-C, RT 002/RW 002, Pancoran, Kec. Pancoran Kota,<br>
+                                    Location: Gedung Wisma NH Lantai 1, Jl. Raya Pasar Minggu No.2B-C, RT 002/RW 002,
+                                    Pancoran, Kec. Pancoran Kota,<br>
                                     <span>Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12780</span>
                                 </p>
                             </div>
