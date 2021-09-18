@@ -1,9 +1,17 @@
 @extends('layouts.home.app')
 @section('content')
-<div class="header-bg page-area">
-    <div class="home-overly"></div>
+<div id="about" class="service-area area-padding" style="margin-bottom: -100px;">
+    <!-- <div class="home-overly"></div> -->
     <div class="container">
         <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="section-headline text-center">
+                    <br><br>
+                    <h2>Artikel</h2>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="slider-content text-center">
                     <div class="header-bottom">
@@ -11,12 +19,12 @@
                             <h1 class="title2">Artikel</h1>
                         </div>
                         <div class="layer3 wow zoomInUp" data-wow-duration="2s" data-wow-delay="1s">
-                            <!-- <h2 class="title3">Profesional Blog Page</h2> -->
+                            <h2 class="title3">Profesional Blog Page</h2>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 <!-- END Header -->
@@ -28,9 +36,9 @@
                 <div class="page-head-blog">
                     <div class="single-blog-page">
                         <!-- search option start -->
-                        <form action="#">
+                        <form action="{{ action('HomeController@searchArtikel') }}" method="GET">
                             <div class="search-option">
-                                <input type="text" placeholder="Search...">
+                                <input type="text" name="search" placeholder="Search...">
                                 <button class="button" type="submit">
                                     <i class="fa fa-search"></i>
                                 </button>
@@ -48,11 +56,12 @@
                                 <div class="recent-single-post">
                                     <div class="post-img">
                                         <a href="{{ action('HomeController@showArtikel', $article->id) }}">
-                                            <img src="{{ asset('assets/articles/images/' . $article->gambar) }}" alt="" style="border-radius: 25px;">
+                                            <img src="{{ asset('assets/articles/images/' . $article->gambar) }}" alt="">
                                         </a>
                                     </div>
                                     <div class="pst-content">
                                         <p><a href="{{ action('HomeController@showArtikel', $article->id) }}">{{ $article->judul }}</a></p>
+                                        <small>{{ $article->created_at->format('d F Y') }}</small>
                                     </div>
                                 </div>
                                 @endforeach
@@ -78,13 +87,14 @@
 
             <!-- Start single blog -->
             <div class="col-md-8 col-sm-8 col-xs-12">
+                @if($articles->isNotEmpty())
                 <div class="row">
                     @foreach ($articles as $article)
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="single-blog">
                             <div class="single-blog-img">
                                 <a href="">
-                                    <img src="{{ asset('assets/articles/images/' . $article->gambar) }}" alt="" style="border-radius: 25px; height: 350px; width: 100%;">
+                                    <img src="{{ asset('assets/articles/images/' . $article->gambar) }}" alt="" style="border-radius: 5px; object-fit:cover; height: 400px;">
                                 </a>
                             </div>
                             <div class="blog-meta">
@@ -95,7 +105,7 @@
                             </div>
                             <div class="blog-text">
                                 <h4>
-                                    <a href="">{{ $article->judul }} </a>
+                                    <a href="{{ action('HomeController@showArtikel', $article->id) }}">{{ $article->judul }} </a>
                                 </h4>
                                 <p>
                                     {!! str_limit($article->konten, 600) !!}
@@ -109,6 +119,11 @@
                     </div>
                     @endforeach
                 </div>
+                @else
+                <div class="text-center">
+                    <h2>No article found</h2>
+                </div>
+                @endif
             </div>
         </div>
     </div>

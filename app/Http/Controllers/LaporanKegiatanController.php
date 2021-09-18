@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 // use App\Laporan;
-use App\LaporanKeuangan;
+use App\LaporanKegiatan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class LaporanController extends Controller
+class LaporanKegiatanController extends Controller
 {
     public function __construct()
     {
@@ -23,19 +23,13 @@ class LaporanController extends Controller
     {
         $saldo = \DB::table('laporan_saldo')->first()->saldo;
         $date = null;
-        $tipe_laporan = null;
         $kategori = null;
         $initialDate = now();
-        $laporan = LaporanKeuangan::whereYear('tgl', $initialDate->format('Y'));
+        $laporan = LaporanKegiatan::whereYear('tgl', $initialDate->format('Y'));
 
         if ($request->date) {
             $date = Carbon::parse($request->date);
-            $laporan = LaporanKeuangan::whereMonth('tgl', $date->month);
-        }
-
-        if ($request->tipe_laporan) {
-            $laporan = $laporan->where('tipe_laporan', $request->tipe_laporan);
-            $tipe_laporan = $request->tipe_laporan;
+            $laporan = LaporanKegiatan::whereMonth('tgl', $date->month);
         }
 
         if ($request->kategori) {
@@ -45,7 +39,7 @@ class LaporanController extends Controller
 
         $laporan = $laporan->get();
 
-        return view('admin.laporan-keuangan.index', compact('laporan', 'date', 'tipe_laporan', 'saldo', 'kategori'));
+        return view('admin.laporan-kegiatan.index', compact('laporan', 'date', 'saldo', 'kategori'));
     }
 
     public function updateSaldo(Request $request)
@@ -68,7 +62,7 @@ class LaporanController extends Controller
 
     public function create()
     {
-        return view('admin.laporan-keuangan.create');
+        return view('admin.laporan-kegiatan.create');
     }
 
     /**
@@ -85,17 +79,29 @@ class LaporanController extends Controller
 
     public function store(Request $request)
     {
-        LaporanKeuangan::create($request->all());
-        return redirect(action('LaporanController@index'))->with('save', '"Data Laporan" Berhasil Ditambahkan');
+        $data = new LaporanKegiatan();
+
+        $file = $request->file;
+        $filename = time() . '.' . $file->extension();
+        $request->file->move(public_path('assets/file'), $filename);
+
+        $data->file = $filename;
+        $data->tgl = $request->tgl;
+        $data->name = $request->name;
+        $data->details = $request->details;
+        $data->kategori = $request->kategori;
+
+        $data->save();
+        return redirect(action('LaporanKegiatanController@index'))->with('save', '"Laporan" Berhasil Ditambahkan');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\LaporanKeuangan  $laporan
+     * @param  \App\Laporan  $laporan
      * @return \Illuminate\Http\Response
      */
-    public function show(LaporanKeuangan $laporan)
+    public function show(LaporanKegiatan $laporan)
     {
         //
     }
@@ -103,22 +109,22 @@ class LaporanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\LaporanKeuangan  $laporan
+     * @param  \App\Laporan  $laporan
      * @return \Illuminate\Http\Response
      */
-    public function edit(LaporanKeuangan $laporan)
+    public function edit(LaporanKegiatan $laporan)
     {
-        return view('admin.laporan-keuangan.edit');
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\LaporanKeuangan  $laporan
+     * @param  \App\Laporan  $laporan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LaporanKeuangan $laporan)
+    public function update(Request $request, LaporanKegiatan $laporan)
     {
         //
     }
@@ -126,7 +132,7 @@ class LaporanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\LaporanKeuangan  $laporan
+     * @param  \App\LaporanKegiatan  $laporan
      * @return \Illuminate\Http\Response
      */
     // public function destroy(Laporan $laporan)
@@ -135,9 +141,9 @@ class LaporanController extends Controller
     //     return redirect(action('LaporanController@index'))->with('delete', '"Data Laporan" Berhasil Dihapus');
     // }
 
-    public function destroy(LaporanKeuangan $laporan)
+    public function destroy(LaporanKegiatan $laporan)
     {
         $laporan->delete();
-        return redirect(action('LaporanController@index'))->with('delete', '"Data Laporan" Berhasil Dihapus');
+        return redirect(action('LaporanKegiatanController@index'))->with('delete', '"Data Laporan" Berhasil Dihapus');
     }
 }

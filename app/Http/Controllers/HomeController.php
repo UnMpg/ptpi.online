@@ -14,12 +14,17 @@ use App\Participant;
 use App\Topic;
 use App\User;
 use App\Laporan;
+use App\LaporanKegiatan;
+use App\LaporanKeuangan;
 use App\QuestionAnswer;
 use Carbon\Carbon;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use PDF;
+use Illuminate\Support\Facades\Storage;
+use SebastianBergmann\Environment\Console;
 
 class HomeController extends Controller
 {
@@ -29,6 +34,7 @@ class HomeController extends Controller
         $articles = Article::orderByDesc('created_at')->take(6)->get();
         return view('home.index', compact('articles', 'news'));
     }
+
 
     public function sendEmail(Request $request)
     {
@@ -92,6 +98,41 @@ class HomeController extends Controller
         $laporan = $laporan->get();
         return view('home.laporan', compact('laporan', 'date', 'tipe_laporan', 'saldo', 'kategori'));
     }
+    public function laporanKeuangan(Request $request)
+    {
+        $saldo = \DB::table('laporan_saldo')->first()->saldo;
+        $date = null;
+        $initialDate = now();
+        $laporan = LaporanKeuangan::whereYear('tgl', $initialDate->format('Y'));
+
+        if ($request->date) {
+            $date = Carbon::parse($request->date);
+            $laporan = LaporanKeuangan::whereMonth('tgl', $date->month);
+        }
+
+        $laporan = $laporan->get();
+        return view('home.laporan-keuangan', compact('laporan', 'date', 'saldo'));
+    }
+
+    public function laporanKegiatan(Request $request)
+    {
+        $date = null;
+        $initialDate = now();
+        $laporan = LaporanKegiatan::whereYear('tgl', $initialDate->format('Y'));
+
+        if ($request->date) {
+            $date = Carbon::parse($request->date);
+            $laporan = LaporanKegiatan::whereMonth('tgl', $date->month);
+        }
+
+        $laporan = $laporan->get();
+        return view('home.laporan-kegiatan', compact('laporan', 'date'));
+    }
+
+    public function downloadLaporan(Request $request, $file)
+    {
+        return response()->download(public_path('assets/file/' . $file));
+    }
 
     public function profilePresidenPtpi()
     {
@@ -126,14 +167,14 @@ class HomeController extends Controller
     {
         return view('home.bidangkeahlian');
     }
-    public function laporanKeuangan()
-    {
-        return view('home.laporan-keuangan');
-    }
-    public function laporanKegiatan()
-    {
-        return view('home.laporan-kegiatan');
-    }
+    // public function laporanKeuangan()
+    // {
+    //     return view('home.laporan-keuangan');
+    // }
+    // public function laporanKegiatan()
+    // {
+    //     return view('home.laporan-kegiatan');
+    // }
     public function sertifikasi()
     {
         return view('home.sertifikasi');
@@ -205,9 +246,17 @@ class HomeController extends Controller
     public function artikel()
     {
         $articles = Article::orderByDesc('created_at')->paginate(5);
-        $articleAll = Article::orderByDesc('created_at')->take(5)->get();
         // $articleAll = Article::orderByDesc('created_at')->take(5)->get();
-        return view('home.artikel', compact('articles', 'articleAll'));
+        return view('home.artikel', compact('articles'));
+    }
+
+    public function searchArtikel(Request $request)
+    {
+        $search = $request->input('search');
+
+
+        $articles = Article::where('judul', 'LIKE', '%' . $search . '%')->paginate(5);
+        return view('home.artikel', compact('search', 'articles'));
     }
 
     public function showArtikel(Article $article)
@@ -227,6 +276,16 @@ class HomeController extends Controller
         $newsAll = News::orderByDesc('created_at')->take(5)->get();
         return view('home.berita', compact('news', 'newsAll'));
     }
+
+    public function searchBerita(Request $request)
+    {
+        $search = $request->input('search');
+
+
+        $news = News::where('judul', 'LIKE', "%{$search}%")->paginate();
+        return view('home.berita', compact('news'));
+    }
+
 
     public function showBerita(News $new)
     {

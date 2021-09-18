@@ -14,36 +14,43 @@
         </div>
         <div class="row">
             <!-- single-well start-->
-            <div class="col mr-3">
+            <div>
                 <ul>
-                    <li style="list-style-type:disc" class="mb-4"><b>Undang-Undang No. 36 Tahun 2009 tentang Kesehatan</b></li>
-                    <li style="list-style-type:disc" class="mb-2"><b>Undang-Undang No. 44 Tahun 2009 tentang Kewajiban Rumah Sakit dan Kewajiban Pasien</b></li>
-                    <li class="mb-4">
-                        <ul>
-                            <li class="mb-3">
-                                <b class="text-secondary">Pasal 28</b>
-                                <ul style="list-style-type:number">
-                                    <li class="ml-3">Menteri, Pemerintah Daerah provinsi, dan Pemerintah Daerah kabupaten/kota melakukan pembinaan dan pengawasan terhadap pelaksanaan kewajiban Rumah Sakit dan kewajiban Pasien sesuai dengan tugas, fungsi dan kewenangan masing-masing.</li>
-                                    <li class="ml-3">Menteri, Pemerintah Daerah provinsi, dan/atau Pemerintah Daerah kabupaten/kota dalam melaksanakan pembinaan dan pengawasan sebagaimana dimaksud pada ayat (1) dapat mengikutsertakan masyarakat, Badan Pengawas Rumah Sakit, <b>asosiasi perumahsakitan</b>, dan/atau <b>organisasi profesi</b>.</li>
-                                    <li class="ml-3">
-                                        Pembinaan dan pengawasan dilaksanakan melalui:
-                                        <ul style="list-style-type:lower-alpha">
-                                            <li class="ml-3">advokasi, sosialisasi, supervisi, konsultasi, dan bimbingan teknis;</li>
-                                            <li class="ml-3">pendidikan dan pelatihan; dan/atau</li>
-                                            <li class="ml-3">pemantauan dan evaluasi.</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <b class="text-secondary">Pasal 29</b>
-                                <br>
-                                Dalam hal hasil pembinaan dan pengawasan ditemukan pelanggaran etika dan/atau pelanggaran disiplin profesi, Menteri, Pemerintah Daerah provinsi, dan Pemerintah Daerah kabupaten/kota sebagaimana dimaksud dalam Pasal 28 dapat meneruskan hasil pembinaan dan pengawasan kepada <b>organisasi profesi</b> atau majelis disiplin profesi masing-masing.
-                            </li>
-                        </ul>
-                    </li>
-                    <li style="list-style-type:disc" class="mb-2"><b>Permenkes 3 Tahun 2020 tentang Klasifikasi dan Perizinan Rumah Sakit</b></li>
-                    <ul>
+                    <h5 style="list-style-type:disc; text-align:center;" class="mb-3"><b>Undang-Undang No. 36 Tahun 2009 tentang Kesehatan</b></h5>
+                    <ul class="mb-5">
+                        <li class="mb-3">
+                            <b class="text-secondary">Pasal 178</b>
+                            <ul>
+                                <li class="ml-3">Pemerintah dan pemerintah daerah melakukan pembinaan terhadap masyarakat dan terhadap setiap penyelenggara kegiatan yang berhubungan dengan sumber daya kesehatan dibidang kesehatan dan upaya kesehatan</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <b class="text-secondary">Pasal 179</b>
+                            <ul style="list-style-type:number">
+                                <li class="ml-3">
+                                    Pembinaan sebagaimana dimaksud dalam Pasal 178 diarahkan untuk:
+                                    <ul style="list-style-type:lower-alpha">
+                                        <li class="ml-3">memenuhi kebutuhan setiap orang dalam memperoleh akses atas sumber daya di bidang kesehatan;</li>
+                                        <li class="ml-3">menggerakkan dan melaksanakan penyelenggaraan upaya kesehatan;</li>
+                                        <li class="ml-3">memfasilitasi dan menyelenggarakan fasilitas kesehatan dan fasilitas pelayanan kesehatan;</li>
+                                        <li class="ml-3">memenuhi kebutuhan masyarakat untuk mendapatkan perbekalan kesehatan, termasuk sediaan farmasi dan alat kesehatan serta makanan dan minuman;</li>
+                                        <li class="ml-3">memenuhi kebutuhan gizi masyarakat sesuai dengan standar dan persyaratan;</li>
+                                        <li class="ml-3">melindungi masyarakat terhadap segala kemungkinan yang dapat menimbulkan bahaya bagi kesehatan.</li>
+                                    </ul>
+                                </li>
+                                <li class="ml-3">
+                                    Pembinaan sebagaimana dimaksud pada ayat (1) dilaksanakan melalui:
+                                    <ul style="list-style-type:lower-alpha">
+                                        <li class="ml-3">komunikasi, informasi, edukasi dan pemberdayaan masyarakat;</li>
+                                        <li class="ml-3">pendayagunaan tenaga kesehatan;</li>
+                                        <li class="ml-3">pembiayaan.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h5 style="list-style-type:disc; text-align: center;" class="mb-3"><b>Permenkes 3 Tahun 2020 tentang Klasifikasi dan Perizinan Rumah Sakit</b></h5>
+                    <ul class="mb-5">
                         <li>
                             <b class="text-secondary">Pasal 55</b>
                             <ul style="list-style-type:number">
@@ -77,11 +84,11 @@
                 </ul>
 
             </div>
-            <div class="col ml-3">
+            <div>
                 <ul>
-                    <li style="list-style-type:disc" class="mb-2"><b>Undang-Undang No. 47 Tahun 2021 tentang Penyelenggaraan Bidang Perumahsakitan</b></li>
-                    <ul class="mb-4">
-                        <li class="mb-2">
+                    <h5 style="list-style-type:disc; text-align:center;" class="mb-3"><b>Undang-Undang No. 47 Tahun 2021 tentang Penyelenggaraan Bidang Perumahsakitan</b></h5>
+                    <ul class="mb-5">
+                        <li class="mb-3">
                             <b class="text-secondary">Pasal 65</b>
                             <ul style="list-style-type:number">
                                 <li class="ml-3">Pemerintah Pusat dan Pemerintah Daerah dengan norma, standar, prosedur, dan kriteria yang ditetapkan oleh Pemerintah pusat melakukan pembinaan dan pengawasan terhadap Rumah Sakit dengan melibatkan <b>organisasi profesi</b>, <b>asosiasi perumahsakitan</b>, dan organisasi kemasyarakatan lainnya sesuai dengan tugas dan fungsi masing-masing.</li>
@@ -117,7 +124,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <li style="list-style-type:disc" class="mb-2"><b>Undang-Undang No. 44 Tahun 2009 tentang Rumah Sakit</b></li>
+                    <h5 style="list-style-type:disc; text-align: center;" class="mb-3"><b>Undang-Undang No. 44 Tahun 2009 tentang Rumah Sakit</b></h5>
                     <ul>
                         <li>
                             <b class="text-secondary">Pasal 54</b>

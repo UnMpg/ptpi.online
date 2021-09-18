@@ -214,14 +214,18 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('/sertifikat/ttd/scan/{unique_id}', 'HomeController@scanSignSertifikat');
     Route::get('/artikel', 'HomeController@artikel');
     Route::get('/artikel/{article}', 'HomeController@showArtikel');
+    Route::get('/artikel/search/search-artikel', 'HomeController@searchArtikel');
     Route::get('/berita', 'HomeController@berita');
     Route::get('/berita/{new}', 'HomeController@showBerita');
+    Route::get('/berita/search/search-news', 'HomeController@searchBerita');
     Route::get('/aktifitas', 'HomeController@aktifitas');
     Route::get('/frequently-asked-questions', 'HomeController@faq');
     Route::get('/kontribusi_sehat_ri', 'HomeController@kontribusiSehatRI');
     Route::get('/laporan', 'HomeController@laporan');
+    // Route::get('/laporan-keuangan', 'HomeController@laporanKeuangan');
     Route::get('/laporan-keuangan', 'HomeController@laporanKeuangan');
     Route::get('/laporan-kegiatan', 'HomeController@laporanKegiatan');
+    Route::get('/laporan-kegiatan/download/{file}', 'HomeController@downloadLaporan');
     Route::get('/surat-permohonan', 'HomeController@downloadSuratPermohonan');
     Route::get('/surat-permohonan/lengkap', 'HomeController@suratPermohonanLengkap');
     Route::get('/konsultasi-timeline', 'HomeController@faqTimeLine');
@@ -253,8 +257,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/member/download/cv/{user}', 'MemberController@downloadCv');
 
     // laporan
-    Route::resource('laporan', 'LaporanController');
-    Route::post('laporan/update/saldo', 'LaporanController@updateSaldo');
+    // Route::resource('laporan', 'LaporanController');
+    Route::resource('laporan-keuangan', 'LaporanController');
+    Route::resource('laporan-kegiatan', 'LaporanKegiatanController');
+    Route::post('laporan-keuangan/update/saldo', 'LaporanController@updateSaldo');
 
     // kontribusi
     Route::get('/kontribusi/sehat_ri', 'UserController@kontribusiSehatRI');

@@ -1,9 +1,9 @@
 @extends('layouts.home.app')
 @section('content')
-<div class="header-bg page-area">
-    <div class="home-overly"></div>
+<div class="service-area area-padding" style="margin-bottom: -100px;">
+    <!-- <div class="home-overly"></div> -->
     <div class="container">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="slider-content text-center">
                     <div class="header-bottom">
@@ -11,9 +11,17 @@
                             <h1 class="title2">Berita</h1>
                         </div>
                         <div class="layer3 wow zoomInUp" data-wow-duration="2s" data-wow-delay="1s">
-                            <!-- <h2 class="title3">Profesional Blog Page</h2> -->
+                            <h2 class="title3">Profesional Blog Page</h2>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="section-headline text-center">
+                    <br><br>
+                    <h2>Berita</h2>
                 </div>
             </div>
         </div>
@@ -48,8 +56,7 @@
                                 <div class="recent-single-post">
                                     <div class="post-img">
                                         <a href="">
-                                            <img src="{{ asset('assets/news/' . $item->image) }}" alt=""
-                                                style="border-radius: 25px;">
+                                            <img src="{{ asset('assets/news/' . $item->image) }}" alt="" style="border-radius: 25px;">
                                         </a>
                                     </div>
                                     <div class="pst-content">
@@ -73,8 +80,7 @@
                         <div class="single-blog">
                             <div class="single-blog-img">
                                 <a href="">
-                                    <img src="{{ asset('assets/news/' . $new->image) }}" alt="image"
-                                        style="width: 100%; height: 350px;">
+                                    <img src="{{ asset('assets/news/' . $new->image) }}" alt="image" style="width: 100%; height: 350px;">
                                 </a>
                             </div>
                             <div class="blog-meta">

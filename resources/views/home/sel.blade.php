@@ -14,13 +14,15 @@
         </div>
         <div class="row">
             <!-- single-well start-->
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <img src="{{ asset('assets/home/img/sel.png') }}" alt="" width="700px" style="display: block; margin: 0 auto;" class="mb-4">
+            <div style="display: block; margin: 0 auto; text-align: center;">
+                <img src="{{ asset('assets/home/img/sel3-baru.png') }}" alt="" width="700px" class="mb-4">
+                <img src="{{ asset('assets/home/img/sel2-baru.png') }}" alt="" width="700px" class="mb-4">
+                <img src="{{ asset('assets/home/img/sel1-baru.png') }}" alt="" width="700px" class="mb-4">
             </div>
             <!-- single-well end-->
-            <div class="col-md-6 col-sm-6 col-xs-12">
+            <!-- <div class="col-md-6 col-sm-6 col-xs-12">
                 <img src="{{ asset('assets/home/img/sel1.png') }}" alt="" width="700px" style="display: block; margin: 0 auto;" class="mb-4">
-            </div>
+            </div> -->
             <!-- End col-->
         </div>
     </div>

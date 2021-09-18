@@ -12,20 +12,11 @@
                 </div>
             </div>
         </div>
-        <div style="display: flex; flex-direction: column; justify-content:center; align-items:center;">
+        <div style="text-align: center;">
             <div style="margin-bottom: 50px">
-                <img src="{{ asset('assets/home/img/6_bidang_keahlian.png') }}" alt="" width="700px" style="display: block; margin: 0 auto;" class="mb-4">
-            </div>
-            <div class="row" style="margin-bottom: 50px">
-                <div class="col mr-2">
-                    <img src="{{ asset('assets/home/img/6_bidang_keahlian1.png') }}" alt="" width="700px" style="display: block; margin: 0 auto;" class="mb-4">
-                </div>
-                <div class="col ml-2">
-                    <img src="{{ asset('assets/home/img/bidang_keahlian1.png') }}" alt="" width="700px" style="display: block; margin: 0 auto;" class="mb-4">
-                </div>
-            </div>
-            <div>
-                <img src="{{ asset('assets/home/img/6_bidang_keahlian2.png') }}" alt="" width="700px" style="display: block; margin: 0 auto;" class="mb-4">
+                <img src="{{ asset('assets/home/img/6_bidang_keahlian.png') }}" alt="" width="700px" style="display: block; margin: 0 auto; object-fit:cover;" class="mb-4">
+                <img src="{{ asset('assets/home/img/6_bidang_keahlian1.png') }}" alt="" width="700px" class="mb-4">
+                <img src="{{ asset('assets/home/img/bidang_keahlian2.png') }}" alt="" width="700px" class="mb-4">
             </div>
         </div>
     </div>

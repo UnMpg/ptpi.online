@@ -38,14 +38,14 @@
                         <!-- <li><a href="">Pendaftaran</a></li> -->
                     </ul>
                 </li>
-                <li class="drop-down"><a href="#" class="menu_link">Kegiatan</a>
+                <li class="drop-down"><a href="#" class="menu_link">Rencana</a>
                     <ul>
-                        <li><a href="#">Rapat Rutin</a></li>
-                        <li><a href="#">Workshop</a></li>
-                        <li><a href="#">Seminar</a></li>
+                        <!-- <li><a href="#">Rapat Rutin</a></li> -->
+                        <!-- <li><a href="#">Workshop</a></li> -->
+                        <!-- <li><a href="#">Seminar</a></li> -->
                         <li><a href="https://hospital-engineering-expo.com/public/" target="_blank">Forum Nasional</a></li>
-                        <li><a href="#">Konsultasi</a></li>
-                        <li><a href="#">Penelitian</a></li>
+                        <!-- <li><a href="#">Konsultasi</a></li> -->
+                        <!-- <li><a href="#">Penelitian</a></li> -->
                     </ul>
                 </li>
                 <!-- <li><a href="{{ action('HomeController@kontribusiSehatRI') }}" class="menu_link"></a></li> -->
@@ -65,7 +65,7 @@
                         <li><a href="{{ action('HomeController@getSertifikat') }}">Sertifikat Seminar</a></li>
                         <li><a href="{{ action('HomeController@laporanKegiatan') }}">Laporan Kegiatan</a></li>
                         <li><a href="{{ action('HomeController@laporanKeuangan') }}">Laporan Keuangan</a></li>
-                        <li><a href="{{ action('HomeController@laporan') }}" class="menu_link">Laporan</a></li>
+                        <!-- <li><a href="{{ action('HomeController@laporan') }}" class="menu_link">Laporan</a></li> -->
                     </ul>
                 </li>
                 <li><a href="{{ action('AuthController@getLogin') }}" class="menu_link">Login</a></li>

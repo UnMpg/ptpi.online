@@ -12,8 +12,8 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <img src="{{ asset('assets/home/img/organisma.jpeg') }}" alt="" width="700px" style="display: block; margin: 0 auto;" class="mb-4">
+        <div class="row" style="display: block; margin: 0 auto;">
+            <img src="{{ asset('assets/home/img/Organisma_baru.png') }}" alt="" width="2500px">
 
 
             <!-- End col-->

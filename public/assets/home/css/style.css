@@ -1872,14 +1872,25 @@ preview-2
     width: 100%;
 }
 
-.blog-text h4 a {
+.blog-text p a {
     color: #444;
     text-decoration: none;
 }
 
-.blog-text h4 {
+.blog-text p {
     color: #444;
     margin-bottom: 15px;
+}
+
+.blog-text .text-link {
+    color: #444;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.blog-text .text-link:hover{
+    opacity: 0.8;
 }
 
 .blog-btn {
@@ -1962,7 +1973,7 @@ preview-2
 
 .single-blog .ready-btn {
     border: 1px solid #444;
-    border-radius: 30px;
+    border-radius: 50px;
     color: #444;
     cursor: pointer;
     display: inline-block;
@@ -2874,26 +2885,11 @@ span.email-notes {
     opacity: 1;
 }
 
-/* .footer-text{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-    grid-gap: 20px;
-    justify-content: space-between;
-    align-items: center;
-} */
+.btn-download{
+    text-decoration: none;
+    font-size: 24px;
+}
 
-/* .text-foot{
-    padding: 0px 100px 0px 0px;
-} */
-
-/* .footer-text p{
-    margin-right: 10px;
-} */
-
-/* .footer-icons{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    text-align: end;
-    margin-left: 10px;
-} */
+.fa-download{
+    color: red;
+}

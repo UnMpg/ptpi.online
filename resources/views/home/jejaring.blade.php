@@ -14,12 +14,13 @@
         </div>
         <div class="row">
             <!-- single-well start-->
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <img src="{{ asset('assets/home/img/jejaring.png') }}" alt="" width="700px" style="display: block; margin: 0 auto;" class="mb-4">
+            <div style="text-align: center; margin-bottom: 100px;">
+                <img src="{{ asset('assets\home\img\jejaring_baru.png') }}" alt="" width="2000px" class="mb-4">
             </div>
             <!-- single-well end-->
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <img src="{{ asset('assets/home/img/jejaring1.png') }}" alt="" width="700px" style="display: block; margin: 0 auto;" class="mb-4">
+            <div style="text-align: center;">
+                <h3>Program PTPI (2020-2024)</h3>
+                <img src="{{ asset('assets/home/img/jejaring1_baru.png') }}" alt="" width="2000px" class="mb-4">
             </div>
             <!-- End col-->
         </div>

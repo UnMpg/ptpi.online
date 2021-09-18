@@ -4,8 +4,13 @@
         <div id="ensign-nivoslider" class="slides slider-img">
             <img src="{{ asset('assets/home/slider/munas.jpg') }}" alt="" title="#slider-direction-1" />
             <img src="{{ asset('assets/home/slider/6_bidang.png') }}" alt="" title="#slider-direction-1" />
-            <img src="{{ asset('assets/home/slider/ve1.png') }}" alt="" title="#slider-direction-1" />
-            <img src="{{ asset('assets/home/slider/ve4.png') }}" alt="" title="#slider-direction-1" />
+            <img src="{{ asset('assets/home/slider/ve1.1.png') }}" alt="" title="#slider-direction-1" />
+            <img src="{{ asset('assets/home/slider/ve4.1.png') }}" alt="" title="#slider-direction-1" />
+            <img src="{{ asset('assets/home/slider/virtual-exhibition1.jpg') }}" alt="" title="#slider-direction-1" />
+            <img src="{{ asset('assets/home/slider/VE2.jpg') }}" alt="" title="#slider-direction-1" />
+            <img src="{{ asset('assets/home/slider/VE3.jpg') }}" alt="" title="#slider-direction-1" />
+            <img src="{{ asset('assets/home/slider/VE4.jpg') }}" alt="" title="#slider-direction-1" />
+            <img src="{{ asset('assets/home/slider/VE5.png') }}" alt="" title="#slider-direction-1" />
         </div>
 
         <!-- direction 1 -->

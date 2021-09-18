@@ -14,7 +14,7 @@
                     <br>
                     <h5>Perkumpulan Teknik Perumahsakitan Indonesia (PTPI) <br>
                         Laporan Keuangan dan Kegiatan</h5>
-                        <div class="row">
+                    <div class="row">
                         <div class="col">
                             <form action="{{ action('HomeController@laporan') }}" method="GET">
                                 <select name="kategori" class="form-control" onchange="this.form.submit()">
@@ -47,60 +47,62 @@
                             </form>
                         </div>
                     </div>
-                        <hr>
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Tanggal</th>
-                                    <th>Jenis</th>
-                                    <th>Details</th>
-                                    <th>Nominal</th>
-                                    <th>Pembayaran Via</th>
-                                    <th class="text-center">Kategori</th>
-                                    <th class="text-center">Tipe Laporan</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($laporan as $item)
-                                <tr>
-                                    <td>{{ $item->tgl }}</td>
-                                    <td>{{ $item->jenis }}</td>
-                                    <td>{{ $item->details }}</td>
-                                    <td>Rp. <span class="uang">{{ $item->nominal }}</span></td>
-                                    <td>{{ $item->pembayaran_via }}</td>
-                                    <td class="text-center">
+                    <hr>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Jenis</th>
+                                <th>Details</th>
+                                <th>Nominal</th>
+                                <th>Pembayaran Via</th>
+                                <th class="text-center">Kategori</th>
+                                <th class="text-center">Tipe Laporan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($laporan as $item)
+                            <tr>
+                                <td>{{ $item->tgl }}</td>
+                                <td>{{ $item->jenis }}</td>
+                                <td>{{ $item->details }}</td>
+                                <td>Rp. <span class="uang">{{ $item->nominal }}</span></td>
+                                <td>{{ $item->pembayaran_via }}</td>
+                                <td class="text-center">
                                     <div class="p-1 badge {{ $item->kategori == 'keuangan' ? 'bg-info' : 'bg-success' }}">{{ $item->kategori }}</div>
                                 </td>
-                                    <td class="text-center">
-                                        <div class="p-1 badge {{ $item->tipe_laporan == 'pengeluaran' ? 'bg-danger' : 'bg-success' }}">{{ $item->tipe_laporan }}</div>
-                                    </td>
-                                </tr>
-                                @endforeach
-                                <tr>
-                                    <td colspan="4" class="text-center">TOTAL PENGELUARAN </td>
-                                    <td colspan="3" class="text-center">Rp. <span class="uang">{{ $laporan->pluck('nominal')->sum() }}</span></td>
-                                </tr>
-                                @if ($tipe_laporan == 'pengeluaran')
-                                <tr>
-                                    <td colspan="4" class="text-center">Dana Operasional PTPI (Update {{ date('d/m/Y') }}) </td>
-                                    <td colspan="3" class="text-center">Rp. <span class="uang">{{ $saldo }}</span></td>
-                                </tr>
-                                @endif
-                            </tbody>
-                        </table>
-                    </div>
+                                <td class="text-center">
+                                    <div class="p-1 badge {{ $item->tipe_laporan == 'pengeluaran' ? 'bg-danger' : 'bg-success' }}">{{ $item->tipe_laporan }}</div>
+                                </td>
+                            </tr>
+                            @endforeach
+                            <tr>
+                                <td colspan="4" class="text-center">TOTAL PENGELUARAN </td>
+                                <td colspan="3" class="text-center">Rp. <span class="uang">{{ $laporan->pluck('nominal')->sum() }}</span></td>
+                            </tr>
+                            @if ($tipe_laporan == 'pengeluaran')
+                            <tr>
+                                <td colspan="4" class="text-center">Dana Operasional PTPI (Update {{ date('d/m/Y') }}) </td>
+                                <td colspan="3" class="text-center">Rp. <span class="uang">{{ $saldo }}</span></td>
+                            </tr>
+                            @endif
+                        </tbody>
+                    </table>
                 </div>
-                <!-- single-well end-->
-                <!-- End col-->
             </div>
+            <!-- single-well end-->
+            <!-- End col-->
         </div>
     </div>
-    @endsection
-    @section('script')
-    <script>
-        $(document).ready(function(){
-            // Format mata uang.
-            $( '.uang' ).mask('000.000.000', {reverse: true});
-        })
-    </script>
-    @endsection
+</div>
+@endsection
+@section('script')
+<script>
+    $(document).ready(function() {
+        // Format mata uang.
+        $('.uang').mask('000.000.000', {
+            reverse: true
+        });
+    })
+</script>
+@endsection

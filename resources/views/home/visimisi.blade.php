@@ -16,7 +16,7 @@
             <!-- single-well start-->
             <div class="row" style="margin-bottom: 50px;">
                 <div class="col">
-                    <img src="{{ asset('assets/home/img/visi-misi.jpeg') }}" alt="">
+                    <img src="{{ asset('assets\home\img\visi_baru2.png') }}" alt="" width="2000px">
                 </div>
                 <div class="col">
                     <a href="#">
@@ -30,7 +30,7 @@
             <!-- single-well end-->
             <div class="row">
                 <div class="col">
-                    <img src="{{ asset('assets/home/img/misi.jpeg') }}" alt="">
+                    <img src="{{ asset('assets\home\img\misi_baru.png') }}" alt="">
                 </div>
                 <div class="col">
                     <a href="#">
