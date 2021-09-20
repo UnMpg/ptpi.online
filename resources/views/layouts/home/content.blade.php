@@ -66,11 +66,8 @@
                 <div class="col-md-4 col-sm-4 col-xs-12 mb-5">
                     <div class="single-blog">
                         <div class="single-blog-img">
-                            <!-- <a href="{{ action('HomeController@showBerita', $new->id) }}">
-                                <img src="{{ asset('assets/news/' . $new->image) }}" alt="" style="border-radius: 5px; width: 100%; height: 240px;" />
-                            </a> -->
                             <a href="{{ action('HomeController@showBerita', $new->id) }}">
-                                <img src="{{ asset('assets\home\slider\6_bidang.png' . $new->image) }}" alt="" style="border-radius: 5px; width: 100%; height: 240px;" />
+                                <img src="{{ asset('assets/news/' . $new->image) }}" alt="" style="border-radius: 5px; width: 100%; height: 240px;" />
                             </a>
                         </div>
                         <div class="blog-meta">
@@ -123,11 +120,8 @@
                                 <div class="col-md-4 col-sm-4 col-xs-12 mb-5">
                                     <div class="single-blog">
                                         <div class="single-blog-img">
-                                            <!-- <a href="{{ action('HomeController@showArtikel', $article->id) }}">
-                                                <img src="{{ asset('assets/articles/' . $article->image) }}" alt="" style="border-radius: 5px; width: 100%; height: 240px;" />
-                                            </a> -->
                                             <a href="{{ action('HomeController@showArtikel', $article->id) }}">
-                                                <img src="{{ asset('assets\home\slider\6_bidang.png') }}" alt="" style="border-radius: 5px; width: 100%; height: 240px;" />
+                                                <img src="{{ asset('assets/articles/' . $article->image) }}" alt="" style="border-radius: 5px; width: 100%; height: 240px;" />
                                             </a>
                                         </div>
                                         <div class="blog-meta">

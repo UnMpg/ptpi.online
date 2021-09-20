@@ -128,6 +128,11 @@ class HomeController extends Controller
         $laporan = $laporan->get();
         return view('home.laporan-kegiatan', compact('laporan', 'date'));
     }
+    // public function laporanKegiatan()
+    // {
+    //     $laporan = LaporanKegiatan::latest()->first();
+    //     return view('layouts.home.navbar', compact('laporan'));
+    // }
 
     public function downloadLaporan(Request $request, $file)
     {

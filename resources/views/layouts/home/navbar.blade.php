@@ -63,7 +63,9 @@
                         <!-- <li><a href="{{ asset('assets/members/doc/ART_PTPI.pdf') }}">Anggaran Rumah Tangga (ART)</a></li> -->
                         <!-- <li><a href="{{ asset('assets/members/doc/Akta_Pendirian_PTPI.pdf') }}">Akta Pendirian</a></li> -->
                         <li><a href="{{ action('HomeController@getSertifikat') }}">Sertifikat Seminar</a></li>
-                        <li><a href="{{ action('HomeController@laporanKegiatan') }}">Laporan Kegiatan</a></li>
+                        <li>
+                            <a href="{{ action('HomeController@laporanKegiatan') }}">Laporan Kegiatan</a>
+                        </li>
                         <li><a href="{{ action('HomeController@laporanKeuangan') }}">Laporan Keuangan</a></li>
                         <!-- <li><a href="{{ action('HomeController@laporan') }}" class="menu_link">Laporan</a></li> -->
                     </ul>

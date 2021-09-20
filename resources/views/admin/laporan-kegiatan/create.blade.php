@@ -48,8 +48,9 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>File Laporan</label>
-                                <input type="file" class="form-control" name="file" required autocomplete="off">
+                                <label>File Laporan <small><em>(File harus berekstensi .pdf dengan ukuran maksimal 2 MB)</em></small></label>
+                                <input type="file" class="form-control file" name="file" required autocomplete="off">
+                                <em><small style="color: red;" class="validate-file"></small></em>
                                 @if ($errors->has('file'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('file') }}
@@ -74,4 +75,20 @@
     <!-- ./row -->
 </section>
 <!-- /.content -->
+@endsection
+@section('script_custom')
+<script>
+    let max = 2 * 1024 * 1024;
+    document.querySelector('.file').addEventListener('change', (e) => {
+        let fileSize = e.target.files[0].size;
+
+        if (fileSize > max) {
+            document.querySelector('.validate-file').innerText = "File yang anda upload harus kurang dari 2MB";
+            document.querySelector('button[type="submit"]').disabled = true;
+        } else {
+            document.querySelector('.validate-file').innerText = "";
+            document.querySelector('button[type="submit"]').disabled = false;
+        }
+    })
+</script>
 @endsection

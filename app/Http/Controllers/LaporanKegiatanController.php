@@ -21,7 +21,6 @@ class LaporanKegiatanController extends Controller
      */
     public function index(Request $request)
     {
-        $saldo = \DB::table('laporan_saldo')->first()->saldo;
         $date = null;
         $kategori = null;
         $initialDate = now();
@@ -39,7 +38,7 @@ class LaporanKegiatanController extends Controller
 
         $laporan = $laporan->get();
 
-        return view('admin.laporan-kegiatan.index', compact('laporan', 'date', 'saldo', 'kategori'));
+        return view('admin.laporan-kegiatan.index', compact('laporan', 'date', 'kategori'));
     }
 
     public function updateSaldo(Request $request)
