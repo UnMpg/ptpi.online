@@ -106,9 +106,10 @@ class LaporanController extends Controller
      * @param  \App\LaporanKeuangan  $laporan
      * @return \Illuminate\Http\Response
      */
-    public function edit(LaporanKeuangan $laporan)
+    public function edit($id)
     {
-        return view('admin.laporan-keuangan.edit');
+        $laporan = LaporanKeuangan::find($id);
+        return view('admin.laporan-keuangan.edit', compact('laporan'));
     }
 
     /**
@@ -118,9 +119,19 @@ class LaporanController extends Controller
      * @param  \App\LaporanKeuangan  $laporan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LaporanKeuangan $laporan)
+    public function update(Request $request, $id)
     {
-        //
+        $laporan = LaporanKeuangan::find($id);
+        $laporan->update([
+            'tgl' => $request->tgl,
+            'jenis' => $request->jenis,
+            'details' => $request->details,
+            'nominal' => $request->nominal,
+            'pembayaran_via' => $request->pembayaran_via,
+            'tipe_laporan' => $request->tipe_laporan,
+            'kategori' => $request->kategori
+        ]);
+        return redirect(action('LaporanController@index'))->with('Update', '"Data Laporan" Berhasil Diubah');
     }
 
     /**
@@ -135,8 +146,9 @@ class LaporanController extends Controller
     //     return redirect(action('LaporanController@index'))->with('delete', '"Data Laporan" Berhasil Dihapus');
     // }
 
-    public function destroy(LaporanKeuangan $laporan)
+    public function destroy($id)
     {
+        $laporan = LaporanKeuangan::find($id);
         $laporan->delete();
         return redirect(action('LaporanController@index'))->with('delete', '"Data Laporan" Berhasil Dihapus');
     }

@@ -111,9 +111,10 @@ class LaporanKegiatanController extends Controller
      * @param  \App\Laporan  $laporan
      * @return \Illuminate\Http\Response
      */
-    public function edit(LaporanKegiatan $laporan)
+    public function edit($id)
     {
-        //
+        $laporan = LaporanKegiatan::find($id);
+        return view('admin.laporan-kegiatan.edit', compact('laporan'));
     }
 
     /**
@@ -123,9 +124,28 @@ class LaporanKegiatanController extends Controller
      * @param  \App\Laporan  $laporan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LaporanKegiatan $laporan)
+    public function update(Request $request, $id)
     {
-        //
+        $laporan = LaporanKegiatan::find($id);
+        if ($request->file) {
+            $filename = time() . '.' . $request->file('file')->extension();
+            $request->file->move(public_path('assets/file'), $filename);
+            $laporan->update([
+                'tgl' => $request->tgl,
+                'name' => $request->name,
+                'details' => $request->details,
+                'kategori' => $request->kategori,
+                'file' => $filename
+            ]);
+        } else {
+            $laporan->update([
+                'tgl' => $request->tgl,
+                'name' => $request->name,
+                'details' => $request->details,
+                'kategori' => $request->kategori
+            ]);
+        }
+        return redirect(action('LaporanKegiatanController@index'))->with('update', '"Data Laporan" Berhasil Diubah');
     }
 
     /**
@@ -140,8 +160,9 @@ class LaporanKegiatanController extends Controller
     //     return redirect(action('LaporanController@index'))->with('delete', '"Data Laporan" Berhasil Dihapus');
     // }
 
-    public function destroy(LaporanKegiatan $laporan)
+    public function destroy($id)
     {
+        $laporan = LaporanKegiatan::find($id);
         $laporan->delete();
         return redirect(action('LaporanKegiatanController@index'))->with('delete', '"Data Laporan" Berhasil Dihapus');
     }

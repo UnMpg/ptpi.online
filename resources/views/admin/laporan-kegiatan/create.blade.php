@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.app')
-@section('title-page', 'New Article')
-@section('title-header', 'New Article')
+@section('title-page', 'New Laporan Kegiatan')
+@section('title-header', 'New Laporan Kegiatan')
 @section('content')
 <!-- Main content -->
 <section class="content">
@@ -80,15 +80,26 @@
 <script>
     let max = 2 * 1024 * 1024;
     document.querySelector('.file').addEventListener('change', (e) => {
+        let extensions = /(\.pdf)$/i;
+        let fileName = document.querySelector('.file').value;
         let fileSize = e.target.files[0].size;
 
-        if (fileSize > max) {
-            document.querySelector('.validate-file').innerText = "File yang anda upload harus kurang dari 2MB";
-            document.querySelector('button[type="submit"]').disabled = true;
-        } else {
-            document.querySelector('.validate-file').innerText = "";
+        if (!extensions.exec(fileName)) {
+            alert('File yang diinputkan harus berekstensi .pdf');
+            document.querySelector('.file').value = '';
             document.querySelector('button[type="submit"]').disabled = false;
+            return false;
+        } else {
+            if (fileSize > max) {
+                document.querySelector('.validate-file').innerText = "File yang anda upload harus kurang dari 2MB";
+                document.querySelector('.file').value = "";
+                document.querySelector('button[type="submit"]').disabled = true;
+            } else {
+                document.querySelector('.validate-file').innerText = "";
+                document.querySelector('button[type="submit"]').disabled = false;
+            }
         }
+
     })
 </script>
 @endsection

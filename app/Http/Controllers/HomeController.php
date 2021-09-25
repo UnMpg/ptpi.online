@@ -114,24 +114,24 @@ class HomeController extends Controller
         return view('home.laporan-keuangan', compact('laporan', 'date', 'saldo'));
     }
 
-    public function laporanKegiatan(Request $request)
-    {
-        $date = null;
-        $initialDate = now();
-        $laporan = LaporanKegiatan::whereYear('tgl', $initialDate->format('Y'));
+    // public function laporanKegiatan(Request $request)
+    // {
+    //     $date = null;
+    //     $initialDate = now();
+    //     $laporan = LaporanKegiatan::whereYear('tgl', $initialDate->format('Y'));
 
-        if ($request->date) {
-            $date = Carbon::parse($request->date);
-            $laporan = LaporanKegiatan::whereMonth('tgl', $date->month);
-        }
+    //     if ($request->date) {
+    //         $date = Carbon::parse($request->date);
+    //         $laporan = LaporanKegiatan::whereMonth('tgl', $date->month);
+    //     }
 
-        $laporan = $laporan->get();
-        return view('home.laporan-kegiatan', compact('laporan', 'date'));
-    }
+    //     $laporan = $laporan->get();
+    //     return view('home.laporan-kegiatan', compact('laporan', 'date'));
+    // }
     // public function laporanKegiatan()
     // {
-    //     $laporan = LaporanKegiatan::latest()->first();
-    //     return view('layouts.home.navbar', compact('laporan'));
+    //     $laporan = LaporanKegiatan::orderByDesc('created_at')->take(1)->get();
+    //     return view('home.laporan-kegiatan', compact('laporan'));
     // }
 
     public function downloadLaporan(Request $request, $file)

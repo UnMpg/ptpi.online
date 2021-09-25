@@ -133,7 +133,7 @@ class AuthController extends Controller
             //     $message->to($data->email)->subject('Pendaftaran Seminar PTPI');
             //     $message->from("seminarptpi@gmail.com", "PTPI Official");
             // });
-            
+
             return redirect(action('AuthController@statusConfirmation'))->with('join', 'Anda sudah berhasil mendaftar pada seminar ini.');
         }
     }
@@ -180,7 +180,7 @@ class AuthController extends Controller
         ]);
 
         if (auth('participant')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            if(auth('participant')->user()->update(['referral' => strtoupper($request->referral), 'kabupaten' => $request->kabupaten])){
+            if (auth('participant')->user()->update(['referral' => strtoupper($request->referral), 'kabupaten' => $request->kabupaten])) {
                 return redirect(action('AuthController@registerConfirmation'));
             }
             return back();

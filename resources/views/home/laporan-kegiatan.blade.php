@@ -16,14 +16,6 @@
             <div class="col-md-8">
                 <!-- <h4>Pilih bulan</h4> -->
             </div>
-            <!-- <div class="col-md-4">
-                <form action="{{ action('HomeController@laporanKegiatan') }}" method="GET">
-                    <div class="input-group mb-3">
-                        <input type="month" class="form-control" name="date" onchange="this.form.submit()" placeholder="Filter Waktu" value="{{ ($date ? $date->format('Y-m') : '') }}">
-                        <input type="hidden" name="kategori" value="kegiatan">
-                    </div>
-                </form>
-            </div> -->
         </div>
         <table class="table table-bordered table-striped text-center">
             <thead>

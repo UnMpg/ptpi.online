@@ -21,14 +21,16 @@
                 </div>
 
                 <div class="input-group mb-3 mt-3">
-                    <input type="password" name="password" class="form-control" placeholder="Password">
+                    <input id="password" type="password" name="password" class="form-control" placeholder="Password">
                     <div class="input-group-append">
-                        <div class="input-group-text">
+                        <!-- <div class="input-group-text">
                             <span class="fas fa-lock"></span>
+                        </div> -->
+                        <div class="input-group-text">
+                            <span class="fas fa-eye" id="toggle" style="cursor: pointer;" onclick="showHide()"></span>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="row">
                     <div class="col-8">
@@ -54,4 +56,20 @@
     </div>
     <p style="text-align:center; font-size:12px;">Copyright &copy; 2019 Persatuan Teknik Perumahsakitan Indonesia</p>
 </div>
+<script>
+    const password = document.getElementById('password');
+    const toggle = document.getElementById('toggle');
+
+    function showHide() {
+        if (password.type === 'password') {
+            password.setAttribute('type', 'text');
+            toggle.classList.remove('fa-eye');
+            toggle.classList.add('fa-eye-slash');
+        } else {
+            password.setAttribute('type', 'password');
+            toggle.classList.remove('fa-eye-slash');
+            toggle.classList.add('fa-eye');
+        }
+    }
+</script>
 @endsection

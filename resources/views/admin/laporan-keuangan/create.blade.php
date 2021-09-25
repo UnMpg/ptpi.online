@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.app')
-@section('title-page', 'New Article')
-@section('title-header', 'New Article')
+@section('title-page', 'New Laporan Keuangan')
+@section('title-header', 'New Laporan Keuangan')
 @section('content')
 <!-- Main content -->
 <section class="content">
@@ -59,6 +59,7 @@
                             <div class="form-group">
                                 <label>Tipe Laporan</label>
                                 <select name="tipe_laporan" class="form-control">
+                                    <option value="">- Select One -</option>
                                     <option value="pengeluaran">Pengeluaran</option>
                                     <option value="pemasukan">Pemasukan</option>
                                 </select>
@@ -69,8 +70,8 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>Kategori Laporan</label>
-                                <input type="text" class="form-control" name="kategori" value="keuangan" placeholder="Keuangan">
+                                <!-- <label>Kategori Laporan</label> -->
+                                <input type="hidden" class="form-control" name="kategori" value="keuangan" placeholder="Keuangan">
                                 <!-- <select name="kategori" class="form-control">
                                     <option value="keuangan">Keuangan</option>
                                     <option value="kegiatan">Kegiatan</option>

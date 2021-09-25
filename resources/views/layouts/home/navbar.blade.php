@@ -43,7 +43,7 @@
                         <!-- <li><a href="#">Rapat Rutin</a></li> -->
                         <!-- <li><a href="#">Workshop</a></li> -->
                         <!-- <li><a href="#">Seminar</a></li> -->
-                        <li><a href="https://hospital-engineering-expo.com/public/" target="_blank">Forum Nasional</a></li>
+                        <li><a href="https://hospital-engineering-expo.com/backend/public/" target="_blank">Forum Nasional</a></li>
                         <!-- <li><a href="#">Konsultasi</a></li> -->
                         <!-- <li><a href="#">Penelitian</a></li> -->
                     </ul>
@@ -64,7 +64,16 @@
                         <!-- <li><a href="{{ asset('assets/members/doc/Akta_Pendirian_PTPI.pdf') }}">Akta Pendirian</a></li> -->
                         <li><a href="{{ action('HomeController@getSertifikat') }}">Sertifikat Seminar</a></li>
                         <li>
-                            <a href="{{ action('HomeController@laporanKegiatan') }}">Laporan Kegiatan</a>
+                            @php($laporan = App\LaporanKegiatan::orderByDesc('created_at')->take(1)->get())
+                            @if(count($laporan) > 0)
+                            @foreach($laporan as $item)
+                            <a href="{{ action('HomeController@downloadLaporan', $item->file) }}">Laporan Kegiatan</a>
+                            @endforeach
+                            @else
+                            <span class="a-disable">
+                                <a href="">Laporan Kegiatan</a>
+                            </span>
+                            @endif
                         </li>
                         <li><a href="{{ action('HomeController@laporanKeuangan') }}">Laporan Keuangan</a></li>
                         <!-- <li><a href="{{ action('HomeController@laporan') }}" class="menu_link">Laporan</a></li> -->

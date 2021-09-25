@@ -26,7 +26,11 @@ class MemberController extends Controller
 
     public function index()
     {
-        # code...
+        $perorangan = Member::where('member_type', 'perorangan')->get();
+        $korporasi = Member::where('member_type', 'korporasi')->get();
+        $perorangan_count = count($perorangan);
+        $korporasi_count = count($korporasi);
+        return view('admin.member.index', compact('perorangan_count', 'korporasi_count'));
     }
 
     public function accept(Member $member)
