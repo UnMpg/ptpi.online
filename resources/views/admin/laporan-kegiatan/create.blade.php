@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Details</label>
-                                <input type="text" class="form-control {{ $errors->first('details') ? 'is-invalid' : '' }}" placeholder="Detail Pengeluaran" name="details" required autocomplete="off">
+                                <input type="text" class="form-control {{ $errors->first('details') ? 'is-invalid' : '' }}" placeholder="Detail Laporan" name="details" required autocomplete="off">
                                 @if ($errors->has('details'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('details') }}

@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Detail Pengeluaran</label>
-                                <input type="text" class="form-control {{ $errors->first('details') ? 'is-invalid' : '' }}" placeholder="Detail Pengeluaran" name="details" required autocomplete="off">
+                                <input type="text" class="form-control {{ $errors->first('details') ? 'is-invalid' : '' }}" placeholder="Detail Laporan" name="details" required autocomplete="off">
                                 @if ($errors->has('details'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('details') }}
@@ -59,7 +59,7 @@
                             <div class="form-group">
                                 <label>Tipe Laporan</label>
                                 <select name="tipe_laporan" class="form-control">
-                                    <option value="">- Select One -</option>
+                                    <option value="">- Select one -</option>
                                     <option value="pengeluaran">Pengeluaran</option>
                                     <option value="pemasukan">Pemasukan</option>
                                 </select>

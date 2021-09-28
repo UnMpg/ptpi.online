@@ -22,7 +22,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Details</label>
-                                <input type="text" class="form-control" placeholder="Detail Pengeluaran" name="details" required autocomplete="off" value="{{ $laporan->details }}">
+                                <input type="text" class="form-control" placeholder="Detail Laporan" name="details" required autocomplete="off" value="{{ $laporan->details }}">
                             </div>
                             <div class="form-group">
                                 <!-- <label>Kategori Laporan</label> -->

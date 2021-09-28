@@ -22,7 +22,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Detail Pengeluaran</label>
-                                <input type="text" class="form-control" placeholder="Detail Pengeluaran" name="details" required autocomplete="off" value="{{ $laporan->details }}">
+                                <input type="text" class="form-control" placeholder="Detail Laporan" name="details" required autocomplete="off" value="{{ $laporan->details }}">
                             </div>
                             <div class="form-group">
                                 <label>Nominal Pengeluaran</label>
@@ -34,10 +34,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Tipe Laporan</label>
-                                <select name="tipe_laporan" class="form-control">
-                                    <option value="">- Select One-</option>
-                                    <option value="pengeluaran">Pengeluaran</option>
-                                    <option value="pemasukan">Pemasukan</option>
+                                <select name="tipe_laporan" class="form-control" value="{{ $laporan->tipe_laporan }}">
+                                    <option value="{{ $laporan->tipe_laporan }}">{{ $laporan->tipe_laporan }}</option>
                                 </select>
                             </div>
                             <div class="form-group">
