@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="row" style="display: block; margin: 0 auto;">
-            <img src="{{ asset('assets/home/img/Organisma_baru.png') }}" alt="" width="2500px">
+            <img src="{{ asset('assets/home/img/organisma.png') }}" alt="" width="2000px">
 
 
             <!-- End col-->
