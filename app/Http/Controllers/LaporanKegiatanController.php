@@ -87,27 +87,22 @@ class LaporanKegiatanController extends Controller
     //     return redirect(action('LaporanController@index'))->with('save', '"Data Laporan" Berhasil Ditambahkan');
     // }
 
-    // public function store(Request $request)
-    // {
-    //     $data = new LaporanKegiatan();
-
-    //     $file = $request->file;
-    //     $filename = time() . '.' . $file->extension();
-    //     $request->file->move(public_path('assets/file'), $filename);
-
-    //     $data->file = $filename;
-    //     $data->tgl = $request->tgl;
-    //     $data->name = $request->name;
-    //     $data->details = $request->details;
-    //     $data->kategori = $request->kategori;
-
-    //     $data->save();
-    //     return redirect(action('LaporanKegiatanController@index'))->with('save', '"Laporan" Berhasil Ditambahkan');
-    // }
     public function store(Request $request)
     {
-        LaporanKegiatan::create($request->all());
-        return redirect(action('LaporanKegiatanController@index'))->with('save', '"Data Laporan" Berhasil Ditambahkan');
+        $data = new LaporanKegiatan();
+
+        $file = $request->file;
+        $filename = time() . '.' . $file->extension();
+        $request->file->move(public_path('assets/file'), $filename);
+
+        $data->file = $filename;
+        $data->tgl = $request->tgl;
+        $data->name = $request->name;
+        $data->details = $request->details;
+        $data->kategori = $request->kategori;
+
+        $data->save();
+        return redirect(action('LaporanKegiatanController@index'))->with('save', '"Laporan" Berhasil Ditambahkan');
     }
 
     /**
@@ -140,42 +135,30 @@ class LaporanKegiatanController extends Controller
      * @param  \App\Laporan  $laporan
      * @return \Illuminate\Http\Response
      */
-    // public function update(Request $request, $id)
-    // {
-    //     $laporan = LaporanKegiatan::find($id);
-    //     if ($request->file) {
-    //         $filename = time() . '.' . $request->file('file')->extension();
-    //         $request->file->move(public_path('assets/file'), $filename);
-    //         $laporan->update([
-    //             'tgl' => $request->tgl,
-    //             'name' => $request->name,
-    //             'details' => $request->details,
-    //             'kategori' => $request->kategori,
-    //             'file' => $filename
-    //         ]);
-    //     } else {
-    //         $laporan->update([
-    //             'tgl' => $request->tgl,
-    //             'name' => $request->name,
-    //             'details' => $request->details,
-    //             'kategori' => $request->kategori
-    //         ]);
-    //     }
-    //     return redirect(action('LaporanKegiatanController@index'))->with('update', '"Data Laporan" Berhasil Diubah');
-    // }
-
     public function update(Request $request, $id)
     {
         $laporan = LaporanKegiatan::find($id);
-        $laporan->update([
-            'tgl' => $request->tgl,
-            'name' => $request->name,
-            'details' => $request->details,
-            'kategori' => $request->kategori,
-            'file' => $request->file
-        ]);
-        return redirect(action('LaporanKegiatanController@index'))->with('Update', '"Data Laporan" Berhasil Diubah');
+        if ($request->file) {
+            $filename = time() . '.' . $request->file('file')->extension();
+            $request->file->move(public_path('assets/file'), $filename);
+            $laporan->update([
+                'tgl' => $request->tgl,
+                'name' => $request->name,
+                'details' => $request->details,
+                'kategori' => $request->kategori,
+                'file' => $filename
+            ]);
+        } else {
+            $laporan->update([
+                'tgl' => $request->tgl,
+                'name' => $request->name,
+                'details' => $request->details,
+                'kategori' => $request->kategori
+            ]);
+        }
+        return redirect(action('LaporanKegiatanController@index'))->with('update', '"Data Laporan" Berhasil Diubah');
     }
+
 
     /**
      * Remove the specified resource from storage.
