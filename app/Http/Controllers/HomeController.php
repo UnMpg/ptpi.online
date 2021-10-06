@@ -17,6 +17,7 @@ use App\Laporan;
 use App\LaporanKegiatan;
 use App\LaporanKeuangan;
 use App\QuestionAnswer;
+use App\SeminarHef;
 use Carbon\Carbon;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
@@ -114,6 +115,27 @@ class HomeController extends Controller
         return view('home.laporan-keuangan', compact('laporan', 'date', 'saldo'));
     }
 
+    public function seminarHef(Request $request)
+    {
+
+        $materi = SeminarHef::all();
+        return view('home.seminar-hef', compact('materi'));
+    }
+
+    public function downloadMateriSeminar(Request $request, $file)
+    {
+        return response()->download(public_path('assets/materihef/' . $file));
+    }
+
+    public function searchMateriSeminar(Request $request)
+    {
+        $search = $request->input('tipe_seminar');
+
+
+        $materi = SeminarHef::where('tipe_seminar', 'LIKE', "%{$search}%")->paginate();
+        return view('home.seminar-hef', compact('materi'));
+    }
+
     // public function laporanKegiatan(Request $request)
     // {
     //     $date = null;
@@ -128,9 +150,10 @@ class HomeController extends Controller
     //     $laporan = $laporan->get();
     //     return view('home.laporan-kegiatan', compact('laporan', 'date'));
     // }
+
     // public function laporanKegiatan()
     // {
-    //     $laporan = LaporanKegiatan::orderByDesc('created_at')->take(1)->get();
+    //     $laporan = LaporanKegiatan::all();
     //     return view('home.laporan-kegiatan', compact('laporan'));
     // }
 

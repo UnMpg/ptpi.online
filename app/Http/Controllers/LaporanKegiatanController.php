@@ -19,26 +19,37 @@ class LaporanKegiatanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function index(Request $request)
+    // {
+    //     $date = null;
+    //     $kategori = null;
+    //     $initialDate = now();
+    //     $laporan = LaporanKegiatan::whereYear('tgl', $initialDate->format('Y'));
+
+    //     if ($request->date) {
+    //         $date = Carbon::parse($request->date);
+    //         $laporan = LaporanKegiatan::whereMonth('tgl', $date->month);
+    //     }
+
+    //     if ($request->kategori) {
+    //         $laporan = $laporan->where('kategori', $request->kategori);
+    //         $kategori = $request->kategori;
+    //     }
+
+    //     $laporan = $laporan->get();
+
+    //     return view('admin.laporan-kegiatan.index', compact('laporan', 'date', 'kategori'));
+    // }
+
     public function index(Request $request)
     {
         $date = null;
-        $kategori = null;
-        $initialDate = now();
-        $laporan = LaporanKegiatan::whereYear('tgl', $initialDate->format('Y'));
-
+        $laporan = LaporanKegiatan::all();
         if ($request->date) {
             $date = Carbon::parse($request->date);
-            $laporan = LaporanKegiatan::whereMonth('tgl', $date->month);
+            $laporan = LaporanKegiatan::whereMonth('tgl', $date->month)->get();
         }
-
-        if ($request->kategori) {
-            $laporan = $laporan->where('kategori', $request->kategori);
-            $kategori = $request->kategori;
-        }
-
-        $laporan = $laporan->get();
-
-        return view('admin.laporan-kegiatan.index', compact('laporan', 'date', 'kategori'));
+        return view('admin.laporan-kegiatan.index', compact('laporan', 'date'));
     }
 
     public function updateSaldo(Request $request)
@@ -76,22 +87,27 @@ class LaporanKegiatanController extends Controller
     //     return redirect(action('LaporanController@index'))->with('save', '"Data Laporan" Berhasil Ditambahkan');
     // }
 
+    // public function store(Request $request)
+    // {
+    //     $data = new LaporanKegiatan();
+
+    //     $file = $request->file;
+    //     $filename = time() . '.' . $file->extension();
+    //     $request->file->move(public_path('assets/file'), $filename);
+
+    //     $data->file = $filename;
+    //     $data->tgl = $request->tgl;
+    //     $data->name = $request->name;
+    //     $data->details = $request->details;
+    //     $data->kategori = $request->kategori;
+
+    //     $data->save();
+    //     return redirect(action('LaporanKegiatanController@index'))->with('save', '"Laporan" Berhasil Ditambahkan');
+    // }
     public function store(Request $request)
     {
-        $data = new LaporanKegiatan();
-
-        $file = $request->file;
-        $filename = time() . '.' . $file->extension();
-        $request->file->move(public_path('assets/file'), $filename);
-
-        $data->file = $filename;
-        $data->tgl = $request->tgl;
-        $data->name = $request->name;
-        $data->details = $request->details;
-        $data->kategori = $request->kategori;
-
-        $data->save();
-        return redirect(action('LaporanKegiatanController@index'))->with('save', '"Laporan" Berhasil Ditambahkan');
+        LaporanKegiatan::create($request->all());
+        return redirect(action('LaporanKegiatanController@index'))->with('save', '"Data Laporan" Berhasil Ditambahkan');
     }
 
     /**
@@ -124,28 +140,41 @@ class LaporanKegiatanController extends Controller
      * @param  \App\Laporan  $laporan
      * @return \Illuminate\Http\Response
      */
+    // public function update(Request $request, $id)
+    // {
+    //     $laporan = LaporanKegiatan::find($id);
+    //     if ($request->file) {
+    //         $filename = time() . '.' . $request->file('file')->extension();
+    //         $request->file->move(public_path('assets/file'), $filename);
+    //         $laporan->update([
+    //             'tgl' => $request->tgl,
+    //             'name' => $request->name,
+    //             'details' => $request->details,
+    //             'kategori' => $request->kategori,
+    //             'file' => $filename
+    //         ]);
+    //     } else {
+    //         $laporan->update([
+    //             'tgl' => $request->tgl,
+    //             'name' => $request->name,
+    //             'details' => $request->details,
+    //             'kategori' => $request->kategori
+    //         ]);
+    //     }
+    //     return redirect(action('LaporanKegiatanController@index'))->with('update', '"Data Laporan" Berhasil Diubah');
+    // }
+
     public function update(Request $request, $id)
     {
         $laporan = LaporanKegiatan::find($id);
-        if ($request->file) {
-            $filename = time() . '.' . $request->file('file')->extension();
-            $request->file->move(public_path('assets/file'), $filename);
-            $laporan->update([
-                'tgl' => $request->tgl,
-                'name' => $request->name,
-                'details' => $request->details,
-                'kategori' => $request->kategori,
-                'file' => $filename
-            ]);
-        } else {
-            $laporan->update([
-                'tgl' => $request->tgl,
-                'name' => $request->name,
-                'details' => $request->details,
-                'kategori' => $request->kategori
-            ]);
-        }
-        return redirect(action('LaporanKegiatanController@index'))->with('update', '"Data Laporan" Berhasil Diubah');
+        $laporan->update([
+            'tgl' => $request->tgl,
+            'name' => $request->name,
+            'details' => $request->details,
+            'kategori' => $request->kategori,
+            'file' => $request->file
+        ]);
+        return redirect(action('LaporanKegiatanController@index'))->with('Update', '"Data Laporan" Berhasil Diubah');
     }
 
     /**

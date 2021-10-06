@@ -17,22 +17,23 @@
                 <!-- <h4>Pilih bulan</h4> -->
             </div>
         </div>
-        <table class="table table-bordered table-striped text-center">
+        <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Tanggal</th>
-                    <th>Laporan</th>
-                    <th>Aksi</th>
+                    <th>Kegiatan</th>
+                    <th>Judul</th>
+                    <th>Tanggal Kegiatan</th>
+                    <!-- <th>File</th> -->
+                    <th>Partner Utama</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($laporan as $item)
                 <tr>
-                    <td>{{$item->tgl}}</td>
                     <td>{{$item->name}}</td>
-                    <td>
-                        <a href="{{ action('HomeController@downloadLaporan', $item->file) }}" class="btn-download"><i class="fa fa-download"></i></a>
-                    </td>
+                    <td>{{$item->details}}</td>
+                    <td>{{$item->tgl}}</td>
+                    <td>{{$item->file}}</td>
                 </tr>
                 @endforeach
             </tbody>
