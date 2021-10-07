@@ -26,7 +26,7 @@ class SeminarHefController extends Controller
         // $materi = SeminarHef::all();
         $search = $request->input('search');
 
-        $materi = SeminarHef::where('pembicara', 'LIKE', '%' . $search . '%')->paginate(5);
+        $materi = SeminarHef::where('pembicara', 'LIKE', '%' . $search . '%')->paginate(10);
         return view('admin.seminar-hef.index', compact('materi'));
     }
 

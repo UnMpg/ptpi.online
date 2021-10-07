@@ -115,10 +115,10 @@ class HomeController extends Controller
         return view('home.laporan-keuangan', compact('laporan', 'date', 'saldo'));
     }
 
-    public function seminarHef(Request $request)
+    public function seminarHef()
     {
 
-        $materi = SeminarHef::all();
+        $materi = SeminarHef::paginate(8);
         return view('home.seminar-hef', compact('materi'));
     }
 

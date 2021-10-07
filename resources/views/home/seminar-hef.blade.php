@@ -33,9 +33,9 @@
                 </form>
             </div>
         </div>
-        <table class="table table-bordered table-striped text-center">
+        <table class="table table-bordered table-striped mb-3">
             <thead>
-                <tr>
+                <tr class="text-center">
                     <th>Tanggal</th>
                     <th>Judul</th>
                     <th>Pembicara</th>
@@ -49,7 +49,7 @@
                     <td>{{$item->tgl}}</td>
                     <td>{{$item->judul}}</td>
                     <td>{{$item->pembicara}}</td>
-                    <td>
+                    <td class="text-center">
                         <a href="{{ action('HomeController@downloadMateriSeminar', $item->file) }}" style="font-size: 1.5rem;">
                             <i class="fa fa-download"></i>
                         </a>
@@ -58,6 +58,10 @@
                 @endforeach
             </tbody>
         </table>
+        {{-- Pagination --}}
+        <div class="d-flex justify-content-center">
+            {!! $materi->links() !!}
+        </div>
         @else
         <div class="text-center">
             <h3>No materi found</h3>

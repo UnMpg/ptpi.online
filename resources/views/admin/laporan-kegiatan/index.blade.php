@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         <hr>
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped mb-3">
                             <thead>
                                 <tr class="text-center">
                                     <th>Tanggal</th>
@@ -64,6 +64,10 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {{-- Pagination --}}
+                        <div class="d-flex justify-content-center">
+                            {!! $laporan->links() !!}
+                        </div>
                     </div>
                     <!-- /.card-body -->
                 </div>
