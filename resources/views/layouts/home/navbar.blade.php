@@ -18,6 +18,7 @@
                         <li><a href="{{ action('HomeController@dasarHukum') }}">Dasar Hukum</a></li>
                         <li><a href="{{ action('HomeController@tujuanFungsi') }}">Fungsi</a></li>
                         <li><a href="{{ action('HomeController@strukturOrganisasi') }}">Organisma</a></li>
+                        <li><a href="{{ asset('assets/home/img/maju_bersama_PTPI.pdf') }}">Mars PTPI</a></li>
                     </ul>
                 </li>
                 <li class="drop-down"><a href="#" class="menu_link">Informasi</a>
