@@ -231,6 +231,14 @@
                                 <p>Laporan Kegiatan</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ action('SeminarHefController@index') }}" class="nav-link">
+                                &nbsp;&nbsp;
+                                <i class="fas fa-chalkboard-teacher"></i>
+                                &nbsp;&nbsp;
+                                <p>Materi HEF</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <!-- <li class="nav-item">

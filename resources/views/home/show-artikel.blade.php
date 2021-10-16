@@ -56,7 +56,7 @@
                                 <div class="recent-single-post">
                                     <div class="post-img">
                                         <a href="">
-                                            <img src="{{ asset('assets/article/' . $item->image) }}" alt="" style="border-radius: 25px;">
+                                            <img src="{{ asset('assets/articles/' . $item->image) }}" alt="">
                                         </a>
                                     </div>
                                     <div class="pst-content">
@@ -79,9 +79,10 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="single-blog">
                             <div class="single-blog-img">
-                                <a href="">
-                                    <img src="{{ asset('assets/articles/images/' . $article->image) }}" alt="image" style="width: 100%; height: 350px;">
-                                </a>
+                                <!-- <a href="">
+                                    <img src="{{ asset('assets/articles/' . $article->image) }}" alt="image" style="width: 100%; height: 400px;">
+                                </a> -->
+                                <img src="{{ asset('assets/articles/' . $article->image) }}" alt="image" style="width: 100%; height: 400px;">
                             </div>
                             <div class="blog-meta">
                                 <span class="date-type">
@@ -89,8 +90,9 @@
                                 </span>
                             </div>
                             <div class="blog-text">
-                                <h4>
-                                    <a href="">{{ $article->judul }}</a>
+                                <h4 class="title">
+                                    <!-- <a href="">{{ $article->judul }}</a> -->
+                                    {{ $article->judul }}
                                 </h4>
                                 <p>
                                     {!! $article->konten !!}

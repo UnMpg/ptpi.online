@@ -19,27 +19,37 @@ class LaporanKegiatanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function index(Request $request)
+    // {
+    //     $date = null;
+    //     $kategori = null;
+    //     $initialDate = now();
+    //     $laporan = LaporanKegiatan::whereYear('tgl', $initialDate->format('Y'));
+
+    //     if ($request->date) {
+    //         $date = Carbon::parse($request->date);
+    //         $laporan = LaporanKegiatan::whereMonth('tgl', $date->month);
+    //     }
+
+    //     if ($request->kategori) {
+    //         $laporan = $laporan->where('kategori', $request->kategori);
+    //         $kategori = $request->kategori;
+    //     }
+
+    //     $laporan = $laporan->get();
+
+    //     return view('admin.laporan-kegiatan.index', compact('laporan', 'date', 'kategori'));
+    // }
+
     public function index(Request $request)
     {
-        $saldo = \DB::table('laporan_saldo')->first()->saldo;
         $date = null;
-        $kategori = null;
-        $initialDate = now();
-        $laporan = LaporanKegiatan::whereYear('tgl', $initialDate->format('Y'));
-
+        $laporan = LaporanKegiatan::all();
         if ($request->date) {
             $date = Carbon::parse($request->date);
-            $laporan = LaporanKegiatan::whereMonth('tgl', $date->month);
+            $laporan = LaporanKegiatan::whereMonth('tgl', $date->month)->get();
         }
-
-        if ($request->kategori) {
-            $laporan = $laporan->where('kategori', $request->kategori);
-            $kategori = $request->kategori;
-        }
-
-        $laporan = $laporan->get();
-
-        return view('admin.laporan-kegiatan.index', compact('laporan', 'date', 'saldo', 'kategori'));
+        return view('admin.laporan-kegiatan.index', compact('laporan', 'date'));
     }
 
     public function updateSaldo(Request $request)
@@ -112,9 +122,10 @@ class LaporanKegiatanController extends Controller
      * @param  \App\Laporan  $laporan
      * @return \Illuminate\Http\Response
      */
-    public function edit(LaporanKegiatan $laporan)
+    public function edit($id)
     {
-        //
+        $laporan = LaporanKegiatan::find($id);
+        return view('admin.laporan-kegiatan.edit', compact('laporan'));
     }
 
     /**
@@ -124,10 +135,30 @@ class LaporanKegiatanController extends Controller
      * @param  \App\Laporan  $laporan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LaporanKegiatan $laporan)
+    public function update(Request $request, $id)
     {
-        //
+        $laporan = LaporanKegiatan::find($id);
+        if ($request->file) {
+            $filename = time() . '.' . $request->file('file')->extension();
+            $request->file->move(public_path('assets/file'), $filename);
+            $laporan->update([
+                'tgl' => $request->tgl,
+                'name' => $request->name,
+                'details' => $request->details,
+                'kategori' => $request->kategori,
+                'file' => $filename
+            ]);
+        } else {
+            $laporan->update([
+                'tgl' => $request->tgl,
+                'name' => $request->name,
+                'details' => $request->details,
+                'kategori' => $request->kategori
+            ]);
+        }
+        return redirect(action('LaporanKegiatanController@index'))->with('update', '"Data Laporan" Berhasil Diubah');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -141,8 +172,9 @@ class LaporanKegiatanController extends Controller
     //     return redirect(action('LaporanController@index'))->with('delete', '"Data Laporan" Berhasil Dihapus');
     // }
 
-    public function destroy(LaporanKegiatan $laporan)
+    public function destroy($id)
     {
+        $laporan = LaporanKegiatan::find($id);
         $laporan->delete();
         return redirect(action('LaporanKegiatanController@index'))->with('delete', '"Data Laporan" Berhasil Dihapus');
     }

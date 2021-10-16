@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.app')
-@section('title-page', 'Laporan Kegiatan')
-@section('title-header', 'Laporan Kegiatan')
+@section('title-page', 'Seminar HEF 2021')
+@section('title-header', 'Seminar HEF 2021')
 @section('content')
 <!-- Main content -->
 <section class="content">
@@ -11,8 +11,8 @@
                     <div class="card-header">
                         <h5>
                             <i class="fas fa-tags"></i>
-                            Laporan Kegiatan:
-                            <a href="{{ action('LaporanKegiatanController@create') }}" class="btn btn-sm btn-outline-primary float-right">
+                            Seminar HEF 2021:
+                            <a href="{{ action('SeminarHefController@create') }}" class="btn btn-sm btn-outline-primary float-right">
                                 <i class="fas fa-plus-circle"></i>
                             </a>
                         </h5>
@@ -22,10 +22,12 @@
                         <div class="row">
                             <div class="col-md-8"></div>
                             <div class="col-md-4">
-                                <form action="{{ action('LaporanKegiatanController@index') }}" method="GET">
+                                <form action="{{ action('SeminarHefController@index') }}" method="GET">
                                     <div class="input-group mb-3">
-                                        <input type="month" class="form-control" name="date" onchange="this.form.submit()" placeholder="Filter Waktu" value="{{ ($date ? $date->format('Y-m') : '') }}">
-                                        <input type="hidden" name="kategori" value="kegiatan">
+                                        <input type="text" class="form-control" name="search" placeholder="Cari pembicara">
+                                        <button class="button" type="submit">
+                                            <i class="fa fa-search"></i>
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -35,38 +37,43 @@
                             <thead>
                                 <tr class="text-center">
                                     <th>Tanggal</th>
-                                    <th>Nama Laporan</th>
-                                    <th>Deskripsi</th>
-                                    <th>Kategori</th>
+                                    <th>Tipe Seminar</th>
+                                    <th>Sesi</th>
+                                    <th>Judul</th>
+                                    <th>Pembicara</th>
                                     <th>File</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($laporan as $item)
+                                @foreach ($materi as $item)
                                 <tr>
-                                    <td>{{$item->tgl}}</td>
-                                    <td>{{$item->name}}</td>
-                                    <td>{{$item->details}}</td>
-                                    <td>{{$item->kategori}}</td>
-                                    <td>{{$item->file}}</td>
+                                    <td>{{ $item->tgl }}</td>
+                                    <td>{{ $item->tipe_seminar }}</td>
+                                    <td>{{ $item->sesi }}</td>
+                                    <td>{{ $item->judul }}</td>
+                                    <td>{{ $item->pembicara }}</td>
+                                    <td>{{ $item->file }}</td>
+
+                                    @if (optional(auth('admin')->user())->email == "admin@mail.com")
                                     <td class="text-center">
-                                        <form action="{{ action('LaporanKegiatanController@destroy', $item->id) }}" class="formdelete" method="post">
+                                        <form action="{{ action('SeminarHefController@destroy', $item->id) }}" class="formdelete" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <a href="{{ action('LaporanKegiatanController@edit', $item->id) }}" class="btn btn-sm btn-warning">
+                                            <a href="{{ action('SeminarHefController@edit', $item->id) }}" class="btn btn-sm btn-warning">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             <button type="submit" class="btn btn-sm btn-outline-danger delete-confirm"><i class="fas fa-trash"></i></button>
                                         </form>
                                     </td>
+                                    @endif
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
                         {{-- Pagination --}}
                         <div class="d-flex justify-content-center">
-                            {!! $laporan->links() !!}
+                            {!! $materi->links() !!}
                         </div>
                     </div>
                     <!-- /.card-body -->

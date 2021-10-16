@@ -36,18 +36,30 @@
             </thead>
             <tbody>
                 @foreach ($laporan as $item)
+                @if($item->tipe_laporan === 'pemasukan')
                 <tr>
-                    <td>{{$item->tipe_laporan}}</td>
+                    <td>Pemasukan</td>
                     <td>{{$item->tgl}}</td>
                     <td>{{$item->details}}</td>
-                    <td>Rp. <span class="uang">{{ $item->nominal }}</span></td>
+                    <td>Rp. <span class="uang">{{ number_format($item->nominal, 0, ".", ".") }}</span></td>
                 </tr>
+                @endif
+                @endforeach
+                @foreach ($laporan as $item)
+                @if($item->tipe_laporan === 'pengeluaran')
+                <tr>
+                    <td>Pengeluaran</td>
+                    <td>{{$item->tgl}}</td>
+                    <td>{{$item->details}}</td>
+                    <td>Rp. <span class="uang">{{ number_format($item->nominal, 0, ".", ".") }}</span></td>
+                </tr>
+                @endif
                 @endforeach
                 <tr>
                     <td>Saldo</td>
                     <td class="text-center">Update {{ date('d/m/Y') }}</td>
                     <td class="text-center">-</td>
-                    <td class="text-center">Rp. <span class="uang">{{ $saldo }}</span></td>
+                    <td class="text-center">Rp. <span class="uang">{{ number_format($saldo, 0, ".", ".") }}</span></td>
                 </tr>
             </tbody>
         </table>

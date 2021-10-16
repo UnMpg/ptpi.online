@@ -56,7 +56,7 @@
                                 <div class="recent-single-post">
                                     <div class="post-img">
                                         <a href="{{ action('HomeController@showArtikel', $article->id) }}">
-                                            <img src="{{ asset('assets/articles/images/' . $article->gambar) }}" alt="">
+                                            <img src="{{ asset('assets/articles/' . $article->image) }}" alt="">
                                         </a>
                                     </div>
                                     <div class="pst-content">
@@ -93,8 +93,8 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="single-blog">
                             <div class="single-blog-img">
-                                <a href="">
-                                    <img src="{{ asset('assets/articles/images/' . $article->gambar) }}" alt="" style="border-radius: 5px; object-fit:cover; height: 400px;">
+                                <a href="{{ action('HomeController@showArtikel', $article->id) }}">
+                                    <img src="{{ asset('assets/articles/' . $article->image) }}" alt="" style="border-radius: 5px; width: 100%; height: 400px;">
                                 </a>
                             </div>
                             <div class="blog-meta">

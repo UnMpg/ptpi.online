@@ -15,7 +15,7 @@
         <div class="row" style="display: flex; justify-content:center;">
             <!-- single-well start-->
             <div>
-                <img src="{{ asset('assets\home\img\sertfikasi_baru.png') }}" alt="" width="2000px" style="display: block; margin: 0 auto;" class="mb-4">
+                <img src="{{ asset('assets/home/img/sertifikasi_baru.png') }}" alt="" width="2000px" style="display: block; margin: 0 auto;" class="mb-4">
             </div>
         </div>
     </div>

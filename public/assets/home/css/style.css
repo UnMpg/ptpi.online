@@ -306,6 +306,18 @@ div#preloader {
     max-height: 40px;
 }
 
+.a-disable{
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.a-disable > a {
+    color: currentColor;
+    display: inline-block; 
+    pointer-events: none;
+    text-decoration: none;
+  }
+
 @media (max-width: 768px) {
     #header {
         height: 60px;
@@ -1880,6 +1892,10 @@ preview-2
 .blog-text p {
     color: #444;
     margin-bottom: 15px;
+}
+
+.blog-text .title{
+    margin-bottom: 40px;
 }
 
 .blog-text .text-link {

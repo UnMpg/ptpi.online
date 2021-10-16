@@ -52,8 +52,7 @@
                                     </td>
                                     <td>{{ $topic->created_at->diffForHumans() }}</td>
                                     <td class="text-center">
-                                        <div class="modal fade" id="showFaq-{{ $topic->id }}" tabindex="-1"
-                                            aria-labelledby="showFaq-{{ $topic->id }}Label" aria-hidden="true">
+                                        <div class="modal fade" id="showFaq-{{ $topic->id }}" tabindex="-1" aria-labelledby="showFaq-{{ $topic->id }}Label" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-scrollable">
                                                 <div class="modal-content">
                                                     <div class="modal-header text-left">
@@ -67,8 +66,7 @@
                                                             <small>({{ $topic->user->category->name }} -
                                                                 {{ $topic->user->email }})</small>
                                                         </h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
@@ -82,29 +80,23 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <form action="{{ action('TopicController@destroy', $topic->id) }}" method="post"
-                                            class="formdelete">
+                                        <form action="{{ action('TopicController@destroy', $topic->id) }}" method="post" class="formdelete">
                                             @csrf
                                             @method('DELETE')
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-outline-success"
-                                                    data-toggle="modal" data-target="#showFaq-{{ $topic->id }}">
+                                            <div class="btn-group" style="display: flex; flex-direction:column; justify-content:space-between; align-items:center;">
+                                                <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#showFaq-{{ $topic->id }}">
                                                     <i class="far fa-eye"></i>
                                                 </button>
-                                                <a href="{{ action('TopicController@submitEmail', $topic->id) }}"
-                                                    class="btn btn-sm btn-outline-info">
+                                                <a href="{{ action('TopicController@submitEmail', $topic->id) }}" class="btn btn-sm btn-outline-info">
                                                     <i class="fas fa-mail-bulk"></i>
                                                 </a>
-                                                <a href="{{ action('TopicController@submitEmailVerify', $topic->id) }}"
-                                                    class="btn btn-sm btn-outline-info">
+                                                <a href="{{ action('TopicController@submitEmailVerify', $topic->id) }}" class="btn btn-sm btn-outline-info">
                                                     <i class="fab fa-telegram-plane"></i>
                                                 </a>
-                                                <a href="{{ action('TopicController@edit', $topic->id) }}"
-                                                    class="btn btn-sm btn-outline-warning">
+                                                <a href="{{ action('TopicController@edit', $topic->id) }}" class="btn btn-sm btn-outline-warning">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <button type="submit"
-                                                    class="btn btn-sm btn-outline-danger delete-confirm">
+                                                <button type="submit" class="btn btn-sm btn-outline-danger delete-confirm">
                                                     <i class="far fa-trash-alt"></i>
                                                 </button>
                                             </div>

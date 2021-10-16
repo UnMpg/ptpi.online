@@ -46,13 +46,12 @@
                         <h4 class="text-left">Konsultasi Timeline</h4>
                     </div>
                     <div class="form-group col-md-6 mb-0">
-                        <form action="{{ action('HomeController@faqTimeLine') }}" method="get">
+                        <form action="{{ action('HomeController@questionAnswer') }}" method="get">
                             @csrf
                             <select name="category_id" class="custom-select custom-select-sm" onchange="this.form.submit()">
                                 <option value="">~~ All Categories ~~</option>
                                 @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" {{ ($category_id == $category->id) ? 'selected' : '' }}>{{ $category->name }}
-                                </option>
+                                <option value="{{ $category->id }}" {{ ($category_id == $category->id) ? 'selected' : '' }}>{{ $category->name }}</option>
                                 @endforeach
                             </select>
                         </form>

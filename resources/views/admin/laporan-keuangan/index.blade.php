@@ -65,9 +65,9 @@
                                         <form action="{{ action('LaporanController@destroy', $item->id) }}" class="formdelete" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <!-- <a href="{{ action('LaporanController@edit', $item->id) }}" class="btn btn-sm btn-warning">
+                                            <a href="{{ action('LaporanController@edit', $item->id) }}" class="btn btn-sm btn-warning">
                                                 <i class="fas fa-edit"></i>
-                                            </a> -->
+                                            </a>
                                             <button type="submit" class="btn btn-sm btn-outline-danger delete-confirm"><i class="fas fa-trash"></i></button>
                                         </form>
                                     </td>

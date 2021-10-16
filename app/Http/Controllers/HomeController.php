@@ -17,6 +17,7 @@ use App\Laporan;
 use App\LaporanKegiatan;
 use App\LaporanKeuangan;
 use App\QuestionAnswer;
+use App\SeminarHef;
 use Carbon\Carbon;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
@@ -114,20 +115,47 @@ class HomeController extends Controller
         return view('home.laporan-keuangan', compact('laporan', 'date', 'saldo'));
     }
 
-    public function laporanKegiatan(Request $request)
+    public function seminarHef()
     {
-        $date = null;
-        $initialDate = now();
-        $laporan = LaporanKegiatan::whereYear('tgl', $initialDate->format('Y'));
 
-        if ($request->date) {
-            $date = Carbon::parse($request->date);
-            $laporan = LaporanKegiatan::whereMonth('tgl', $date->month);
-        }
-
-        $laporan = $laporan->get();
-        return view('home.laporan-kegiatan', compact('laporan', 'date'));
+        $materi = SeminarHef::paginate(8);
+        return view('home.seminar-hef', compact('materi'));
     }
+
+    public function downloadMateriSeminar(Request $request, $file)
+    {
+        return response()->download(public_path('assets/materihef/' . $file));
+    }
+
+    public function searchMateriSeminar(Request $request)
+    {
+        $search = $request->input('tipe_seminar');
+
+
+        $materi = SeminarHef::where('tipe_seminar', 'LIKE', "%{$search}%")->paginate();
+        return view('home.seminar-hef', compact('materi'));
+    }
+
+    // public function laporanKegiatan(Request $request)
+    // {
+    //     $date = null;
+    //     $initialDate = now();
+    //     $laporan = LaporanKegiatan::whereYear('tgl', $initialDate->format('Y'));
+
+    //     if ($request->date) {
+    //         $date = Carbon::parse($request->date);
+    //         $laporan = LaporanKegiatan::whereMonth('tgl', $date->month);
+    //     }
+
+    //     $laporan = $laporan->get();
+    //     return view('home.laporan-kegiatan', compact('laporan', 'date'));
+    // }
+
+    // public function laporanKegiatan()
+    // {
+    //     $laporan = LaporanKegiatan::all();
+    //     return view('home.laporan-kegiatan', compact('laporan'));
+    // }
 
     public function downloadLaporan(Request $request, $file)
     {

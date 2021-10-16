@@ -15,7 +15,7 @@
         <div class="row">
             <!-- single-well start-->
             <div style="text-align: center; margin-bottom: 100px;">
-                <img src="{{ asset('assets\home\img\jejaring_baru.png') }}" alt="" width="2000px" class="mb-4">
+                <img src="{{ asset('assets/home/img/jejaring_baru.png') }}" alt="" width="2000px" class="mb-4">
             </div>
             <!-- single-well end-->
             <div style="text-align: center;">

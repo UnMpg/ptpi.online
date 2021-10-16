@@ -2,10 +2,10 @@
 <div id="home" class="slider-area">
     <div class="bend niceties preview-2 slider">
         <div id="ensign-nivoslider" class="slides slider-img">
-            <img src="{{ asset('assets/home/slider/munas.jpg') }}" alt="" title="#slider-direction-1" />
-            <img src="{{ asset('assets/home/slider/6_bidang.png') }}" alt="" title="#slider-direction-1" />
-            <img src="{{ asset('assets/home/slider/ve1.1.png') }}" alt="" title="#slider-direction-1" />
-            <img src="{{ asset('assets/home/slider/ve4.1.png') }}" alt="" title="#slider-direction-1" />
+            <img src="{{ asset('assets/home/slider/munas.jpg') }}" alt="munas" title="#slider-direction-1" />
+            <img src="{{ asset('assets/home/slider/6_bidang.png') }}" alt="6 biang keahlian" title="#slider-direction-1" />
+            <img src="{{ asset('assets/home/slider/ve1.1.png') }}" alt="poster virtual exibhition versi indo" title="#slider-direction-1" />
+            <img src="{{ asset('assets/home/slider/ve4.1.png') }}" alt="poster virtual exibhition versi iggris" title="#slider-direction-1" />
             <img src="{{ asset('assets/home/slider/virtual-exhibition1.jpg') }}" alt="" title="#slider-direction-1" />
             <img src="{{ asset('assets/home/slider/VE2.jpg') }}" alt="" title="#slider-direction-1" />
             <img src="{{ asset('assets/home/slider/VE3.jpg') }}" alt="" title="#slider-direction-1" />
