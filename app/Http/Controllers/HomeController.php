@@ -36,6 +36,21 @@ class HomeController extends Controller
         return view('home.index', compact('articles', 'news'));
     }
 
+    public function certificatesSign(Request $request)
+    {
+        if ($request->certificate_number) {
+            $certificate_number = substr($request->certificate_number, 4);
+            $certificate_order = substr($request->certificate_number, 0, 4);
+            $data = \DB::table('certificates_sign')->where('certificate_number', $certificate_number)->first();
+            if ($data && $certificate_order <= 700) {
+                return view('home.certificates-sign');
+            } else {
+                abort(404);
+            }
+        }
+        abort(404);
+    }
+
 
     public function sendEmail(Request $request)
     {

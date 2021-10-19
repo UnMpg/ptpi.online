@@ -134,10 +134,6 @@ Route::get("/cert", function () {
     return $_users;
 });
 
-
-
-
-
 Route::get('auth', function () {
     return bcrypt('secret');
     $time = time();
@@ -165,6 +161,7 @@ Route::get('referral/{referral}', function ($referral = null) {
 });
 
 Route::get('/', 'HomeController@index');
+Route::get('/certificates-sign', 'HomeController@certificatesSign');
 
 Route::post('/', 'HomeController@sendEmail');
 
