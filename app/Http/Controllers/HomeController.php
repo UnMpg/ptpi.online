@@ -136,9 +136,13 @@ class HomeController extends Controller
         return view('home.seminar-hef', compact('materi'));
     }
 
-    public function seminarHefCertificate()
+    public function seminarHefCertificate(Request $request)
     {
-        $certificates = \DB::table('hef_certificates')->paginate(8);
+        $certificates = \DB::table('hef_certificates');
+        if ($request->hef_category_id) {
+            $certificates->where('hef_category_id', $request->hef_category_id);
+        }
+        $certificates = $certificates->paginate(8);
         return view('home.seminar-hef-list', compact('certificates'));
     }
 

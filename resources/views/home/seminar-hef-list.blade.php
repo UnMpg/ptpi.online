@@ -22,13 +22,13 @@
                         <input type="text" class="form-control" name="date" placeholder="Filter Waktu">
                     </div>
                 </form> -->
-                <form action="{{ action('HomeController@searchMateriSeminar') }}" method="GET">
-                    @csrf
-                    <select name="tipe_seminar" class="form-control" onchange="this.form.submit()">
+                <form action="">
+                    <select name="hef_category_id" class="form-control" onchange="dayChangedTrigger()"
+                        id="hef_category_id">
                         <option value="">- Pilih Seminar -</option>
-                        <option value="hari_pertama">Hari ke-1</option>
-                        <option value="hari_kedua">Hari ke-2</option>
-                        <option value="hari_ketiga">Hari ke-3</option>
+                        <option value="1">Hari ke-1</option>
+                        <option value="2">Hari ke-2</option>
+                        <option value="3">Hari ke-3</option>
                     </select>
                 </form>
             </div>
@@ -70,4 +70,15 @@
         @endif
     </div>
 </div>
+@endsection
+@section('script')
+<script>
+    function dayChangedTrigger () {
+            let queryString = window.location.search;  // get url parameters
+            let params = new URLSearchParams(queryString);  // create url search params object
+            params.delete('hef_category_id');  // delete hef_category_id parameter if it exists, in case you change the dropdown more then once
+            params.append('hef_category_id', document.getElementById("hef_category_id").value); // add selected hef_category_id
+            document.location.href = "?" + params.toString(); // refresh the page with new url
+        }
+</script>
 @endsection
