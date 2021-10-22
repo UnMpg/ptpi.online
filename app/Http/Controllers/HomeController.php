@@ -132,9 +132,20 @@ class HomeController extends Controller
 
     public function seminarHef()
     {
-
         $materi = SeminarHef::paginate(8);
         return view('home.seminar-hef', compact('materi'));
+    }
+
+    public function seminarHefCertificate()
+    {
+        $certificates = \DB::table('hef_certificates')->paginate(8);
+        return view('home.seminar-hef-list', compact('certificates'));
+    }
+
+    public function downloadSeminarHefCertificate(Request $request, $id)
+    {
+        $certificate = \DB::table('hef_certificates')->where('id', $id)->first();
+        return response()->download(public_path('assets/hef-certificates/' . $certificate->id . '/SESI 1 ' . $certificate->name));
     }
 
     public function downloadMateriSeminar(Request $request, $file)

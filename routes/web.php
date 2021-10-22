@@ -221,6 +221,8 @@ Route::group(['prefix' => 'home'], function () {
     // Route::get('/laporan-keuangan', 'HomeController@laporanKeuangan');
     Route::get('/laporan-keuangan', 'HomeController@laporanKeuangan');
     // Route::get('/laporan-kegiatan', 'HomeController@laporanKegiatan');
+    Route::get('/seminar-hef-certificate', 'HomeController@seminarHefCertificate');
+    Route::get('/seminar-hef-certificate/download/{id}', 'HomeController@downloadSeminarHefCertificate');
     Route::get('/seminar-hef', 'HomeController@seminarHef');
     Route::get('/seminar-hef/download/{file}', 'HomeController@downloadMateriSeminar');
     Route::get('/seminar-hef/search', 'HomeController@searchMateriSeminar');
