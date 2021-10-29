@@ -29,6 +29,10 @@
                         <option value="1">Hari ke-1</option>
                         <option value="2">Hari ke-2</option>
                         <option value="3">Hari ke-3</option>
+                        <option value="4">Hari ke-4</option>
+                        <option value="5">Hari ke-5</option>
+                        <option value="6">Hari ke-6</option>
+                        <option value="7">Hari ke-7</option>
                     </select>
                 </form>
             </div>
@@ -37,8 +41,9 @@
             <thead>
                 <tr class="text-center">
                     {{-- <th>Date</th> --}}
-                    <th>Name</th>
-                    <th>Certificate Number</th>
+                    <th>Nama</th>
+                    <th>Nomor Sertifikat</th>
+                    <th>Sesi</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -49,6 +54,7 @@
                     {{-- <td>{{$item->date}}</td> --}}
                     <td>{{$item->name}}</td>
                     <td>{{$item->certificate_number}}</td>
+                    <td>{{$item->hef_category_id}}</td>
                     <td class="text-center">
                         <a href="{{ action('HomeController@downloadSeminarHefCertificate', $item->id) }}"
                             style="font-size: 1.5rem;">
