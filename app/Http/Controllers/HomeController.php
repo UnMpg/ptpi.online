@@ -149,7 +149,7 @@ class HomeController extends Controller
     public function downloadSeminarHefCertificate(Request $request, $id)
     {
         $certificate = \DB::table('hef_certificates')->where('id', $id)->first();
-        return response()->download(public_path('assets/hef-certificates/' . $certificate->hef_category_id . '/SESI 1 ' . $certificate->name . '.pdf'));
+        return response()->download(public_path('assets/hef-certificates/' . $certificate->hef_category_id . '/SESI ' . $certificate->hef_category_id . ' ' . $certificate->name . '.pdf'));
     }
 
     public function downloadMateriSeminar(Request $request, $file)
