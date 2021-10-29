@@ -25,14 +25,14 @@
                 <form action="">
                     <select name="hef_category_id" class="form-control" onchange="dayChangedTrigger()"
                         id="hef_category_id">
-                        <option value="">- Pilih Seminar -</option>
-                        <option value="1">Hari ke-1</option>
-                        <option value="2">Hari ke-2</option>
-                        <option value="3">Hari ke-3</option>
-                        <option value="4">Hari ke-4</option>
-                        <option value="5">Hari ke-5</option>
-                        <option value="6">Hari ke-6</option>
-                        <option value="7">Hari ke-7</option>
+                        <option value="">- Pilih Sesi -</option>
+                        <option value="1">Sesi ke-1</option>
+                        <option value="2">Sesi ke-2</option>
+                        <option value="3">Sesi ke-3</option>
+                        <option value="4">Sesi ke-4</option>
+                        <option value="5">Sesi ke-5</option>
+                        <option value="6">Sesi ke-6</option>
+                        <option value="7">Sesi ke-7</option>
                     </select>
                 </form>
             </div>
