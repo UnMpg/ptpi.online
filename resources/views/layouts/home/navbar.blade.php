@@ -19,6 +19,7 @@
                         <li><a href="{{ action('HomeController@tujuanFungsi') }}">Fungsi</a></li>
                         <li><a href="{{ action('HomeController@strukturOrganisasi') }}">Organisma</a></li>
                         <li><a href="{{ asset('assets/home/img/maju_bersama_PTPI.pdf') }}">Mars PTPI</a></li>
+                        <li><a href="https://youtu.be/egYfc67eGbI">Mars PTPI (Official Video)</a></li>
                     </ul>
                 </li>
                 <li class="drop-down"><a href="#" class="menu_link">Informasi</a>
@@ -66,26 +67,26 @@
                         <!-- <li><a href="{{ asset('assets/members/doc/Akta_Pendirian_PTPI.pdf') }}">Akta Pendirian</a></li> -->
                         <li><a href="{{ action('HomeController@getSertifikat') }}">Sertifikat Seminar</a></li>
                         {{-- <li><a href="{{ action('HomeController@seminarHefCertificate') }}">Sertifikat Seminar
-                                HEF</a>
-                        </li> --}}
-                        <li>
-                            @php($laporan = App\LaporanKegiatan::orderByDesc('created_at')->take(1)->get())
-                            @if(count($laporan) > 0)
-                            @foreach($laporan as $item)
-                            <a href="{{ action('HomeController@downloadLaporan', $item->file) }}">Laporan Kegiatan</a>
-                            @endforeach
-                            @else
-                            <span class="a-disable">
-                                <a href="">Laporan Kegiatan</a>
-                            </span>
-                            @endif
-                        </li>
-                        <li><a href="{{ action('HomeController@laporanKeuangan') }}">Laporan Keuangan</a></li>
-                        <li><a href="{{ action('HomeController@seminarHef') }}">Materi HEF</a></li>
-                        <!-- <li><a href="{{ action('HomeController@laporan') }}" class="menu_link">Laporan</a></li> -->
-                    </ul>
+                        HEF</a>
+                </li> --}}
+                <li>
+                    @php($laporan = App\LaporanKegiatan::orderByDesc('created_at')->take(1)->get())
+                    @if(count($laporan) > 0)
+                    @foreach($laporan as $item)
+                    <a href="{{ action('HomeController@downloadLaporan', $item->file) }}">Laporan Kegiatan</a>
+                    @endforeach
+                    @else
+                    <span class="a-disable">
+                        <a href="">Laporan Kegiatan</a>
+                    </span>
+                    @endif
                 </li>
-                <li><a href="{{ action('AuthController@getLogin') }}" class="menu_link">Login</a></li>
+                <li><a href="{{ action('HomeController@laporanKeuangan') }}">Laporan Keuangan</a></li>
+                <li><a href="{{ action('HomeController@seminarHef') }}">Materi HEF</a></li>
+                <!-- <li><a href="{{ action('HomeController@laporan') }}" class="menu_link">Laporan</a></li> -->
+            </ul>
+            </li>
+            <li><a href="{{ action('AuthController@getLogin') }}" class="menu_link">Login</a></li>
 
             </ul>
         </nav><!-- .nav-menu -->
