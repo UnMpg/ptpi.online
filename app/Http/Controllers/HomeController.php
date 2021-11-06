@@ -142,6 +142,10 @@ class HomeController extends Controller
         if ($request->hef_category_id) {
             $certificates->where('hef_category_id', $request->hef_category_id);
         }
+        if ($request->keyword) {
+            $certificates->where('name', 'LIKE', '%' . $request->keyword . '%');
+        }
+
         $certificates = $certificates->paginate(8);
         return view('home.seminar-hef-list', compact('certificates'));
     }

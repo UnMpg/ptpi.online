@@ -13,15 +13,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8 mb-0">
-                <!-- <h4>Pilih Bulan</h4> -->
-            </div>
-            <div class="col-md-4 mb-4">
-                <!-- <form action="" method="GET">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="date" placeholder="Filter Waktu">
-                    </div>
-                </form> -->
+            <div class="col">
                 <form action="">
                     <select name="hef_category_id" class="form-control" onchange="dayChangedTrigger()"
                         id="hef_category_id">
@@ -34,6 +26,15 @@
                         <option value="6">Sesi ke-6</option>
                         <option value="7">Sesi ke-7</option>
                     </select>
+                </form>
+            </div>
+            <div class="col">
+                <form action="{{ action('HomeController@seminarHefCertificate') }}" method="GET">
+                    @csrf
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="keyword" placeholder="Cari Nama">
+                        <button type="submit" class="btn btn-primary">Cari</button>
+                    </div>
                 </form>
             </div>
         </div>
