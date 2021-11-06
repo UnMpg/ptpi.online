@@ -32,7 +32,8 @@
                 <form action="{{ action('HomeController@seminarHefCertificate') }}" method="GET">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="keyword" placeholder="Cari Nama">
+                        <input type="text" class="form-control" name="keyword" placeholder="Cari Nama"
+                            value="{{ $search }}">
                         <button type="submit" class="btn btn-primary">Cari</button>
                     </div>
                 </form>
