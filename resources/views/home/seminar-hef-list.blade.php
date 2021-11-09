@@ -12,6 +12,9 @@
                 </div>
             </div>
         </div>
+        <div class="alert alert-warning">
+            Sertifikat hanya untuk yang hadir dan isi survei, paling lambat 30 hari setelah acara.
+        </div>
         <div class="row">
             <div class="col">
                 <form action="">
