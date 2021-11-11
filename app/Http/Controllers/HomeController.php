@@ -139,19 +139,21 @@ class HomeController extends Controller
     public function seminarHefCertificate(Request $request)
     {
         $search = $request->keyword;
+        $session = $request->session;
+        $day = $request->day;
         $certificates = \DB::table('hef_certificates');
-        if ($request->hef_category_id) {
-            $certificates->where('hef_category_id', $request->hef_category_id);
+        if ($session) {
+            $certificates->where('session', $session);
         }
-        if ($request->day) {
-            $certificates->where('day', $request->day);
+        if ($day) {
+            $certificates->where('day', $day);
         }
         if ($search) {
             $certificates->where('name', 'LIKE', '%' . $search . '%');
         }
 
         $certificates = $certificates->orderBy('hef_category_id', 'ASC')->paginate(8);
-        return view('home.seminar-hef-list', compact('certificates', 'search'));
+        return view('home.seminar-hef-list', compact('certificates', 'search', 'day', 'session'));
     }
 
     public function downloadSeminarHefCertificate(Request $request, $id)

@@ -20,23 +20,23 @@
                 <form action="">
                     <select name="day" class="form-control" onchange="dayChangedTrigger()" id="day">
                         <option value="">- Pilih Hari -</option>
-                        <option value="1">Hari ke-1</option>
-                        <option value="2">Hari ke-2</option>
+                        <option value="1" {{ $day==1 ? 'selected' : null }}>Hari ke-1</option>
+                        <option value="2" {{ $day==2 ? 'selected' : null }}>Hari ke-2</option>
                     </select>
                 </form>
             </div>
             <div class="col">
                 <form action="">
-                    <select name="hef_category_id" class="form-control" onchange="sessionChangedTrigger()"
-                        id="hef_category_id">
+                    <select name="session" class="form-control" onchange="sessionChangedTrigger()" id="session">
                         <option value="">- Pilih Sesi -</option>
-                        <option value="1">Sesi ke-1</option>
-                        <option value="2">Sesi ke-2</option>
-                        <option value="3">Sesi ke-3</option>
-                        <option value="4">Sesi ke-4</option>
-                        <option value="5">Sesi ke-5</option>
-                        <option value="6">Sesi ke-6</option>
-                        <option value="7">Sesi ke-7</option>
+                        <option value="1" {{ $session==1 ? 'selected' : null }}>Sesi ke-1</option>
+                        <option value="2" {{ $session==2 ? 'selected' : null }}>Sesi ke-2</option>
+                        <option value="3" {{ $session==3 ? 'selected' : null }}>Sesi ke-3</option>
+                        <option value="4" {{ $session==4 ? 'selected' : null }}>Sesi ke-4</option>
+                        <option value="5" {{ $session==5 ? 'selected' : null }}>Sesi ke-5</option>
+                        <option value="6" {{ $session==6 ? 'selected' : null }}>Sesi ke-6</option>
+                        <option value="7" {{ $session==7 ? 'selected' : null }}>Sesi ke-7</option>
+                        <option value="8" {{ $session==8 ? 'selected' : null }}>Sesi ke-8</option>
                     </select>
                 </form>
             </div>
@@ -111,8 +111,8 @@
     function sessionChangedTrigger () {
             let queryString = window.location.search;  // get url parameters
             let params = new URLSearchParams(queryString);  // create url search params object
-            params.delete('hef_category_id');  // delete hef_category_id parameter if it exists, in case you change the dropdown more then once
-            params.append('hef_category_id', document.getElementById("hef_category_id").value); // add selected hef_category_id
+            params.delete('session');  // delete session parameter if it exists, in case you change the dropdown more then once
+            params.append('session', document.getElementById("session").value); // add selected session
             document.location.href = "?" + params.toString(); // refresh the page with new url
         }
 </script>
