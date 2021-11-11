@@ -143,6 +143,9 @@ class HomeController extends Controller
         if ($request->hef_category_id) {
             $certificates->where('hef_category_id', $request->hef_category_id);
         }
+        if ($request->hef_category_id) {
+            $certificates->where('day', $request->day);
+        }
         if ($search) {
             $certificates->where('name', 'LIKE', '%' . $search . '%');
         }

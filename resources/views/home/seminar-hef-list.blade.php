@@ -18,7 +18,16 @@
         <div class="row">
             <div class="col">
                 <form action="">
-                    <select name="hef_category_id" class="form-control" onchange="dayChangedTrigger()"
+                    <select name="day" class="form-control" onchange="dayChangedTrigger()" id="day">
+                        <option value="">- Pilih Hari -</option>
+                        <option value="1">Hari ke-1</option>
+                        <option value="2">Hari ke-2</option>
+                    </select>
+                </form>
+            </div>
+            <div class="col">
+                <form action="">
+                    <select name="hef_category_id" class="form-control" onchange="sessionChangedTrigger()"
                         id="hef_category_id">
                         <option value="">- Pilih Sesi -</option>
                         <option value="1">Sesi ke-1</option>
@@ -48,6 +57,7 @@
                     {{-- <th>Date</th> --}}
                     <th>Nama</th>
                     <th>Nomor Sertifikat</th>
+                    <th>Hari</th>
                     <th>Sesi</th>
                     <th>Aksi</th>
                 </tr>
@@ -59,12 +69,19 @@
                     {{-- <td>{{$item->date}}</td> --}}
                     <td>{{$item->name}}</td>
                     <td>{{$item->certificate_number}}</td>
-                    <td>{{$item->hef_category_id}}</td>
+                    <td>{{$item->day}}</td>
+                    <td>{{$item->session}}</td>
                     <td class="text-center">
+                        @if ($item->hef_category_id)
                         <a href="{{ action('HomeController@downloadSeminarHefCertificate', $item->id) }}"
                             style="font-size: 1.5rem;">
                             <i class="fa fa-download"></i>
                         </a>
+                        @else
+                        <a href="{{ $item->certificate_url }}" style="font-size: 1.5rem;">
+                            <i class="fa fa-download"></i>
+                        </a>
+                        @endif
                     </td>
                 </tr>
                 @endforeach
@@ -85,6 +102,13 @@
 @section('script')
 <script>
     function dayChangedTrigger () {
+            let queryString = window.location.search;  // get url parameters
+            let params = new URLSearchParams(queryString);  // create url search params object
+            params.delete('day');  // delete day parameter if it exists, in case you change the dropdown more then once
+            params.append('day', document.getElementById("day").value); // add selected day
+            document.location.href = "?" + params.toString(); // refresh the page with new url
+        }
+    function sessionChangedTrigger () {
             let queryString = window.location.search;  // get url parameters
             let params = new URLSearchParams(queryString);  // create url search params object
             params.delete('hef_category_id');  // delete hef_category_id parameter if it exists, in case you change the dropdown more then once
