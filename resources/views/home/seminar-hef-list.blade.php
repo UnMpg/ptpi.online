@@ -89,7 +89,7 @@
         </table>
         {{-- Pagination --}}
         <div class="d-flex justify-content-center">
-            {!! $certificates->links() !!}
+            {{ $certificates->appends(request()->query())->links() }}
         </div>
         @else
         <div class="text-center">
