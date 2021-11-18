@@ -22,6 +22,7 @@
                         <option value="">- Pilih Hari -</option>
                         <option value="1" {{ $day==1 ? 'selected' : null }}>Hari ke-1</option>
                         <option value="2" {{ $day==2 ? 'selected' : null }}>Hari ke-2</option>
+                        <option value="3" {{ $day==3 ? 'selected' : null }}>Hari ke-3</option>
                     </select>
                 </form>
             </div>
