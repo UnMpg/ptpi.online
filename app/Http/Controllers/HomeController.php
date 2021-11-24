@@ -150,9 +150,11 @@ class HomeController extends Controller
         }
         if ($search) {
             $certificates->where('name', 'LIKE', '%' . $search . '%');
+            $certificates = $certificates->orderBy('hef_category_id', 'ASC')->simplePaginate(8);
+        } else {
+            $certificates = collect([]);
         }
 
-        $certificates = $certificates->orderBy('hef_category_id', 'ASC')->simplePaginate(8);
         return view('home.seminar-hef-list', compact('certificates', 'search', 'day', 'session'));
     }
 
