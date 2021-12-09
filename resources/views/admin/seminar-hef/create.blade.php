@@ -29,6 +29,7 @@
                                     <option value="hari_pertama">Hari ke-1</option>
                                     <option value="hari_kedua">Hari ke-2</option>
                                     <option value="hari_ketiga">Hari ke-3</option>
+                                    <option value="lainnya">Lainnya</option>
                                 </select>
                                 @if ($errors->has('tipe_seminar'))
                                 <div class="invalid-feedback">
