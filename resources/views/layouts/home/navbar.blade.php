@@ -83,6 +83,7 @@
                         </li>
                         <li><a href="{{ action('HomeController@laporanKeuangan') }}">Laporan Keuangan</a></li>
                         <li><a href="{{ action('HomeController@seminarHef') }}">Materi HEF</a></li>
+                        <li><a href="{{ action('HomeController@materi') }}">Materi Seminar & WS</a></li>
                         <!-- <li><a href="{{ action('HomeController@laporan') }}" class="menu_link">Laporan</a></li> -->
                     </ul>
                 </li>

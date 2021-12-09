@@ -16,6 +16,7 @@ use App\User;
 use App\Laporan;
 use App\LaporanKegiatan;
 use App\LaporanKeuangan;
+use App\Materi;
 use App\QuestionAnswer;
 use App\SeminarHef;
 use Carbon\Carbon;
@@ -136,6 +137,12 @@ class HomeController extends Controller
         return view('home.seminar-hef', compact('materi'));
     }
 
+    public function materi()
+    {
+        $materi = Materi::paginate(8);
+        return view('home.materi', compact('materi'));
+    }
+
     public function seminarHefCertificate(Request $request)
     {
         $search = $request->keyword;
@@ -167,6 +174,11 @@ class HomeController extends Controller
     public function downloadMateriSeminar(Request $request, $file)
     {
         return response()->download(public_path('assets/materihef/' . $file));
+    }
+
+    public function downloadMateri(Request $request, $file)
+    {
+        return response()->download(public_path('assets/materi_seminar_workshop/' . $file));
     }
 
     public function searchMateriSeminar(Request $request)

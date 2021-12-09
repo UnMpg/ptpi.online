@@ -221,10 +221,12 @@ Route::group(['prefix' => 'home'], function () {
     // Route::get('/laporan-keuangan', 'HomeController@laporanKeuangan');
     Route::get('/laporan-keuangan', 'HomeController@laporanKeuangan');
     // Route::get('/laporan-kegiatan', 'HomeController@laporanKegiatan');
+    Route::get('/materi', 'HomeController@materi');
     Route::get('/seminar-hef-certificate', 'HomeController@seminarHefCertificate');
     Route::get('/seminar-hef-certificate/download/{id}', 'HomeController@downloadSeminarHefCertificate');
     Route::get('/seminar-hef', 'HomeController@seminarHef');
     Route::get('/seminar-hef/download/{file}', 'HomeController@downloadMateriSeminar');
+    Route::get('/materi/download/{file}', 'HomeController@downloadMateri');
     Route::get('/seminar-hef/search', 'HomeController@searchMateriSeminar');
     Route::get('/laporan-kegiatan/download/{file}', 'HomeController@downloadLaporan');
     Route::get('/surat-permohonan', 'HomeController@downloadSuratPermohonan');
@@ -262,6 +264,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('laporan-keuangan', 'LaporanController');
     Route::resource('laporan-kegiatan', 'LaporanKegiatanController');
     Route::resource('seminar-hef', 'SeminarHefController');
+    Route::resource('materi', 'MateriController');
     Route::post('laporan-keuangan/update/saldo', 'LaporanController@updateSaldo');
 
     // kontribusi
