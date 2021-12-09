@@ -12,7 +12,8 @@
                         <h5>
                             <i class="fas fa-tags"></i>
                             Seminar HEF 2021:
-                            <a href="{{ action('SeminarHefController@create') }}" class="btn btn-sm btn-outline-primary float-right">
+                            <a href="{{ action('SeminarHefController@create') }}"
+                                class="btn btn-sm btn-outline-primary float-right">
                                 <i class="fas fa-plus-circle"></i>
                             </a>
                         </h5>
@@ -24,7 +25,8 @@
                             <div class="col-md-4">
                                 <form action="{{ action('SeminarHefController@index') }}" method="GET">
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" name="search" placeholder="Cari pembicara">
+                                        <input type="text" class="form-control" name="search"
+                                            placeholder="Cari pembicara">
                                         <button class="button" type="submit">
                                             <i class="fa fa-search"></i>
                                         </button>
@@ -41,6 +43,7 @@
                                     <th>Sesi</th>
                                     <th>Judul</th>
                                     <th>Pembicara</th>
+                                    <th>File URL</th>
                                     <th>File</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -53,17 +56,22 @@
                                     <td>{{ $item->sesi }}</td>
                                     <td>{{ $item->judul }}</td>
                                     <td>{{ $item->pembicara }}</td>
-                                    <td>{{ $item->file }}</td>
+                                    <td>{{ $item->file_url ?: '-' }}</td>
+                                    <td>{{ $item->file ?: '-' }}</td>
 
                                     @if (optional(auth('admin')->user())->email == "admin@mail.com")
                                     <td class="text-center">
-                                        <form action="{{ action('SeminarHefController@destroy', $item->id) }}" class="formdelete" method="post">
+                                        <form action="{{ action('SeminarHefController@destroy', $item->id) }}"
+                                            class="formdelete" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <a href="{{ action('SeminarHefController@edit', $item->id) }}" class="btn btn-sm btn-warning">
+                                            <a href="{{ action('SeminarHefController@edit', $item->id) }}"
+                                                class="btn btn-sm btn-warning">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <button type="submit" class="btn btn-sm btn-outline-danger delete-confirm"><i class="fas fa-trash"></i></button>
+                                            <button type="submit"
+                                                class="btn btn-sm btn-outline-danger delete-confirm"><i
+                                                    class="fas fa-trash"></i></button>
                                         </form>
                                     </td>
                                     @endif

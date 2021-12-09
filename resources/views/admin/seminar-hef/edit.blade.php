@@ -8,13 +8,15 @@
         <div class="col-md-12">
             <div class="card card-outline card-info">
                 <div class="card-body pad">
-                    <form role="form" action="{{ action('SeminarHefController@update', $materi->id) }}" enctype="multipart/form-data" method="POST">
+                    <form role="form" action="{{ action('SeminarHefController@update', $materi->id) }}"
+                        enctype="multipart/form-data" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Tanggal Kegiatan</label>
-                                <input type="date" class="form-control" placeholder="Tanggal Kegiatan" name="tgl" required autocomplete="off" value="{{ $materi->tgl }}">
+                                <input type="date" class="form-control" placeholder="Tanggal Kegiatan" name="tgl"
+                                    required autocomplete="off" value="{{ $materi->tgl }}">
                             </div>
                             <div class="form-group">
                                 <label>Tipe Seminar</label>
@@ -26,21 +28,32 @@
                             </div>
                             <div class="form-group">
                                 <label>Sesi Seminar</label>
-                                <input type="text" class="form-control" name="sesi" required autocomplete="off" value="{{ $materi->sesi }}">
+                                <input type="text" class="form-control" name="sesi" required autocomplete="off"
+                                    value="{{ $materi->sesi }}">
                             </div>
                             <div class="form-group">
                                 <label>Judul</label>
-                                <input type="text" class="form-control" placeholder="Judul" name="judul" required autocomplete="off" value="{{ $materi->judul }}">
+                                <input type="text" class="form-control" placeholder="Judul" name="judul" required
+                                    autocomplete="off" value="{{ $materi->judul }}">
                             </div>
                             <div class="form-group">
                                 <label>Pembicara</label>
-                                <input type="text" class="form-control" placeholder="Pembicara" name="pembicara" required autocomplete="off" value="{{ $materi->pembicara }}">
+                                <input type="text" class="form-control" placeholder="Pembicara" name="pembicara"
+                                    required autocomplete="off" value="{{ $materi->pembicara }}">
                             </div>
                             <div class="form-group">
-                                <label>File Materi <small><em>(File harus berekstensi .pdf dengan ukuran maksimal 10 MB)</em></small></label>
+                                <label>File URL</label>
+                                <input type="text" class="form-control" placeholder="File URL" name="file_url"
+                                    autocomplete="off" value="{{ $materi->file_url }}">
+                            </div>
+                            <div class="form-group">
+                                <label>File Materi <small><em>(File harus berekstensi .pdf dengan ukuran maksimal 10
+                                            MB)</em></small></label>
                                 <div style="display: flex;">
-                                    <a href="{{ asset('assets/materihef/' . $materi->file) }}" style="margin-right: 10px;">{{ $materi->file }}</a>
-                                    <input type="file" class="form-control file" name="file" value="{{ $materi->file }}">
+                                    <a href="{{ asset('assets/materihef/' . $materi->file) }}"
+                                        style="margin-right: 10px;">{{ $materi->file }}</a>
+                                    <input type="file" class="form-control file" name="file"
+                                        value="{{ $materi->file }}">
                                 </div>
                                 <em><small style="color: red;" class="validate-file"></small></em>
                             </div>

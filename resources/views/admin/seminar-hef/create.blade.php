@@ -8,12 +8,14 @@
         <div class="col-md-12">
             <div class="card mt-4 card-outline card-info">
                 <div class="card-body pad">
-                    <form role="form" action="{{ action('SeminarHefController@store') }}" method="post" enctype="multipart/form-data">
+                    <form role="form" action="{{ action('SeminarHefController@store') }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Tanggal Kegiatan</label>
-                                <input type="date" class="form-control {{ $errors->first('tgl') ? 'is-invalid' : '' }}" placeholder="Tanggal Kegiatan" name="tgl" required autocomplete="off">
+                                <input type="date" class="form-control {{ $errors->first('tgl') ? 'is-invalid' : '' }}"
+                                    placeholder="Tanggal Kegiatan" name="tgl" required autocomplete="off">
                                 @if ($errors->has('tgl'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('tgl') }}
@@ -36,7 +38,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Sesi Seminar</label>
-                                <input type="text" class="form-control" placeholder="Contoh: Sesi 1/Sambutan" name="sesi" required autocomplete="off">
+                                <input type="text" class="form-control" placeholder="Contoh: Sesi 1/Sambutan"
+                                    name="sesi" required autocomplete="off">
                                 @if ($errors->has('name'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('name') }}
@@ -45,7 +48,9 @@
                             </div>
                             <div class="form-group">
                                 <label>Judul Seminar</label>
-                                <input type="text" class="form-control {{ $errors->first('judul') ? 'is-invalid' : '' }}" placeholder="Judul Sesi Seminar" name="judul" required autocomplete="off">
+                                <input type="text"
+                                    class="form-control {{ $errors->first('judul') ? 'is-invalid' : '' }}"
+                                    placeholder="Judul Sesi Seminar" name="judul" required autocomplete="off">
                                 @if ($errors->has('judul'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('judul') }}
@@ -54,7 +59,9 @@
                             </div>
                             <div class="form-group">
                                 <label>Pembicara</label>
-                                <input type="text" class="form-control {{ $errors->first('pembicara') ? 'is-invalid' : '' }}" placeholder="Pembicara" name="pembicara" required autocomplete="off">
+                                <input type="text"
+                                    class="form-control {{ $errors->first('pembicara') ? 'is-invalid' : '' }}"
+                                    placeholder="Pembicara" name="pembicara" required autocomplete="off">
                                 @if ($errors->has('pembicara'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('pembicara') }}
@@ -62,8 +69,20 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>File Laporan <small><em>(File harus berekstensi .pdf dengan ukuran maksimal 10 MB)</em></small></label>
-                                <input type="file" class="form-control file" name="file" required autocomplete="off">
+                                <label>File URL</label>
+                                <input type="text"
+                                    class="form-control {{ $errors->first('file_url') ? 'is-invalid' : '' }}"
+                                    placeholder="Pembicara" name="file_url" required autocomplete="off">
+                                @if ($errors->has('file_url'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('file_url') }}
+                                </div>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label>File Laporan <small><em>(File harus berekstensi .pdf dengan ukuran maksimal 10
+                                            MB)</em></small></label>
+                                <input type="file" class="form-control file" name="file" autocomplete="off">
                                 <em><small style="color: red;" class="validate-file"></small></em>
                                 @if ($errors->has('file'))
                                 <div class="invalid-feedback">
@@ -71,7 +90,7 @@
                                 </div>
                                 @endif
                             </div>
-                            <a href="" class="btn btn-outline-secondary">
+                            <a href="{{ action('SeminarHefController@index') }}" class="btn btn-outline-secondary">
                                 <i class="fas fa-arrow-left"></i>
                                 Kembali
                             </a>

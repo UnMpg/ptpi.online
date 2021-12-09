@@ -50,9 +50,15 @@
                     <td>{{$item->judul}}</td>
                     <td>{{$item->pembicara}}</td>
                     <td class="text-center">
-                        <a href="{{ action('HomeController@downloadMateriSeminar', $item->file) }}" style="font-size: 1.5rem;">
+                        @if ($item->file_url)
+                        <a href="{{ $item->file_url }}" style="font-size: 1.5rem;">
                             <i class="fa fa-download"></i>
-                        </a>
+                            @else
+                            <a href="{{ action('HomeController@downloadMateriSeminar', $item->file) }}"
+                                style="font-size: 1.5rem;">
+                                <i class="fa fa-download"></i>
+                                @endif
+                            </a>
                     </td>
                 </tr>
                 @endforeach

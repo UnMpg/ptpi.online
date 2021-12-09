@@ -57,16 +57,19 @@ class SeminarHefController extends Controller
     {
         $data = new SeminarHef();
 
-        $file = $request->file;
-        $filename = time() . '.' . $file->extension();
-        $request->file->move(public_path('assets/materihef'), $filename);
+        if ($request->hasFile('file')) {
+            $file = $request->file;
+            $filename = time() . '.' . $file->extension();
+            $request->file->move(public_path('assets/materihef'), $filename);
+            $data->file = $filename;
+        }
 
-        $data->file = $filename;
         $data->tgl = $request->tgl;
         $data->tipe_seminar = $request->tipe_seminar;
         $data->sesi = $request->sesi;
         $data->judul = $request->judul;
         $data->pembicara = $request->pembicara;
+        $data->file_url = $request->file_url;
 
         $data->save();
         return redirect(action('SeminarHefController@index'))->with('save', '"Materi" Berhasil Ditambahkan');
@@ -122,6 +125,7 @@ class SeminarHefController extends Controller
                 'tipe_seminar' => $request->tipe_seminar,
                 'sesi' => $request->sesi,
                 'judul' => $request->judul,
+                'file_url' => $request->file_url,
                 'pembicara' => $request->pembicara
             ]);
         }
