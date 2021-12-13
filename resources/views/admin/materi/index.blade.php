@@ -63,6 +63,10 @@
                                             class="formdelete" method="post">
                                             @csrf
                                             @method('DELETE')
+                                            <a href="{{ $item->file ?: '#' }}" target="_blank"
+                                                class="btn btn-sm btn-info">
+                                                <i class="fas fa-download"></i>
+                                            </a>
                                             <a href="{{ action('MateriController@edit', $item->id) }}"
                                                 class="btn btn-sm btn-warning">
                                                 <i class="fas fa-edit"></i>
