@@ -139,7 +139,7 @@ class HomeController extends Controller
 
     public function materi()
     {
-        $materi = Materi::paginate(8);
+        $materi = Materi::where('category', 'seminar_ws')->paginate(8);
         return view('home.materi', compact('materi'));
     }
 
