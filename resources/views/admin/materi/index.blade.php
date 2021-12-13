@@ -39,6 +39,7 @@
                             <thead>
                                 <tr class="text-center">
                                     <th>Tanggal</th>
+                                    <th>Kategori</th>
                                     <th>Judul</th>
                                     <th>Pembicara</th>
                                     <th>File URL</th>
@@ -50,6 +51,7 @@
                                 @foreach ($materi as $item)
                                 <tr>
                                     <td>{{ $item->date }}</td>
+                                    <td>{{ $item->category }}</td>
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->speaker }}</td>
                                     <td>{{ $item->file_url ?: '-' }}</td>
