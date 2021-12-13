@@ -13,9 +13,9 @@
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Tanggal Kegiatan</label>
+                                <label>Tanggal</label>
                                 <input type="date" class="form-control {{ $errors->first('date') ? 'is-invalid' : '' }}"
-                                    placeholder="Tanggal Kegiatan" name="date" required autocomplete="off">
+                                    placeholder="Tanggal" name="date" required autocomplete="off">
                                 @if ($errors->has('date'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('date') }}
@@ -23,10 +23,10 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>Judul Seminar</label>
+                                <label>Judul </label>
                                 <input type="text"
                                     class="form-control {{ $errors->first('title') ? 'is-invalid' : '' }}"
-                                    placeholder="Judul Sesi Seminar" name="title" required autocomplete="off">
+                                    placeholder="Judul" name="title" required autocomplete="off">
                                 @if ($errors->has('title'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('title') }}

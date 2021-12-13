@@ -22,7 +22,7 @@ class MateriController extends Controller
     {
         $search = $request->input('search');
 
-        $materi = Materi::where('category', 'seminar_ws')->where('speaker', 'LIKE', '%' . $search . '%')->paginate(10);
+        $materi = Materi::where('speaker', 'LIKE', '%' . $search . '%')->paginate(10);
         return view('admin.materi.index', compact('materi'));
     }
 
