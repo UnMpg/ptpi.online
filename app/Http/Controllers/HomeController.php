@@ -43,6 +43,8 @@ class HomeController extends Controller
             $certificate_number = substr($request->certificate_number, 4);
             $certificate_order = substr($request->certificate_number, 0, 4);
             $data = \DB::table('certificates_sign')->where('certificate_number', $certificate_number)->first();
+            return \DB::table('certificates_sign')->get();
+
             if ($data && $certificate_order <= 700) {
                 return view('home.certificates-sign');
             } else {
@@ -268,8 +270,21 @@ class HomeController extends Controller
 
     public function getSertifikat()
     {
-        $seminars = Certificate::all()->where('status', true);
+        $seminars = Certificate::all()->where('status', true)->whereNotIn('id', [15]);
         return view('home.sertifikat', compact('seminars'));
+    }
+
+    public function getSertifikatCommon(Request $request)
+    {
+        if ($request->has('seminar_id') || $request->has('keyword')) {
+            $participant = \DB::table('certificate_commons')->where('name', 'LIKE', '%' . $request->keyword . '%')
+                ->first();
+            if ($participant) {
+                return redirect($participant->certificate_url);
+            }
+        }
+        $seminars = Certificate::all()->where('status', true)->whereIn('id', [15]);
+        return view('home.sertifikat-common', compact('seminars'));
     }
 
     public function scanSertifikat($email, Certificate $certificate)

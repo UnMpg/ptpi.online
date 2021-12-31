@@ -69,6 +69,8 @@
                         <li><a href="{{ action('HomeController@seminarHefCertificate') }}">Sertifikat Seminar
                                 HEF</a>
                         </li>
+                        <li><a href="{{ action('HomeController@getSertifikatCommon') }}">Sertifikat Seminar - All</a>
+                        </li>
                         <li>
                             @php($laporan = App\LaporanKegiatan::orderByDesc('created_at')->take(1)->get())
                             @if(count($laporan) > 0)

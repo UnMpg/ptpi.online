@@ -204,6 +204,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('/sertifikasi', 'HomeController@sertifikasi');
     Route::get('/jejaring', 'HomeController@jejaring');
     Route::get('/sertifikat', 'HomeController@getSertifikat');
+    Route::get('/sertifikat/all', 'HomeController@getSertifikatCommon');
     Route::post('/sertifikat/entri/{referral?}', 'HomeController@sertifikat');
     Route::get('/check-referral', 'HomeController@checkReferral');
     Route::get('/sertifikat/scan/{email}/{certificate}', 'HomeController@scanSertifikat');
