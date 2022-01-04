@@ -33,7 +33,7 @@
                         <!-- <li><a href="{{ action('HomeController@kontribusiSehatRI') }}">Sel</a></li> -->
                         <li><a href="{{ action('HomeController@sel') }}">Sel</a></li>
                         <li><a href="{{ action('HomeController@bidangKeahlian') }}">Bidang Keahlian</a></li>
-                        <li><a href="{{ action('HomeController@sertifikasi') }}">Sertifikat</a></li>
+                        <li><a href="{{ action('HomeController@sertifikasi') }}">Sertifikasi</a></li>
                         <li><a href="{{ action('HomeController@jejaring') }}">Jejaring</a></li>
                         <li><a href="{{action('AuthController@getRegister')}}">Pendaftaran</a></li>
                         <li><a href="{{ action('HomeController@checkReferral') }}">Cek Referral Sehat-RI</a></li>
