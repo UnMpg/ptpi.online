@@ -1,164 +1,6 @@
 <?php
 
-use App\Certificate;
 use App\Participant;
-use App\DataCenter;
-
-Route::get("/cert", function () {
-    $data_part = [
-        ['nama' => 'Veronica Yoan, S.Psi, M.M', 'email' => 'veronicayyoan@gmail.com'],
-        ['nama' => 'dr.Jonas Ardianta, Sp.Rad', 'email' => 'jonasbangun@yahoo.com'],
-        ['nama' => 'Ir. Deppy Taufik Hidayat MT.', 'email' => 'decimaarsitek2014@gmail.com'],
-        ['nama' => 'Ajoi Bambang sugiyanto, Ir.', 'email' => 'pt.immanuel.s.s@gmail.com'],
-        ['nama' => 'Budi Hartono, S.Kep.Ners', 'email' => 'budihartono1803@gmail.com'],
-        ['nama' => 'Syahrial Syah SE, MH.', 'email' => 'aldisach@gmail.com'],
-        ['nama' => 'dr. Linda Wijayanti, M.Sc., SpPK.', 'email' => 'ganonk2009@gmail.com'],
-        ['nama' => 'Aprodita Emma Yetti, S.T., M.Sc', 'email' => 'aproditaemma@unisayogya.ac.id'],
-        ['nama' => 'Ferry Purwana Leonard, S. Kep', 'email' => 'ferrypurwana@gmail.com '],
-        ['nama' => 'Ir. Iswanta,SE.,MT', 'email' => 'iswanta.1959@gmai.com'],
-        ['nama' => 'I Made Yudi Satriawan, A.Md.', 'email' => 'satriawanyudi2@gmail.com'],
-        ['nama' => 'Bakori, SKp. MPd.', 'email' => 'kokobakori@gmail.com'],
-        ['nama' => 'Rachmat Suprapto, S. T', 'email' => 'Rachmat.S@rs-jih.co.id'],
-        ['nama' => 'Andhika Setiawan', 'email' => 'andhika@mgpratama.com'],
-        ['nama' => 'dr. Angeline Sibarani, MARS', 'email' => 'lamhot_20@yahoo.co.id'],
-        ['nama' => 'dr. Hj. Makiani, S.H.,M.M.,MARS', 'email' => 'makianicolyubi@gmail.com'],
-        ['nama' => 'drg. Meyta Radhila Gwen', 'email' => 'meytaradhilagwen@gmail.com'],
-        ['nama' => 'Mulyadi,ST', 'email' => 'mulyadi.rsud@yahoo.com'],
-        ['nama' => 'Rita Amaliah, SKM, M.Epid', 'email' => 'ritaamaliahra51@gmail.com'],
-        ['nama' => 'Muhammad Ihsan Siregar,ST', 'email' => 'ihsan.020874@gmail.com'],
-        ['nama' => 'Putri Santi, S.T', 'email' => 'siputrisanti@gmail.com'],
-        ['nama' => 'Untari Suprihatin, Amd.TEM', 'email' => 'Untaritari640@gmail.com'],
-        ['nama' => 'TITO PRASETYO, S.T', 'email' => 'wafiramadhani@gmail.com'],
-        ['nama' => 'dr. O.U. TATY DAMAYANTY', 'email' => 'tatyou73@gmail.com'],
-        ['nama' => 'dr Rusbandi SpOG', 'email' => 'rusbandispog1@gmail.com'],
-        ['nama' => 'drg. Yunita Puspita Sari P, M.Kes', 'email' => 'yunita.puspita@gmail.com'],
-        ['nama' => 'dr. Luthfi Baihaqi', 'email' => 'luthfi.baihaqi.2010@gmail.com'],
-        ['nama' => 'Ihfan firmansyah. ST', 'email' => 'ihfanfirmansyah@gmail.com'],
-        ['nama' => 'dr. Aryani Vindhya Putri, SpM', 'email' => 'aryanivp@gmail.com'],
-        ['nama' => 'Rita Suminarsih,S.ST', 'email' => 'ritasuminarsih@gmail.com'],
-        ['nama' => 'Antonius Hernanda', 'email' => 'antoniushernanda8@gmail.com'],
-        ['nama' => 'Ir. HP. Manullang. AUt.HAEI.', 'email' => 'dameria1710@yahoo.com'],
-        ['nama' => 'Firman syah alam, SKM', 'email' => 'firman2105@gmail.com'],
-        ['nama' => 'dr. Leonardo Ferdihansen', 'email' => 'spiderceltic@gmail.com'],
-        ['nama' => 'dr. Yanta Immanuel Keliat, M.P.H.', 'email' => 'yanta.keliat@yahoo.com'],
-        ['nama' => 'Dwi Desy Handayani, ST. IAI', 'email' => 'wiedhanda@gmail.com'],
-        ['nama' => 'dr. Setyarini, MKes', 'email' => 'rini2yan@gmail.com '],
-        ['nama' => 'Ns. K. Anis Paramita,S.Kep.M.Kes', 'email' => 'anisparamitaa@gmail.com'],
-        ['nama' => 'dr. Sandra Tan Ayamiseba, SpKK', 'email' => 'ayamiseba.sandra@gmail.com'],
-        ['nama' => 'Azwar Hamid, ST.,M.KKK', 'email' => 'azwarcivil46@gmail.com'],
-        ['nama' => 'Erik Suhendar, S.T', 'email' => 'erik_sid@yahoo.com'],
-        ['nama' => 'Emiliana Maria T', 'email' => 'rini@emc.id'],
-        ['nama' => 'Aris Karismaputra Sunjaya, ST.', 'email' => 'aris.ksunjaya@gmail.com'],
-        ['nama' => 'Kelly Anggoro, ST.', 'email' => 'kellyanggoro@gmail.com'],
-        ['nama' => 'Mohamad Husni Thamin, S.Ag', 'email' => 'thamrin71@mail.com'],
-        ['nama' => 'Dr. I Wayan Aryabiantara, SpAn.KIC', 'email' => 'aryabiantara@gmail.com'],
-        ['nama' => 'F.Trias Pontia Wigyarianto, ST, MT, IPM, ASEAN Eng.', 'email' => 'trias.pontia@ee.untan.ac.id'],
-        ['nama' => 'Ir. Taufiqurrachman', 'email' => 'taufiq_oi@yahoo.com'],
-        ['nama' => 'Trianjaya Wicaksana., ST .,MT', 'email' => 'pandupersada.ded@gmail.com'],
-        ['nama' => 'Gregorius Dimas, S.Ars', 'email' => 'dimasgreg1993@gmail.com'],
-        ['nama' => 'Adrian Tri Prasetya, S.Kom', 'email' => 'ian88_ja@yahoo.com'],
-        ['nama' => 'Fefen Suhedi', 'email' => 'fefen.suhedi@pu.go.id'],
-    ];
-
-    $_users = [];
-    $orderNum = [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        27,
-        28,
-        29,
-        30,
-        31,
-        32,
-        33,
-        34,
-        35,
-        36,
-        37,
-        38,
-        39,
-        40,
-        41,
-        42,
-        43,
-        44,
-        45,
-        46,
-        47,
-        48,
-        49,
-        50,
-        51,
-        52,
-        13,
-    ];
-
-    foreach ($data_part as $key => $user) {
-        // $orderNum = $key + 1;
-        $sing = Participant::where('email', $user['email'])->first();
-        array_push($_users, 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iahe.or.id/home/sertifikat/scan/' . $sing['email'] . '/14');
-        // if (!$sing) {
-        //     Participant::create($user);
-        // }
-        // array_push($_users, $orderNum);
-        // \DB::table('certificate_participant')->insert([
-        //     'participant_id' => $sing->id,
-        //     'certificate_id' => 14,
-        //     'download' => 0,
-        //     'order' => $orderNum[$key],
-        // ]);
-    }
-    return $_users;
-});
-
-Route::get('auth', function () {
-    return bcrypt('secret');
-    $time = time();
-    $data = DataCenter::whereNull('created_at')->get();
-    foreach ($data as $item) {
-        $item->created_at = "2021-05-19 10:44:53";
-        $item->save();
-    }
-    return 'success';
-});
-
-Route::get('referral/{referral}', function ($referral = null) {
-
-    $client = new \GuzzleHttp\Client();
-    $request = $client->get('https://www.sehat-ri.net/api/institution/referral/check/code/' . $referral, ['http_errors' => false]);
-    $result = \GuzzleHttp\json_decode($request->getBody());
-    $resCode = trim(collect($result->code), '[]');
-    if ($resCode == 200) {
-        return collect($result);
-        // return 'ada';
-    } else {
-        return collect($result);
-        return 'kosong';
-    }
-});
 
 Route::get('/', 'HomeController@index');
 Route::get('/certificates-sign', 'HomeController@certificatesSign');
@@ -301,28 +143,6 @@ Route::group(['prefix' => 'member'], function () {
     Route::post('/faqs', 'MemberController@replyFaq');
 });
 
-// Route::get('check', function () {
-//     // return $rekap = Certificate::find('3')->participants->where('jenis_instansi', 'RUMAH SAKIT');
-
-
-//     $seminar4_1 = \DB::table('pretest')->get();
-//     $data = Participant::whereIn('email', collect($seminar4_1)->pluck('email'))->get();
-//     foreach ($data as $val) {
-//         $cek = \DB::table('certificate_participant')->where([
-//             'participant_id' => $val->id,
-//             'certificate_id' => 4
-//         ])->first();
-//         if (!$cek) {
-//             \DB::table('certificate_participant')->insert([
-//                 'participant_id' => $val->id,
-//                 'certificate_id' => 4,
-//                 'download' => false,
-//             ]);
-//         }
-//     }
-//     return 'success';
-// });
-
 Route::get('check_grouping', function () {
     $participants = Participant::all();
     //return $participants->where('pekerjaan', 'IT');
@@ -332,9 +152,18 @@ Route::get('check_grouping', function () {
             array_push($data, $participant);
         }
     }
-    return $data;
-    return collect($data)->groupBy('provinsi');
-    // return collect($data)->pluck('email');
+    // return $data;
+    // return collect($data)->groupBy('provinsi');
+    $emails = collect($data)->pluck('email');
+    return Participant::whereIn('email', $emails)->get([
+        'email',
+        'nama',
+        'kontak',
+        'jenis_instansi',
+        'nama_instansi',
+        'provinsi',
+        'pekerjaan',
+    ]);
 });
 
 
