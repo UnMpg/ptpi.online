@@ -118,8 +118,8 @@
             @endif
             <hr>
             <div class="alert alert-secondary" role="alert">
+                <h5>Tema Seminar : </h5>
                 {{-- <h5>Tema Seminar {{ $lastCertificate->id }} : </h5> --}}
-                <h5>Tema Seminar {{ $lastCertificate->id }} : </h5>
                 <p>{{ $lastCertificate->name }}</p>
                 <p class="text-center">
                     <small>Jangan lupa klik tombol berikut agar anda dapat mengikuti seminar:</small><br>

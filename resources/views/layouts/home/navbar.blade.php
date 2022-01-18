@@ -12,7 +12,7 @@
 
         <nav class="nav-menu d-none d-lg-block">
             <ul>
-                <li class="drop-down"><a href="" class="menu_link">Tentang Kami</a>
+                <li class="drop-down"><a href="" class="menu_link">{{ trans('lang.ABOUT_US') }}</a>
                     <ul>
                         <li><a href="{{ action('HomeController@visiMisi') }}">Visi & Misi</a></li>
                         <li><a href="{{ action('HomeController@dasarHukum') }}">Dasar Hukum</a></li>

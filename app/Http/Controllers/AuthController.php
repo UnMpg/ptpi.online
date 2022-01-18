@@ -94,28 +94,53 @@ class AuthController extends Controller
     {
         $dataValidated = $request->except('password_confirmation');
         $dataValidated = $this->validate($request, [
-            'email' => 'required|email|unique:participants',
-            'kontak' => 'required|string|unique:participants',
+            'email' => 'required|email',
+            'kontak' => 'required|string',
             'nama' => 'required|string',
-            // 'jenis_instansi' => 'required|string',
+            'jenis_instansi' => 'required|string',
+            'bidang_ilmu' => 'required|string',
+            'unit' => 'required|string',
             'provinsi' => 'required|string',
             'kabupaten' => 'required|string',
             'pekerjaan' => 'required|string',
             // 'password' => 'required|confirmed|min:5',
         ]);
+        if ($user = Participant::where('email', $dataValidated['email'])->first()) {
+            $user->update([
+                'email' => $dataValidated['email'],
+                'kontak' => $dataValidated['kontak'],
+                'nama' => $dataValidated['nama'],
+                'jenis_instansi' => $dataValidated['jenis_instansi'],
+                'bidang_ilmu' => $dataValidated['bidang_ilmu'],
+                'unit' => $dataValidated['unit'],
+                'provinsi' => $dataValidated['provinsi'],
+                'kabupaten' => $dataValidated['kabupaten'],
+                'pekerjaan' => $dataValidated['pekerjaan'],
+                'nama_instansi' => $request->nama_instansi,
+                'referral' => strtoupper($request->referral),
+                'mobile_app' => $request->has('mobile_app'),
+                'kabupaten' => strtoupper($request->kabupaten),
+                'password' => bcrypt('secret12345678'),
+            ]);
 
-        $dataValidated['nama_instansi'] = $request->nama_instansi;
-        $dataValidated['referral'] = strtoupper($request->referral);
-        $dataValidated['mobile_app'] = $request->has('mobile_app');
-        $dataValidated['kabupaten'] = strtoupper($request->kabupaten);
-        $dataValidated['password'] = bcrypt($request->password);
-        // return $dataValidated;
-        $participant = Participant::create($dataValidated);
+            if ($user) {
+                auth('participant')->loginUsingId($user->id);
+                return redirect(action('AuthController@registerConfirmation'))->with('save', 'Selamat Anda Berhasil Mendaftar.');
+            }
+        } else {
+            $dataValidated['nama_instansi'] = $request->nama_instansi;
+            $dataValidated['referral'] = strtoupper($request->referral);
+            $dataValidated['mobile_app'] = $request->has('mobile_app');
+            $dataValidated['kabupaten'] = strtoupper($request->kabupaten);
+            $dataValidated['password'] = bcrypt('secret12345678');
+            $participant = Participant::create($dataValidated);
 
-        if ($participant) {
-            auth('participant')->loginUsingId($participant->id);
-            return redirect(action('AuthController@registerConfirmation'))->with('save', 'Selamat Anda Berhasil Mendaftar.');
+            if ($participant) {
+                auth('participant')->loginUsingId($participant->id);
+                return redirect(action('AuthController@registerConfirmation'))->with('save', 'Selamat Anda Berhasil Mendaftar.');
+            }
         }
+
         return back()->with('error', 'Maaf data anda belum ada di database kami, mohon daftar terlebih dahulu');
     }
 

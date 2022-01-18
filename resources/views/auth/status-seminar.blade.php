@@ -115,13 +115,17 @@
                 <i class="fa fa-check-circle" style="font-size:72px;"></i>
                 <br>
                 <div class="card-body">
-                        <h5>Mohon salin link berikut, untuk dapat bergabung pada seminar nanti.</h5>
-                    <a href="https://us02web.zoom.us/j/86925707142">https://us02web.zoom.us/j/86925707142</a><br>
-                    <small>Webinar ID: 869 2570 7142</small>
-                    
+                    <h5>Mohon salin link berikut, untuk dapat bergabung pada seminar nanti.</h5>
+                    <a
+                        href="https://us02web.zoom.us/j/89347386977?pwd=aEVhbFNoYTJvd0RqSDFHUysrR0l3Zz09">https://us02web.zoom.us/j/89347386977?pwd=aEVhbFNoYTJvd0RqSDFHUysrR0l3Zz09</a><br>
+                    <small>Webinar ID: 893 4738 6977</small><br>
+                    <small>Passcode: 194007</small>
+
                     <h5>Mohon salin link berikut, untuk Pretest & postest.</h5>
-                    <a href="https://bit.ly/pretest_seminar12">https://bit.ly/pretest_seminar12</a><br>
-                    <a href="https://bit.ly/posttest_seminar12">https://bit.ly/posttest_seminar12</a><br>
+                    <a
+                        href="https://intip.in/pre-test-seminar-ipsrs-ptpi">https://intip.in/pre-test-seminar-ipsrs-ptpi</a><br>
+                    <a
+                        href="https://intip.in/post-test-seminar-ipsrs-ptpi">https://intip.in/post-test-seminar-ipsrs-ptpi</a><br>
                 </div>
             </div>
             {{ auth('participant')->logout() }}

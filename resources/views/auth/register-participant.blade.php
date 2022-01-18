@@ -114,21 +114,7 @@
                 @csrf
                 <div class="row">
                     <div class="col-12 text-center">
-                        <h2>Daftar Data Diri</h2>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-form-label col-4">Nama Lengkap</label>
-                    <div class="col-8">
-                        <input type="text" class="form-control {{ $errors->first('nama') ? 'is-invalid' : '' }}"
-                            name="nama" value="{{ old('nama') }}" required="required"
-                            placeholder="Nama Lengkap & (gelar/titel)" autofocus>
-                        @if ($errors->has('nama'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('nama') }}
-                        </div>
-                        @endif
+                        <h2>Pendaftaran Webinar</h2>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -146,8 +132,8 @@
                 <div class="form-group row">
                     <label class="col-form-label col-4">Nomor HP</label>
                     <div class="col-8">
-                        <input type="text" class="form-control {{ $errors->first('kontak') ? 'is-invalid' : '' }}"
-                            name="kontak" value="{{ old('kontak') }}" required="required" placeholder="Nomor HP...">
+                        <input type="number" class="form-control {{ $errors->first('kontak') ? 'is-invalid' : '' }}"
+                            name="kontak" value="{{ old('kontak') }}" required="required" placeholder="08xxx...">
                         @if ($errors->has('kontak'))
                         <div class="invalid-feedback">
                             {{ $errors->first('kontak') }}
@@ -155,28 +141,46 @@
                         @endif
                     </div>
                 </div>
-                {{-- <div class="form-group row">
-                    <label class="col-form-label col-4">Jenis Instansi</label>
+                <div class="form-group row">
+                    <label class="col-form-label col-4">Nama Lengkap</label>
                     <div class="col-8">
-                        <select name="jenis_instansi" id=""
-                            class="form-control {{ $errors->first('jenis_instansi') ? 'is-invalid' : '' }}" required>
-                            <option value="">~~ Pilih Instansi ~~</option>
-                            <option value="RUMAH SAKIT">RUMAH SAKIT</option>
-                            <option value="PUSKESMAS">PUSKESMAS</option>
-                            <option value="DINKES">DINKES</option>
-                            <option value="KLINIK">KLINIK</option>
-                            <option value="PERUSAHAAN">PERUSAHAAN</option>
-                            <option value="LAIN-LAIN">LAIN-LAIN</option>
-                        </select>
-                        @if ($errors->has('jenis_instansi'))
+                        <input type="text" class="form-control {{ $errors->first('nama') ? 'is-invalid' : '' }}"
+                            name="nama" value="{{ old('nama') }}" required="required"
+                            placeholder="Nama Lengkap & (gelar/titel)" autofocus>
+                        @if ($errors->has('nama'))
                         <div class="invalid-feedback">
-                            {{ $errors->first('jenis_instansi') }}
+                            {{ $errors->first('nama') }}
                         </div>
                         @endif
                     </div>
-                </div> --}}
+                </div>
                 <div class="form-group row">
-                    <label class="col-form-label col-4">Nama Instansi</label>
+                    <label class="col-form-label col-4">Profesi</label>
+                    <div class="col-8">
+                        <select name="pekerjaan" id=""
+                            class="form-control {{ $errors->first('pekerjaan') ? 'is-invalid' : '' }}" required>
+                            <option value="">~~ Pilih Jenis Pekerjaan ~~</option>
+                            <option value="Arsitek">Arsitek</option>
+                            <option value="Direktur">Direktur</option>
+                            <option value="Dokter">Dokter</option>
+                            <option value="Insiyur">Insiyur</option>
+                            <option value="Dosen">Dosen</option>
+                            <option value="Manajer">Manajer</option>
+                            <option value="Perawat">Perawat</option>
+                            <option value="Farmasi">Farmasi</option>
+                            <option value="Programmer">Programmer</option>
+                            <option value="Teknisi">Teknisi</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                        @if ($errors->has('pekerjaan'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('pekerjaan') }}
+                        </div>
+                        @endif
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-4">Nama Institusi</label>
                     <div class="col-8">
                         <textarea name="nama_instansi" cols="30" rows="3"
                             class="form-control {{ $errors->first('nama_instansi') ? 'is-invalid' : '' }}"
@@ -189,46 +193,69 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-form-label col-4">Instansi (Pekerjaan)</label>
+                    <label class="col-form-label col-4">Jenis Institusi</label>
                     <div class="col-8">
-                        <select name="pekerjaan" id=""
-                            class="form-control {{ $errors->first('pekerjaan') ? 'is-invalid' : '' }}" required>
-                            <option value="">~~ Pilih Jenis Pekerjaan ~~</option>
-                            <option value="Rumah Sakit (Pemilik)">Rumah Sakit (Pemilik)</option>
-                            <option value="Rumah Sakit (Dirut/Kepala)">Rumah Sakit (Dirut/Kepala)</option>
-                            <option value="Rumah Sakit (Direktur)">Rumah Sakit (Direktur)</option>
-                            <option value="Rumah Sakit (Manajer)">Rumah Sakit (Manajer)</option>
-                            <option value="Rumah Sakit (Dokter)">Rumah Sakit (Dokter)</option>
-                            <option value="Rumah Sakit (Perawat)">Rumah Sakit (Perawat)</option>
-                            <option value="Rumah Sakit (Engineer)">Rumah Sakit (Engineer)</option>
-                            <option value="Rumah Sakit (Teknisi)">Rumah Sakit (Teknisi)</option>
-                            <option value="Rumah Sakit (staff IT)">Rumah Sakit (staff IT)</option>
-                            <option value="Rumah Sakit (Staff lainnya)">Rumah Sakit (Staff lainnya)</option>
-                            <option value="Perguruan Tinggi (Pimpinan)">Perguruan Tinggi (Pimpinan)</option>
-                            <option value="Perguruan Tinggi (Dosen)">Perguruan Tinggi (Dosen)</option>
-                            <option value="Perguruan Tinggi (Mahasiswa)">Perguruan Tinggi (Mahasiswa)</option>
-                            <option value="Perusahaan (Pemilik/Komisaris)">Perusahaan (Pemilik/Komisaris)</option>
-                            <option value="Perusahaan (Dirut)">Perusahaan (Dirut)</option>
-                            <option value="Perusahaan (Direktur/General Manager)">Perusahaan (Direktur/General Manager)</option>
-                            <option value="Perusahaan (Manajer )">Perusahaan (Manajer )</option>
-                            <option value="Perusahaan (Staff)">Perusahaan (Staff)</option>
-                            <option value="Dinkes (Pimpinan)">Dinkes (Pimpinan)</option>
-                            <option value="Dinkes (Staf)">Dinkes (Staf)</option>
-                            <option value="Konsultan Freelance">Konsultan Freelance</option>
-                            <option value="Puskesmas (Kepala)">Puskesmas (Kepala)</option>
-                            <option value="Puskesmas (Dokter)">Puskesmas (Dokter)</option>
-                            <option value="Puskesmas (Staff lain)">Puskesmas (Staff lain)</option>
-                            <option value="Kementerian (Pimpinan)">Kementerian (Pimpinan)</option>
-                            <option value="Kementerian (Staf)">Kementerian (Staf)</option>
+                        <select name="jenis_instansi" id=""
+                            class="form-control {{ $errors->first('jenis_instansi') ? 'is-invalid' : '' }}" required>
+                            <option value="">~~ Pilih Jenis Institusi ~~</option>
+                            <option value="Puskesmas">Puskesmas</option>
+                            <option value="Jasa Konsultan ">Jasa Konsultan</option>
+                            <option value="Kontraktor Rumah Sakit">Kontraktor Rumah Sakit</option>
+                            <option value="Vendor dan Distributor">Vendor dan Distributor</option>
+                            <option value="Institusi Pendidikan  (Medis)">Institusi Pendidikan (Medis)</option>
+                            <option value="Institusi Pendidikan (Non-Medis)">Institusi Pendidikan (Non-Medis)</option>
+                            <option value="Pemerintah (Kementrian Kesehatan)">Pemerintah (Kementrian Kesehatan)
+                            </option>
+                            <option value="Rumah Sakit (Swasta)">Rumah Sakit (Swasta)</option>
+                            <option value="Rumah Sakit (Negeri)">Rumah Sakit (Negeri)</option>
+                            <option value="Impor dan Ekspor (Kesehatan)">Impor dan Ekspor (Kesehatan)</option>
+                            <option value="Teknologi Informasi atau Perangkat Lunak (Kesehatan)">Teknologi Informasi
+                                atau Perangkat Lunak (Kesehatan)</option>
+                            <option value="Investor (Healthcare)">Investor (Healthcare)</option>
+                            <option value="Laboratorium (Healthcare)">Laboratorium (Healthcare)</option>
+                            <option value="Laboratorium (Medical)">Laboratorium (Medical)</option>
+                            <option value="Manufacture (Medical)">Manufacture (Medical)</option>
+                            <option value="Medical Travel ">Medical Travel</option>
+                            <option value="Technology (Medical)">Technology (Medical)</option>
+                            <option value="Lainnya">Lainnya</option>
                         </select>
-                        @if ($errors->has('pekerjaan'))
+                        @if ($errors->has('jenis_instansi'))
                         <div class="invalid-feedback">
-                            {{ $errors->first('pekerjaan') }}
+                            {{ $errors->first('jenis_instansi') }}
                         </div>
                         @endif
                     </div>
                 </div>
-
+                <div class="form-group row">
+                    <label class="col-form-label col-4">Departemen/Unit</label>
+                    <div class="col-8">
+                        <select name="unit" id="" class="form-control {{ $errors->first('unit') ? 'is-invalid' : '' }}"
+                            required>
+                            <option value="">~~ Pilih Departemen/Unit ~~</option>
+                            <option value="Pimpinan">Pimpinan</option>
+                            <option value="Administrasi / Keuangan">Administrasi / Keuangan</option>
+                            <option value="Sarana Prasarana / IPSRS">Sarana Prasarana / IPSRS</option>
+                            <option value="ICU">ICU</option>
+                            <option value="IGD">IGD</option>
+                            <option value="Radiologi">Radiologi</option>
+                            <option value="Laboratorium">Laboratorium</option>
+                            <option value="Farmasi">Farmasi</option>
+                            <option value="Akuntansi">Akuntansi</option>
+                            <option value="Keperawatan">Keperawatan</option>
+                            <option value="Pelayanan Medik">Pelayanan Medik</option>
+                            <option value="Gizi">Gizi</option>
+                            <option value="Manajemen Rumah Sakit">Manajemen Rumah Sakit</option>
+                            <option value="Perencanaan dan Pengembangan Rumah Sakit">Perencanaan dan Pengembangan Rumah
+                                Sakit</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                        @if ($errors->has('unit'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('unit') }}
+                        </div>
+                        @endif
+                    </div>
+                </div>
                 <div class="form-group row">
                     <label class="col-form-label col-4">Provinsi</label>
                     <div class="col-8">
@@ -281,9 +308,10 @@
                     <label class="col-form-label col-4">Kabupaten</label>
                     <div class="col-8">
                         <select name="kabupaten"
-                            class="form-control {{ $errors->first('kabupaten') ? 'is-invalid' : '' }} js-example-basic-single" required>
+                            class="form-control {{ $errors->first('kabupaten') ? 'is-invalid' : '' }} js-example-basic-single"
+                            required>
                             <option value="">~~ Pilih Kabupaten ~~</option>
-                           <option value="Kab. Simeulue">Kab. Simeulue</option>
+                            <option value="Kab. Simeulue">Kab. Simeulue</option>
                             <option value="Kab. Aceh Singkil">Kab. Aceh Singkil</option>
                             <option value="Kab. Aceh Selatan">Kab. Aceh Selatan</option>
                             <option value="Kab. Aceh Tenggara">Kab. Aceh Tenggara</option>
@@ -793,7 +821,84 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-form-label col-4">Dengan mengikuti seminar ini saya bersedia didaftarkan pada Sehat-RI</label>
+                    <label class="col-form-label col-4">Bidang Ilmu</label>
+                    <div class="col-8">
+                        <select name="bidang_ilmu" id=""
+                            class="form-control {{ $errors->first('bidang_ilmu') ? 'is-invalid' : '' }}" required>
+                            <option value="">~~ Pilih Bidang Ilmu ~~</option>
+                            <optgroup label="Kesehatan">
+                                <option value="Ilmu Kedokteran">Ilmu Kedokteran</option>
+                                <option value="Rehabilitasi Medik">Rehabilitasi Medik</option>
+                                <option value="Ilmu kedokteran Gigi">Ilmu kedokteran Gigi</option>
+                                <option value="Ilmu Gizi">Ilmu Gizi</option>
+                                <option value="Kebidanan">Kebidanan</option>
+                                <option value="Ilmu keperawatan">Ilmu keperawatan</option>
+                                <option value="Kesahatan Masyarakat">Kesahatan Masyarakat</option>
+                                <option value="Administrasi rumah sakit">Administrasi rumah sakit</option>
+                                <option value="Ilmu farmasi">Ilmu farmasi</option>
+                            </optgroup>
+                            <optgroup label="Teknik">
+                                <option value="Teknik sipil">Teknik sipil</option>
+                                <option value="Teknik Lingkungan">Teknik Lingkungan</option>
+                                <option value="Teknik Arsitektur">Teknik Arsitektur</option>
+                                <option value="Teknik Elektro">Teknik Elektro</option>
+                                <option value="Teknik bIomedika">Teknik bIomedika</option>
+                                <option value="Teknik Informatika">Teknik Informatika</option>
+                                <option value="Teknik Industri">Teknik Industri</option>
+                                <option value="Teknik Kimia">Teknik Kimia</option>
+                                <option value="Teknik Fisika">Teknik Fisika</option>
+                                <option value="Teknik Mesin">Teknik Mesin</option>
+                            </optgroup>
+                            <optgroup label="Sosial">
+                                <option value="Ilmu hukum">Ilmu hukum</option>
+                                <option value="Ilmu Sosial dan politik">Ilmu Sosial dan politik</option>
+                                <option value="Sosiologi">Sosiologi</option>
+                                <option value="Ilmu Administrasi(Niaga, negara, publik, pembagunan, dll)">Ilmu
+                                    Administrasi(Niaga, negara, publik, pembagunan, dll)</option>
+                                <option value="Kebijakan Publik">Kebijakan Publik</option>
+                                <option value="Ilmu Kesejahteraan sosial">Ilmu Kesejahteraan sosial</option>
+                                <option value="Ilmu Komunikasi">Ilmu Komunikasi</option>
+                                <option value="Bidang Keuangan">Bidang Keuangan</option>
+                                <option value="Psikologi">Psikologi</option>
+                                <option value="Ekonomi">Ekonomi</option>
+                                <option value="Management">Management</option>
+                                <option value="Bahasa">Bahasa</option>
+                            </optgroup>
+                            <optgroup label="MIPA">
+                                <option value="Fisika">Fisika</option>
+                                <option value="Kimia">Kimia</option>
+                                <option value="Biologi">Biologi</option>
+                                <option value="Matematika">Matematika</option>
+                            </optgroup>
+                            <optgroup label="MIPA">
+                                <option value="Bidang Pelayanan Medik">Bidang Pelayanan Medik</option>
+                                <option value="Bidang keperawatan">Bidang keperawatan</option>
+                                <option value="Farmasi dan rekam medis">Farmasi dan rekam medis</option>
+                                <option value="Radiologi">Radiologi</option>
+                                <option value="Laboratorium">Laboratorium</option>
+                                <option value="Gizi">Gizi</option>
+                                <option value="Sarana, prasarana, dan alat kesehatan">Sarana, prasarana, dan alat
+                                    kesehatan
+                                </option>
+                                <option value="Perencanaan dan pengembangan rumah sakit">Perencanaan dan pengembangan
+                                    rumah
+                                    sakit</option>
+                                <option value="Manajemen rumah sakit">Manajemen rumah sakit</option>
+                                <option value="Bagian Akuntansi">Bagian Akuntansi</option>
+                                <option value="Administrasi">Administrasi</option>
+                                <option value="Lain-lain">Lain-lain</option>
+                            </optgroup>
+                        </select>
+                        @if ($errors->has('bidang_ilmu'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('bidang_ilmu') }}
+                        </div>
+                        @endif
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-4">Dengan mengikuti seminar ini saya bersedia didaftarkan pada
+                        Sehat-RI</label>
                     <div class="form-check col-8 pl-5">
                         <input class="form-check-input" type="checkbox" value="1" name="mobile_app" required="required">
                         <label class="form-check-label" for="defaultCheck1">
@@ -801,62 +906,27 @@
                         </label>
                     </div>
                 </div>
-                {{-- <div class="form-group row">
-                    <label class="col-form-label col-4">Kode Referral (masukkan kode referral yang valid)</label>
-                    <div class="col-8">
-                        <input type="text" class="form-control {{ $errors->first('referral') ? 'is-invalid' : '' }}"
-                            name="referral" value="{{ old('referral') }}"
-                            style="text-transform:uppercase"
-                            placeholder="Kode Referral - Opsional" autofocus>
-                        @if ($errors->has('referral'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('referral') }}
-                        </div>
-                        @endif
-                    </div>
-                </div> --}}
-                <div class="form-group row">
-                    <label class="col-form-label col-4">Password</label>
-                    <div class="col-8">
-                        <input type="password" class="form-control {{ $errors->first('password') ? 'is-invalid' : '' }}"
-                            name="password" required="required" placeholder="Password...">
-                        @if ($errors->has('password'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('password') }}
-                        </div>
-                        @endif
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-form-label col-4">Konfirmasi Password</label>
-                    <div class="col-8">
-                        <input type="password"
-                            class="form-control {{ $errors->first('password_confirmation') ? 'is-invalid' : '' }}"
-                            name="password_confirmation" required="required" placeholder="Konfirmasi Password...">
-                    </div>
-                </div>
                 <div class="form-group card">
                     <div class="col-12 card-body" style="background: #5cd3b4">
                         <p>
                             <label class="form-check-label text-white text-justify">
-                                Dengan mengklik tombol <b class="text-uppercase" style="font-weight: bolder;"><i>Daftar
-                                        baru</i></b>, saya menyatakan bahwa seluruh data yang saya isi adalah benar.
-                                Saya setuju bahwa data yang saya berikan dapat disimpan
-                                dan digunakan oleh PTPI. Saya juga bersedia memenuhi persyaratan-persyaratan dan
-                                melaksanakan instruksi yang diberikan
-                                bagi peserta seminar.
+                                Dengan mendaftar kegiatan ini, anda secara otomatis menjadi anggota Sehat-RI. Sehat-RI
+                                merupakan aplikasi mobile yang
+                                digunakan oleh anggota PTPI. Saya setuju data ini akan digunakan oleh PTPI untuk
+                                kepentingan organisasi
                             </label>
                         </p>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-8 offset-4">
-                        <button type="submit" class="btn btn-primary btn-lg">Daftar Baru</button>
+                        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
                     </div>
                 </div>
             </form>
             <div class="text-center">Sudah memiliki akun? <a
-                    href="{{ action('AuthController@getLoginParticipant') }}">Masuk disini</a></div>
+                    href="{{ action('AuthController@getLoginParticipant') }}">Masuk
+                    disini</a></div>
         </div>
 
         <script>

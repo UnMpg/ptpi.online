@@ -2,6 +2,8 @@
 
 use App\Participant;
 
+Route::get('lang/{locale}', 'LocalizationController@index');
+
 Route::get('/', 'HomeController@index');
 Route::get('/certificates-sign', 'HomeController@certificatesSign');
 
@@ -14,11 +16,11 @@ Route::get('/status-confirmation', 'AuthController@statusConfirmation');
 Route::get('/seminar-selection', 'AuthController@getSeminarParticipant');
 Route::post('/seminar-selection', 'AuthController@temaParticipant');
 
-// Route::get('/register/participant', 'AuthController@getRegisterParticipant');
-// Route::post('/register/participant', 'AuthController@registerParticipant');
-// Route::get('/login/participant', 'AuthController@getLoginParticipant');
-// Route::post('/login/participant', 'AuthController@loginParticipant');
-// Route::get('/participant/join/accept', 'AuthController@confirmationSeminar');
+Route::get('/register/participant', 'AuthController@getRegisterParticipant');
+Route::post('/register/participant', 'AuthController@registerParticipant');
+Route::get('/login/participant', 'AuthController@getLoginParticipant');
+Route::post('/login/participant', 'AuthController@loginParticipant');
+Route::get('/participant/join/accept', 'AuthController@confirmationSeminar');
 
 Route::get('/register/perorangan', 'AuthController@getRegisterPersonal');
 Route::post('/register/perorangan', 'AuthController@registerPersonal');
