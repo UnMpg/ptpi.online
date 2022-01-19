@@ -117,7 +117,6 @@ class AuthController extends Controller
                 'kabupaten' => $dataValidated['kabupaten'],
                 'pekerjaan' => $dataValidated['pekerjaan'],
                 'nama_instansi' => $request->nama_instansi,
-                'referral' => strtoupper($request->referral),
                 'mobile_app' => $request->has('mobile_app'),
                 'kabupaten' => strtoupper($request->kabupaten),
                 'password' => bcrypt('secret12345678'),
