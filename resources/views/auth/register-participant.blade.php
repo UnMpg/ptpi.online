@@ -924,9 +924,10 @@
                     </div>
                 </div>
             </form>
-            <div class="text-center">Sudah memiliki akun? <a
+            {{-- <div class="text-center">Sudah memiliki akun? <a
                     href="{{ action('AuthController@getLoginParticipant') }}">Masuk
-                    disini</a></div>
+            disini</a>
+        </div> --}}
         </div>
 
         <script>
