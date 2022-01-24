@@ -214,6 +214,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+
         // Validate the form data
         $this->validate($request, [
             'email' => 'required|email',
@@ -222,16 +223,17 @@ class AuthController extends Controller
 
         if (auth('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
             if ($request->email == 'admin@mail.com') {
-                return redirect()->intended(action('DashboardController@index'));
+                // return $request->email;
+                return redirect(action('DashboardController@index'));
             } else {
-                return redirect()->intended(action('UserController@kontribusiSehatRI'));
+                return redirect(action('UserController@kontribusiSehatRI'));
             }
         }
         if (auth('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->intended(action('DashboardController@index'));
+            return redirect(action('DashboardController@index'));
         }
         // if (auth('participant')->attempt(['email' => $request->email, 'password' => $request->password])) {
-        //     return redirect()->intended(action('DashboardController@index'));
+        //     return redirect(action('DashboardController@index'));
         // }
         return back();
     }
