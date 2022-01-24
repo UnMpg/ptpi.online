@@ -10,7 +10,7 @@ class DataCenterController extends Controller
     public function __construct()
     {
         // $this->middleware('auth:admin')->except(['validasiSurat', 'validasiCertificate']);
-        $this->middleware('auth')->except(['validasiSurat', 'validasiCertificate']);
+        // $this->middleware('auth')->except(['validasiSurat', 'validasiCertificate']);
     }
 
     /**
