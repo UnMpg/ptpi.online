@@ -227,9 +227,10 @@ class AuthController extends Controller
                 return redirect()->intended(action('UserController@kontribusiSehatRI'));
             }
         }
-        // elseif (auth('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
-        //     return redirect()->intended(action('DashboardController@index'));
-        // } elseif (auth('participant')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (auth('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect()->intended(action('DashboardController@index'));
+        }
+        // if (auth('participant')->attempt(['email' => $request->email, 'password' => $request->password])) {
         //     return redirect()->intended(action('DashboardController@index'));
         // }
         return back();

@@ -8,14 +8,22 @@
         <div class="col-md-12">
             <div class="card mt-4 card-outline card-info">
                 <div class="card-body pad">
-                    <form role="form" action="{{ action('DataCenterController@storeSurat') }}" method="POST" enctype="multipart/form-data">
+                    <form role="form" action="{{ action('DataCenterController@storeSurat') }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
+                                <label>Judul Surat</label>
                                 <input type="text" class="form-control" name="filename" placeholder="Content..."
                                     required>
                             </div>
                             <div class="form-group">
+                                <label>File surat</label>
+                                <input type="file" class="form-control" name="document" placeholder="File surat..."
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label>Screenshot surat</label>
                                 <input type="file" class="form-control" name="image" placeholder="Screenshot surat..."
                                     required>
                             </div>

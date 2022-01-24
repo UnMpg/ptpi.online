@@ -29,6 +29,7 @@
                                     <th>Deskripsi</th>
                                     <th>Dibuat</th>
                                     <th>QRcode</th>
+                                    <th>File</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
@@ -36,7 +37,8 @@
                                 @foreach ($datacenters as $datacenter)
                                 <tr>
                                     <td>
-                                        <img src="{{ asset('assets/surat/' . $datacenter->image) }}" alt="image" class="img-fluid" width="50" height="50">
+                                        <img src="{{ asset('assets/surat/' . $datacenter->image) }}" alt="image"
+                                            class="img-fluid" width="50" height="50">
                                     </td>
                                     <td>{{ $datacenter->filename }}</td>
                                     <td>{{ $datacenter->file_type }}</td>
@@ -55,7 +57,8 @@
                                                     <div class="modal-header">
                                                         <h5 class="modal-title"
                                                             id="exampleModal-{{ $datacenter->id }}Label">
-                                                            {{ $datacenter->filename }}</h5>
+                                                            {{ $datacenter->filename }}
+                                                        </h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -69,16 +72,25 @@
                                             </div>
                                         </div>
                                     </td>
+                                    <td>
+                                        @if ($datacenter->document)
+                                        <a href="{{ asset('assets/surat-document/' . $datacenter->document) }}"
+                                            target="_blank">Download</a>
+                                        @else
+                                        -
+                                        @endif
+                                    </td>
                                     <td class="text-center">
-                                        <form action="{{ action('DataCenterController@destroy', $datacenter->id) }}"
+                                        <form
+                                            action="{{ action('DataCenterController@destroySurat', $datacenter->id) }}"
                                             method="post" class="formdelete">
                                             @csrf
                                             @method('DELETE')
                                             <div class="btn-group">
-                                                <a href="{{ action('DataCenterController@edit', $datacenter->id) }}"
-                                                    class="btn btn-sm btn-outline-warning">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
+                                                {{-- <a href="{{ action('DataCenterController@edit', $datacenter->id) }}"
+                                                class="btn btn-sm btn-outline-warning">
+                                                <i class="fas fa-edit"></i>
+                                                </a> --}}
                                                 <button type="submit"
                                                     class="btn btn-sm btn-outline-danger delete-confirm">
                                                     <i class="far fa-trash-alt"></i>

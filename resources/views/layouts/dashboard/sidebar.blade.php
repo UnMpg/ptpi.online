@@ -290,6 +290,13 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ action('DataCenterController@indexSurat') }}" class="nav-link">
+                        <i class="fas fa-file-alt"></i>
+                        &nbsp;
+                        <p>Surat</p>
+                    </a>
+                </li>
                 @endauth
             </ul>
         </nav>

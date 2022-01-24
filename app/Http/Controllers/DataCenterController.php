@@ -9,7 +9,8 @@ class DataCenterController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:admin')->except(['validasiSurat', 'validasiCertificate']);
+        // $this->middleware('auth:admin')->except(['validasiSurat', 'validasiCertificate']);
+        $this->middleware('auth')->except(['validasiSurat', 'validasiCertificate']);
     }
 
     /**
@@ -85,9 +86,24 @@ class DataCenterController extends Controller
         return redirect(action('DataCenterController@index'))->with('delete', '"File" Berhasil Dihapus');
     }
 
+    public function destroySurat($dataCenterId)
+    {
+        $dataCenter = DataCenter::find($dataCenterId);
+        if ($dataCenter->document) {
+            unlink(public_path('assets/surat-document/' . $dataCenter->document));
+        }
+        $dataCenter->delete();
+        return redirect(action('DataCenterController@indexSurat'))->with('delete', '"File" Berhasil Dihapus');
+    }
+
     public function indexSurat()
     {
-        $datacenters = DataCenter::all()->where('file_type', 'surat');
+        if (auth('admin')->check()) {
+            $datacenters = DataCenter::all()->where('file_type', 'surat');
+        } else {
+            $userId = auth('web')->id();
+            $datacenters = DataCenter::all()->where('file_type', 'surat')->where('user_id', $userId);
+        }
         return view('admin.data-center.surat.index', compact('datacenters'));
     }
 
@@ -95,16 +111,37 @@ class DataCenterController extends Controller
     {
         $time = time();
         $image = $request->file('image');
-        $input['image'] = time().'.'.$image->getClientOriginalExtension();
+        $input['image'] = time() . '.' . $image->getClientOriginalExtension();
         $destinationPath = public_path('assets/surat');
         $image->move($destinationPath, $input['image']);
-        DataCenter::create([
-            'unique_id' => $time . rand(100, 999),
-            'filename' => $request->filename,
-            'file_type' => 'surat',
-            'image' => $input['image'],
-            'description' => $request->description
-        ]);
+
+        $imageDocument = $request->file('document');
+        $input['document'] = time() . '.' . $imageDocument->getClientOriginalExtension();
+        $destinationPathDocument = public_path('assets/surat-document');
+        $imageDocument->move($destinationPathDocument, $input['document']);
+
+
+        if (auth('admin')->check()) {
+            DataCenter::create([
+                'unique_id' => $time . rand(100, 999),
+                'filename' => $request->filename,
+                'file_type' => 'surat',
+                'image' => $input['image'],
+                'document' => $input['document'],
+                'description' => $request->description
+            ]);
+        } else {
+            $userId = auth('web')->id();
+            DataCenter::create([
+                'unique_id' => $time . rand(100, 999),
+                'filename' => $request->filename,
+                'file_type' => 'surat',
+                'image' => $input['image'],
+                'document' => $input['document'],
+                'user_id' => $userId,
+                'description' => $request->description
+            ]);
+        }
 
         return redirect(action('DataCenterController@indexSurat'))->with('save', '"No.Surat" Berhasil Ditambahkan');
     }
@@ -118,7 +155,7 @@ class DataCenterController extends Controller
             return view('home.sertifikat.status-scan-surat', compact('status', 'datacenter'));
         }
     }
-    
+
     public function validasiCertificate($unique_id)
     {
         $status = false;

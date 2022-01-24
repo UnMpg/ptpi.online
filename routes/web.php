@@ -134,6 +134,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/data-center/list/surat/', 'DataCenterController@indexSurat');
     Route::get('/data-center/create/surat/', 'DataCenterController@createSurat');
     Route::post('/data-center/list/surat', 'DataCenterController@storeSurat');
+    Route::delete('/data-center/list/surat/delete/{id}', 'DataCenterController@destroySurat');
 });
 Route::get('/data-center/files/{datacenter}', 'DataCenterController@downloadFile');
 Route::get('/data-center/validasi/surat/{unique_id}', 'DataCenterController@validasiSurat');
@@ -150,21 +151,27 @@ Route::get('check_grouping', function () {
     //return $participants->where('pekerjaan', 'IT');
     $data = [];
     foreach ($participants as $participant) {
-        if ($participant->certificates->where('id', 8)->first()) {
+        if ($participant->certificates->where('id', 16)->first()) {
             array_push($data, $participant);
         }
     }
-    // return $data;
     // return collect($data)->groupBy('provinsi');
     $emails = collect($data)->pluck('email');
     return Participant::whereIn('email', $emails)->get([
-        'email',
-        'nama',
-        'kontak',
-        'jenis_instansi',
-        'nama_instansi',
-        'provinsi',
-        'pekerjaan',
+        "id",
+        "email",
+        "nama",
+        "kontak",
+        "jenis_instansi",
+        "nama_instansi",
+        "provinsi",
+        "pekerjaan",
+        "kabupaten",
+        "referral",
+        "unit",
+        "bidang_ilmu",
+        "created_at",
+        "updated_at",
     ]);
 });
 
