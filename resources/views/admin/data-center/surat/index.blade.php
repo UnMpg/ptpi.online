@@ -24,6 +24,7 @@
                             <thead>
                                 <tr>
                                     <th>Image</th>
+                                    <th>User</th>
                                     <th>Nama File</th>
                                     <th>Mime Type</th>
                                     <th>Deskripsi</th>
@@ -40,6 +41,7 @@
                                         <img src="{{ asset('assets/surat/' . $datacenter->image) }}" alt="image"
                                             class="img-fluid" width="50" height="50">
                                     </td>
+                                    <td>{{ optional($datacenter->user)->name ?: 'Admin' }}</td>
                                     <td>{{ $datacenter->filename }}</td>
                                     <td>{{ $datacenter->file_type }}</td>
                                     <td>{{ $datacenter->description }}</td>

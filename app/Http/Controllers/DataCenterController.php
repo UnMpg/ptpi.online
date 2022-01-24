@@ -99,10 +99,10 @@ class DataCenterController extends Controller
     public function indexSurat()
     {
         if (auth('admin')->check()) {
-            $datacenters = DataCenter::all()->where('file_type', 'surat');
+            $datacenters = DataCenter::orderBy('id', 'desc')->where('file_type', 'surat')->get();
         } else {
             $userId = auth('web')->id();
-            $datacenters = DataCenter::all()->where('file_type', 'surat')->where('user_id', $userId);
+            $datacenters = DataCenter::orderBy('id', 'desc')->where('file_type', 'surat')->where('user_id', $userId)->get();
         }
         return view('admin.data-center.surat.index', compact('datacenters'));
     }
@@ -128,6 +128,7 @@ class DataCenterController extends Controller
                 'file_type' => 'surat',
                 'image' => $input['image'],
                 'document' => $input['document'],
+                'user_id' => $request->user_id,
                 'description' => $request->description
             ]);
         } else {

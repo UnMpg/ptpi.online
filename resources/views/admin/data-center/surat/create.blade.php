@@ -27,6 +27,17 @@
                                 <input type="file" class="form-control" name="image" placeholder="Screenshot surat..."
                                     required>
                             </div>
+                            @auth('admin')
+                            <div class="form-group">
+                                <label>User</label>
+                                <select name="user_id" class="form-control">
+                                    <option value="0">Admin</option>
+                                    @foreach (App\User::all() as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @endauth
                             <div class="form-group">
                                 <label>Description File</label>
                                 <textarea name="description" cols="30" rows="5" class="form-control"

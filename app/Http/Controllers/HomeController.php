@@ -139,9 +139,13 @@ class HomeController extends Controller
         return view('home.seminar-hef', compact('materi'));
     }
 
-    public function materi()
+    public function materi(Request $request)
     {
-        $materi = Materi::where('category', 'seminar_ws')->paginate(8);
+        $materi = Materi::where('certificate_id', '!=', 0);
+        if ($request->certificate_id) {
+            $materi->where('certificate_id', $request->certificate_id);
+        }
+        $materi = $materi->paginate(8);
         return view('home.materi', compact('materi'));
     }
 

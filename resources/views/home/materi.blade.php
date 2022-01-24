@@ -12,6 +12,27 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-8 mb-0">
+                <!-- <h4>Pilih Bulan</h4> -->
+            </div>
+            <div class="col-md-4 mb-4">
+                <!-- <form action="" method="GET">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="date" placeholder="Filter Waktu">
+                            </div>
+                        </form> -->
+                <form action="{{ action('HomeController@materi') }}" method="GET">
+                    @csrf
+                    <select name="certificate_id" class="form-control" onchange="this.form.submit()">
+                        <option value="">- Pilih Seminar -</option>
+                        @foreach (App\Certificate::all() as $item)
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endforeach
+                    </select>
+                </form>
+            </div>
+        </div>
         <table class="table table-bordered table-striped mb-3">
             <thead>
                 <tr class="text-center">
