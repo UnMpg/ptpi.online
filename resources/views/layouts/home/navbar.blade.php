@@ -14,85 +14,87 @@
             <ul>
                 <li class="drop-down"><a href="" class="menu_link">{{ trans('lang.ABOUT_US') }}</a>
                     <ul>
-                        <li><a href="{{ action('HomeController@visiMisi') }}">Visi & Misi</a></li>
-                        <li><a href="{{ action('HomeController@dasarHukum') }}">Dasar Hukum</a></li>
-                        <li><a href="{{ action('HomeController@tujuanFungsi') }}">Fungsi</a></li>
-                        <li><a href="{{ action('HomeController@strukturOrganisasi') }}">Organisma</a></li>
-                        <li><a href="{{ asset('assets/home/img/maju_bersama_PTPI.pdf') }}">Mars PTPI</a></li>
-                        <li><a href="https://youtu.be/egYfc67eGbI">Mars PTPI (Official Video)</a></li>
-                    </ul>
-                </li>
-                <li class="drop-down"><a href="#" class="menu_link">Informasi</a>
-                    <ul>
-                        <li><a href="{{ action('HomeController@berita') }}">Berita</a></li>
-                        <li><a href="{{ action('HomeController@artikel') }}">Artikel</a></li>
-                    </ul>
-                </li>
-                <li class="drop-down"><a href="#" class="menu_link">Keanggotaan</a>
-                    <ul>
-                        <!-- <li><a href="{{ action('HomeController@kontribusiSehatRI') }}">Sel</a></li> -->
-                        <li><a href="{{ action('HomeController@sel') }}">Sel</a></li>
-                        <li><a href="{{ action('HomeController@bidangKeahlian') }}">Bidang Keahlian</a></li>
-                        <li><a href="{{ action('HomeController@sertifikasi') }}">Sertifikasi</a></li>
-                        <li><a href="{{ action('HomeController@jejaring') }}">Jejaring</a></li>
-                        <li><a href="{{action('AuthController@getRegister')}}">Pendaftaran</a></li>
-                        <li><a href="{{ action('HomeController@checkReferral') }}">Cek Referral Sehat-RI</a></li>
-                        <!-- <li><a href="">Pendaftaran</a></li> -->
-                    </ul>
-                </li>
-                <li class="drop-down"><a href="#" class="menu_link">Rencana</a>
-                    <ul>
-                        <!-- <li><a href="#">Rapat Rutin</a></li> -->
-                        <!-- <li><a href="#">Workshop</a></li> -->
-                        <!-- <li><a href="#">Seminar</a></li> -->
-                        <li><a href="https://hospital-engineering-expo.com/backend/public/" target="_blank">Forum
-                                Nasional</a></li>
-                        <!-- <li><a href="#">Konsultasi</a></li> -->
-                        <!-- <li><a href="#">Penelitian</a></li> -->
-                    </ul>
-                </li>
-                <!-- <li><a href="{{ action('HomeController@kontribusiSehatRI') }}" class="menu_link"></a></li> -->
-                {{-- <li><a href="/#contact" class="menu_link">Hubungi Kami</a></li> --}}
-                <li class="drop-down"><a href="#" class="menu_link">Konsultasi</a>
-                    <ul>
-                        <li><a href="{{ action('HomeController@questionAnswer') }}">Tanya Jawab</a></li>
-                        <li><a href="{{ action('HomeController@faq') }}">Pertanyaan</a></li>
-                        <!-- <li><a href="{{ action('HomeController@faqTimeLine') }}">Konsultasi Timeline</a></li> -->
-                    </ul>
-                </li>
-                <li class="drop-down"><a href="" class="menu_link">Unduh</a>
-                    <ul>
-                        <!-- <li><a href="{{ asset('assets/members/doc/AD_PTPI.pdf') }}">Anggaran Dasar (AD)</a></li> -->
-                        <!-- <li><a href="{{ asset('assets/members/doc/ART_PTPI.pdf') }}">Anggaran Rumah Tangga (ART)</a></li> -->
-                        <!-- <li><a href="{{ asset('assets/members/doc/Akta_Pendirian_PTPI.pdf') }}">Akta Pendirian</a></li> -->
-                        <li><a href="{{ action('HomeController@getSertifikat') }}">Sertifikat Seminar</a></li>
-                        <li><a href="{{ action('HomeController@seminarHefCertificate') }}">Sertifikat Seminar
-                                HEF</a>
+                        <li><a href="{{ action('HomeController@visiMisi') }}">{{ trans('lang.VISION_AND_MISSION') }}</a>
                         </li>
-                        <li><a href="{{ action('HomeController@getSertifikatCommon') }}">Sertifikat Seminar - All</a>
+                        <li><a href="{{ action('HomeController@dasarHukum') }}">{{ trans('lang.BASIC_LAW') }}</a></li>
+                        <li><a href="{{ action('HomeController@tujuanFungsi') }}">{{ trans('lang.FUNCTION') }}</a></li>
+                        <li><a href="{{ action('HomeController@strukturOrganisasi') }}">{{ trans('lang.ORGANISM') }}</a>
+                        </li>
+                        <li><a
+                                href="{{ asset('assets/home/img/maju_bersama_PTPI.pdf') }}">{{ trans('lang.OFFICIAL_SONG_PTPI') }}</a>
+                        </li>
+                        <li><a href="https://youtu.be/egYfc67eGbI">{{ trans('lang.PTPI_OFFICIAL_VIDEO') }}</a></li>
+                    </ul>
+                </li>
+                <li class="drop-down"><a href="#" class="menu_link">{{ trans('lang.INFORMATION') }}</a>
+                    <ul>
+                        <li><a href="{{ action('HomeController@berita') }}">{{ trans('lang.NEWS') }}</a></li>
+                        <li><a href="{{ action('HomeController@artikel') }}">{{ trans('lang.ARTICLE') }}</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="drop-down"><a href="#" class="menu_link">{{ trans('lang.MEMBERSHIP') }}</a>
+                    <ul>
+                        <li><a href="{{ action('HomeController@sel') }}">{{ trans('lang.CELL') }}</a></li>
+                        <li><a
+                                href="{{ action('HomeController@bidangKeahlian') }}">{{ trans('lang.AREAS_OF_EXPERTISE') }}</a>
+                        </li>
+                        <li><a href="{{ action('HomeController@sertifikasi') }}">{{ trans('lang.CERTIFICATION') }}</a>
+                        </li>
+                        <li><a href="{{ action('HomeController@jejaring') }}">{{ trans('lang.NETWORK') }}</a>
+                        </li>
+                        <li><a href="{{action('AuthController@getRegister')}}">{{ trans('lang.REGISTRATION') }}</a>
+                        </li>
+                        <li><a
+                                href="{{ action('HomeController@checkReferral') }}">{{ trans('lang.REFERRAL_NUMBER_CHECKING') }}</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="drop-down"><a href="#" class="menu_link">{{ trans('lang.CONSULTATION') }}</a>
+                    <ul>
+                        <li><a
+                                href="{{ action('HomeController@questionAnswer') }}">{{ trans('lang.QUESTION_AND_ANSWER') }}</a>
+                        </li>
+                        <li><a href="{{ action('HomeController@faq') }}">{{ trans('lang.QUESTION') }}</a></li>
+                    </ul>
+                </li>
+                <li class="drop-down"><a href="" class="menu_link">{{ trans('lang.DOWNLOAD') }}</a>
+                    <ul>
+                        <li><a
+                                href="{{ action('HomeController@getSertifikat') }}">{{ trans('lang.SEMINAR_CERTIFICATE') }}</a>
+                        </li>
+                        <li><a
+                                href="{{ action('HomeController@seminarHefCertificate') }}">{{ trans('lang.HEF_SEMINAR_CERTIFICATE') }}</a>
+                        </li>
+                        <li><a
+                                href="{{ action('HomeController@getSertifikatCommon') }}">{{ trans('lang.INDUSTRY_SEMINAR_CERTIFICATE') }}</a>
                         </li>
                         <li>
                             @php($laporan = App\LaporanKegiatan::orderByDesc('created_at')->take(1)->get())
                             @if(count($laporan) > 0)
                             @foreach($laporan as $item)
-                            <a href="{{ action('HomeController@downloadLaporan', $item->file) }}">Laporan Kegiatan</a>
+                            <a
+                                href="{{ action('HomeController@downloadLaporan', $item->file) }}">{{ trans('lang.ACTIVITY_REPORT') }}</a>
                             @endforeach
                             @else
                             <span class="a-disable">
-                                <a href="">Laporan Kegiatan</a>
+                                <a href="">{{ trans('lang.ACTIVITY_REPORT') }}</a>
                             </span>
                             @endif
                         </li>
-                        <li><a href="{{ action('HomeController@laporanKeuangan') }}">Laporan Keuangan</a></li>
-                        <li><a href="{{ action('HomeController@seminarHef') }}">Materi HEF</a></li>
-                        <li><a href="{{ action('HomeController@materi') }}">Materi Seminar & WS</a></li>
-                        <!-- <li><a href="{{ action('HomeController@laporan') }}" class="menu_link">Laporan</a></li> -->
+                        <li><a
+                                href="{{ action('HomeController@laporanKeuangan') }}">{{ trans('lang.FINANCIAL_REPORT') }}</a>
+                        </li>
+                        <li><a href="{{ action('HomeController@seminarHef') }}">{{ trans('lang.HEF_MATERIAL') }}</a>
+                        </li>
+                        <li><a
+                                href="{{ action('HomeController@materi') }}">{{ trans('lang.SEMINAR_AND_WS_MATERIAL') }}</a>
+                        </li>
                     </ul>
                 </li>
-                <li><a href="{{ action('AuthController@getLogin') }}" class="menu_link">Login</a></li>
-
+                <li><a href="{{ action('AuthController@getLogin') }}" class="menu_link">{{ trans('lang.LOGIN') }}</a>
+                </li>
             </ul>
         </nav><!-- .nav-menu -->
-
     </div>
 </header><!-- End Header -->

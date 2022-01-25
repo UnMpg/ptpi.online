@@ -14,7 +14,7 @@ return [
     'NEWS' => 'News',
     'ARTICLE' => 'Article',
     'MEMBERSHIP' => 'Membership',
-    'Cell' => 'Cell',
+    'CELL' => 'Cell',
     'AREAS_OF_EXPERTISE' => 'Areas of expertise',
     'CERTIFICATION' => 'Certification',
     'NETWORK' => 'Network',
@@ -27,12 +27,12 @@ return [
     'QUESTION' => 'Question',
     'DOWNLOAD' => 'Download',
     'SEMINAR_CERTIFICATE' => 'Seminar Certificate',
-    'HEF_SEMINAR CERTIFICATE' => 'HEF Seminar Certificate',
+    'HEF_SEMINAR_CERTIFICATE' => 'HEF Seminar Certificate',
     'INDUSTRY_SEMINAR_CERTIFICATE' => 'Industry Seminar Certificate',
     'ACTIVITY_REPORT' => 'Activity Report',
     'FINANCIAL_REPORT' => 'Financial Report',
     'HEF_MATERIAL' => 'HEF Material',
-    'SEMIINAR_AND_WS_MATERIAL' => 'Seminar and Workshop Material',
+    'SEMINAR_AND_WS_MATERIAL' => 'Seminar and Workshop Material',
     'LOGIN' => 'Login',
     "PTPI_IAHE_SMART_(SAFE,_ENVIRONMENTALLY_FRIENDLY,
     _AFFORDABLE,_SECURE_AND_WORTHWHILE)." => "Perkumpulan Teknik Perumahsakitan
@@ -57,8 +57,7 @@ return [
     support) to realize SMART hospitals in Indonesia in accordance to health act
     and hospital act
     2009..",
-    "CONNECTING,_SYNERGIZING,_HARMONIZING_VARIOUS,_STAKEHOLDERS_
-    TO_CREATE_A_SMART_HOSPITAL." => "Connecting, synergizing, harmonizing
+    "TITLE2" => "Connecting, synergizing, harmonizing
     various, stakeholders to create  SMART hospital.",
     'GROUP' => 'Group',
     'ACTIVITY' => 'Activity',
