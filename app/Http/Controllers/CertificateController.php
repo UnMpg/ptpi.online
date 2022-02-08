@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Certificate;
+use App\Imports\ParticipantCommonImport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CertificateController extends Controller
 {
@@ -118,5 +120,18 @@ class CertificateController extends Controller
     {
         $seminar->delete();
         return redirect(action('CertificateController@index'))->with('delete', '"Tema Sertifikat" Berhasil Dihapus');
+    }
+
+    public function showParticipant(Certificate $seminar, Request $request)
+    {
+        $participants = \DB::table('certificate_commons')->where('certificate_id', $seminar->id)
+            ->paginate(10);
+        return view('admin.seminar.participant-seminar', compact('participants', 'seminar'));
+    }
+
+    public function importParticipantSeminar(Request $request)
+    {
+        Excel::import(new ParticipantCommonImport, request()->file('file'));
+        return back();
     }
 }

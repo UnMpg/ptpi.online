@@ -40,8 +40,8 @@
                                             onsubmit="return confirm('Do you really want to submit the form?');">
                                             @csrf
                                             <input type="hidden" name="seminar_id" value="{{ $seminar->id }}">
-                                            <input type="checkbox" onChange="this.form.submit()" name="status"
-                                                {{ $seminar->status ? 'checked' : null }}>
+                                            <input type="checkbox" onChange="this.form.submit()" name="status" {{
+                                                $seminar->status ? 'checked' : null }}>
                                         </form>
                                     </td>
                                     <td>{{ optional($seminar->created_at)->diffForHumans() }}</td>
@@ -51,6 +51,10 @@
                                             @csrf
                                             @method('DELETE')
                                             <div class="btn-group">
+                                                <a href="{{ action('CertificateController@showParticipant', $seminar->id) }}"
+                                                    class="btn btn-sm btn-outline-success">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
                                                 <a href="{{ action('CertificateController@edit', $seminar->id) }}"
                                                     class="btn btn-sm btn-outline-warning">
                                                     <i class="fas fa-edit"></i>

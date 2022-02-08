@@ -69,6 +69,14 @@
                                 <p>Seminar</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ action('SignController@index') }}" class="nav-link">
+                                &nbsp;&nbsp;
+                                <i class="fas fa-tags"></i>
+                                &nbsp;
+                                <p>Sign</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item has-treeview">

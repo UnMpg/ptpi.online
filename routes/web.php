@@ -90,7 +90,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('/article', 'ArticleController');
     Route::resource('/activity', 'ActivityController');
     Route::resource('/tag', 'TagController');
+    Route::resource('/sign', 'SignController');
     Route::resource('/seminar', 'CertificateController');
+    Route::get('/seminar/participant/{seminar}', 'CertificateController@showParticipant');
+    Route::post('/seminar/participant/import', 'CertificateController@importParticipantSeminar');
     Route::post('/seminar/update/tema', 'CertificateController@updateTema');
     Route::post('/seminar/update/active', 'CertificateController@updateActive');
     Route::resource('/new', 'NewsController');

@@ -287,7 +287,7 @@ class HomeController extends Controller
                 return redirect($participant->certificate_url);
             }
         }
-        $seminars = Certificate::all()->where('status', true)->whereIn('id', [15]);
+        $seminars = Certificate::all()->where('status', true)->where('id', '>=', 15);
         return view('home.sertifikat-common', compact('seminars'));
     }
 
