@@ -13,9 +13,16 @@
             </div>
         </div>
         <div class="row" style="display: block; margin: 0 auto;">
+            @if (session('locale'))
+            @if (session('locale') == 'id')
             <img src="{{ asset('assets/home/img/organisma.png') }}" alt="" width="2000px">
-
-
+            @endif
+            @if (session('locale') == 'en')
+            <img src="{{ asset('assets/home/img/organisma_en.png') }}" alt="" width="2000px">
+            @endif
+            @else
+            <img src="{{ asset('assets/home/img/organisma_en.png') }}" alt="" width="2000px">
+            @endif
             <!-- End col-->
         </div>
     </div>

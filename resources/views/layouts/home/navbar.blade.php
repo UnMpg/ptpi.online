@@ -94,7 +94,7 @@
                 </li>
                 <li><a href="{{ action('AuthController@getLogin') }}" class="menu_link">{{ trans('lang.LOGIN') }}</a>
                 </li>
-            </ul>
+             </ul>
         </nav><!-- .nav-menu -->
     </div>
 </header><!-- End Header -->

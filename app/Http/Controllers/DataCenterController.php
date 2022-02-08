@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataCenter;
+use App\User;
 use Illuminate\Http\Request;
 
 class DataCenterController extends Controller
@@ -96,15 +97,22 @@ class DataCenterController extends Controller
         return redirect(action('DataCenterController@indexSurat'))->with('delete', '"File" Berhasil Dihapus');
     }
 
-    public function indexSurat()
+    public function indexSurat(Request $request)
     {
+        $users = User::all();
+        $datacenters = DataCenter::orderBy('id', 'desc');
         if (auth('admin')->check()) {
-            $datacenters = DataCenter::orderBy('id', 'desc')->where('file_type', 'surat')->get();
+            $datacenters->where('file_type', 'surat');
+            if ($request->has('user')) {
+                $userId = User::where('email', $request->user)->first()->id;
+                $datacenters->where('file_type', 'surat')->where('user_id', $userId);
+            }
         } else {
             $userId = auth('web')->id();
-            $datacenters = DataCenter::orderBy('id', 'desc')->where('file_type', 'surat')->where('user_id', $userId)->get();
+            $datacenters->where('file_type', 'surat')->where('user_id', $userId);
         }
-        return view('admin.data-center.surat.index', compact('datacenters'));
+        $datacenters = $datacenters->get();
+        return view('admin.data-center.surat.index', compact('datacenters', 'users', 'request'));
     }
 
     public function storeSurat(Request $request)

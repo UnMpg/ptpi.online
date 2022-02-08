@@ -34,8 +34,7 @@ return [
     'HEF_MATERIAL' => 'HEF Material',
     'SEMINAR_AND_WS_MATERIAL' => 'Seminar and Workshop Material',
     'LOGIN' => 'Login',
-    "PTPI_IAHE_SMART_(SAFE,_ENVIRONMENTALLY_FRIENDLY,
-    _AFFORDABLE,_SECURE_AND_WORTHWHILE)." => "Perkumpulan Teknik Perumahsakitan
+    "INTRODUCTION_CONTENT" => "Perkumpulan Teknik Perumahsakitan
     Indonesia (PTPI) or in English called the Indonesian Association of Hospital
     Engineering (IAHE) is a forum for technical experts and hospital
     institutions that initiates and encourages the creation of policies, human
@@ -47,23 +46,23 @@ return [
     contribution for development of hospitals in Indonesia.",
     'WARM_REGARDS' => 'Warm Regards',
     'VISION' => 'Vision',
-    "TO_BECOME_A_(S.M.A.R.T)" => "To become a leading organization for
+    "VISION_CONTENT" => "To become a leading organization for
     realizing hospitals in Indonesia are Safe, environMentally friendly,
     Affordable, secuRe and worThwhile (S.M.A.R.T).",
     'MISSION' => 'Mission',
-    "REALIZE_SMART_HOSPITALS_IN_INDONESIA" => "Encouraging the creation. Overseeing
+    "MISSION_CONTENT" => "Encouraging the creation. Overseeing
     the implementation and continuous improvement of policies. HR (engineer and
     Manager), assets, Organization (Management system), and budgeting (financial
     support) to realize SMART hospitals in Indonesia in accordance to health act
     and hospital act
     2009..",
-    "TITLE2" => "Connecting, synergizing, harmonizing
+    "MISSION_CONTENT2" => "Connecting, synergizing, harmonizing
     various, stakeholders to create  SMART hospital.",
     'GROUP' => 'Group',
     'ACTIVITY' => 'Activity',
     'FIELD' => 'Field',
     'FORMULATION' => 'Formulation',
-    'POLICY_AND _TECHNOLOGY_RECOMMENDATIONS' => 'Policy and  technology recommendations',
+    'POLICY_AND_TECHNOLOGY_RECOMMENDATIONS' => 'Policy and  technology recommendations',
     'HOSPITAL_ENGINEERING' => 'Hospital Engineering',
     'TRAINING' => 'Training',
     'SEMINAR' => 'Seminar',
@@ -75,7 +74,7 @@ return [
     'HR' => 'HR',
     'SYSTEMS_AND_PRODUCTS' => 'Systems and products',
     'CORPORATION' => 'Corporation',
-    'HEALTHY_INFORMATION_AND_COMMUNICATION_SYSTEM' => 'Health information and communication system',
+    'HEALTHY_INFORMATION' => 'Health information and communication system',
     'EVALUATION' => 'Evaluation',
     'MEASUREMENT_AND_ASSESSMENT:' => 'Measurement and assessment:',
     'INNOVATION' => 'Innovation',

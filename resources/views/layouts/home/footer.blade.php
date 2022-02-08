@@ -37,7 +37,7 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 @switch($locale)
-                                @case('us')
+                                @case('en')
                                 English
                                 @break
                                 @case('id')

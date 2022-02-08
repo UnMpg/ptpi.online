@@ -8,7 +8,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="section-headline text-center">
                     <br><br>
-                    <h2>Fungsi</h2>
+                    <h2>{{ trans('lang.FUNCTION') }}</h2>
                 </div>
             </div>
         </div>
@@ -20,59 +20,59 @@
             <table class="table table-bordered table-striped">
                 <thead class="text-center">
                     <tr>
-                        <th>Kelompok</th>
-                        <th>Kegiatan</th>
-                        <th>Bidang</th>
+                        <th>{{ trans('lang.GROUP') }}</th>
+                        <th>{{ trans('lang.ACTIVITY') }}</th>
+                        <th>{{ trans('lang.FIELD') }}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Formulasi</td>
-                        <td>Rekomendasi kebijakan dan teknologi</td>
-                        <td>TEKNIK PERUMAHSAKITAN</td>
+                        <td>{{ trans('lang.FORMULATION') }}</td>
+                        <td>{{ trans('lang.POLICY_AND_TECHNOLOGY_RECOMMENDATIONS') }}</td>
+                        <td>{{ trans('lang.HOSPITAL_ENGINEERING') }}</td>
                     </tr>
                     <tr>
-                        <td>Pelatihan</td>
+                        <td>{{ trans('lang.TRAINING') }}</td>
                         <td>
                             <ul style="list-style-type:disc; margin-left: 20px;">
-                                <li>Seminar</li>
-                                <li>Workshop</li>
-                                <li>Konferensi</li>
+                                <li>{{ trans('lang.SEMINAR') }}</li>
+                                <li>{{ trans('lang.WORKSHOP') }}</li>
+                                <li>{{ trans('lang.CONFERENCE') }}</li>
                             </ul>
                         </td>
-                        <td>PERALATAN MEDIS</td>
+                        <td>{{ trans('lang.MEDICAL_EQUIPMENT') }}</td>
                     </tr>
                     <tr>
-                        <td>Sertifikasi</td>
+                        <td>{{ trans('lang.CERTIFICATION') }}</td>
                         <td>
-                            Pelaksanaan sertifikasi:
+                            {{ trans('lang.IMPLEMENTATION_OF_CERTIFICATION') }}
                             <ul style="list-style-type:disc; margin-left: 20px;">
-                                <li>SDM</li>
-                                <li>Sistem dan produk</li>
-                                <li>Korporasi</li>
+                                <li>{{ trans('lang.HR') }}</li>
+                                <li>{{ trans('lang.SYSTEMS_AND_PRODUCTS') }}</li>
+                                <li>{{ trans('lang.CORPORATION') }}</li>
                             </ul>
                         </td>
-                        <td>SISTEM INFORMASI dan KOMUNIKASI KESEHATAN</td>
+                        <td>{{ trans('lang.HEALTHY_INFORMATION') }}</td>
                     </tr>
                     <tr>
-                        <td>Penilaian</td>
-                        <td>Pengukuran dan penilaian:
+                        <td>{{ trans('lang.EVALUATION') }}</td>
+                        <td>{{ trans('lang.MEASUREMENT_AND_ASSESSMENT') }}:
                             <ul style="list-style-type:disc; margin-left: 20px;">
-                                <li>SDM</li>
-                                <li>Sistem dan produk</li>
-                                <li>Korporasi</li>
+                                <li>{{ trans('lang.HR') }}</li>
+                                <li>{{ trans('lang.SYSTEMS_AND_PRODUCTS') }}</li>
+                                <li>{{ trans('lang.CORPORATION') }}</li>
                             </ul>
                         </td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td>Inovasi</td>
-                        <td>Penelitian dan pengembangan</td>
+                        <td>{{ trans('lang.INNOVATION') }}</td>
+                        <td>{{ trans('lang.RESEARCH_AND_DEVELOPMENT') }}</td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td>Konsultasi</td>
-                        <td>Pendampingan rumah sakit</td>
+                        <td>{{ trans('lang.CONSULTATION') }}</td>
+                        <td>{{ trans('lang.HOSPITAL_ASSISTANCE') }}</td>
                     </tr>
                 </tbody>
             </table>

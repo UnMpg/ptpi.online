@@ -8,7 +8,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="section-headline text-center">
                     <br><br>
-                    <h2>Visi dan Misi</h2>
+                    <h2>{{ trans('lang.VISION_AND_MISSION') }}</h2>
                 </div>
             </div>
         </div>
@@ -20,10 +20,10 @@
                 </div>
                 <div class="col">
                     <a href="#">
-                        <h4 class="sec-head">Visi</h4>
+                        <h4 class="sec-head">{{ trans('lang.VISION') }}</h4>
                     </a>
                     <p>
-                        Menjadi organisasi terdepan untuk mewujudkan rumah sakit di Indonesia yang Selamat, Bermanfaat, Aman, Ramah Lingkungan, dan Terjangkau <b>(S.M.A.R.T)</b>.
+                        {{ trans('lang.VISION_CONTENT') }}
                     </p>
                 </div>
             </div>
@@ -34,14 +34,14 @@
                 </div>
                 <div class="col">
                     <a href="#">
-                        <h4 class="sec-head">Misi</h4>
+                        <h4 class="sec-head">{{ trans('lang.MISSION') }}</h4>
                     </a>
                     <ul>
                         <li class="mb-3">
-                            Mendorong terciptanya, mengawal implementasi dan memperbaiki terus menerus kebijakan, SDM <em>(Engineer and Manager)</em>, aset, organisasi (Sistem Manajemen), dan penganggaran (Dukungan Keuangan) untuk mewujudkan rumah sakit yang <b>SMART</b> di Indonesia sesuai dengan amanah Undang-Undang Kesehatan Dan Rumah Sakit 2009.
+                            {{ trans('lang.MISSION_CONTENT') }}
                         </li>
                         <li>
-                            Menghubungkan, mensinergikan, mengharmoniskan berbagai <em>stakeholder</em> untuk mewujudkan rumah sakit yang lebih S.M.A.R.T.
+                            {{ trans('lang.MISSION_CONTENT2') }}
                         </li>
                     </ul>
                 </div>

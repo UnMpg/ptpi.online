@@ -43,7 +43,7 @@ class HomeController extends Controller
             $certificate_number = substr($request->certificate_number, 4);
             $certificate_order = substr($request->certificate_number, 0, 4);
             $data = \DB::table('certificates_sign')->where('certificate_number', $certificate_number)->first();
-            return \DB::table('certificates_sign')->get();
+            // return \DB::table('certificates_sign')->get();
 
             if ($data && $certificate_order <= 700) {
                 return view('home.certificates-sign');

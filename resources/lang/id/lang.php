@@ -3,6 +3,7 @@
 return [
     'TITLE' => 'MyNotePaper में आपका स्वागत है',
     'INTRODUCTION' => 'Pendahuluan',
+    'INTRODUCTION' => 'Pengantar',
     'ABOUT_US' => 'Tentang Kami',
     'VISION_AND_MISSION' => 'Visi dan Misi',
     'BASIC_LAW' => 'Dasar Hukum',
@@ -46,22 +47,22 @@ return [
     kontribusi positif bagi perkembangan dan kemajuan rumah sakit di tanah air.",
     'WARM_REGARDS' => 'Salam hangat',
     'VISION' => 'Vision',
-    "TO_BECOME_A_(S.M.A.R.T)" => "Menjadi organisasi terdepan untuk mewujudkan rumah
+    "VISION_CONTENT" => "Menjadi organisasi terdepan untuk mewujudkan rumah
     sakit di Indonesia yang Selamat, Bermanfaat, Aman, Ramah Lingkungan, dan Terjangkau
     (S.M.A.R.T)",
     'MISSION' => 'Mission',
-    "REALIZE_SMART_HOSPITALS_IN_INDONESIA" => "Mendorong terciptanya, mengawal
+    "MISSION_CONTENT" => "Mendorong terciptanya, mengawal
     implementasi dan memperbaiki terus menerus kebijakan, SDM (Engineer and Manager),
     aset, organisasi (Sistem Manajemen), dan penganggaran (Dukungan Keuangan) untuk
     mewujudkan rumah sakit yang SMART di Indonesia sesuai dengan
     amanah Undang-Undang Kesehatan Dan Rumah Sakit 2009.",
-    "TITLE2" => "Menghubungkan, mensinergikan, mengharmoniskan
+    "MISSION_CONTENT2" => "Menghubungkan, mensinergikan, mengharmoniskan
     berbagai stakeholder untuk mewujudkan rumah sakit yang lebih S.M.A.R.T.",
     'GROUP' => 'Kelompok',
     'ACTIVITY' => 'Kegiatan',
     'FIELD' => 'Bidang',
     'FORMULATION' => 'Formulasi',
-    'POLICY_AND _TECHNOLOGY_RECOMMENDATIONS' => 'Rekomendasi Kebijakan dan teknologi',
+    'POLICY_AND_TECHNOLOGY_RECOMMENDATIONS' => 'Rekomendasi Kebijakan dan teknologi',
     'HOSPITAL_ENGINEERING' => 'Teknik Perumahsakitan',
     'TRAINING' => 'Pelatihan',
     'SEMINAR' => 'Seminar',
