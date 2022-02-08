@@ -44,9 +44,11 @@ class SignController extends Controller
         $data = $this->validate($request, [
             'name' => 'required'
         ]);
+        $unique_id = time();
+        $data['unique_id'] = $unique_id;
 
         KeynoteSpeaker::create($data);
-        return redirect(action('SignController@index'))->with('save', '"Tema Sertifikat" Berhasil Ditambahkan');
+        return redirect(action('SignController@index'))->with('save', 'Data Berhasil Ditambahkan');
     }
 
     /**
@@ -55,7 +57,7 @@ class SignController extends Controller
      * @param  \App\Sign  $sign
      * @return \Illuminate\Http\Response
      */
-    public function show(Sign $sign)
+    public function show(KeynoteSpeaker $sign)
     {
         //
     }
@@ -66,7 +68,7 @@ class SignController extends Controller
      * @param  \App\Sign  $sign
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sign $sign)
+    public function edit(KeynoteSpeaker $sign)
     {
         return view('admin.sign.edit', compact('sign'));
     }
@@ -78,14 +80,14 @@ class SignController extends Controller
      * @param  \App\Sign  $sign
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sign $sign)
+    public function update(Request $request, KeynoteSpeaker $sign)
     {
         $data = $this->validate($request, [
             'name' => 'required'
         ]);
 
         $sign->update($data);
-        return redirect(action('SignController@index'))->with('update', '"Tema Sertifikat" Berhasil Diperbarui');
+        return redirect(action('SignController@index'))->with('update', 'Data Berhasil Diperbarui');
     }
 
     /**
@@ -94,9 +96,9 @@ class SignController extends Controller
      * @param  \App\Sign  $sign
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sign $sign)
+    public function destroy(KeynoteSpeaker $sign)
     {
         $sign->delete();
-        return redirect(action('SignController@index'))->with('delete', '"Tema Sertifikat" Berhasil Dihapus');
+        return redirect(action('SignController@index'))->with('delete', 'Data Berhasil Dihapus');
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.app')
-@section('title-page', 'New Tag')
-@section('title-header', 'New Tag')
+@section('title-page', 'Sign')
+@section('title-header', 'Sign')
 @section('content')
 <!-- Main content -->
 <section class="content">
@@ -8,16 +8,16 @@
         <div class="col-md-12">
             <div class="card mt-4 card-outline card-info">
                 <div class="card-body pad">
-                    <form role="form" action="{{ action('CertificateController@update', $seminar->id) }}" method="POST">
+                    <form role="form" action="{{ action('SignController@update', $sign->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Tag Name</label>
-                                <input type="text" class="form-control" placeholder="Tag Name" name="name"
-                                    value="{{ $seminar->name }}" required>
+                                <label>Name</label>
+                                <input type="text" class="form-control" placeholder="Name" name="name"
+                                    value="{{ $sign->name }}" required>
                             </div>
-                            <a href="{{ action('CertificateController@index') }}" class="btn btn-outline-secondary">
+                            <a href="{{ action('SignController@index') }}" class="btn btn-outline-secondary">
                                 <i class="fas fa-arrow-left"></i>
                                 Kembali
                             </a>
