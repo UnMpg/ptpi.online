@@ -124,7 +124,8 @@ class AuthController extends Controller
 
             if ($user) {
                 auth('participant')->loginUsingId($user->id);
-                return redirect(action('AuthController@registerConfirmation'))->with('save', 'Selamat Anda Berhasil Mendaftar.');
+                // return redirect(action('AuthController@registerConfirmation'))->with('save', 'Selamat Anda Berhasil Mendaftar.');
+                return redirect(action('AuthController@confirmationSeminar'));
             }
         } else {
             $dataValidated['nama_instansi'] = $request->nama_instansi;
@@ -136,7 +137,8 @@ class AuthController extends Controller
 
             if ($participant) {
                 auth('participant')->loginUsingId($participant->id);
-                return redirect(action('AuthController@registerConfirmation'))->with('save', 'Selamat Anda Berhasil Mendaftar.');
+                // return redirect(action('AuthController@registerConfirmation'))->with('save', 'Selamat Anda Berhasil Mendaftar.');
+                return redirect(action('AuthController@confirmationSeminar'));
             }
         }
 

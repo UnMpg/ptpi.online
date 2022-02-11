@@ -113,7 +113,7 @@
                 style="margin-bottom: 0 !important" role="alert">
                 <h3>{{ session('join') }}</h3>
                 <i class="fa fa-check-circle" style="font-size:72px;"></i>
-                <br>
+                {{-- <br>
                 <div class="card-body">
                     <h5>Mohon salin link berikut, untuk dapat bergabung pada seminar nanti.</h5>
                     <a
@@ -126,7 +126,7 @@
                         href="https://intip.in/pre-test-seminar-ipsrs-ptpi">https://intip.in/pre-test-seminar-ipsrs-ptpi</a><br>
                     <a
                         href="https://intip.in/post-test-seminar-ipsrs-ptpi">https://intip.in/post-test-seminar-ipsrs-ptpi</a><br>
-                </div>
+                </div> --}}
             </div>
             {{ auth('participant')->logout() }}
             @endif

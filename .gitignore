@@ -10,6 +10,7 @@
 /public/assets/surat
 /public/assets/ttd
 /public/storage
+/storage/framework/laravel-excel
 /storage/*.key
 /vendor
 /.idea
