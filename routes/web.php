@@ -149,12 +149,12 @@ Route::group(['prefix' => 'member'], function () {
     Route::post('/faqs', 'MemberController@replyFaq');
 });
 
-Route::get('check_grouping', function () {
+Route::get('check_grouping/{id}', function ($id) {
     $participants = Participant::all();
     //return $participants->where('pekerjaan', 'IT');
     $data = [];
     foreach ($participants as $participant) {
-        if ($participant->certificates->where('id', 16)->first()) {
+        if ($participant->certificates->where('id', $id)->first()) {
             array_push($data, $participant);
         }
     }
