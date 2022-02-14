@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Certificate;
+use App\Exports\ParticipantCommonExport;
 use App\Imports\ParticipantCommonImport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -133,5 +134,10 @@ class CertificateController extends Controller
     {
         Excel::import(new ParticipantCommonImport, request()->file('file'));
         return back();
+    }
+
+    public function exportParticipantSeminar(Request $request)
+    {
+        return Excel::download(new ParticipantCommonExport($request->seminar_id), 'participants.xlsx');
     }
 }

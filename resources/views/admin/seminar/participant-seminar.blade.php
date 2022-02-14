@@ -10,13 +10,13 @@
                 <div class="card mt-4">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-6">
                                 <h5>
                                     <i class="fas fa-tags"></i>
                                     Participant Seminar - {{ $seminar->name }}
                                 </h5>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
                                 <form action="{{ action('CertificateController@importParticipantSeminar') }}"
                                     method="post" enctype="multipart/form-data">
                                     @csrf
@@ -25,6 +25,8 @@
                                             placeholder="Recipient's username" aria-label="Recipient's username"
                                             aria-describedby="button-addon2">
                                         <button class="btn btn-primary" type="submit" id="button-addon2">Import</button>
+                                        <a href="{{ action('CertificateController@exportParticipantSeminar', $seminar->id) }}"
+                                            class="btn btn-success">Export</a>
                                     </div>
                                 </form>
                             </div>
