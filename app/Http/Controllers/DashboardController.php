@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Certificate;
 use App\CertificateDraft;
 use App\News;
 use App\Participant;
@@ -23,7 +24,8 @@ class DashboardController extends Controller
         $members = User::all();
         $newParticipants = count(Participant::orderBy('id')->groupBy('email')->get());
         $oldParticipants = count(CertificateDraft::orderBy('id')->groupBy('email')->get());
+        $currentSeminar = Certificate::orderBy('id', 'desc')->first();
         $totalParticipants = $newParticipants + $oldParticipants;
-        return view('admin.dashboard.index', compact('articles', 'news', 'members', 'totalParticipants'));
+        return view('admin.dashboard.index', compact('articles', 'news', 'members', 'totalParticipants', 'currentSeminar'));
     }
 }

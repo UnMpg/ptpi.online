@@ -70,6 +70,24 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col">
+                <!-- small box -->
+                <div class="small-box bg-secondary">
+                    <div class="inner">
+                        <h3>Total: {{ $currentSeminar->participants->count() }}</h3>
+
+                        <p>Seminar {{ $currentSeminar->id }}</p>
+                        <p>Seminar {{ $currentSeminar->name }}</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-document"></i>
+                    </div>
+                    <a href="{{ action('ArticleController@index') }}" class="small-box-footer">More info <i
+                            class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
 </section>
