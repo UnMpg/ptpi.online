@@ -142,11 +142,12 @@ class HomeController extends Controller
     public function materi(Request $request)
     {
         $materi = Materi::where('certificate_id', '!=', 0);
+        $certificate_id = $request->input('certificate_id', 0);
         if ($request->certificate_id) {
             $materi->where('certificate_id', $request->certificate_id);
         }
         $materi = $materi->paginate(8);
-        return view('home.materi', compact('materi'));
+        return view('home.materi', compact('materi', 'certificate_id'));
     }
 
     public function seminarHefCertificate(Request $request)

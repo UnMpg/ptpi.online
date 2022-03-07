@@ -27,7 +27,8 @@
                     <select name="certificate_id" class="form-control" onchange="this.form.submit()">
                         <option value="">- Pilih Seminar -</option>
                         @foreach (App\Certificate::all() as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        <option value="{{ $item->id }}" {{ $certificate_id==$item->id ? 'selected' : null }}>{{
+                            $item->name }}</option>
                         @endforeach
                     </select>
                 </form>
