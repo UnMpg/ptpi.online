@@ -6,12 +6,42 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="section-headline text-center">
+                        <h2>Sponsor</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="https://i.ibb.co/3zcr5Yd/Logo-Abadinusa-ABN.png" style="border: 1px solid; padding: 5px;"
+                        class="rounded" alt="sponsor">
+                </div>
+                <div class="col-md-10">
+                    <div class="well-middle">
+                        <div class="single-well">
+                            <p style="text-align: justify;">
+                            <p>Webinar "Sarpras Rumah Sakit dan Alkes Buatan Dalam Negeri: Regulasi, Teknologi dan
+                                Manfaat Biaya" disponsori oleh PT.
+                                Abadinusa Usahasemesta</p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- End col-->
+            </div>
+        </div>
+    </div><!-- End Pengantar Section -->
+
+    <!-- ======= Pengantar Section ======= -->
+    <div id="about" class="about-area(hapus_ini_untuk_warna) area-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="section-headline text-center">
                         <h2>Pengantar</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
-
                 <div class="col-md-2">
                     <img src="{{ asset('assets/home/img/prof_eko.png') }}" class="rounded" alt="presiden_ptpi">
                     <div class="text-center">
@@ -41,7 +71,7 @@
     </div><!-- End Pengantar Section -->
 
     <!-- ======= Berita Terbaru Section ======= -->
-    <div id="services" class="services-area area-padding">
+    <div id="services" class="about-area services-area area-padding">
         <div class="container ">
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -90,7 +120,7 @@
     </div><!-- End Berita Terbaru Section -->
 
     <!-- ======= Artikel Section ======= -->
-    <div id="artikel" class="about-area area-padding">
+    <div id="artikel" class="area-padding">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
