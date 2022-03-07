@@ -42,7 +42,7 @@
                                     <th>Kategori</th>
                                     <th>Judul</th>
                                     <th>Pembicara</th>
-                                    {{-- <th>File URL</th> --}}
+                                    <th>Seminar</th>
                                     <th>File</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -54,7 +54,10 @@
                                     <td>{{ $item->category }}</td>
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->speaker }}</td>
-                                    {{-- <td>{{ $item->file_url ?: '-' }}</td> --}}
+                                    <td>
+                                        <p title="{{ optional($item->certificate)->name }}">{{ $item->certificate_id }}
+                                        </p>
+                                    </td>
                                     <td>{{ $item->file ?: '-' }}</td>
 
                                     @if (optional(auth('admin')->user())->email == "admin@mail.com")

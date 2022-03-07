@@ -45,6 +45,21 @@
                                 @endif
                             </div>
                             <div class="form-group">
+                                <label>Pembicara</label>
+                                <select name="certificate_id" class="form-control">
+                                    <option value="">- Pilih Seminar -</option>
+                                    @foreach (App\Certificate::all() as $item)
+                                    <option value="{{ $item->id }}">{{
+                                        $item->name }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('speaker'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('speaker') }}
+                                </div>
+                                @endif
+                            </div>
+                            <div class="form-group">
                                 <label>File URL</label>
                                 <input type="text"
                                     class="form-control {{ $errors->first('file_url') ? 'is-invalid' : '' }}"

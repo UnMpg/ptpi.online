@@ -65,6 +65,7 @@ class MateriController extends Controller
         $data->title = $request->title;
         $data->speaker = $request->speaker;
         $data->file_url = $request->file_url;
+        $data->certificate_id = $request->certificate_id;
 
         $data->save();
         return redirect(action('MateriController@index'))->with('save', '"Materi" Berhasil Ditambahkan');
@@ -111,6 +112,7 @@ class MateriController extends Controller
                 'category' => $request->category,
                 'title' => $request->title,
                 'speaker' => $request->speaker,
+                'certificate_id' => $request->certificate_id,
                 'file' => $filename
             ]);
         } else {
@@ -120,6 +122,7 @@ class MateriController extends Controller
                 'title' => $request->title,
                 'file_url' => $request->file_url,
                 'speaker' => $request->speaker
+                'certificate_id' => $request->certificate_id,
             ]);
         }
         return redirect(action('MateriController@index'))->with('update', '"Data Seminar" Berhasil Diubah');

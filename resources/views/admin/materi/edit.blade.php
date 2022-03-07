@@ -25,8 +25,24 @@
                             </div>
                             <div class="form-group">
                                 <label>Pembicara</label>
-                                <input type="text" class="form-control" placeholder="Pembicara" name="speaker"
-                                    required autocomplete="off" value="{{ $materi->speaker }}">
+                                <input type="text" class="form-control" placeholder="Pembicara" name="speaker" required
+                                    autocomplete="off" value="{{ $materi->speaker }}">
+                            </div>
+                            <div class="form-group">
+                                <label>Pembicara</label>
+                                <select name="certificate_id" class="form-control">
+                                    <option value="">- Pilih Seminar -</option>
+                                    @foreach (App\Certificate::all() as $item)
+                                    <option value="{{ $item->id }}" {{ $materi->certificate_id == $item->id ? 'selected'
+                                        : null }}>{{
+                                        $item->name }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('speaker'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('speaker') }}
+                                </div>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label>File URL</label>
