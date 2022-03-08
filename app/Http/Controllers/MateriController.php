@@ -121,7 +121,7 @@ class MateriController extends Controller
                 'category' => $request->category,
                 'title' => $request->title,
                 'file_url' => $request->file_url,
-                'speaker' => $request->speaker
+                'speaker' => $request->speaker,
                 'certificate_id' => $request->certificate_id,
             ]);
         }

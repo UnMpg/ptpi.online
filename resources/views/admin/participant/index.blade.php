@@ -11,28 +11,28 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-4">
-                            <h5>
-                                <i class="fas fa-tags"></i>
-                                New Participants (seminar 3+) tes
-                            </h5>
-                        </div>
-                        <div class="col-5"></div>
-                        <div class="col-3">
-                            <form action="{{ action('ParticipantController@index') }}" method="GET">
-                                @csrf
-                                <select name="seminar_id" class="form-control" onchange="this.form.submit()">
-                                    <option value="">~Pilih Seminar~</option>
-                                    <option value="">Pilih Semua</option>
-                                    @foreach ($certificates as $item)
-                                        <option value="{{ $item->id }}"
-                                            @if ($item->id == $seminar_id)
-                                                {{'selected="selected"'}}
+                                <h5>
+                                    <i class="fas fa-tags"></i>
+                                    New Participants (seminar 3+) tes
+                                </h5>
+                            </div>
+                            <div class="col-5"></div>
+                            <div class="col-3">
+                                <form action="{{ action('ParticipantController@index') }}" method="GET">
+                                    @csrf
+                                    <select name="seminar_id" class="form-control" onchange="this.form.submit()">
+                                        <option value="">~Pilih Seminar~</option>
+                                        <option value="">Pilih Semua</option>
+                                        @foreach ($certificates as $item)
+                                        <option value="{{ $item->id }}" @if ($item->id == $seminar_id)
+                                            {{'selected="selected"'}}
                                             @endif
-                                            >{{ $item->id }} - {{ $item->name }}</option>
-                                    @endforeach
-                                </select>
-                            </form>
-                        </div>
+                                            >{{ $item->id }} - {{ $item->name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -45,6 +45,7 @@
                                     <th>Provinsi</th>
                                     <th>Pekerjaan</th>
                                     <th>Seminar</th>
+                                    <th>Tanggal Mendaftar</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -66,8 +67,8 @@
 <!-- /.content -->
 @endsection
 @section('script_custom')
-    <script>
-        $(document).ready(function () {
+<script>
+    $(document).ready(function () {
         $('#posts').DataTable({
             dom: 'lBfrtip',
             "buttons": [
@@ -112,10 +113,11 @@
                 { "data": "provinsi" },
                 { "data": "pekerjaan" },
                 { "data": "seminar" },
+                { "data": "created_at" },
                 { "data": "aksi" },
             ]
 
         });
     });
-    </script>
+</script>
 @endsection
