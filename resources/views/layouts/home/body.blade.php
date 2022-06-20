@@ -19,14 +19,69 @@
 <!-- Select2 -->
 <script src="{{ asset('assets/dashboard/plugins/select2/js/select2.full.min.js') }}"></script>
 
+
+
 <script>
+    $(document).ready(function() {
+        $(document).scroll(function () {
+            var scroll = $(this).scrollTop();
+            // console.log(scroll);
+            if (scroll > 80) {
+                
+                $('#navbar-section').css({"position":"fixed","top":"0"});
+            } else {
+                $('#navbar-section').css({"position":"relative","top":"0"});
+                
+            }
+        });
+    });
+
+    $( "#icon-jakarta" ).on("click",(function() {
+       console.log("ter klik");
+       $(".img-jakarta").css("display", "inline-block");
+    }))
+    // $( "#icon-jakarta" ).click(function() {
+    //    console.log("ter klik");
+    //     });
+
     $(function() {
         //Initialize Select2 Elements
         $('.select2bs4').select2({
         theme: 'bootstrap4'
         })
     })
+
+    function toggle_div(){
+        if($('#sidebar').hasClass("active")){
+            // console.log("ada");
+            $('#sidebar').removeClass("active");
+
+        }else{
+            $('#sidebar').addClass("active");
+            // console.log("tidak");
+        }
+        
+    }
+
+    function bottom_toggle(){
+        if($('#bottom-bar').hasClass("active")){
+            // console.log("ada");
+            $('#bottom-bar').removeClass("active");
+
+        }else{
+            $('#bottom-bar').addClass("active");
+            // console.log("tidak");
+        }
+        
+    }
+
+    var selector = '.bottom-bar li a';
+    $(selector).on('click', function(){
+        $(selector).removeClass('active');
+        $(this).addClass('active');
+    });
 </script>
+
 
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">

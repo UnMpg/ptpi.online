@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+    
     @include('layouts.dashboard.header')
 
     <body class="hold-transition sidebar-mini layout-fixed">
@@ -28,9 +29,12 @@
             <!-- /.control-sidebar -->
         </div>
         <!-- ./wrapper -->
-
+        
         @include('layouts.dashboard.body')
-        @yield('script_custom')
+        
+        {{-- @yield('script_custom') --}}
+        @yield('script')
+        
     </body>
 
 </html>

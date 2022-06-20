@@ -246,7 +246,42 @@ class AuthController extends Controller
             auth('admin')->logout();
         } elseif (auth('web')->check()) {
             auth('web')->logout();
+        }elseif(auth('certified')->check()){
+            auth('certified')->logout();
         }
         return redirect('/');
+    }
+
+    public function eventRegistration()
+    {
+        return view('auth.event-registration');
+    }
+
+    public function getRegisterHospital()
+    {
+        return view('auth.register-hospital');
+    }
+    public function registerHospital(Request $request)
+    {
+        $imageName = time() . '.' . $request->file('image')->extension();
+        $cvFile = time() . '.' . $request->file('member_cv')->extension();
+        Member::create([
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'image' => $imageName,
+            'kontak' => $request->kontak,
+            'alamat' => $request->alamat,
+            'jabatan' => $request->jabatan,
+            'bidang_ilmu' => $request->bidang_ilmu,
+            'instansi' => $request->instansi,
+            'jenis_usaha' => $request->jenis_usaha,
+            'member_type' => 'korporasi',
+            'member_role' => 'member',
+            'member_cv' => $cvFile,
+        ]);
+        $request->file('member_cv')->move(public_path('assets/members/cv'), $cvFile);
+        $request->file('image')->move(public_path('assets/members/images'), $imageName);
+        return back()->with('update', 'Selamat, Anda Berhasil Mendaftarkan Korporasi Anda');
     }
 }

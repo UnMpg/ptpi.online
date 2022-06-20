@@ -21,6 +21,8 @@ Route::post('/register/participant', 'AuthController@registerParticipant');
 // Route::get('/login/participant', 'AuthController@getLoginParticipant');
 // Route::post('/login/participant', 'AuthController@loginParticipant');
 Route::get('/participant/join/accept', 'AuthController@confirmationSeminar');
+Route::get('/register/hospital', 'AuthController@getRegisterHospital');
+Route::post('/register/hospital', 'AuthController@registerHospital');
 
 Route::get('/register/perorangan', 'AuthController@getRegisterPersonal');
 Route::post('/register/perorangan', 'AuthController@registerPersonal');
@@ -33,6 +35,32 @@ Route::get('/login', 'AuthController@getLogin')->name('login');
 Route::post('/login', 'AuthController@login');
 Route::get('/logout', 'AuthController@logout');
 
+//tambahan
+Route::group(['prefix'=>'certified'],function(){
+    Route::get('/','CertifiedMemberController@login');
+    Route::get('/register','CertifiedMemberController@register');
+    Route::post('/register','CertifiedMemberController@registerSubmit');
+    Route::get('/login','CertifiedMemberController@login');
+    Route::post('/login','CertifiedMemberController@loginAction');
+    Route::get('/home','CertifiedMemberController@home');
+    Route::get('/inset-data','CertifiedMemberController@insertData');
+    Route::post('/inset-data','CertifiedMemberController@insertDataAction');
+    Route::get('/file-upload','CertifiedMemberController@fileUpload');
+    Route::post('/ktp','CertifiedMemberController@ktp');
+    Route::post('/upload-cv','CertifiedMemberController@uploadCv');
+    Route::post('/upload-ijazah','CertifiedMemberController@uploadIjazah');
+    Route::post('/upload-document','CertifiedMemberController@uploadDocument');
+    Route::delete('/upload-document/{deskripsi}','CertifiedMemberController@deleteDataMember');
+    Route::delete('/delete-upload/{deskripsi}','CertifiedMemberController@deleteUpload');
+    Route::post('/input-nilai','CertifiedMemberController@inputNilai');
+    Route::get('/download-pdf/{id}','CertifiedMemberController@downloadPDF');
+});
+
+// Route::group(['middleware'=>['auth']],function (){
+//     oute::group(['middleware' => ['cek_login:admin']], function () {
+//         Route::resource('admin', AdminController::class);
+//     });
+// });
 
 Route::get('/cv-template-anggota', 'HomeController@downloadCvAnggota');
 
@@ -81,6 +109,33 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('/frequently-asked-questions/submit/{topic}/verify', 'TopicController@submitEmailVerify');
     Route::post('/frequently-asked-questions/draf-email', 'HomeController@draftEmail');
     Route::get('/tanya-jawab', 'HomeController@questionAnswer');
+
+    //tambahan baru
+    Route::get('/past-activities', 'HomeController@pastActivities');
+    Route::get('/upcoming-activities', 'HomeController@upcomingActivities');
+    Route::get('/event-registration', 'AuthController@eventRegistration');
+    Route::get('/ptpi-introduction', 'HomeController@ptpiIntroduction');
+    Route::get('/member-guideline', 'HomeController@memberGuideline');
+    Route::get('/history-roadmap', 'HomeController@historyandRoadmap');
+    Route::get('/organism', 'HomeController@organism');
+    Route::get('/hospital-map', 'HomeController@hospitalMap');
+    Route::get('/expert', 'HomeController@expert');
+    Route::get('/import-excel', 'HomeController@importExcel');
+    Route::get('/hospital-news', 'HomeController@hospitalNews');    
+    Route::get('/hospital-news/{new}', 'HomeController@showHospitalNews');
+    Route::get('/hospital-news/search/search-news', 'HomeController@searchHospitalNews');
+    Route::get('/hospital-listCertified', 'HomeController@hospitalListCertified');
+    Route::get('/hospital-listSmarthospital', 'HomeController@hospitalListSmarthospital');
+    Route::get('/hospital-contact', 'HomeController@hospitalContact');
+    Route::get('/hospital-contact/search/search-contact', 'HomeController@searchHospitalContact');
+    Route::get('/industry-map', 'HomeController@industryMap');
+    Route::get('/industry-news', 'HomeController@industryNews');
+    Route::get('/industry-news/{new}', 'HomeController@showIndustryNews');
+    Route::get('/industry-news/search/search-news', 'HomeController@searchIndustryNews');
+    Route::get('/engineer-certified', 'HomeController@engineerCertified');
+
+    Route::get('/side-map', 'HomeController@sideMap');
+    Route::get('/forum', 'HomeController@forum');
 });
 
 Route::get('/dashboard', 'DashboardController@index');
@@ -139,6 +194,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/data-center/create/surat/', 'DataCenterController@createSurat');
     Route::post('/data-center/list/surat', 'DataCenterController@storeSurat');
     Route::delete('/data-center/list/surat/delete/{id}', 'DataCenterController@destroySurat');
+
+    // tambahan
+    Route::get('/certified-view','CertifiedMemberController@certifiedView');
+    Route::get('/certified-view-user/{id}','CertifiedMemberController@viewUser');
+    Route::get('/download-file/{id}','CertifiedMemberController@downloadZipFile');
 });
 Route::get('/data-center/files/{datacenter}', 'DataCenterController@downloadFile');
 Route::get('/data-center/validasi/surat/{unique_id}', 'DataCenterController@validasiSurat');

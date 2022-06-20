@@ -12,15 +12,21 @@
         <!-- Sidebar Menu -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset('assets/dashboard/img/default.jpg') }}" class="img-circle elevation-2" alt="Admin">
+                @if (auth('certified')->user() != Null)
+                    <img src="{{ asset('assets/certified/upload/'.auth('certified')->user()->nama.'/'.auth('certified')->user()->foto) }}" class="img-circle elevation-2" alt="Admin">
+                @else
+                    <img src="{{ asset('assets/dashboard/img/default.jpg') }}" class="img-circle elevation-2" alt="Admin">
+                @endif
+                
             </div>
             <div class="info">
                 <a href="#" class="d-block mb-0">
                     {{ optional(auth('admin')->user())->nama }}
                     {{ optional(auth('web')->user())->name }}
+                    {{ optional(auth('certified')->user())->nama }}
                 </a>
                 <a href="{{ action('AuthController@logout') }}"><small class="text-info">Logout</small></a> |
-                <a href="{{ action('AdminController@editProfile') }}"><small class="text-info">Edit</small></a>
+                {{-- <a href="{{ action('AdminController@editProfile') }}"><small class="text-info">Edit</small></a> --}}
             </div>
         </div>
 
@@ -276,6 +282,35 @@
                         </p>
                     </a>
                 </li>
+
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-database"></i>
+                        &nbsp;
+                        <p>
+                            Certified
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ action('CertifiedMemberController@certifiedView') }}" class="nav-link">
+                                &nbsp;&nbsp;
+                                <i class="fas fa-file-alt"></i>
+                                &nbsp;&nbsp;
+                                <p>Data Member Certified</p>
+                            </a>
+                        </li>
+                        {{-- <li class="nav-item">
+                            <a href="{{ action('DataCenterController@indexSurat') }}" class="nav-link">
+                                &nbsp;&nbsp;
+                                <i class="fas fa-file-alt"></i>
+                                &nbsp;&nbsp;
+                                <p>Surat</p>
+                            </a>
+                        </li> --}}
+                    </ul>
+                </li>
                 @endif
                 @auth('admin')
                 <li class="nav-item">
@@ -305,6 +340,32 @@
                         <p>Surat</p>
                     </a>
                 </li>
+                @endauth
+                @auth('certified')
+
+                    <li class="nav-item">
+                        <a href="{{ action('CertifiedMemberController@home') }}" class="nav-link">
+                            <i class="fas fa-home"></i>
+                            &nbsp;
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ action('CertifiedMemberController@insertData') }}" class="nav-link">
+                            <i class="fas fa-user-tag"></i>
+                            &nbsp;
+                            <p>Lengkapi Data</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ action('CertifiedMemberController@fileUpload') }}" class="nav-link">
+                            <i class="fas fa-file-alt"></i>
+                            &nbsp;
+                            <p>Upload Document</p>
+                        </a>
+                    </li>
                 @endauth
             </ul>
         </nav>

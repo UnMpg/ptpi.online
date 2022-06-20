@@ -37,6 +37,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\Localization::class, // Localization Middleware
         ],
+        
 
         'api' => [
             'throttle:60,1',
@@ -60,5 +61,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'loginCertified'=> \Illuminate\Routing\Middleware\LoginCertifiedAuth::class,
     ];
 }

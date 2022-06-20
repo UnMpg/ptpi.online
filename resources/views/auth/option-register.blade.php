@@ -33,7 +33,7 @@
     </div>
     <!-- /.form-box -->
 </div><!-- /.card -->
-<p style="text-align:center; font-size:12px;">Copyright &copy; 2019 Persatuan Teknik Perumahsakitan Indonesia</p>
+<p style="text-align:center; font-size:12px;">Copyright &copy; 2022 Persatuan Teknik Perumahsakitan Indonesia</p>
 </div>
 <!-- /.register-box -->
 @endsection

@@ -19,6 +19,9 @@ use App\LaporanKeuangan;
 use App\Materi;
 use App\QuestionAnswer;
 use App\SeminarHef;
+use App\Location;
+use App\LocationKoordinat;
+use Excel;
 use Carbon\Carbon;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
@@ -27,9 +30,11 @@ use Illuminate\Support\Facades\Mail;
 use PDF;
 use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\Environment\Console;
-
+use App\Imports\LocationImport;
 class HomeController extends Controller
 {
+    public $geoJson;
+
     public function index()
     {
         $news = News::orderByDesc('created_at')->take(6)->get();
@@ -734,5 +739,191 @@ class HomeController extends Controller
         $questions = QuestionAnswer::query();
         $questions = $questions->paginate(5);
         return view('home.question-answer', compact('questions', 'categories', 'topics', 'category_id'));
+    }
+
+
+        // tambahan
+
+    public function pastActivities(){
+        $news = News::orderByDesc('created_at')->paginate(5);
+        $newsAll = News::orderByDesc('created_at')->take(5)->get();
+        return view('home.pastActivities', compact('news', 'newsAll'));
+    }
+
+    public function upcomingActivities(){
+        $news = News::orderByDesc('created_at')->paginate(5);
+        $newsAll = News::orderByDesc('created_at')->take(5)->get();
+        return view('home.upcomingActivities', compact('news', 'newsAll'));
+    }
+
+    public function ptpiIntroduction()
+    {
+        return view('home.ptpiIntroduction');
+    }
+
+    public function memberGuideline()
+    {
+        return view('home.memberGuideline');
+    }
+    public function historyandRoadmap()
+    {
+        return view('home.historyandRoadmap');
+    }
+    public function organism()
+    {
+        return view('home.organism');
+    }
+    public function expert()
+    {
+        return view('home.expert');
+    }
+    public function importExcel(Request $request)
+    {
+        // $data = $request->file('file');
+        // $namafile = $data->getClientOriginalName();
+        // $data->move('/public/assets',$namafile);
+        // Excel::import(new LocationImport(), \public_path('/assets/'.$namafile));
+        // return \redirect()->back();
+
+        Excel::import(new LocationImport(), \public_path('/assets/location hospital database.xlsx'));
+        
+        return redirect('/')->with('success', 'All good!');
+    }
+
+    public function loadLocation(){
+    
+        $locations = Location::orderBy('created_at','desc')->get();
+
+        $costumLocations=[];
+
+        foreach($locations as $location){
+            $costumLocations[]=[
+                'type' => 'Feature',
+                'geometry' => [
+                    'coordinates'=>[$location->long,$location->lat],
+                    'type'=> 'Point'
+                ],
+                'properties'=>[
+                    'locationId'=> $location->id,
+                    'title'=>$location->nama,
+                    'image'=>$location->image,
+                    'alamat'=>$location->alamat
+                ]
+                ];
+        }
+
+        $geoLocation = [
+            'type'=>'FeatureCollection',
+            'features'=>$costumLocations
+        ];
+
+        $geoJson = collect($geoLocation)->toJson();
+        $this->geoJson = $geoJson;
+        return $geoJson;
+    }
+
+    public function hospitalMap(Request $request)
+    {
+        $prov = $request->prov;
+        $kota = $request->kota;
+
+        // $location = Location::orderByDesc('created_at')->get();
+        // $location = Location::orderBy('created_at','desc')->get();
+
+        $locations = Location::where('provinsi',$prov)->orderBy('created_at','desc')->get();
+
+        $locationCenter = LocationKoordinat::where('provinsi',$prov)->get();
+        $geoJson= $this->loadLocation();
+        return view('home.hospitalMap',compact('geoJson','prov','kota','locationCenter','locations'));
+    }
+
+    public function hospitalNews()
+    {
+        $news = News::orderByDesc('created_at')->paginate(5);
+        $newsAll = News::orderByDesc('created_at')->take(5)->get();
+        return view('home.hospitalNews', compact('news', 'newsAll'));
+    }
+
+    public function searchHospitalNews(Request $request)
+    {
+        $search = $request->input('search');
+
+
+        $news = News::where('judul', 'LIKE', "%{$search}%")->paginate();
+        return view('home.hospitalNews', compact('news'));
+    }
+
+
+    public function showHospitalNews(News $new)
+    {
+        $newsAll = News::orderByDesc('created_at')->take(5)->get();
+        return view('home.show-berita', compact('new', 'newsAll'));
+    }
+
+    public function hospitalListCertified()
+    {
+        return view('home.hospitalListCertified');
+    }   
+
+    public function hospitalListSmarthospital()
+    {
+        return view('home.hospitalListSmarthospital');
+    }  
+
+    public function hospitalContact()
+    {
+        $locations = Location::orderBy('provinsi')->paginate(10);
+        return view('home.hospitalContact',compact('locations'));
+    }
+
+    public function searchHospitalContact(Request $request)
+    {
+        $search = $request->input('search');
+
+
+        $locations = Location::where('nama', 'LIKE', "%{$search}%")->paginate(20);
+        return view('home.hospitalContact', compact('locations'));
+    }
+
+    public function industryMap()
+    {
+        return view('home.industryMap');
+    }
+
+    public function industryNews()
+    {
+        $news = News::orderByDesc('created_at')->paginate(5);
+        $newsAll = News::orderByDesc('created_at')->take(5)->get();
+        return view('home.industryNews', compact('news', 'newsAll'));
+    }
+    
+
+    public function searchIndustryNews(Request $request)
+    {
+        $search = $request->input('search');
+
+
+        $news = News::where('judul', 'LIKE', "%{$search}%")->paginate();
+        return view('home.industryNews', compact('news'));
+    }
+
+
+    public function showIndustryNews(News $new)
+    {
+        $newsAll = News::orderByDesc('created_at')->take(5)->get();
+        return view('home.show-berita', compact('new', 'newsAll'));
+    }
+    
+    public function engineerCertified(News $new)
+    {       
+        return view('home.engineerCertified');
+    }
+
+    public function sideMap(){
+        return view('home.sideMap');
+    }
+
+    public function forum(){
+        return view('home.forum');
     }
 }

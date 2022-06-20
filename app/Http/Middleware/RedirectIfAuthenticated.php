@@ -23,6 +23,8 @@ class RedirectIfAuthenticated
             return redirect(action('AuthController@registerConfirmation'));
         } elseif (auth('web')->check()) {
             return redirect(action('DashboardController@index'));
+        }elseif (auth('certified')->check()) {
+            return redirect(action('CertifiedMemberController@page'));
         }
 
         return $next($request);

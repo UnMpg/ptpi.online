@@ -3,7 +3,8 @@
     @include('layouts.home.header')
 
     <body data-spy="scroll" data-target="#navbar-example">
-        @include('layouts.home.navbar')
+
+        @include('layouts.home.nav_n')
 
         @yield('content')
 

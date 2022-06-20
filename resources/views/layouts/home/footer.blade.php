@@ -7,27 +7,7 @@
                         <h2><img src="{{ asset('assets/home/img/logo-ptpi.png') }}" alt="" width="33px"> IAHE
                         </h2>
                     </div>
-                    <div class="footer-text">
-                        <p><i>Indonesian Association of Hospital Engineering</i><br>
-                            Wadah para ahli teknik dan institusi perumahsakitan untuk mewujudkan rumah sakit di
-                            indonesia yang selamat, bermutu, aman, ramah lingkungan, dan terjangkau (SMART)</p>
-                        <div class="footer-icons">
-                            <ul>
-                                <li>
-                                    <a href="https://www.facebook.com/PT-Karya-Indonesia-Cerdas-105967367795487"
-                                        target="_blank"><i class="fa fa-facebook"></i></a>
-                                </li>
-                                <li>
-                                    <a href="https://twitter.com/PtCerdas" target="_blank"><i
-                                            class="fa fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="https://www.youtube.com/channel/UCF9Sna9RP4yJvBa18Ktvo1g"
-                                        target="_blank"><i class="fa fa-youtube"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="col-7 text-right">
                     <ul class="navbar-nav ml-auto">
@@ -55,19 +35,42 @@
                                 <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ action('LocalizationController@index', 'en') }}"><img
-                                        src="{{asset('img/us.png')}}">
+                                <a class="dropdown-item" href="{{ action('LocalizationController@index', 'en') }}">
+                                    <img class="footer-lg-img" src="{{asset('img/us.png')}}">
                                     English</a>
-                                <a class="dropdown-item" href="{{ action('LocalizationController@index', 'id') }}"><img
-                                        src="{{asset('img/id.png')}}">
+                                <a class="dropdown-item" href="{{ action('LocalizationController@index', 'id') }}">
+                                    <img class="footer-lg-img" src="{{asset('img/id.png')}}">
                                     Indonesia</a>
-                                <a class="dropdown-item" href="lang/bn"><img src="{{asset('img/bn.png')}}">
+                                <a class="dropdown-item" href="lang/bn">
+                                    <img class="footer-lg-img" src="{{asset('img/bn.png')}}">
                                     Bengali</a>
-                                <a class="dropdown-item" href="lang/in"><img src="{{asset('img/in.png')}}">
+                                <a class="dropdown-item" href="lang/in">
+                                    <img class="footer-lg-img" src="{{asset('img/in.png')}}">
                                     Hindi</a>
                             </div>
                         </li>
                     </ul>
+                </div>
+                <div class="footer-text">
+                    <p><i>Indonesian Association of Hospital Engineering</i><br>
+                        Wadah para ahli teknik dan institusi perumahsakitan untuk mewujudkan rumah sakit di
+                        indonesia yang selamat, bermutu, aman, ramah lingkungan, dan terjangkau (SMART)</p>
+                    <div class="footer-icons">
+                        <ul>
+                            <li>
+                                <a href="https://www.facebook.com/PT-Karya-Indonesia-Cerdas-105967367795487"
+                                    target="_blank"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/PtCerdas" target="_blank"><i
+                                        class="fa fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://www.youtube.com/channel/UCF9Sna9RP4yJvBa18Ktvo1g"
+                                    target="_blank"><i class="fa fa-youtube"></i></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <!-- end single footer -->
                 <!-- <div class="col-md-6 col-sm-4 col-xs-12">

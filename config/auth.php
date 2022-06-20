@@ -51,6 +51,11 @@ return [
             'provider' => 'participants',
         ],
 
+        'certified' => [
+            'driver' => 'session',
+            'provider' => 'certifieds',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -90,6 +95,11 @@ return [
             'model' => App\Participant::class,
         ],
 
+        'certifieds' => [
+            'driver' => 'eloquent',
+            'model' => App\CertifiedMember::class,
+        ],
+
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -126,6 +136,12 @@ return [
 
         'participants' => [
             'provider' => 'participants',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+
+        'certifieds' => [
+            'provider' => 'certifieds',
             'table' => 'password_resets',
             'expire' => 60,
         ],

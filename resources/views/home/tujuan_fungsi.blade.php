@@ -1,13 +1,13 @@
 @extends('layouts.home.app')
-@section('title-page', 'Fungsi')
+@section('title-page', 'Function and Target')
 @section('content')
 <!-- Start About area -->
-<div id="about" class="service-area area-padding">
+<div id="about" class="service-area area-padding" >
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="section-headline text-center">
-                    <br><br>
+                    
                     <h2>{{ trans('lang.FUNCTION') }}</h2>
                 </div>
             </div>

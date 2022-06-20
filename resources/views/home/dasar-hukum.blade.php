@@ -2,12 +2,12 @@
 @section('title-page', 'Dasar Hukum')
 @section('content')
 <!-- Start About area -->
-<div id="about" class="service-area area-padding">
+<div id="about" class="service-area area-padding" >
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="section-headline text-center">
-                    <br><br>
+                    
                     <h2>Dasar Hukum</h2>
                 </div>
             </div>

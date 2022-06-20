@@ -29,4 +29,10 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/home/css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/faq-timeline.css') }}">
+
+    <!-- Tambahan css -->
+    <link href="{{ asset('assets/home/css/style_baru.css') }}" rel="stylesheet">
+    <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
 </head>

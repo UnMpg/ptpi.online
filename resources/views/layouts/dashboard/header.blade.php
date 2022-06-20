@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ auth('admin')->user() ? 'Admin' : null }} {{ auth('web')->user() ? 'Member' : null }}
-        {{ auth('participant')->user() ? 'Participant' : null }} - @yield('title-page')
+        {{ auth('participant')->user() ? 'Participant' : null }}{{ auth('certified')->user()?auth('certified')->user()->nama :'Certified'  }} - @yield('title-page')
     </title>
     <link rel="shortcut icon" href="{{ asset('logo.ico') }}" />
     <!-- Tell the browser to be responsive to screen width -->
@@ -36,4 +36,9 @@
     <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/home/css/dashboard.css') }}">
+
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css" rel="stylesheet"> --}}
+
+    
 </head>

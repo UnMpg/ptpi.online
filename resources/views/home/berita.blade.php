@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="section-headline text-center">
-                    <br><br>
-                    <h2>Berita</h2>
+                    
+                    <h2>News</h2>
                 </div>
             </div>
         </div>
@@ -92,9 +92,9 @@
                                 </span>
                             </div>
                             <div class="blog-text">
-                                <h4>
+                                <h5>
                                     <a href="{{ action('HomeController@showBerita', $new->id) }}">{{ $new->judul }}</a>
-                                </h4>
+                                </h5>
                                 <p>
                                     {!! str_limit($new->konten, 600) !!}
                                 </p>
