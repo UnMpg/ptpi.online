@@ -94,7 +94,6 @@
                 </div>
               </div>
             </div>
-
           @endforeach
 
 
@@ -125,13 +124,46 @@
             </div>
           </div>
 
-          <div class="row document-upload" id="transkrip nilai">
+          <div class="row document-upload " id="transkrip_nilai">
             <div class="mt-3 col-xl-12 ">
                 <div class="file-upload-wrapper" data-text="Transkrip" id="btnDes">
-                  <input name="file" type="file" class="file-upload-field upload" id="transkrip" data-value="ijazah">
+                  <input name="file" type="file" class="file-upload-field upload" id="transkrip" data-value="ijazah" >
                 </div>
                 <div id="file-message" class="text-muted"></div>
             </div>
+          </div>
+
+          <div class="sertifikat">
+            <h3>Sertifikat</h3>
+            
+              @foreach ($sertifikat as $item)
+              <div class="row mb-4" >
+                <div class="mt-3 col-xl-12 ">
+                  <div class="upload-isi">
+                    <div>
+                    <p class="upload-label"> Sertifikat | {{ $item }}</p>
+                    </div>
+                    <div class="action-kanan">
+                      {{-- <a href="" class="upload-edit"><i class="far fa-edit" > </i></a> --}}
+                      <form action="{{ action('CertifiedMemberController@deleteUpload', $item) }}" method="post"
+                          class="formdelete">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" class="btn btn-sm btn-danger delete-confirm">
+                        <i class="far fa-trash-alt"></i></button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              @endforeach
+              <div class="data-sertifikat">
+                <div class="tambah-sertifikat" id="tambah-sertifikat">
+                  <i class="fa fa-plus icon-tambah"></i>
+                  {{-- <i class="fa fa-times icon-hapus"></i> --}}
+                </div>
+              </div>
+            
           </div>
           
       </div>
@@ -154,6 +186,35 @@ function loadDeskripsi(){
 
   }
 
+  function sertifikatForm(){
+    const addformSertifikat = `
+        <div class="form-row">
+          <div class="form-group col-md-8">
+            <input type="text" name="sertifikat_name" class="form-control" id="sertifikat_deskripsi" placeholder="Nama Sertifikat">
+          </div>
+          <div class="form-group col-md-4">
+            <div class="custom-file">
+            <input type="file" class="custom-file-input" id="myfile">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+          </div>
+          </div>
+        </div>
+        <button class="btn btn-primary text-right apss" id="upload_sertifikat" onclick="upload_sertifikat()" >Submit</button>
+    `;
+    $("#tambah-sertifikat").append(addformSertifikat);
+
+  }
+
+
+  $("#tambah-sertifikat").on("click",".icon-tambah",function (){
+    sertifikatForm();
+    console.log("sdajuj");
+    $('.icon-tambah').css("display","none");
+  });
+
+
+  
+
   const upload = {!! $upload !!};
 
   console.log(upload);
@@ -171,8 +232,8 @@ function loadDeskripsi(){
     if(item.upload_deskripsi == "ijazah"){
       $('#ijazahh').css("display","none");
     }
-    if(item.upload_deskripsi == "transkirp"){
-      $('#transkrip nilai').css("display","none");
+    if(item.upload_deskripsi == "transkrip"){
+      $('#transkrip_nilai').css("display","none");
     }
     console.log(item.upload_deskripsi);
   });
@@ -198,7 +259,7 @@ function loadDeskripsi(){
           url_upload = "{{ url('/certified/upload-cv') }}";
         }
         else if (upload_action == "ijazah"){
-          url_upload = "{{ url('/certified/upload-cv') }}";
+          url_upload = "{{ url('/certified/upload-document') }}";
         }
         else{
           url_upload = "{{ url('/certified/upload-document') }}";
@@ -213,10 +274,30 @@ function loadDeskripsi(){
         //   console.log("jalan aja");
         // }
 
-
-
   		// Inside find search element where the name should display (by Id Or Class)
 });
+
+var sertifikat_file;
+$('#input_sertifikat').change(function(e) {
+  sertifikat_file = e.target.files;
+  console.log(sertifikat_file); 
+  });
+
+function upload_sertifikat(){
+  // console.log("gqgbwb");
+  // var fileName = $("#myfile").files[0];
+  
+  var fileInput = document.getElementById('myfile');
+  var fileName = fileInput.files[0];
+  console.log(fileName);
+
+  var deskripsi = "sertifikat_"+$("#sertifikat_deskripsi").val();
+  console.log(deskripsi);
+  url_upload = "{{ url('/certified/upload-document') }}";
+
+  uploadfile(fileName,url_upload,deskripsi);
+  
+}
 
 
 function uploadfile(file,url_upload,deskripsi){

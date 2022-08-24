@@ -1,28 +1,107 @@
-@extends('layouts.dashboard.app')
+@extends('layouts.certifiedDashboard.app')
 @section('title-page', 'Dashboard')
-@section('title-header', 'Dashboard')
 @section('content')
-<!-- Main content -->
-<section class="content">
-    <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-            
-            {{-- <h4 class="h4-title"> Flow chart Skema </h4> --}}
-            <h4 class="h4-title"> Hasil Verikasi</h4>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 ">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>{{ auth('certified')->user()->nama }}</h2>
+                    <div class="nav navbar-right panel_toolbox">
+                      <a class="collapse-link" href="#"><i class="fa fa-download"></i>  Download Panduan LSP TPI</a>                      
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="form_wizard wizard_horizontal">
+                        <ul class="wizard_steps">
+                            <li>
+                              <a id="1" href="#step-1">
+                                <span class="step_no" style="background-color: #black;">1</span>
+                                <span class="step_descr">
+                                                  Register<br />
+                                                  <small>Lolos</small>
+                                              </span>
+                              </a>
+                            </li>
+                            <li>
+                              <a id ="2" href="{{ action('CertifiedMemberController@insertDataProfile') }}">
+                                <span class="step_no">2</span>
+                                <span class="step_descr">
+                                                  Lengkapi Data<br />
+                                                  <small>Step 2 description</small>
+                                              </span>
+                              </a>
+                            </li>
+                            <li>
+                              <a id="3" href="{{ action('CertifiedMemberController@uploadUser') }}">
+                                <span class="step_no">3</span>
+                                <span class="step_descr">
+                                                  Upload Document<br />
+                                                  <small>Upload document paling <br> lambat 30 juli 2022</small>
+                                                  
+                                              </span>
+                              </a>
+                            </li>
+                            <li>
+                              <a id="4" href="#step-3">
+                                <span class="step_no">4</span>
+                                <span class="step_descr">
+                                                  Verifikasi Data<br />
+                                                  <small>Verifikasi data <br> dan upload bukti pembayaran <br> <span style="color: red">* bagi peserta yang lulus</span></small>
+                                              </span>
+                              </a>
+                            </li>
+                            <li>
+                              <a id="5" href="#step-3">
+                                <span class="step_no">5</span>
+                                <span class="step_descr">
+                                                  Ujian Tulis<br />
+                                                  <small>Step 3 description</small>
+                                              </span>
+                              </a>
+                            </li>
+                            <li>
+                              <a id="6" href="#step-4">
+                                <span class="step_no">6</span>
+                                <span class="step_descr">
+                                                 Wawancara<br />
+                                                  <small>Step 4 description</small>
+                                              </span>
+                              </a>
+                            </li>
+                            <li>
+                              <a id="7" href="#step-4">
+                                <span class="step_no">7</span>
+                                <span class="step_descr">
+                                                 Lolos Sertifikasi<br />
+                                                  <small>Step 4 description</small>
+                                              </span>
+                              </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    {{-- <div class="row">
+                      <h3> Upload Bukti Pembayaran</h3>
+
+                    </div> --}}
+                </div>
+            </div>
         </div>
-        <div class="row ">
-            {{-- <div class="col-lg-12 text-center">
-                <img src="{{ asset('assets/certified/skema.png') }}" alt="" class="img-skema">
-            </div> --}}
-                
-            {{-- <h4> Hasil Verikasi</h4> --}}
-            <p>selamat anda lolos tahap verikasi document silahkan upload bukti pembayaran</p>
-            <a class="btn btn-danger" href=""> upload </a>
-            
-        </div>
-        <!-- /.row (main row) -->
-    </div><!-- /.container-fluid -->
-</section>
-<!-- /.content -->
+    </div>
+
+@endsection
+
+@section('script')
+
+<script>
+    const status = {!! auth('certified')->user()->certified_status !!};
+    console.log(status);
+
+    for (let index = 1; index <= status; index++) {
+        $(`#${index}`).addClass("done");
+    }
+
+</script>
+    
 @endsection

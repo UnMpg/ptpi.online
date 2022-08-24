@@ -58,6 +58,10 @@
 <!-- Custom Script Js -->
 <script src="{{ asset('js/script.js') }}"></script>
 
+{{-- quill --}}
+{{-- <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.5/quill.min.js" integrity="sha256-OEsiRE77EL46ZjgPqmsXfsNcOQPrMG/M6hHBF65jXP4=" crossorigin="anonymous"></script>
+
 {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script> --}}
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.3/js/bootstrap-datetimepicker.min.js"></script> --}}
@@ -104,30 +108,48 @@
         <select name="pendidikan[]" class="form-control" id="exampleFormControlSelect2" >
           <option value="">-- Pendidikan --</option>
           <option value="s1">S1 - Sarjana</option>
-          <option value="s2">S2</option>
-          <option value="s3">S3</option>
+          <option value="s2">S2 - Magister</option>
+          <option value="s3">S3 - Doktor</option>
         </select>
         </div>
       </div>
       <div class="form-group row">
-        <label for="Universitas" class="col-sm-2 col-form-label">Universitas</label>
+        <label for="Universitas[]" class="col-sm-2 col-form-label">Perguruan Tinggi</label>
         <div class="col-sm-10">
-          <input name="universitas[]" type="text" class="form-control" id="inputPassword3"  placeholder="Universitas">
+          <input name="universitas[]" type="text" class="form-control" id="inputPassword3"  placeholder="Perguruan Tinggi">
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="jurusan" class="col-sm-2 col-form-label">Jurusan</label>
+        <label for="jurusan" class="col-sm-2 col-form-label">Program Studi</label>
         <div class="col-sm-10">
-          <input name="jurusan[]" type="text" class="form-control" id="inputPassword3"  placeholder="Jurusan">
+          <input name="jurusan[]" type="text" class="form-control" id="inputPassword3"  placeholder="Program Studi">
         </div>
       </div>
 
+      <div class="form-row">
+        <div class="col-md-6 ">
+          <div class="form-group row">                       
+            <label for="Tahun Masuk" class="col-sm-4 col-form-label">Tahun Masuk</label>
+            <div class="col-sm-8">
+              <input name="tahun_masuk[]" type="date" class="form-control" id="inputPassword3"  >
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">                              
+          <div class="form-group row">                       
+            <label for="Tahun Lulus" class="col-sm-4 col-form-label">Tahun Lulus</label>
+            <div class="col-sm-8">
+              <input name="tahun_lulus[]" type="date" class="form-control" id="inputPassword3" >
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="button-group ">
         <button type="button" class="btn btn-success btn-tambah"><i class="fa fa-plus"></i></button>
         <button type="button" class="btn btn-danger btn-hapus" style="display:none;"><i class="fa fa-times"></i></button>
     </div>
-    </div>`;
+  </div>`;
 
     $("#dynamic_form").append(addrow);
 
@@ -135,94 +157,71 @@
 
 
   function addPengalaman(){
-    var pengalaman= ` <div class="data-pengalaman">
-                          <div class="form-group row">
-                            <label for="Jabatan" class="col-sm-2 col-form-label">Jabatan</label>
-                            <div class="col-sm-10">
-                              <input name="jabatan[]" type="text" class="form-control" id="inputPassword3"  placeholder="Jabatan">
-                            </div>
-                          </div>
+    var pengalaman= ` 
+    <div class="data-pengalaman">
+      <div class="form-group row">
+        <label for="Jabatan" class="col-sm-2 col-form-label">Jabatan/Posisi</label>
+        <div class="col-sm-10">
+          <input name="pengalaman_jabatan[]" type="text" class="form-control" id="inputPassword3"  placeholder="Jabatan/Posisi">
+        </div>
+      </div>
 
-                          <div class="form-group row">
-                            <label for="Institusi" class="col-sm-2 col-form-label">Institusi</label>
-                            <div class="col-sm-10">
-                              <input name="institusi[]" type="text" class="form-control" id="inputPassword3"  placeholder="Institusi">
-                            </div>
-                          </div>
+      <div class="form-group row">
+        <label for="exampleFormControlSelect5" class="col-sm-2 col-form-label">Jenis Pekerjaan</label>
+        <div class="col-sm-10">
+        <select name="pengalaman_jenis[]" class="form-control" id="exampleFormControlSelect5" >
+          <option value="">-- Jenis Pekerjaan --</option>
+          <option value="teknik">Teknik</option>
+          <option value="manajemen">Manajemen</option>
+          <option value="admin">Admin</option>
+        </select>
+        </div>
+      </div>
 
-                          <div class="form-group row">
-                            <label for="Lama Bekerja" class="col-sm-2 col-form-label">Masa Kerja</label>
-                            <div class="col-sm-10">
-                              <input name="lama_bekerja[]" type="text" class="form-control" id="inputPassword3"  placeholder="Masa Kerja">
-                            </div>
-                          </div>
+      <div class="form-group row">
+        <label for="Institusi" class="col-sm-2 col-form-label">Institusi</label>
+        <div class="col-sm-10">
+          <input name="pengalaman_institusi[]" type="text" class="form-control"  placeholder="Institusi">
+        </div>
+      </div>
 
-                          <div class="button-group ">
-                            <button type="button" class="btn btn-success btn-tambah"><i class="fa fa-plus"></i></button>
-                            <button type="button" class="btn btn-danger btn-hapus" style="display:none;"><i class="fa fa-times"></i></button>
-                          </div>
-                        </div>`;
+      <div class="form-group row">
+        <label for="Durasi" class="col-sm-2 col-form-label">Durasi / Jam</label>
+        <div class="col-sm-10">
+          <input name="pengalaman_durasi[]" type="text" class="form-control"  placeholder="Durasi / Jam">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-6 ">
+          <div class="form-group row">                       
+            <label for="Tahun Masuk" class="col-sm-4 col-form-label">Tahun Masuk</label>
+            <div class="col-sm-8">
+              <input name="pengalaman_tahunawal[]" type="date" class="form-control"   >
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">                              
+          <div class="form-group row">                       
+            <label for="Tahun Lulus" class="col-sm-4 col-form-label">Sampai</label>
+            <div class="col-sm-8">
+              <input name="pengalaman_tahunakhir[]" type="date" class="form-control"  >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="button-group ">
+        <button type="button" class="btn btn-success btn-tambah"><i class="fa fa-plus"></i></button>
+        <button type="button" class="btn btn-danger btn-hapus" style="display:none;"><i class="fa fa-times"></i></button>
+      </div>
+    </div>
+    `;
 
     $("#dynamic_pengalaman").append(pengalaman);
 
   }
 
-  function addPencapaian(){
-    var pencapaian = `<div class="data-pencapaian">
-                          <div class="form-group row">
-                            <label for="Nama" class="col-sm-2 col-form-label">Nama</label>
-                            <div class="col-sm-10">
-                              <input name="nama_pencapaian[]" type="text" class="form-control" id="inputPassword3"  placeholder="Nama">
-                            </div>
-                          </div>
-
-                          <div class="form-group row">
-                            <label for="exampleFormControlSelect3" class="col-sm-2 col-form-label">Jenis Pencapaian</label>
-                            <div class="col-sm-10">
-                            <select name="jenis_pencapaian[]" class="form-control" id="exampleFormControlSelect3" >
-                              <option value="">-- Jenis Pencapaian --</option>
-                              <option value="Ketua Proyek Berhasil (100jt)">Ketua Proyek Berhasil (100jt)</option>
-                              <option value="Anggota Proyek Berhasil (100jt)">Anggota Proyek Berhasil (100jt)</option>
-                              <option value="FIRST/CORES AUTHOR : MAKALAH PROCEEDING/JURNAL TIDAK TERINDEKS">FIRST/CORES AUTHOR : MAKALAH PROCEEDING/JURNAL TIDAK TERINDEKS</option>
-                              <option value="FIRST/CORES AUTHOR : MAKALAH PROCEEDING/JURNAL TERINDEKS SCOPUS">FIRST/CORES AUTHOR : MAKALAH PROCEEDING/JURNAL TERINDEKS SCOPUS</option>
-                              <option value="FIRST/CORES AUTHOR : MAKALAH PROCEEDING/JURNAL Q2/Q1">FIRST/CORES AUTHOR : MAKALAH PROCEEDING/JURNAL Q2/Q1</option>
-                              <option value="MAIN INVENTOR HAK CIPTA">MAIN INVENTOR HAK CIPTA</option>
-                              <option value="NON MAIN INVENTOR HAK CIPTA">NON MAIN INVENTOR HAK CIPTA</option>
-                              <option value="NON MAIN INVENTOR PATENT">NON MAIN INVENTOR PATENT</option>
-                              <option value="PEMBICARA INTERNASIONAL">PEMBICARA INTERNASIONAL</option>
-                              <option value="PEMBICARA NASIONAL">PEMBICARA NASIONAL</option>
-                              <option value="MODERATOR INTERNASIONAL">MODERATOR INTERNASIONAL</option>
-                              <option value="MODERATOR NASIONAL">MODERATOR NASIONAL</option>
-                              <option value="PRODUK TERPASARKAN (100 JUTA)">PRODUK TERPASARKAN (100 JUTA)</option>
-                              <option value="PRODUK DI PABRIKASI (100 JUTA)">PRODUK DI PABRIKASI (100 JUTA)</option>
-                              <option value="KONSULTASI DIBERIKAN (100 JUTA)">KONSULTASI DIBERIKAN (100 JUTA)</option>
-                              <option value="PELATIHAN YANG DIBERIKAN (100 JAM)">PELATIHAN YANG DIBERIKAN (100 JAM)</option>
-                            </select>
-                            </div>
-                          </div>
-
-                          <div class="form-group row">
-                            <label for="Durasi" class="col-sm-2 col-form-label">Rentang Waktu/Durasi</label>
-                            <div class="col-sm-10">
-                              <input name="lama_pencapaian[]" type="text" class="form-control" id="inputPassword3"  placeholder="Durasi">
-                            </div>
-                          </div>
-
-                          <div class="form-group row">
-                            <label for="Nilai" class="col-sm-2 col-form-label">Nilai (RP)</label>
-                            <div class="col-sm-10">
-                              <input name="nilai_pencapaian[]" type="text" class="form-control" id="inputPassword3"  placeholder="Nilai Pencapaian">
-                            </div>
-                          </div>
-
-                          <div class="button-group ">
-                            <button type="button" class="btn btn-success btn-tambah"><i class="fa fa-plus"></i></button>
-                            <button type="button" class="btn btn-danger btn-hapus" style="display:none;"><i class="fa fa-times"></i></button>
-                          </div>
-                        </div>`;
-
-    $("#dynamic_pencapaian").append(pencapaian);
-  }
 
 
   $("#dynamic_form").on("click", ".btn-tambah", function(){
@@ -264,23 +263,7 @@
       }
     });
 
-  $("#dynamic_pencapaian").on("click", ".btn-tambah", function(){
-    addPencapaian();
-    $(this).css("display","none")     
-    var valtes = $(this).parent().find(".btn-hapus").css("display","");
-  })
-
-
-    $("#dynamic_pencapaian").on("click", ".btn-hapus", function(){
-      $(this).parent().parent('.data-pencapaian').remove();
-      var bykrow = $(".data-pencapaian").length;
-      if(bykrow==1){
-        $(".btn-hapus").css("display","none")
-        $(".btn-tambah").css("display","");
-      }else{
-        $('.data-pencapaian').last().find('.btn-tambah').css("display","");
-      }
-    });
+  
 
 
   var judul_halaman = $("#judul_halaman").text();  
@@ -369,5 +352,10 @@ var loadFile = function(event) {
   }
 
 
+  // $(function(){
+
+  // })
+
+  
 
 </script>

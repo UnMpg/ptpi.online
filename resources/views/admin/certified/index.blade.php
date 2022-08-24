@@ -36,7 +36,7 @@
                                     <td>{{ $datacertifi->nama }}</td>
                                     <td>{{ $datacertifi->email }}</td>
                                     <td>{{ $datacertifi->telp }}</td>
-                                    <td>{{ $datacertifi->status }}</td>
+                                    <td>{{ $datacertifi->certified_status }}</td>
                                     {{-- <td>
                                         <a href="#" data-toggle="modal"
                                             data-target="">generate</a>
@@ -83,6 +83,7 @@
                                 </tr>
                                 @endforeach
                             </tbody>
+                            
                         </table>
                     </div>
                     <!-- /.card-body -->

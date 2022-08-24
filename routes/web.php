@@ -37,11 +37,24 @@ Route::get('/logout', 'AuthController@logout');
 
 //tambahan
 Route::group(['prefix'=>'certified'],function(){
-    Route::get('/','CertifiedMemberController@login');
+    Route::get('/','CertifiedMemberController@index');
     Route::get('/register','CertifiedMemberController@register');
     Route::post('/register','CertifiedMemberController@registerSubmit');
     Route::get('/login','CertifiedMemberController@login');
     Route::post('/login','CertifiedMemberController@loginAction');
+    Route::get('/tetang-lsp','CertifiedMemberController@tentangLSP');
+    Route::get('/visi-misi','CertifiedMemberController@visiMisi');
+    Route::get('/struktur','CertifiedMemberController@strukturOrganisasi');    
+    Route::get('/ahli-teknik-kesehatan','CertifiedMemberController@ahliTeknikKesehatan');
+    Route::get('/fungsi-peran','CertifiedMemberController@fungsiPeran');
+    Route::get('/hak-kewajiban','CertifiedMemberController@hakKewajiban');
+    Route::get('/persyaratan-dokumen','CertifiedMemberController@persyaratanDokumen');
+    Route::get('/pemutakhiran','CertifiedMemberController@pemuktahiran');
+    Route::get('/banding','CertifiedMemberController@banding');
+    Route::get('/daftar-tempatuji','CertifiedMemberController@daftarTempatuji');
+    Route::get('/sertifikasi-ulang','CertifiedMemberController@sertifikasiUlang');
+    Route::get('/berita','CertifiedMemberController@berita');
+    Route::get('/resertifikasi','CertifiedMemberController@resertifikasi');
     Route::get('/home','CertifiedMemberController@home');
     Route::get('/inset-data','CertifiedMemberController@insertData');
     Route::post('/inset-data','CertifiedMemberController@insertDataAction');
@@ -54,6 +67,25 @@ Route::group(['prefix'=>'certified'],function(){
     Route::delete('/delete-upload/{deskripsi}','CertifiedMemberController@deleteUpload');
     Route::post('/input-nilai','CertifiedMemberController@inputNilai');
     Route::get('/download-pdf/{id}','CertifiedMemberController@downloadPDF');
+    Route::post('/update-score-pendidikan','CertifiedMemberController@updateScorePendidikan');
+    Route::post('/update-score-pelatihan','CertifiedMemberController@updateScorePelatihan');
+    Route::post('/update-score-pengalaman','CertifiedMemberController@updateScorePengalaman');    
+    Route::post('/update-score-pencapaian','CertifiedMemberController@updateScorePencapaian');
+    Route::get('/home-dashboard','CertifiedMemberController@homeDashboard');
+    Route::get('/profile-user','CertifiedMemberController@profilUser');
+    Route::get('/upload-document-user','CertifiedMemberController@uploadUser');
+    Route::get('/download-file','CertifiedMemberController@downloadUser');
+    Route::get('/insert-data-profile','CertifiedMemberController@insertDataProfile');
+    Route::post('/insert-notive','CertifiedMemberController@insertNotive');
+    Route::get('/get-notive','CertifiedMemberController@getNotive');
+    Route::get('/upload-bukti-pembayaran','CertifiedMemberController@uploadBukti');
+});
+
+
+// Ujian Sertifikasi 
+Route::group(['prefix'=>'certified/ujian'],function(){
+    Route::get('/','CertifiedUjianController@index');
+    Route::post('/action-login','CertifiedUjianController@actionLogin');
 });
 
 // Route::group(['middleware'=>['auth']],function (){
@@ -139,6 +171,8 @@ Route::group(['prefix' => 'home'], function () {
 });
 
 Route::get('/dashboard', 'DashboardController@index');
+
+
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/profile', 'AdminController@editProfile');
     Route::post('/profile', 'AdminController@updateProfile');
@@ -199,7 +233,15 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/certified-view','CertifiedMemberController@certifiedView');
     Route::get('/certified-view-user/{id}','CertifiedMemberController@viewUser');
     Route::get('/download-file/{id}','CertifiedMemberController@downloadZipFile');
+    Route::get('/certified-input-soal','CertifiedUjianController@inputSoal');
+    Route::post('/certified-insert-soal','CertifiedUjianController@insertSoal');
+    Route::get('/certified-edit-soal/{id}','CertifiedUjianController@editSoal');    
+    Route::post('/certified-update-soal','CertifiedUjianController@updateSoal');
+    Route::post('/konfirmasi-nilai','CertifiedMemberController@konfirmasiNilai');
+    
 });
+
+
 Route::get('/data-center/files/{datacenter}', 'DataCenterController@downloadFile');
 Route::get('/data-center/validasi/surat/{unique_id}', 'DataCenterController@validasiSurat');
 Route::get('/data-center/validasi/certificate/{unique_id}', 'DataCenterController@validasiCertificate');

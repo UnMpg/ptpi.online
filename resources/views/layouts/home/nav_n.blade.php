@@ -31,9 +31,10 @@
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active nav-item-name">
-            <a class="navbar-brand nav-item-font" href="/" id="navbarAbout" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="navbar-brand nav-item-font" href="{{ action('HomeController@index') }}" id="navbarAbout" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 HOME
-              </a>
+            </a>
+            
         </li>
         <li class="nav-item dropdown nav-item-name">
                     <a class="navbar-brand nav-item-font" href="#" id="navbarAbout" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,7 +102,7 @@
                     <div class="dropdown-menu dp-menu" aria-labelledby="navbarMembership">
                         <a class="dropdown-item dp-item" href="{{ action('HomeController@memberGuideline')}}">Guideline for Member</a>                       
                         <a class="dropdown-item dp-item" href="#">List of Cretified Hospital Engineer</a>
-                        <a class="dropdown-item dp-item" href="{{ action('CertifiedMemberController@register') }}">Hospital Engineer Certification</a>
+                        <a class="dropdown-item dp-item" href="{{ action('CertifiedMemberController@index') }}">Hospital Engineer Certification</a>
                         <a class="dropdown-item dp-item" href="#">Hospital Engineer Training</a>
                         <a class="dropdown-item dp-item" href="{{ action('HomeController@getSertifikat') }}">Download Certificate</a>
                         <a class="dropdown-item dp-item" href="{{ action('AuthController@getRegisterPersonal') }}">Individual Member Registration</a>

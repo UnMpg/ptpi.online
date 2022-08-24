@@ -301,6 +301,14 @@
                                 <p>Data Member Certified</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ action('CertifiedUjianController@inputSoal') }}" class="nav-link">
+                                &nbsp;&nbsp;
+                                <i class="fas fa-file-alt"></i>
+                                &nbsp;&nbsp;
+                                <p>Input Soal Ujian</p>
+                            </a>
+                        </li>
                         {{-- <li class="nav-item">
                             <a href="{{ action('DataCenterController@indexSurat') }}" class="nav-link">
                                 &nbsp;&nbsp;

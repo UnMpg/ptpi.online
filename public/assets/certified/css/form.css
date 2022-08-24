@@ -1,0 +1,20 @@
+.page-form{
+    background-color: #e9ecef;
+}
+
+.title-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img-title{
+    width: 4.5rem;
+    margin-right: 1rem;
+}
+
+.other {
+    display: none;
+}
+/* .rs {
+    display: none;
+} */

@@ -1,0 +1,116 @@
+input::-webkit-file-upload-button {
+    background-color: peru;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    box-shadow: 0 2px 8px 1px #454545;
+    cursor: pointer;
+  }
+
+  .upload{
+    background-color: #2A3F54;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    box-shadow: 0 2px 6px 1px #73879C;
+    cursor: pointer;
+    outline: none;
+    height: 45px;
+    color: #E7E7E7;
+  }
+
+  .upload_document{
+    margin-top: 10px;
+    display: inline-block;
+    
+  }
+
+  .massage-alert{
+    width: 100%;
+    background-color: rgb(47, 255, 75);
+  }
+  .terupload{
+    margin-bottom: 1rem;
+  }
+  
+  .upload-kanan{
+    padding-right: 20px;
+  }
+
+  .sertifikat{
+    border: 1px solid rgba(37, 33, 33, 0.39);
+    margin: 1.5em 2px;
+    border-radius: 10px;
+    padding: 1em;
+  }
+
+  .icon-tambah{
+    margin-left: 5px;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 1em;
+    background-color: rgba(12, 150, 12, 0.856);
+    color: white;
+    border-radius: 5px;
+  }
+
+  .icon-hapus{
+    margin-left: 5px;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 1em;
+    background-color: rgba(199, 4, 4, 0.856);
+    color: white;
+    border-radius: 5px;
+  }
+
+  .content-insert{
+    height: auto !important;
+  }
+
+  .avatar-view{
+    width: 100%;
+  }
+
+  .pendidikan-view{
+    padding: 1rem 2rem;
+  }
+
+  .pendidikan-view h4{
+    text-transform: uppercase;
+    font-size: 1.2rem;
+  }
+
+  .notive-modal{
+
+    background-color: #eceff4;
+    padding: 1rem 7%;
+  }
+  
+  .notive-content{
+    background-color: #fff;
+    border: 1px solid #C8CDD2;
+    padding: 1rem 2rem;
+  }
+
+  .notive-header{
+    border-bottom: 1px solid #C8CDD2;
+  }
+  .kop-lsp{
+    display: flex;
+    padding-right: 2rem;
+    justify-content: end;
+    align-items: center;
+  }
+  .kop-ptpi{
+    display: flex;
+    padding-left: 2rem;
+    justify-content: start;
+    align-items: center;
+  }
+  .kop-ptpi img{
+    width: 48%;
+  }
+  .kop-lsp img{
+    width: 48%;
+  }
