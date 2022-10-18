@@ -17,9 +17,11 @@
 <body >
     @yield('content')
 
-    @include('layouts.certified.footerForm')
+   
 
+    @include('layouts.certified.footerForm')
     @yield('script')
+    
     
 </body>
 </html>

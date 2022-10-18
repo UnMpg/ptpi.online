@@ -32,7 +32,7 @@
         
         @include('layouts.dashboard.body')
         
-        {{-- @yield('script_custom') --}}
+
         @yield('script')
         
     </body>

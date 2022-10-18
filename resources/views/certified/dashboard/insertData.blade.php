@@ -62,18 +62,18 @@
                                 </li>
                             </ul>
                             {{-- data diri --}}
-                            <div id="step-1" class="content-insert">
+                            <div id="step-1" class="content-insert form-melengkapi-data">
                                 <br/>
                                 <div class="form-row">
                                     <div class="form-group col-md-6 ">
                                     <label for="Nama">Nama Lengkap Beserta Gelar<span class="text-danger"> *</span></label>
-                                    <input type="text" name="nama_gelar" class="form-control" id="nama" >
+                                    <input type="text" name="nama_gelar" class="form-control" id="nama"  required>
                                     <label for="Tempat Lahir">Tempat Lahir<span class="text-danger"> *</span></label>
-                                    <input type="text" name="tmp_lahir" class="form-control" id="tmp_lahir" >
+                                    <input type="text" name="tmp_lahir" class="form-control" id="tmp_lahir" required>
                                     <label for="Tanggal Lahir">Tanggal Lahir<span class="text-danger"> *</span></label>
-                                    <input type="date" name="tgl_lahir" class="form-control" id="tgl_lahir" >
+                                    <input type="date" name="tgl_lahir" class="form-control" id="tgl_lahir" required >
                                     <label for="exampleFormControlSelect1">Jenis Kelamin<span class="text-danger"> *</span></label>
-                                    <select name="jenis_kelamin" class="form-control" id="exampleFormControlSelect1">
+                                    <select name="jenis_kelamin" class="form-control" id="exampleFormControlSelect1" required>
                                         <option value="">-- Jenis Kelamin --</option>
                                         <option value="l">Laki-laki</option>
                                         <option value="p">Perempuan</option>
@@ -93,18 +93,18 @@
                                     <label for="Email">Email<span class="text-danger"> *</span></label>
                                     <input type="email" name="email" class="form-control" id="email" value="{{ auth('certified')->user()->email }}" disabled>
                                     <label for="No Telpon">No KTP/Passpor <span class="text-danger"> *</span></label>
-                                    <input type="number" name="ktp_passpor" class="form-control" id="telp" onkeypress="return hanyaAngka(event)" >
+                                    <input type="number" name="ktp_passpor" class="form-control" id="telp" onkeypress="return hanyaAngka(event)" required >
                                     <label for="No Telpon">No Telpon<span class="text-danger"> *</span></label>
-                                    <input type="number" name="telp" class="form-control" id="telp" onkeypress="return hanyaAngka(event)" >
+                                    <input type="number" name="telp" class="form-control" id="telp" onkeypress="return hanyaAngka(event)" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputAddress">Alamat Domisili<span class="text-danger"> *</span></label>
-                                    <textarea name="alamat" class="form-control" id="alamat" placeholder=""> </textarea>
+                                    <textarea name="alamat" class="form-control" id="alamat" placeholder="" required> </textarea>
                                 </div>   
                             </div>
                             {{-- pendidikan --}}
-                            <div id="step-2" class="content-insert">
+                            <div id="step-2" class="content-insert form-melengkapi-data">
                                 <div class="col-md-12 " id="dynamic_form" data-id="pendidikan">
                                     <div class="baru-data">
                                         <div class="form-group row">
@@ -112,7 +112,7 @@
                                         <div class="col-sm-10">
                                         <select name="pendidikan[]" class="form-control" id="exampleFormControlSelect2" >
                                             <option value="">-- Pendidikan --</option>
-                                            <option value="s1">S1 - Sarjana</option>
+                                            <option value="s1" selected>S1 - Sarjana</option>
                                             <option value="s2">S2 - Magister</option>
                                             <option value="s3">S3 - Doktor</option>
                                         </select>
@@ -158,13 +158,13 @@
                                 </div>
                             </div>
                             {{-- pelatihan --}}
-                            <div id="step-3" class="content-insert">
+                            <div id="step-3" class="content-insert form-melengkapi-data">
                                 <div class="col-md-12 " id="dynamic_pelatihan" data-id="pelatihan">
                                     <div class="data-pelatihan">
                                         <div class="form-group row">
                                         <label for="Nama Pelatihan" class="col-sm-2 col-form-label">Nama Pelatihan</label>
                                         <div class="col-sm-10">
-                                            <input name="pelatihan_nama[]" type="text" class="form-control" id="inputPassword3"  placeholder="Jabatan">
+                                            <input name="pelatihan_nama[]" type="text" class="form-control" id="inputPassword3"  placeholder="Nama Pelatihan">
                                         </div>
                                         </div>
             
@@ -178,7 +178,7 @@
                                         <div class="form-group row">
                                         <label for="Tanggal Pelatihan" class="col-sm-2 col-form-label">Tanggal</label>
                                         <div class="col-sm-10">
-                                            <input name="pelatihan_tanggal[]" type="text" class="form-control" id="inputPassword3"  placeholder="Masa Kerja">
+                                            <input name="pelatihan_tanggal[]" type="text" class="form-control" id="inputPassword3"  placeholder="Tanggal Pelatihan">
                                         </div>
                                         </div>
             
@@ -197,7 +197,7 @@
                                 </div>
                             </div>
                             {{-- pengalaman --}}
-                            <div id="step-4" class="content-insert">
+                            <div id="step-4" class="content-insert form-melengkapi-data">
                                 <div class="col-md-12 " id="dynamic_pengalaman" data-id="pengalaman">
                                     <div class="data-pengalaman">
                                         <div class="form-group row">
@@ -260,14 +260,14 @@
                                 </div>
                             </div>
                             {{-- Pencapaian --}}
-                            <div id="step-5" class="content-insert">
+                            <div id="step-5" class="content-insert form-melengkapi-data">
                                 <div class="col-md-12 " id="dynamic_pencapaian" data-id="pencapaian">
                                     <div class="data-pencapaian">
             
                                       <div class="form-group row">
                                         <label for="jenis_pencapain" class="col-sm-2 col-form-label">Jenis Pencapaian</label>
                                         <div class="col-sm-10">
-                                        <select name="jenis_pencapaian[]" class="form-control jenis-pencapaian" id="jenis_pencapain">
+                                        <select name="jenis_pencapaian[]" class="form-control jenis-pencapaian" id="jenis_pencapain" onchange="openform($(this))">
                                           <option value="">-- Jenis Pencapaian --</option>
                                           <option value="proyek" onclick="formProyek()">PROYEK</option>
                                           <option value="publikasi" onclick="formPublikasi()">PUBLIKASI</option>
@@ -294,7 +294,6 @@
                     </form>
                     </div>
 
-
                 @else
                 <div class="x_title">
                     <h2>Telah melengkapi Data</h2>
@@ -310,6 +309,47 @@
 @section('script')
 
 <script>
+function openform(aa){
+    console.log("as");
+    var parameter = aa.find("option:selected").val();
+    if (parameter == 'proyek') {
+      formProyek()
+    }else if(parameter == 'publikasi'){
+      formPublikasi()
+    }else if(parameter == 'haki'){
+      formHaki()
+    }else if(parameter == 'penghargaan'){
+      formPenghargaan()
+    }else if(parameter == 'pengabdian'){
+      formPengabdian()
+    }else if(parameter == 'pelatihan'){
+      formPelatihan()
+    }else{
+      console.log("aa");
+    }
+
+  }
+
+  function openform1(aa,no){
+    console.log("as");
+    var parameter = aa.find("option:selected").val();
+    if (parameter == 'proyek') {
+      formProyek(no)
+    }else if(parameter == 'publikasi'){
+      formPublikasi(no)
+    }else if(parameter == 'haki'){
+      formHaki(no)
+    }else if(parameter == 'penghargaan'){
+      formPenghargaan(no)
+    }else if(parameter == 'pengabdian'){
+      formPengabdian(no)
+    }else if(parameter == 'pelatihan'){
+      formPelatihan(no)
+    }else{
+      console.log("aa");
+    }
+
+  }
 
 function addForm(){
     var addrow = `
@@ -475,15 +515,21 @@ function addForm(){
       }
     });
 
-
+let count_form
 function addPencapaian(){
+
+  
+  if (count_form == null) {
+    count_form = 1;
+  }
+    console.log("pencapaian di tambah");
     var pencapaian = `
     <div class="data-pencapaian">
 
       <div class="form-group row">
         <label for="jenis_pencapain" class="col-sm-2 col-form-label">Jenis Pencapaian</label>
         <div class="col-sm-10">
-        <select name="jenis_pencapaian[]" class="form-control jenis-pencapaian" id="jenis_pencapain">
+        <select onchange="openform1($(this),${count_form})" name="jenis_pencapaian[]" class="form-control jenis-pencapaian" id="jenis_pencapain">
           <option value="">-- Jenis Pencapaian --</option>
           <option value="proyek" onclick="formProyek(${count_form})">PROYEK</option>
           <option value="publikasi" onclick="formPublikasi(${count_form})">PUBLIKASI</option>
@@ -515,7 +561,12 @@ function addPencapaian(){
   var valtes = $(this).parent().find(".btn-hapus").css("display","");
   })
 
-
+  function hanyaAngka(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
   $("#dynamic_pencapaian").on("click", ".btn-hapus", function(){
     $(this).parent().parent('.data-pencapaian').remove();
     var bykrow = $(".data-pencapaian").length;
@@ -533,7 +584,7 @@ function addPencapaian(){
       <div class="form-group row">
         <label for="Nama Pelatihan" class="col-sm-2 col-form-label">Nama Pelatihan</label>
         <div class="col-sm-10">
-          <input name="pelatihan_nama[]" type="text" class="form-control" id="inputPassword3"  placeholder="Jabatan">
+          <input name="pelatihan_nama[]" type="text" class="form-control" id="inputPassword3"  placeholder="Nama Pelatihan">
         </div>
       </div>
 
@@ -547,14 +598,14 @@ function addPencapaian(){
       <div class="form-group row">
         <label for="Tanggal Pelatihan" class="col-sm-2 col-form-label">Tanggal</label>
         <div class="col-sm-10">
-          <input name="pelatihan_tanggal[]" type="text" class="form-control" id="inputPassword3"  placeholder="Masa Kerja">
+          <input name="pelatihan_tanggal[]" type="text" class="form-control" id="inputPassword3"  placeholder="Tanggal Pelatihan">
         </div>
       </div>
 
       <div class="form-group row">
         <label for="Pelatihan Durasi" class="col-sm-2 col-form-label">Durasi dalam Jam </label>
         <div class="col-sm-10">
-          <input name="pelatihan_durasi[]" type="text" class="form-control" id="inputPassword3"  placeholder="Durasi dalam Jam">
+          <input name="pelatihan_durasi[]" type="text" class="form-control" id="inputPassword3"  placeholder="Durasi Pelatihan">
         </div>
       </div>
 
@@ -592,6 +643,7 @@ function addPencapaian(){
   // });
 
   function formProyek(count_form = ""){
+    console.log("ada");
     var proyek =`
 
     <div class="form-group row">
@@ -662,7 +714,9 @@ function addPencapaian(){
     $(`.form-pencapaian`+count_form).append(proyek); 
   }
 
+  
   function formPublikasi(count_form = ""){
+    console.log("ada");
     var publikasi = `
     <div class="form-group row">
       <label for="Judul" class="col-sm-2 col-form-label">Judul</label>
@@ -731,6 +785,7 @@ function addPencapaian(){
   }
 
   function formHaki(count_form = ""){
+    console.log("ada");
     var haki=`
     <div class="form-group row">
       <label for="Judul" class="col-sm-2 col-form-label">Judul</label>
@@ -794,6 +849,7 @@ function addPencapaian(){
 
 
   function formPenghargaan(count_form = ""){
+    console.log("ada");
     var penghargaan = `
     <div class="form-group row">
       <label for="Judul" class="col-sm-2 col-form-label">Judul</label>

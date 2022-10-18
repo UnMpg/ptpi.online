@@ -1,0 +1,90 @@
+.home{
+    background-color: #E9ECEF;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    min-height: 100vh;
+}
+
+.head-waktu{
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #2125294b;
+}
+
+.counter{
+    padding: 0.5rem 2rem;
+    background-color: rgb(255, 17, 17);
+    font-size: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 2px 2px 7px #212529;
+    color: #F8F9fA;
+    margin: 0;
+}
+
+.body-ketentuan{
+    padding: 2rem 1rem;
+}
+
+.body-ujian{
+    padding: 1rem 1rem;
+}
+
+.index-soal{
+    border-radius: 10px;
+    border: 1px solid #a3a6aa ;
+}
+
+.urutan{
+    display: flex;
+    padding: 1rem 2rem;
+    flex-wrap: wrap;
+    margin: 0;
+    
+}
+
+.no{
+    list-style-type: none;
+    cursor: pointer;
+    padding: 3px 8px;
+    margin: 0px 2px;
+    border: 1px solid #a3a6aa ;
+    border-radius: 5px;
+}
+.aktif{
+    color: #fff;
+    background-color: rgb(6, 17, 173);
+}
+.no a{
+    text-decoration: none;
+    color: #212529;
+}
+.terisi{
+    color: #fff;
+    background-color: rgb(12, 182, 12);
+}
+
+.belum{
+    color: #fff;
+    background-color: rgb(80, 87, 98);
+}
+
+.no:hover{
+    color: #fff;
+    border:1px solid #fff;
+    background-color: rgb(9, 26, 121);
+}
+
+.countdown{
+    padding: 1.5rem 1rem;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #2125294b;
+}
+
+.soal-halaman{
+    margin: 1.5rem 0;
+}
+
+.soal-hide{
+    display: none !important;
+}

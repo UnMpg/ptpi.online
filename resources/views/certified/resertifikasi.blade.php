@@ -5,7 +5,7 @@
 <div class="page-view bg-light" >
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase mb-4">Sertifikasi ulang</h2>
+            <h2 class="section-heading text-uppercase mb-4">Sertifikasi Ulang</h2>
             <br>
         </div>
         <div class="row">

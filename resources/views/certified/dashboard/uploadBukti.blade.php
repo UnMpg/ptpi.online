@@ -1,20 +1,49 @@
 @extends('layouts.certifiedDashboard.app')
-@section('title-page', 'Upload File')
+@section('title-page', 'Upload File Bukti Pembayaran dan Surat Perjanjian ')
 @section('content')
     <div class="row">
         <div class="col-md-12 col-sm-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Upload Bukti Pembayaran </h2>
+                    <h2>Upload Bukti dan Surat Perjanjian</h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
                     <div class="massage-alert"></div>
 
+                    @if (auth('certified')->user()->certified_status >= 5)
+                    <div class="upload-bukti mb-4 proses-upload" id="uploadBukti">
+                        <h4><label class="form-label" for="customFile">Upload Bukti Pembayaran Sudah Terupload</label></h4>
+                        
+                    </div>
+                    @else
+
+                    @foreach ($upload as $item)
+                        <div class="terupload">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <h5>{{ $item->upload_deskripsi }} <i class="fa fa-check"></i> </h5>
+                                </div>
+                                <div class="col-md-2 upload-kanan text-right">
+                                   
+                                </div>
+                            </div>                            
+                        </div>
+                    @endforeach
+
+                    <div class="perjanjian mb-4 proses-upload" id="perjanjian">
+                        <h4><label class="form-label" for="customFile">Surat Perjanjian <span style="color: red">*</span> <a class="" href="{{ asset('assets/certified/file/PERJANJIAN SERTIFIKASI.docx') }}"><i class="fa fa-download"></i> Download Surat Perjanjian</a>      </label></h4>
+                        <input type="file" class="file-upload-field upload form-control" id="customFile" data-type='perjanjian'/>
+                        <div id="file-message" class="text-muted mb-4">*format: doc,docx, dan pdf  max:2Mb</div>
+                    </div>
+
                     <div class="upload-bukti mb-4 proses-upload" id="uploadBukti">
                         <h4><label class="form-label" for="customFile">Upload Bukti Pembayaran <span style="color: red">*</span></label></h4>
                         <input type="file" class="file-upload-field upload form-control" id="customFile"  data-type='bukti_pembayaran'/>
                     </div>
+                        
+                    @endif
+                    
                 
                     
                 </div>
@@ -26,11 +55,13 @@
 @section('script')
 
 <script>
-    
+    let deskripsia;
+    let url_upload;
     $('.file-upload-field').change(function(e){
         var fileName = e.target.files[0];
         var parent_class = $(this).parent();
         var data_type= $(this).attr('data-type');
+        deskripsia = $(this).attr('data-type');
         // console.log(parent_class);
         console.log(fileName);
         var btn_upload =  `<button type="button" class="btn btn-primary upload-document" data-type="${data_type}" data-name="${fileName}" >Upload</button>`;
@@ -44,10 +75,21 @@
             console.log("koss");
             console.log(fileName);
             var upload_action = data_type;
-            var url_upload="{{ url('/certified/upload-document') }}";
-            
-
             var deskripsi = data_type;
+            
+            
+            // console.log(deskripsia);
+            if (deskripsia == "perjanjian") {
+                url_upload = "{{ url('/sertifikasi/upload-document') }}";
+                // console.log(url_upload);
+            }else if(deskripsia == "bukti_pembayaran"){
+                url_upload = "{{ url('/sertifikasi/upload-bukti-save') }}";
+                // console.log(url_upload);
+            }else{
+                console.log("url tidak ada");
+            }
+            
+            // console.log(deskripsi);
             uploadfile(fileName,url_upload,deskripsi);
         });
 
@@ -90,50 +132,21 @@
         });
     }
 
+    const upload = {!! $upload !!};
 
-    function sertifikatForm(){
-    const addformSertifikat = `
-        <div class="form-row">
-          <div class="form-group col-md-8">
-            <input type="text" name="sertifikat_name" class="form-control" id="sertifikat_deskripsi" placeholder="Nama Sertifikat">
-          </div>
-          <div class="form-group col-md-4">
-            <input type="file" class="form-control upload " id="myfile">
-          </div>
-        </div>
-        <button class="btn btn-primary text-right apss" id="upload_sertifikat" onclick="upload_sertifikat()" >Submit</button>
-    `;
-    $("#tambah-sertifikat").append(addformSertifikat);
+    console.log(upload);
+    console.log($('.proses-upload').attr('id'))
+    upload.forEach(function(item){
 
-  }
+    if(item.upload_deskripsi == "perjanjian"){
+        $('#perjanjian').css("display","none");
+    }
+    if(item.upload_deskripsi == "bukti_pembayaran"){
+        $('#uploadBukti').css("display","none");
+    }
+    console.log(item.upload_deskripsi);
+    });
 
-  $("#tambah-sertifikat").on("click",".icon-tambah",function (){
-    sertifikatForm();
-    console.log("sdajuj");
-    $('.icon-tambah').css("display","none");
-  });
-
-  var sertifikat_file;
-$('#input_sertifikat').change(function(e) {
-  sertifikat_file = e.target.files;
-  console.log(sertifikat_file); 
-  });
-
-function upload_sertifikat(){
-  // console.log("gqgbwb");
-  // var fileName = $("#myfile").files[0];
-  
-  var fileInput = document.getElementById('myfile');
-  var fileName = fileInput.files[0];
-  console.log(fileName);
-
-  var deskripsi = "sertifikat_"+$("#sertifikat_deskripsi").val();
-  console.log(deskripsi);
-  url_upload = "{{ url('/certified/upload-document') }}";
-
-  uploadfile(fileName,url_upload,deskripsi);
-  
-}
 
 </script>
     

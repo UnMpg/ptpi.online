@@ -1,6 +1,7 @@
 <?php
 
 use App\Participant;
+use App\Http\Middleware\CertifiedAuth;
 
 Route::get('lang/{locale}', 'LocalizationController@index');
 
@@ -36,12 +37,8 @@ Route::post('/login', 'AuthController@login');
 Route::get('/logout', 'AuthController@logout');
 
 //tambahan
-Route::group(['prefix'=>'certified'],function(){
+Route::group(['prefix'=>'sertifikasi'],function(){
     Route::get('/','CertifiedMemberController@index');
-    Route::get('/register','CertifiedMemberController@register');
-    Route::post('/register','CertifiedMemberController@registerSubmit');
-    Route::get('/login','CertifiedMemberController@login');
-    Route::post('/login','CertifiedMemberController@loginAction');
     Route::get('/tetang-lsp','CertifiedMemberController@tentangLSP');
     Route::get('/visi-misi','CertifiedMemberController@visiMisi');
     Route::get('/struktur','CertifiedMemberController@strukturOrganisasi');    
@@ -55,37 +52,126 @@ Route::group(['prefix'=>'certified'],function(){
     Route::get('/sertifikasi-ulang','CertifiedMemberController@sertifikasiUlang');
     Route::get('/berita','CertifiedMemberController@berita');
     Route::get('/resertifikasi','CertifiedMemberController@resertifikasi');
-    Route::get('/home','CertifiedMemberController@home');
-    Route::get('/inset-data','CertifiedMemberController@insertData');
-    Route::post('/inset-data','CertifiedMemberController@insertDataAction');
-    Route::get('/file-upload','CertifiedMemberController@fileUpload');
-    Route::post('/ktp','CertifiedMemberController@ktp');
-    Route::post('/upload-cv','CertifiedMemberController@uploadCv');
+    Route::get('/register','CertifiedMemberController@register');
+    Route::post('/register-submit','CertifiedMemberController@registerSubmit');
+    Route::get('/surveilen','CertifiedMemberController@surveilen');
+    Route::get('/info-pembiayaan','CertifiedMemberController@infoPembiayaan');
+    Route::get('/prosedur-keluhan','CertifiedMemberController@prosedurKeluhan');
+    Route::get('/komitmen-ketidakberpihakan','CertifiedMemberController@komitmenKetidakBerpihakan');
+    Route::get('/list-Tersertifikasi','CertifiedMemberController@listTersertifikasi');
+    Route::get('/dewan-pakar','CertifiedMemberController@dewanPakar');
+    Route::get('/dewan-pengarah','CertifiedMemberController@dewanPengarah');
+
+    
+    Route::get('/login','CertifiedMemberController@login')->middleware('CertifiedAuth');
+    Route::post('/login-action','CertifiedMemberController@loginAction')->middleware('CertifiedAuth');
+    Route::get('/logout-certified', 'CertifiedMemberController@logout');
+
+    Route::get('/home','CertifiedMemberController@home')->middleware('CertifiedAuth:user|sertifikasi|penunjang'); 
+    Route::post('/insert-send-email','CertifiedMemberController@insertSendEmail');
+
+    // user 
+    Route::get('/profile-user','CertifiedMemberController@profilUser')->middleware('CertifiedAuth:user');
+    Route::get('/inset-data','CertifiedMemberController@insertData')->middleware('CertifiedAuth:user');
+    Route::post('/inset-data','CertifiedMemberController@insertDataAction')->middleware('CertifiedAuth:user');
+    Route::get('/file-upload','CertifiedMemberController@fileUpload')->middleware('CertifiedAuth:user');
+    Route::get('/upload-document-user','CertifiedMemberController@uploadUser')->middleware('CertifiedAuth:user');
+    
     Route::post('/upload-ijazah','CertifiedMemberController@uploadIjazah');
-    Route::post('/upload-document','CertifiedMemberController@uploadDocument');
-    Route::delete('/upload-document/{deskripsi}','CertifiedMemberController@deleteDataMember');
-    Route::delete('/delete-upload/{deskripsi}','CertifiedMemberController@deleteUpload');
+    Route::post('/upload-document-upload','CertifiedMemberController@deleteDataMember');
+    Route::get('/upload-bukti-pembayaran','CertifiedMemberController@uploadBukti');
+    Route::post('/delete-upload','CertifiedMemberController@deleteUpload');
+
+    // sertifikasi 
+    Route::get('/list-peserta-sertifikasi','CertifiedMemberController@listPesertaSertifikasi');
+
+    // penunjang 
+    
     Route::post('/input-nilai','CertifiedMemberController@inputNilai');
     Route::get('/download-pdf/{id}','CertifiedMemberController@downloadPDF');
     Route::post('/update-score-pendidikan','CertifiedMemberController@updateScorePendidikan');
     Route::post('/update-score-pelatihan','CertifiedMemberController@updateScorePelatihan');
     Route::post('/update-score-pengalaman','CertifiedMemberController@updateScorePengalaman');    
     Route::post('/update-score-pencapaian','CertifiedMemberController@updateScorePencapaian');
-    Route::get('/home-dashboard','CertifiedMemberController@homeDashboard');
-    Route::get('/profile-user','CertifiedMemberController@profilUser');
-    Route::get('/upload-document-user','CertifiedMemberController@uploadUser');
+    Route::get('/home-dashboard','CertifiedMemberController@homeDashboard')->middleware('CertifiedAuth');
+    
     Route::get('/download-file','CertifiedMemberController@downloadUser');
     Route::get('/insert-data-profile','CertifiedMemberController@insertDataProfile');
     Route::post('/insert-notive','CertifiedMemberController@insertNotive');
-    Route::get('/get-notive','CertifiedMemberController@getNotive');
-    Route::get('/upload-bukti-pembayaran','CertifiedMemberController@uploadBukti');
+    Route::get('/send-email','CertifiedMemberController@sendEmail');
+
+    
+    Route::get('/pilih-jadwal-ujian','CertifiedMemberController@pilihJadwalUjian');
+    Route::post('/insert-jadwal-ujian','CertifiedMemberController@insertJadwalUjian');
+    Route::post('/konfirmasi-ujian-1','CertifiedMemberController@konfirmasiUjian1');
+    Route::post('/konfirmasi-hasil-ujian-1','CertifiedMemberController@konfirmasiHasilUjian1');
+    Route::get('/jadwal-wawancara','CertifiedMemberController@jadwalWawancara');
+    Route::post('/insert-jadwal-wawancara','CertifiedMemberController@insertJadwalWawancara');
+    Route::post('/konfirmasi-wawancara-1','CertifiedMemberController@konfirmasiWawancara1');    
+    Route::get('/view-penilaian-wawancara/{id}','CertifiedMemberController@viewPenilaianWawancara');
+    Route::post('/insert-penilaian-wawancara','CertifiedMemberController@insertPenilaianWawancara');
+    Route::get('/data-profile-user/{id}','CertifiedMemberController@dataProfileUser');
+    Route::post('/upload-perjanjian-konfirmasi','CertifiedMemberController@uploadPerjanjianKonfirmasi');
+
+    // admin  
+        // manajer penunjang
+    
+
+        // manajer sertifikasi 
+    Route::get('/list-status-peserta','CertifiedMemberController@listStatusPeserta'); 
+    Route::get('/data-peserta-ujian','CertifiedMemberController@dataPesertaUjian');  
+    Route::get('/data-jawaban-peserta/{id}','CertifiedMemberController@dataJawabanPeserta');  
+    Route::get('/data-peserta-wawancara','CertifiedMemberController@dataPesertaWawancara');
+    Route::get('/sertifikasi-input-soal','CertifiedUjianController@sertifikasiInputSoal');
+    Route::post('/sertifikasi-insert-soal','CertifiedUjianController@insertSoal');
+    Route::get('/sertifikasi-edit-soal/{id}','CertifiedUjianController@editSoal');    
+    Route::post('/sertifikasi-update-soal','CertifiedUjianController@updateSoal');
+    Route::delete('/sertifikasi-delete-soal/{id}','CertifiedUjianController@deleteSoal');
+    Route::get('/list-peserta-verifikasi','CertifiedMemberController@listPesertaVerifikasi');
+    Route::get('/data-user-verifikasi/{id}','CertifiedMemberController@dataUserVerifikasi');
+    Route::get('/konfirmasi-peserta-sertifikasi','CertifiedMemberController@konfirmasiPesertaSertifikasi');
+    Route::get('/tambah-notive-peserta','CertifiedMemberController@tambahNotivePeserta');  
+    Route::get('/download-data-peserta','CertifiedMemberController@downloadData');  
+    Route::get('/upload-surat-perjanjian-peserta','CertifiedMemberController@uploadSuratPerjanjian');  
+
+
+    // ajak get 
+    Route::post('/verifikasi-score','CertifiedMemberController@verifikasiScore');
+    Route::post('/konfirmasi-ujian','CertifiedMemberController@konfirmasiUjian');
+    Route::post('/konfirmasi-hasil-ujian','CertifiedMemberController@konfirmasiHasilUjian');
+    Route::post('/konfirmasi-wawancara','CertifiedMemberController@konfirmasiWawancara');    
+    Route::post('/get-jadwal-wawancara','CertifiedMemberController@getJadwalWawancara');
+    Route::post('/upload-bukti-save','CertifiedMemberController@uploadBuktiSave');
+    Route::post('/upload-document','CertifiedMemberController@uploadDocument');
+    Route::post('/ktp','CertifiedMemberController@ktp');
+    Route::post('/upload-foto','CertifiedMemberController@uploadFoto');
+    Route::post('/upload-cv','CertifiedMemberController@uploadCv');
+    Route::post('/get-status-peserta','CertifiedMemberController@getStatusPeserta');
+    Route::post('/get-data-konfirmasi','CertifiedMemberController@getDataKonfirmasi');
+    Route::post('/get-status-peserta-notive','CertifiedMemberController@getStatusPesertaNotive');    
+    Route::get('/get-notive','CertifiedMemberController@getNotive');  
+    
 });
+
+// Route::middleware(['CertifiedAuth'])->group(function(){
+//     Route::get('/certified/home','CertifiedMemberController@home'); 
+// });
 
 
 // Ujian Sertifikasi 
-Route::group(['prefix'=>'certified/ujian'],function(){
+Route::group(['prefix'=>'sertifikasi/ujian'],function(){
     Route::get('/','CertifiedUjianController@index');
     Route::post('/action-login','CertifiedUjianController@actionLogin');
+    Route::get('/tatatertib','CertifiedUjianController@ketentuan');
+    Route::get('/exams','CertifiedUjianController@ujian');
+    Route::post('/simpan-jawaban','CertifiedUjianController@simpanJawaban');
+    Route::get('/selesai-ujian','CertifiedUjianController@selesaiUjian');
+    Route::get('/penutup','CertifiedUjianController@penutup');
+    Route::get('/import-soal', 'CertifiedUjianController@importSoal');
+
+
+    
+    Route::post('/get-jadwal-ujian','CertifiedUjianController@getJadwalUjian');
 });
 
 // Route::group(['middleware'=>['auth']],function (){
@@ -93,6 +179,8 @@ Route::group(['prefix'=>'certified/ujian'],function(){
 //         Route::resource('admin', AdminController::class);
 //     });
 // });
+
+
 
 Route::get('/cv-template-anggota', 'HomeController@downloadCvAnggota');
 
@@ -238,8 +326,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/certified-edit-soal/{id}','CertifiedUjianController@editSoal');    
     Route::post('/certified-update-soal','CertifiedUjianController@updateSoal');
     Route::post('/konfirmasi-nilai','CertifiedMemberController@konfirmasiNilai');
+    Route::delete('/delete-soal/{id}','CertifiedUjianController@deleteSoal');
     
 });
+
+
 
 
 Route::get('/data-center/files/{datacenter}', 'DataCenterController@downloadFile');

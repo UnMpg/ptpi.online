@@ -11,8 +11,14 @@ use App\CertifiedPelatihan;
 use App\CertifiedUpload;
 use App\CertifiedStatus;
 use App\CertifiedInformation;
+use App\CertifiedUjian;
+use App\CertifiedJawaban;
+use App\CertifiedSoal;
+use App\CertifiedWawancara;
+use App\CertifiedPenilaianWawancara;
 use App\Location;
 use App\LocationKoordinat;
+use App\Mail\SendEmail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -31,11 +37,23 @@ class CertifiedMemberController extends Controller
         return view('certified.index');
     }
 
+    public function logout()
+    {
+        if (auth('admin')->check()) {
+            auth('admin')->logout();
+        } elseif (auth('web')->check()) {
+            auth('web')->logout();
+        }elseif(auth('certified')->check()){
+            auth('certified')->logout();
+        }
+        return redirect('/sertifikasi');
+    }
+
     public function register(){
         $provinsi = LocationKoordinat::orderByDesc('created_at')->get('provinsi');
         $instansi = Location::orderByDesc('created_at')->get();
         // dd($instansi);
-        return view('certified.registerm',compact('provinsi','instansi'));
+        return view('certified.register1',compact('provinsi','instansi'));
     }
 
     public function tentangLSP(){
@@ -73,6 +91,35 @@ class CertifiedMemberController extends Controller
     public function banding(){
         return view('certified.banding');
     }
+
+    public function surveilen(){
+        return view('certified.surveilen');
+    }
+
+    public function infoPembiayaan(){
+        return view('certified.infoPembiayaan');
+    }
+
+    public function prosedurKeluhan(){
+        return view('certified.prosedurKeluhan');
+    }
+
+    public function komitmenKetidakBerpihakan(){
+        return view('certified.komitmenKetidakBerpihakan');
+    }
+    
+    public function listTersertifikasi(){
+        return view('certified.listTersertifikasi');
+    }
+
+    public function dewanPakar(){
+        return view('certified.dewanPakar');
+    }
+
+    public function dewanPengarah(){
+        return view('certified.dewanPengarah');
+    }
+
     public function resertifikasi(){
         return view('certified.resertifikasi');
     }
@@ -94,6 +141,7 @@ class CertifiedMemberController extends Controller
         CertifiedMember::create([
             'nama'=>$Request->nama,
             'email'=>$Request->email,
+            'role'=>"user",
             'password'=>Hash::make($Request->password),
             'jenis_instansi'=>$Request->jenis_instansi,
             'nama_instansi'=>$Request->nama_instansi,
@@ -126,16 +174,140 @@ class CertifiedMemberController extends Controller
         // $update_score->update([
         //     'nilai'=>$request->score,
         // ]);
+        if($request->tingkat == null){
+            $tingkat="muda";
+        }else {
+            $tingkat = $request->tingkat;
+        }
 
-        $insert_data = CertifiedMember::where('id', $request->id);
-        $insert_data->update([
-        'nilai' => $request->score,
+        $score= (int)$request->score;
+        if($score >= 2000){
+            $insert_data = CertifiedMember::where('id', $request->id);
+            $insert_data->update([
+            'nilai' => $request->score,
+            'certified_status' => "4",
+            'tingkat'=>$tingkat,
+            'status'=>"Lolos Verifikasi Dokumen"
+            ]);
+        }else {
+            $insert_data = CertifiedMember::where('id', $request->id);
+            $insert_data->update([
+            'nilai' => $request->score,
+            'status'=>"Tidak Lolos Verifikasi Dokument",
+            'certified_status' => "20"
+            ]);
+
+            $title = "Tidak LULUS Verifikasi";
+            $status = "1";
+            $kategori = "tidak_lulus_verifikasi";
+            $body  = "<p>Kepada Yth, <strong> fenau</strong></p>
+            <p>Berdasarkan hasil verifikasi dokumen/berkas yang diajukan, Mohon maaf anda dinyatakan <strong><em>BELUM LULUS</em></strong> untuk memenuhi kriteria untuk ke tahapan selanjutnya. </p>
+            <p>Informasi lebih lanjut dapat menghubungi kami di Siti :08473274282</p>
+            <p>Sekian, terimakasih.</p>";
+
+            CertifiedInformation::create([
+                'certified_member_id'=>$request->id,
+                'title'=>$title,
+                'status'=>$status,
+                'kategori'=>$kategori,
+                'body'=>$body
+            ]);
+        }
+
+
+        $title = "LULUS Verifikasi Dokumen";
+        $status = "1";
+        $kategori = "lulus_verifikasi";
+        $body ="<p>Kepada Yth, <strong> asnanda</strong></p>
+        <p>Berdasarkan hasil verifikasi dokumen/berkas yang diajukan, Selamat anda dinyatakan <strong><em>LULUS</em></strong> 
+        tahapan verifikasi dengan potensi level teknik pelayanan kesehatan <strong><em>MUDA</em></strong>.</p>
+        <p>Selanjutnya Melakukan Pembayara Rekening berikut :</p>
+        <p>Nama : TEKNIK PERUMAHSAKITAN IN</p>
+        <p>Nomor Rekening : 5290849995</p>
+        <p>Bank : BCA</p>
+        <p>Jumlah : .....</p>
+        <p>Informasi lebih lanjut dapat menghubungi kami di Siti 082383477128</p><p>Sekian, terimakasih.</p>";
+        $body_invoice  = "<p>Kepada Yth, <strong> asnanda</strong></p>
+        <p>Berdasarkan hasil verifikasi dokumen/berkas yang diajukan, Selamat anda dinyatakan <strong><em>LULUS</em></strong> 
+        tahapan verifikasi dengan potensi level teknik pelayanan kesehatan <strong><em>MUDA</em></strong>.</p>
+        <p>Selanjutnya dimohon mengunduh invoice pembayaran pada link berikut : 
+        <a href='https://ptpi.online/assets/certified/file/INVOICE PEMBAYARAN.pdf' target='_blank'>Invoice Pembayaran</a></p>
+        <p>Informasi lebih lanjut dapat menghubungi kami di Siti 082383477128</p><p>Sekian, terimakasih.</p>";
+
+        CertifiedInformation::create([
+            'certified_member_id'=>$request->id,
+            'title'=>$title,
+            'status'=>$status,
+            'kategori'=>$kategori,
+            'body'=>$body
         ]);
         return response()->json($request->score, 200);
     }
 
     public function uploadBukti(){
-        return view('certified.dashboard.uploadBukti');
+        $upload = CertifiedUpload::where('certified_member_id',auth('certified')->user()->id)->whereIn('upload_deskripsi',['perjanjian','bukti_pembayaran'])->get();
+        return view('certified.dashboard.uploadBukti',compact('upload'));
+    }
+
+    public function uploadBuktiSave(Request $request){
+        $pesan = $request->upload_deskripsi.auth('certified')->user()->nama."berhasil di upload";
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|mimes:png,jpg,jpeg,doc,docx,ppt,pptx,txt,pdf|max:10040'
+        ]);
+
+        if ($validator->fails()) {
+        return response()->json($validator->errors()->first('file'), 400);
+        }
+        
+        $completeFileName = explode(".",$request->file('file')->getClientOriginalName());
+        $documentName = $request->upload_deskripsi.'_'.time().'_'.$completeFileName[0] . '.' . $request->file('file')->extension();
+
+        CertifiedUpload::create([
+            'certified_member_id'=>auth('certified')->user()->id,
+            'upload_deskripsi'=>$request->upload_deskripsi,
+            'file_name'=>$documentName
+        ]);
+
+        $upload = CertifiedUpload::whereIn('upload_deskripsi',['perjanjian','bukti_pembayaran'])->get();
+
+        if (count($upload) <= 2) {
+            $insert_data = CertifiedMember::where('id', auth('certified')->user()->id);
+            $insert_data->update([
+            'certified_status' => "5"
+            ]);
+        }
+        
+    
+        $request->file('file')->move(public_path($this->dir_upload.auth('certified')->user()->nama), $documentName);
+        
+        return response()->json($documentName, 200);
+
+    }
+
+    public function uploadPerjanjianKonfirmasi(Request $request){
+        $pesan = $request->upload_deskripsi."berhasil di upload";
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|mimes:png,jpg,jpeg,doc,docx,ppt,pptx,txt,pdf|max:10040'
+        ]);
+
+        if ($validator->fails()) {
+        return response()->json($validator->errors()->first('file'), 400);
+        }
+        
+        $completeFileName = explode(".",$request->file('file')->getClientOriginalName());
+        $documentName = $request->upload_deskripsi.'_'.time().'_'.$completeFileName[0] . '.' . $request->file('file')->extension();
+
+        CertifiedUpload::create([
+            'certified_member_id'=>$request->id_user,
+            'upload_deskripsi'=>$request->upload_deskripsi,
+            'file_name'=>$documentName
+        ]);
+
+    
+        $request->file('file')->move(public_path($this->dir_upload.$request->nama), $documentName);
+        
+        return response()->json($documentName, 200);
+
     }
 
     public function loginAction(Request $request){
@@ -154,7 +326,6 @@ class CertifiedMemberController extends Controller
             
             return redirect(action('CertifiedMemberController@home'));
             
-
         }
         return back()->with('warning', 'Email or Password Anda Salah');
     }
@@ -167,17 +338,122 @@ class CertifiedMemberController extends Controller
     }
 
     public function insertNotive(Request $request ){
+        
         // dd($request);
 
-        $insertNotive = CertifiedInformation::create([
-            'certified_member_id'=>$request->id,
-            'kategori'=>$request->kategori,
-            'title'=>$request->title,
-            'body'=>$request->body,
-            'status'=>"1"
-        ]);
+        if ($request->kategori == "konfirmasi_ujian") {
+            
+            $update = CertifiedMember::where('id',$request->id)->first();
+            
+            if ($update->certified_status <= 6  )  {
 
+                $update_notive = CertifiedInformation::where('certified_member_id',$request->id)->where('title','LIKE','Konfirmasi Ujian')->first();
+                if($update_notive != null){
+                    $update_notive->update([
+                        'body'=>$request->body,
+                        'ujian_pilihan_1'=> $request->pilihanTanggal1,
+                        'ujian_pilihan_1_sesi1'=>$request->pilihanTanggal1_waktu1,
+                        'ujian_pilihan_1_sesi2'=>$request->pilihanTanggal1_waktu2,
+                        'ujian_pilihan_2'=> $request->pilihanTanggal2,
+                        'ujian_pilihan_2_sesi1'=>$request->pilihanTanggal2_waktu1,
+                        'ujian_pilihan_2_sesi2'=>$request->pilihanTanggal2_waktu2,
+                        'ujian_pilihan_3'=> $request->pilihanTanggal3,
+                        'ujian_pilihan_3_sesi1'=>$request->pilihanTanggal3_waktu1,
+                        'ujian_pilihan_3_sesi2'=>$request->pilihanTanggal3_waktu2
+                    ]);
+
+                    $insertNotive = True;
+                }else {
+                    $insertNotive = CertifiedInformation::create([
+                        'certified_member_id'=>$request->id,
+                        'kategori'=>$request->kategori,
+                        'title'=>$request->title,
+                        'body'=>$request->body,
+                        'ujian_pilihan_1'=> $request->pilihanTanggal1,
+                        'ujian_pilihan_1_sesi1'=>$request->pilihanTanggal1_waktu1,
+                        'ujian_pilihan_1_sesi2'=>$request->pilihanTanggal1_waktu2,
+                        'ujian_pilihan_2'=> $request->pilihanTanggal2,
+                        'ujian_pilihan_2_sesi1'=>$request->pilihanTanggal2_waktu1,
+                        'ujian_pilihan_2_sesi2'=>$request->pilihanTanggal2_waktu2,
+                        'ujian_pilihan_3'=> $request->pilihanTanggal3,
+                        'ujian_pilihan_3_sesi1'=>$request->pilihanTanggal3_waktu1,
+                        'ujian_pilihan_3_sesi2'=>$request->pilihanTanggal3_waktu2,
+                        'status'=>"1"
+                    ]);
+                }
+                $update->update([
+                    'certified_status'=>"6",
+                ]);
+            } else {
+                return back()->with('warning','Notive Tidak Masuk');
+            }
+            
+        } elseif($request->kategori == "jadwal_wawancara"){
+
+            $update = CertifiedMember::where('id',$request->id)->first();
+            if ($update->certified_status <= 11  ) {
+
+                $update_notive = CertifiedInformation::where('certified_member_id',$request->id)->where('title','LIKE','Jadwal Wawancara')->first();
+                if($update_notive != null){
+                    $update_notive->update([
+                        'body'=>$request->body,
+                        'wawancara1'=> $request->pilihanTanggal1,
+                        'wawancara1_sesi1'=>$request->pilihanTanggal1_waktu1,
+                        'wawancara1_sesi2'=>$request->pilihanTanggal1_waktu2,
+                        'wawancara2'=> $request->pilihanTanggal2,
+                        'wawancara2_sesi1'=>$request->pilihanTanggal2_waktu1,
+                        'wawancara2_sesi2'=>$request->pilihanTanggal2_waktu2,
+                        'wawancara3'=> $request->pilihanTanggal3,
+                        'wawancara3_sesi1'=>$request->pilihanTanggal3_waktu1,
+                        'wawancara3_sesi2'=>$request->pilihanTanggal3_waktu2
+                    ]);
+
+                    $insertNotive = True;
+                }else {
+                    $insertNotive = CertifiedInformation::create([
+                        'certified_member_id'=>$request->id,
+                        'kategori'=>$request->kategori,
+                        'title'=>$request->title,
+                        'body'=>$request->body,
+                        'wawancara1'=> $request->pilihanTanggal1,
+                        'wawancara1_sesi1'=>$request->pilihanTanggal1_waktu1,
+                        'wawancara1_sesi2'=>$request->pilihanTanggal1_waktu2,
+                        'wawancara2'=> $request->pilihanTanggal2,
+                        'wawancara2_sesi1'=>$request->pilihanTanggal2_waktu1,
+                        'wawancara2_sesi2'=>$request->pilihanTanggal2_waktu2,
+                        'wawancara3'=> $request->pilihanTanggal3,
+                        'wawancara3_sesi1'=>$request->pilihanTanggal3_waktu1,
+                        'wawancara3_sesi2'=>$request->pilihanTanggal3_waktu2,
+                        'status'=>"1"
+                    ]);
+                }
+                
+                $update->update([
+                    'certified_status'=>"11",
+                ]);
+            } else {
+                return back()->with('warning','Notive habis');
+            }
+                        
+        }
+        
+        else {
+            $insertNotive = CertifiedInformation::create([
+                'certified_member_id'=>$request->id,
+                'kategori'=>$request->kategori,
+                'title'=>$request->title,
+                'body'=>$request->body,
+                'status'=>"1"
+            ]);
+        }
+        
+        
         if ($insertNotive) {
+            $email_user = CertifiedMember::where('id',$request->id)->first();
+            $isi = $request->body;
+            $subject = $request->title;
+            $alamat_email=$email_user->email;        
+            Mail::to($alamat_email)->send(new SendEmail($subject,$isi));
             
             return back()->with('success','Notive berhasil ditambahkan');
         }else{
@@ -186,8 +462,24 @@ class CertifiedMemberController extends Controller
 
     }
 
-    
+    public function jadwalWawancara(){
+        $jadwalWawancara = CertifiedInformation::where('certified_member_id',auth('certified')->user()->id)->where('title','Jadwal Wawancara')->first();
+        // dd($pilihanJadwals);
+        $cek= CertifiedMember::where('id',auth('certified')->user()->id)->first();
+        if($cek->certified_status <= 11 ){
+            // dd("belum");
+            
+            return view('certified.dashboard.jadwalWawancara',compact('jadwalWawancara'));
+        }else{
+            // dd("sudah");
+            return back();
+        }  
+        
+        
+    }
 
+
+    
     public function kalkulasiJam($mulai, $selesai){
         
         $awal = strtotime($mulai);
@@ -268,7 +560,7 @@ class CertifiedMemberController extends Controller
     }
 
     public function insertDataAction(Request $request){
-
+        // dd($request);
         
         $id = auth('certified')->user()->id;
         $nama_gelar=$request->nama_gelar;
@@ -526,6 +818,30 @@ class CertifiedMemberController extends Controller
         
     }
 
+    public function uploadFoto(Request $request){
+        
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|mimes:png,jpg,jpeg,psd,pdf,ai|max:2048'
+        ]);
+
+        if ($validator->fails()) {
+        return response()->json($validator->errors()->first('file'), 400);
+        }
+        
+        $completeFileName = explode(".",$request->file('file')->getClientOriginalName());
+        $imageName = 'Foto_'.time().'_'.$completeFileName[0] . '.' . $request->file('file')->extension();
+
+        $insert_data = CertifiedMember::where('id', auth('certified')->user()->id);
+        $insert_data->update([
+            'foto' => $imageName,
+        ]);
+    
+        $request->file('file')->move(public_path($this->dir_upload.auth('certified')->user()->nama), $imageName);
+        
+        return response()->json($request->indikator, 200);
+        
+    }
+
     public function uploadIjazah(Request $request){
         
         $validator = Validator::make($request->all(), [
@@ -591,7 +907,9 @@ class CertifiedMemberController extends Controller
         $pelatihan = CertifiedPelatihan::where('certified_member_id',$id)->get();
         $upload = CertifiedUpload::where('certified_member_id',$id)->get();
         $status = CertifiedStatus::where('certified_status', $datauser->certified_status)->first();
-        // dd($datauser->certified_status);
+        $ujian = CertifiedUjian::where('certified_member_id',$id)->first();
+        $wawancara = CertifiedWawancara::where('certified_member_id',$id)->first();
+        // dd($datauser);
         $nilai = 0;
         
         foreach ($pendidikan as $nilai_pendidikan){
@@ -614,7 +932,7 @@ class CertifiedMemberController extends Controller
         }
 
         $score = (string)$nilai;
-        return view('admin.certified.userdetail',compact('datauser','pendidikan','pengalaman','pelatihan','pencapaian','upload','status','score'));
+        return view('admin.certified.userdetail',compact('datauser','pendidikan','pengalaman','pelatihan','pencapaian','upload','status','score','ujian','wawancara'));
     }
 
     public function downloadZipFile($id){
@@ -638,9 +956,9 @@ class CertifiedMemberController extends Controller
         return response()->download(public_path($fileName));
     }
 
-    public function deleteDataMember($deskripsi)
+    public function deleteDataMember(Request $request)
     {
-        
+        $deskripsi = $request->deskripsi;
         $aksi = explode("_",$deskripsi);
         File::delete($this->dir_upload.auth('certified')->user()->nama.'/'.$deskripsi);
         // dd($this->dir_upload.auth('certified')->user()->nama.'/'.$deskripsi);
@@ -648,6 +966,13 @@ class CertifiedMemberController extends Controller
             $insert_data = CertifiedMember::where('nama', auth('certified')->user()->nama);
             $insert_data->update([
             'certified_cv' => null,
+            ]);
+            
+        }
+        if ($aksi[0] == "Foto"){
+            $insert_data = CertifiedMember::where('nama', auth('certified')->user()->nama);
+            $insert_data->update([
+            'foto' => null,
             ]);
             
         }
@@ -661,9 +986,9 @@ class CertifiedMemberController extends Controller
        return back();
     }
 
-    public function deleteUpload($deskripsi){
+    public function deleteUpload(Request $request){
         
-        $upload_deskripsi = $deskripsi;
+        $upload_deskripsi = $request->deskripsi;
         
         $delete_upload = CertifiedUpload::where('certified_member_id',auth('certified')->user()->id)->where('upload_deskripsi',$upload_deskripsi)->first();
         $delete_upload->delete();
@@ -673,11 +998,23 @@ class CertifiedMemberController extends Controller
     }
 
     public function inputNilai(Request $request){
-        $nilai = CertifiedMember::where('id',$request->id);
-        $nilai->update([
-            'nilai'=>$request->nilai,
-            'certified_status'=>"4",
-        ]);
+
+        $score= (int)$request->nilai;
+        if($score >= 2000){
+            $insert_data = CertifiedMember::where('id', $request->id);
+            $insert_data->update([
+            'nilai' => $request->nilai,
+            'certified_status' => "4",
+            'status'=>"Lolos Verifikasi Dokumen"
+            ]);
+        }else {
+            $insert_data = CertifiedMember::where('id', $request->id);
+            $insert_data->update([
+            'nilai' => $request->nilai,
+            'status'=>"Tidak Lolos Verifikasi Dokument"
+            ]);
+        }
+
         return back()->with('update', 'Nilai berhasil dimasukkan'); 
     }
 
@@ -688,10 +1025,69 @@ class CertifiedMemberController extends Controller
         $pendidikan = CertifiedPendidikan::where('certified_member_id',$id)->get();
         $pengalaman = CertifiedPengalaman::where('certified_member_id',$id)->get();
         $pencapaian = CertifiedPencapaian::where('certified_member_id',$id)->get();
+        $pelatihan = CertifiedPelatihan::where('certified_member_id',$id)->get();
         $upload = CertifiedUpload::where('certified_member_id',$id)->get();
+        $ujian = CertifiedUjian::where('certified_member_id',$id)->first();
+        $wawancara = CertifiedWawancara::where('certified_member_id',$id)->first();
+        $penilaianWawancara = CertifiedPenilaianWawancara::where('certified_member_id',$id)->get();
+        $penguji = CertifiedPenilaianWawancara::where('certified_member_id',$id)->groupBy('penguji')->get();
         $status = CertifiedStatus::where('certified_status', $datauser->certified_status)->first();
+        $time= date("Y-m-d H:i:s", strtotime('now'));
+        $waktu = explode(" ",$time);
+        $waktu1 = explode("-",$waktu[0]);
+        if($waktu1[1]=="01"){
+            $bulan = "Januari";
+        }elseif($waktu1[1]=="02"){
+            $bulan = "Februari";
+        }elseif($waktu1[1]=="03"){
+            $bulan = "Maret";
+        }elseif($waktu1[1]=="04"){
+            $bulan = "April";
+        }elseif($waktu1[1]=="05"){
+            $bulan = "Mei";
+        }elseif($waktu1[1]=="06"){
+            $bulan = "Juni";
+        }elseif($waktu1[1]=="07"){
+            $bulan = "Juli";
+        }elseif($waktu1[1]=="08"){
+            $bulan = "Agustus";
+        }elseif($waktu1[1]=="09"){
+            $bulan = "September";
+        }elseif($waktu1[1]=="10"){
+            $bulan = "Oktober";
+        }elseif($waktu1[1]=="11"){
+            $bulan = "November";
+        }elseif($waktu1[1]=="12"){
+            $bulan = "Desember";
+        }else {
+            $bulan = $waktu1[1];
+        }
+        $tanggal = $waktu1[2]." ".$bulan." ".$waktu1[0]; 
 
-        $pdf = PDF::loadView('certified.dataPDF',compact('datauser','pendidikan','pengalaman','pencapaian','upload','status'));
+        $jlm_penguji = count($penguji);
+        $avr_pendidikan = CertifiedPenilaianWawancara::selectRaw('sum(penilaian_penguji)/count(penilaian_penguji) as summery, id_pendidikan')
+            ->where('certified_member_id',$id)
+            ->whereNotNull('id_pendidikan')
+            ->groupBy('id_pendidikan')
+            ->get();
+        $avr_pelatihan = CertifiedPenilaianWawancara::selectRaw('sum(penilaian_penguji)/count(penilaian_penguji) as summery, id_pelatihan')
+            ->where('certified_member_id',$id)
+            ->whereNotNull('id_pelatihan')
+            ->groupBy('id_pelatihan')
+            ->get();
+        $avr_pengalaman = CertifiedPenilaianWawancara::selectRaw('sum(penilaian_penguji)/count(penilaian_penguji) as summery, id_pengalaman')
+            ->where('certified_member_id',$id)
+            ->whereNotNull('id_pengalaman')
+            ->groupBy('id_pengalaman')
+            ->get();
+        $avr_pencapaian = CertifiedPenilaianWawancara::selectRaw('sum(penilaian_penguji)/count(penilaian_penguji) as summery, id_pencapaian')
+            ->where('certified_member_id',$id)
+            ->whereNotNull('id_pencapaian')
+            ->groupBy('id_pencapaian')
+            ->get();
+
+                        
+        $pdf = PDF::loadView('certified.dataPDF',compact('datauser','avr_pendidikan','avr_pelatihan','avr_pengalaman','avr_pencapaian','penilaianWawancara','penguji','tanggal','ujian','wawancara','pendidikan','pelatihan','pengalaman','pencapaian','upload','jlm_penguji','status'));
 
         return $pdf->download($datauser->nama.'.pdf');
     }
@@ -776,11 +1172,18 @@ class CertifiedMemberController extends Controller
             $cek_upload[] = $data->upload_deskripsi;
         }
         if (auth('certified')->user()->ktp !=NULL && auth('certified')->user()->certified_cv != NULL) {
-            if (count($cek_upload)<=4){
-                $insert_data = CertifiedMember::where('id', auth('certified')->user()->id);
-                $insert_data->update([
-                'certified_status' => "2",
-                ]);
+            
+            if (count($cek_upload)<=1){
+               
+                if (auth('certified')->user()->certified_status >= 4 ) {
+                    $a="aas";
+                } else {
+                    $insert_data = CertifiedMember::where('id', auth('certified')->user()->id);
+                    $insert_data->update([
+                    'certified_status' => "2",
+                    ]);
+                }
+
             }else {
                 $hitung = 0;
                 foreach($cek_upload as $item){
@@ -792,18 +1195,34 @@ class CertifiedMemberController extends Controller
                         $hitung++;
                     }elseif($item == "transkrip"){
                         $hitung++;
+                    }elseif($item == "pernyataan"){
+                        $hitung++;
+                    }else{
+                        $hitung;
                     }
                 }
-                if ($hitung >= 4) {
-                    $insert_data = CertifiedMember::where('id', auth('certified')->user()->id);
-                    $insert_data->update([
-                    'certified_status' => "3",
-                    ]);
+                
+                if ($hitung >= 2) {
+                    
+                    if (auth('certified')->user()->certified_status >= 4 ) {
+                        $a="aas";
+                    } else {
+                        $insert_data = CertifiedMember::where('id', auth('certified')->user()->id);
+                        $insert_data->update([
+                        'certified_status' => "3",
+                        ]);
+                    }
+                    
                 } else {
-                    $insert_data = CertifiedMember::where('id', auth('certified')->user()->id);
-                    $insert_data->update([
-                    'certified_status' => "2",
-                    ]);
+                    if (auth('certified')->user()->certified_status >= 4 ) {
+                        $a="aas";
+                    } else {
+                        $insert_data = CertifiedMember::where('id', auth('certified')->user()->id);
+                        $insert_data->update([
+                        'certified_status' => "2",
+                        ]);
+                    }
+                    
                 }
             }
         }
@@ -823,7 +1242,575 @@ class CertifiedMemberController extends Controller
         $pencapaian = CertifiedPencapaian::where('certified_member_id', auth('certified')->user()->id)->get();
         $pelatihan = CertifiedPelatihan::where('certified_member_id', auth('certified')->user()->id)->get();
         $upload = CertifiedUpload::where('certified_member_id',auth('certified')->user()->id)->get();
-        return view('certified.dashboard.profilUser',compact('pendidikan','pengalaman','pencapaian','pelatihan','upload','notive'));
+        $wawancara = CertifiedWawancara::where('certified_member_id',auth('certified')->user()->id)->get();
+        return view('certified.dashboard.profilUser',compact('pendidikan','pengalaman','pencapaian','pelatihan','upload','notive','wawancara'));
     }
+
+    public function sendEmail(){
+        $email_send = CertifiedInformation::where('id',52)->first();
+        $isi = $email_send->body;
+        $subject = $email_send->title;
+        $alamat_email="fendyasnanda@gmail.com";        
+        Mail::to($alamat_email)->send(new SendEmail($subject,$isi));
+        return 'Berhasil Mengirim Email';
+
+    }
+
+    public function insertSendEmail(Request $request){
+        // dd($request);
+        $isi = $request->pesan;
+        $subject = "Pesan dari ".$request->nama;
+        $alamat_email = "lspptpi@gmail.com";
+        Mail::to($alamat_email)->send(new SendEmail($subject,$isi));
+
+        return back();
+    }
+
+    public function verifikasiScore(Request $request) {
+        // dd($request);
+        if($request->aksi == "pengalaman"){
+            $update_data = CertifiedPengalaman::where('id', $request->id);
+            $update_data->update([
+            'score_verified' => $request->data_score,
+            ]);
+            return response()->json($request->id . $request->data_score . $request->aksi , 200);
+
+        }elseif($request->aksi == "pelatihan"){
+            $update_data = CertifiedPelatihan::where('id', $request->id);
+            $update_data->update([
+            'score_verified' => $request->data_score,
+            ]);
+            return response()->json( $request->id . $request->data_score . $request->aksi, 200);
+
+        }elseif($request->aksi == "pencapaian"){
+            $update_data = CertifiedPencapaian::where('id', $request->id);
+            $update_data->update([
+            'score_verified' => $request->data_score,
+            ]);
+            return response()->json($request->id . $request->data_score . $request->aksi, 200);
+
+        }else {
+            return response()->json("tidak terupdate", 200);
+        }
+
+        // return response()->json("masuk", 200);
+    }
+
+    public function pilihJadwalUjian(){
+        // dd(auth('certified')->user()->id);
+        $pilihanJadwals = CertifiedInformation::where('certified_member_id',auth('certified')->user()->id)->where('title','Konfirmasi Ujian')->first();
+        // dd($pilihanJadwals);
+        return view('certified.dashboard.pilihJadwalUjian',compact('pilihanJadwals'));
+    }
+    
+    public function insertJadwalUjian(Request $request){
+        // dd($request);
+        $data = CertifiedUjian::where('certified_member_id',$request->id)->first();
+        $jadwal = explode("_",$request->Konfirmasi_Ujian);
+        if ($data != null) {
+            // dd("sudah ada ");
+            $data->update([
+                'konfirmasi_ujian'=>$jadwal[0],
+                'jam_ujian'=>$jadwal[1]
+            ]);
+        } else {
+            // dd("belum ada ");
+            CertifiedUjian::create([
+                'certified_member_id'=>$request->id,
+                'konfirmasi_ujian'=>$jadwal[0],
+                'jam_ujian'=>$jadwal[1]
+            ]);
+        }
+        return redirect(action('CertifiedMemberController@home'));
+    }
+
+    public function konfirmasiUjian(Request $request){
+        $data = CertifiedUjian::where('certified_member_id',$request->id)->first();
+        $status = CertifiedMember::where('id',$request->id)->first();
+
+        $data->update([
+            'tanggal_ujian'=>$request->konfirmasi_ujian,
+        ]);
+
+        $status->update([
+            'certified_status'=>"7",
+        ]);
+
+        return response()->json("Ujian Telah Terkonfirmasi",200);
+    }
+    public function konfirmasiUjian1(Request $request){
+        $data = CertifiedUjian::where('certified_member_id',$request->id)->first();
+        $status = CertifiedMember::where('id',$request->id)->first();
+
+        $data->update([
+            'tanggal_ujian'=>$request->konfirmasi_ujian,
+        ]);
+
+        $status->update([
+            'certified_status'=>"7",
+        ]);
+
+        return back();
+    }
+
+    public function konfirmasiHasilUjian(Request $request){
+        $tes = CertifiedMember::where('id',$request->id)->first();
+        $ujian = CertifiedUjian::where('certified_member_id',$request->id)->first();
+        $nama = $tes->nama;
+        $score = $ujian->score_ujian;
+        // dd($status->nama);
+
+
+        if($ujian->score_ujian >= 60){
+            $aksi = "Lulus Ujian Tulis";
+            $certified_status = "10";
+
+            $title = "LULUS Ujian";
+            $status = "1";
+            $kategori = "lulus_ujian";
+            $body ="<p>Kepada Yth, <strong> ".$nama."</strong></p><p>Berdasarkan hasil uji kompetensi yaitu uji tulis. 
+            Selamat anda dinyatakan <strong><em>Lulus</em></strong> ke tahap selanjutnya yaitu <strong><em>Wawancara</em></strong>, 
+            Detail hasil uji tulis sebagai berikut:</p>
+            <p>		Media uji tulis	    : Online</p>
+            <p>		Nilai Uji tulis		: ".$score."</p>
+            <p>Informasi lebih lanjut dapat menghubungi kami di Siti : 081295994863 </p>
+            <p>Sekian, terimakasih.</p>";
+
+            
+            
+        }else{
+            $aksi = "Tidak Lulus Ujian Tulis";
+            $certified_status = "21";
+
+            $title = "Tidak LULUS Ujian";
+            $status = "1";
+            $kategori = "tidak_lulus_ujian";
+            $body  = "<p>Kepada Yth, <strong>".$nama." </strong></p>
+            <p>Berdasarkan hasil Ujian Anda, Mohon maaf anda dinyatakan <strong><em>BELUM LULUS</em></strong> untuk memenuhi kriteria untuk ke tahapan selanjutnya. </p>
+            <p>Informasi lebih lanjut dapat menghubungi kami di Siti :08473274282</p>
+            <p>Sekian, terimakasih.</p>";
+
+
+        }
+        CertifiedInformation::create([
+            'certified_member_id'=>$request->id,
+            'title'=>$title,
+            'status'=>$status,
+            'kategori'=>$kategori,
+            'body'=>$body
+        ]);
+        
+        
+        $status = CertifiedMember::where('id',$request->id)->first();
+        $status->update([
+            'certified_status'=>$certified_status,
+            'status'=>$aksi,
+        ]);
+
+        return response()->json("Hasil Ujian Telah Terkonfirmasi",200);
+    }
+
+    public function konfirmasiHasilUjian1(Request $request){
+        // dd($request);
+        $tes = CertifiedMember::where('id',$request->id)->first();
+        $ujian = CertifiedUjian::where('certified_member_id',$request->id)->first();
+        $nama = $tes->nama;
+        $score = $ujian->score_ujian;
+        // dd($status->nama);
+
+
+        if($ujian->score_ujian >= 60){
+            $aksi = "Lulus Ujian Tulis";
+            $certified_status = "10";
+
+            $title = "LULUS Ujian";
+            $status = "1";
+            $kategori = "lulus_ujian";
+            $body ="<p>Kepada Yth, <strong> ".$nama."</strong></p><p>Berdasarkan hasil uji kompetensi yaitu uji tulis. 
+            Selamat anda dinyatakan <strong><em>Lulus</em></strong> ke tahap selanjutnya yaitu <strong><em>Wawancara</em></strong>, 
+            Detail hasil uji tulis sebagai berikut:</p>
+            <p>		Media uji tulis	    : Online</p>
+            <p>		Nilai Uji tulis		: ".$score."</p>
+            <p>Informasi lebih lanjut dapat menghubungi kami di Siti : 081295994863 </p>
+            <p>Sekian, terimakasih.</p>";
+
+            
+            
+        }else{
+            $aksi = "Tidak Lulus Ujian Tulis";
+            $certified_status = "21";
+
+            $title = "Tidak LULUS Ujian";
+            $status = "1";
+            $kategori = "tidak_lulus_ujian";
+            $body  = "<p>Kepada Yth, <strong>".$nama." </strong></p>
+            <p>Berdasarkan hasil Ujian Anda, Mohon maaf anda dinyatakan <strong><em>BELUM LULUS</em></strong> untuk memenuhi kriteria untuk ke tahapan selanjutnya. </p>
+            <p>Informasi lebih lanjut dapat menghubungi kami di Siti :08473274282</p>
+            <p>Sekian, terimakasih.</p>";
+
+
+        }
+        CertifiedInformation::create([
+            'certified_member_id'=>$request->id,
+            'title'=>$title,
+            'status'=>$status,
+            'kategori'=>$kategori,
+            'body'=>$body
+        ]);
+        
+        
+        $status = CertifiedMember::where('id',$request->id)->first();
+        $status->update([
+            'certified_status'=>"10",
+            'status'=>$aksi,
+        ]);
+        
+
+        return back();
+    }
+
+    public function insertJadwalWawancara(Request $request){
+        // dd($request);
+        $jadwal = explode("_",$request->Jadwal_Wawancara);
+        $data = CertifiedWawancara::where('certified_member_id',$request->id)->first();
+        if ($data != null) {
+            // dd("sudah ada ");
+            $data->update([
+                'konfirmasi_wawancara'=>$jadwal[0],                
+                'jam_wawancara'=>$jadwal[1]
+            ]);
+        } else {
+            // dd("belum ada ");
+            CertifiedWawancara::create([
+                'certified_member_id'=>$request->id,
+                'konfirmasi_wawancara'=>$jadwal[0],
+                'jam_wawancara'=>$jadwal[1]
+            ]);
+        }
+
+        
+        return redirect(action('CertifiedMemberController@home'));
+    }
+
+    public function getJadwalWawancara(Request $request){
+        $getJadwal = CertifiedWawancara ::where('certified_member_id', $request->id)->first();
+        return response()->json($getJadwal,200);
+    }
+
+    public function konfirmasiWawancara(Request $request){
+        
+        $data = CertifiedWawancara::where('certified_member_id',$request->id)->first();
+        $status = CertifiedMember::where('id',$request->id)->first();
+
+        $data->update([
+            'tanggal_wawancara'=>$request->konfirmasi_wawancara,
+        ]);
+
+        $status->update([
+            'certified_status'=>"12",
+        ]);
+
+        return response()->json($request->konfirmasi_wawancara,200);
+    }
+
+    public function konfirmasiWawancara1(Request $request){
+        
+        $data = CertifiedWawancara::where('certified_member_id',$request->id)->first();
+        $status = CertifiedMember::where('id',$request->id)->first();
+
+        $data->update([
+            'tanggal_wawancara'=>$request->konfirmasi_wawancara,
+        ]);
+
+        $status->update([
+            'certified_status'=>"12",
+        ]);
+
+        return back();
+
+    }
+    public function listPesertaSertifikasi(){
+       
+        $datacertified = CertifiedMember::orderByDesc('created_at')->get();
+        return view('certified.dashboard.admin.listPesertaSertifikasi', compact('datacertified'));
+      
+    }
+
+    public function listStatusPeserta(){
+       
+        $datacertified = CertifiedMember::orderByDesc('created_at')->get();
+        return view('certified.dashboard.admin.listStatusPeserta', compact('datacertified'));
+      
+    }
+
+    public function downloadData(){
+       
+        $datacertified = CertifiedMember::whereIn('certified_status',[4,5,6,7,8,9,10,11,12,13,14,15])->orderByDesc('created_at')->get();
+        return view('certified.dashboard.admin.downloadData', compact('datacertified'));
+      
+    }
+
+    public function getStatusPeserta(Request $request){
+       
+        $data = CertifiedMember::where('certified_status',$request->status)->get();
+        // $data = CertifiedMember::orderByDesc('created_at')->get();
+        return response()->json($data, 200);
+      
+    }
+
+    public function getStatusPesertaNotive(Request $request){
+       
+        $data = CertifiedMember::where('certified_status',$request->status)->get();
+        // $data = CertifiedMember::orderByDesc('created_at')->get();
+        return response()->json($data, 200);
+      
+    }
+
+    public function dataProfileUser($id){
+        $datauser = CertifiedMember::where('id',$id)->first();
+
+        $pendidikan = CertifiedPendidikan::where('certified_member_id',$id)->get();
+        $pengalaman = CertifiedPengalaman::where('certified_member_id',$id)->get();
+        $pencapaian = CertifiedPencapaian::where('certified_member_id',$id)->get();
+        $pelatihan = CertifiedPelatihan::where('certified_member_id',$id)->get();
+        $upload = CertifiedUpload::where('certified_member_id',$id)->get();
+        $status = CertifiedStatus::where('certified_status', $datauser->certified_status)->first();
+        $ujian = CertifiedUjian::where('certified_member_id',$id)->first();
+        $wawancara = CertifiedWawancara::where('certified_member_id',$id)->first();
+        // dd($datauser);
+        $nilai = 0;
+        
+        foreach ($pendidikan as $nilai_pendidikan){
+            
+            $nilai = $nilai + (int)$nilai_pendidikan->score_verified;
+        }
+
+        foreach ($pengalaman as $nilai_pengalaman){
+            
+            $nilai = $nilai + (int)$nilai_pengalaman->score_verified;
+        }
+        foreach ($pelatihan as $nilai_pelatihan){
+            
+            $nilai = $nilai + (int)$nilai_pelatihan->score_verified;
+        }
+
+        foreach ($pencapaian as $nilai_pencapaian){
+            
+            $nilai = $nilai + (int)$nilai_pencapaian->score_verified;
+        }
+
+        $score = (string)$nilai;
+        return view('certified.dashboard.admin.dataUser',compact('datauser','pendidikan','pengalaman','pelatihan','pencapaian','upload','status','score','ujian','wawancara'));
+    }
+
+    public function dataPesertaUjian(){
+       
+        $datacertified = CertifiedMember::whereIn('certified_status', [9,10,11,12,13,14])->get();
+        // dd($datacertified->id);
+        $ujian= CertifiedUjian::get();
+        //  dd($ujian);
+        return view('certified.dashboard.admin.dataPesertaUjian', compact('datacertified','ujian'));
+      
+    }
+
+    public function dataJawabanPeserta($id){
+        $jawaban= CertifiedJawaban::where('certified_member_id',$id)->get();
+        $soal = CertifiedSoal::get();
+        //  dd($jawaban);
+        return view('certified.dashboard.admin.dataJawabanPeserta', compact('jawaban','soal'));
+      
+    }
+
+    
+
+    public function listPesertaVerifikasi(){
+       
+        $datacertified = CertifiedMember::where('certified_status', [3,4])->orderByDesc('created_at')->get();
+        return view('certified.dashboard.admin.listPesertaVerifikasi', compact('datacertified'));
+      
+    }
+
+    public function dataUserVerifikasi($id){
+        $datauser = CertifiedMember::where('id',$id)->first();
+
+        $pendidikan = CertifiedPendidikan::where('certified_member_id',$id)->get();
+        $pengalaman = CertifiedPengalaman::where('certified_member_id',$id)->get();
+        $pencapaian = CertifiedPencapaian::where('certified_member_id',$id)->get();
+        $pelatihan = CertifiedPelatihan::where('certified_member_id',$id)->get();
+        $upload = CertifiedUpload::where('certified_member_id',$id)->get();
+        $status = CertifiedStatus::where('certified_status', $datauser->certified_status)->first();
+        $ujian = CertifiedUjian::where('certified_member_id',$id)->first();
+        $wawancara = CertifiedWawancara::where('certified_member_id',$id)->first();
+        // dd($datauser);
+        $nilai = 0;
+        
+        foreach ($pendidikan as $nilai_pendidikan){
+            
+            $nilai = $nilai + (int)$nilai_pendidikan->score_verified;
+        }
+
+        foreach ($pengalaman as $nilai_pengalaman){
+            
+            $nilai = $nilai + (int)$nilai_pengalaman->score_verified;
+        }
+        foreach ($pelatihan as $nilai_pelatihan){
+            
+            $nilai = $nilai + (int)$nilai_pelatihan->score_verified;
+        }
+
+        foreach ($pencapaian as $nilai_pencapaian){
+            
+            $nilai = $nilai + (int)$nilai_pencapaian->score_verified;
+        }
+
+        $score = (string)$nilai;
+        return view('certified.dashboard.admin.verifikasiDataUser',compact('datauser','pendidikan','pengalaman','pelatihan','pencapaian','upload','status','score','ujian','wawancara'));
+    }
+
+    public function konfirmasiPesertaSertifikasi(){
+       
+        return view('certified.dashboard.admin.konfirmasiPesertaSertifikasi');
+      
+    }
+
+    public function getDataKonfirmasi(Request $request){
+        
+        if($request->status == 5){
+            $data = CertifiedMember::whereIn('certified_status',[5,6,7,8,9,10,11,12])->get();
+            $upload = CertifiedUpload::get();
+            $notive_response= [
+                'data'=>$data,
+                'upload'=>$upload
+            ];
+            return response()->json($notive_response, 200);
+        }elseif($request->status == 6){
+            $data = CertifiedMember::where('certified_status',6)->get();
+            $ujian = CertifiedUjian::get();
+            $notive_response= [
+                'data'=>$data,
+                'ujian'=>$ujian
+            ];
+            return response()->json( $notive_response, 200);
+        }elseif($request->status == 9){
+            $data = CertifiedUjian::leftJoin('certified_members','certified_members.id','=','certified_ujian.certified_member_id')
+                                    ->get();
+            
+            return response()->json( $data, 200);
+        }elseif($request->status == 11){
+            $data = CertifiedWawancara::leftJoin('certified_members','certified_members.id','=','certified_wawancara.certified_member_id')
+                                    ->get();
+            
+            return response()->json( $data, 200);
+        }else{
+            return response()->json("Tidak Ada Data", 200);
+        }
+
+        // $data = CertifiedMember::where('certified_status',$request->status)->get();
+        // $data = CertifiedMember::orderByDesc('created_at')->get();
+        
+      
+    }
+
+    public function tambahNotivePeserta(){
+       
+        $datacertified = CertifiedMember::where('role','user')->orderByDesc('created_at')->get();
+        $notive = CertifiedInformation::get();
+        return view('certified.dashboard.admin.tambahNotivePeserta', compact('datacertified','notive'));
+      
+    }
+
+    public function dataPesertaWawancara(){
+       
+        $datas = CertifiedMember::whereIn('certified_status', [12,13,14])->get();
+        // dd($datacertified->id);
+        $wawancaras= CertifiedWawancara::get();
+        //  dd($wawancaras);
+        return view('certified.dashboard.admin.dataPesertaWawancara', compact('datas','wawancaras'));
+      
+    }
+
+    public function viewPenilaianWawancara($id){
+        $datauser = CertifiedMember::where('id',$id)->first();
+
+        $pendidikan = CertifiedPendidikan::where('certified_member_id',$id)->get();
+        $pengalaman = CertifiedPengalaman::where('certified_member_id',$id)->get();
+        $pencapaian = CertifiedPencapaian::where('certified_member_id',$id)->get();
+        $pelatihan = CertifiedPelatihan::where('certified_member_id',$id)->get();
+        $upload = CertifiedUpload::where('certified_member_id',$id)->get();
+        $wawancara = CertifiedWawancara::where('certified_member_id',$id)->first();
+        $pengujiWawancara = CertifiedPenilaianWawancara::where('certified_member_id',$id)->groupBy('penguji')->get();
+        $penilaianWawancara = CertifiedPenilaianWawancara::where('certified_member_id',$id)->get();
+        
+        // dd(count($pengujiWawancara));
+
+        return view('certified.dashboard.admin.viewPenilaianWawancara',compact('datauser','pendidikan','pelatihan','pengalaman','pencapaian','upload','wawancara','pengujiWawancara','penilaianWawancara'));
+    }
+
+    public function insertPenilaianWawancara(Request $request){
+        // dd($request);
+
+        for($i=0; $i<count($request->id_pendidikan); $i++){
+            CertifiedPenilaianWawancara::create([
+                'certified_member_id'=>$request->id_user,
+                'penguji'=>$request->no_penguji,
+                'nama_penguji'=>$request->nama_penguji,
+                'id_pendidikan'=>$request->id_pendidikan[$i],
+                'penilaian_penguji'=>$request->score_pendidikan[$i],
+                'catatan_pendidikan'=>$request->catatan_pendidikan[$i]
+            ]);
+        }
+
+        for($i=0; $i<count($request->id_pelatihan); $i++){
+            CertifiedPenilaianWawancara::create([
+                'certified_member_id'=>$request->id_user,
+                'penguji'=>$request->no_penguji,
+                'nama_penguji'=>$request->nama_penguji,
+                'id_pelatihan'=>$request->id_pelatihan[$i],
+                'penilaian_penguji'=>$request->score_pelatihan[$i],
+                'catatan_pelatihan'=>$request->catatan_pelatihan[$i]
+            ]);
+        }
+
+        for($i=0; $i<count($request->id_pengalaman); $i++){
+            CertifiedPenilaianWawancara::create([
+                'certified_member_id'=>$request->id_user,
+                'penguji'=>$request->no_penguji,
+                'nama_penguji'=>$request->nama_penguji,
+                'id_pengalaman'=>$request->id_pengalaman[$i],
+                'penilaian_penguji'=>$request->score_pengalaman[$i],
+                'catatan_pengalaman'=>$request->catatan_pengalaman[$i]
+            ]);
+        }
+
+        for($i=0; $i<count($request->id_pencapaian); $i++){
+            CertifiedPenilaianWawancara::create([
+                'certified_member_id'=>$request->id_user,
+                'penguji'=>$request->no_penguji,
+                'nama_penguji'=>$request->nama_penguji,
+                'id_pencapaian'=>$request->id_pencapaian[$i],
+                'penilaian_penguji'=>$request->score_pencapaian[$i],
+                'catatan_pencapaian'=>$request->catatan_pencapaian[$i]
+            ]);
+        }
+
+        $status = CertifiedMember::where('id',$request->id_user)->first();
+        if ($status->certified_status < 14 ) {
+            $status->update([
+                'certified_status'=>"14",
+            ]);
+        }
+
+        return back();
+    }
+
+    public function uploadSuratPerjanjian(){
+        $datauser = CertifiedMember::whereIn('certified_status',[4,5,6,7,8,9,10,11,12,13,14])->get();
+        $dataupload = CertifiedUpload::where('upload_deskripsi','perjanjian')->get();
+        $dataupload_perjanjian = CertifiedUpload::where('upload_deskripsi','perjanjian_konfirmasi')->get();
+        // dd($dataupload_perjanjian);
+
+        return view('certified.dashboard.admin.uploadSuratPerjanjian',compact('datauser','dataupload','dataupload_perjanjian'));
+    }
+
 
 }

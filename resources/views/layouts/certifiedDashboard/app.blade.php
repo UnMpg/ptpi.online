@@ -8,7 +8,7 @@
                 <div class="left_col scroll-view">
 
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="#" class="site_title"> <img src="{{ asset('assets/certified/img/lsp.png') }}" width="30px" alt=""> <span>LSP - PTPI</span></a>
+                        <a href="#" class="site_title"> <img src="{{ asset('assets/certified/img/lsp.png') }}" width="30px" alt=""> <span>LSP - TPI</span></a>
                     </div>
                     
                     <div class="clearfix"></div>
@@ -121,6 +121,7 @@
                                 </div>
                             </div>
                             <div class="notive-isi">
+                                <br>
                                 ${body}
                             </div>
                         </div>
@@ -139,7 +140,7 @@
         function getNotif(){
             return $.ajax({
                         type: "GET",
-                        url: "{{ url('/certified/get-notive') }}",
+                        url: "{{ url('/sertifikasi/get-notive') }}",
                         async: false
                     }).responseText
         }
@@ -158,7 +159,7 @@
             })
         })    
         //     $.ajax({
-        //         url: "{{ url('/certified/get-notive') }}",
+        //         url: "{{ url('/sertifikasi/get-notive') }}",
         //         type : "GET",
         //         async: false,
         //         success: function(response){

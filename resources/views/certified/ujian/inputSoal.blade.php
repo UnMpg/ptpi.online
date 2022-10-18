@@ -33,12 +33,13 @@
                         <table id="tables" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
+                                    <th>Kategori</th>
                                     <th>Soal</th>
                                     <th>Option A</th>
                                     <th>Option B</th>
                                     <th>Option C</th>
                                     <th>Option D</th>
-                                    <th>Option E</th>
+                                    {{-- <th>Option E</th> --}}
                                     <th>Jawaban</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
@@ -47,19 +48,25 @@
                                 
                             @foreach ($dataSoals as $dataSoal)
                                 <tr>
+                                    <td>{{ $dataSoal->kategori }}</td>
                                     <td>{{ $dataSoal->soal }}</td>
                                     <td>{{ $dataSoal->a }}</td>
                                     <td>{{ $dataSoal->b }}</td>
-                                    <td>{{ $dataSoal->b }}</td>
+                                    <td>{{ $dataSoal->c }}</td>
                                     <td>{{ $dataSoal->d }}</td>
-                                    <td>{{ $dataSoal->e }}</td>
+                                    {{-- <td>{{ $dataSoal->e }}</td> --}}
                                     <td>{{ $dataSoal->key }}</td>
                                     <td>
                                         <a href="" class="btn btn-sm btn-warning edit-soal" data-value="{{ $dataSoal->id }}" data-toggle="modal" data-target=".input-soal-ujian" ><i class="far fa-edit"> </i></a> 
                                     
-                                        <button type="submit" class="btn btn-sm btn-danger delete-confirm">
-                                            <i class="far fa-trash-alt"></i>
-                                        </button>
+                                        <form action="{{ action('CertifiedUjianController@deleteSoal', $dataSoal->id) }}" method="post"
+                                            class="formdelete">
+                                            @csrf
+                                            @method('DELETE')
+                                            
+                                            <button type="submit" class="btn btn-sm btn-danger delete-confirm" >
+                                          <i class="fa fa-trash"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -95,6 +102,13 @@
                 <form action="{{ action('CertifiedUjianController@insertSoal') }}" method="POST" id="formInputSoal">
                 @csrf
                 
+                <div class="form-group row">
+                    <label for="Title" class="col-sm-2 col-form-label">Kategori</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="kategori" class="form-control" id="kategori" placeholder="Ketegori" required>
+                    </div>
+                </div>
+
                 <input type="text" name="id" class="form-control" id="id" placeholder="" hidden>
                 <div class="form-group row">
                     <label for="Title" class="col-sm-2 col-form-label">Input Soal</label>
@@ -127,12 +141,13 @@
                         <input type="text" name="d" class="form-control" id="d" placeholder="D" required>
                     </div>
                 </div>
-                <div class="form-group row">
+                
+                {{-- <div class="form-group row">
                     <label for="Title" class="col-sm-2 col-form-label">Option E</label>
                     <div class="col-sm-10">
                         <input type="text" name="e" class="form-control" id="e" placeholder="E" required>
                     </div>
-                </div>
+                </div> --}}
 
                 {{-- <input type="text" name="id" value="{{ $datauser->id }}"  hidden/> --}}
                 <div class="form-group row">
@@ -144,7 +159,7 @@
                             <option value="b">Option B</option>
                             <option value="c">Option C</option>
                             <option value="d">Option D</option>
-                            <option value="e">Option E</option>
+                            {{-- <option value="e">Option E</option> --}}
                         </select>
                     </div>
                 </div>
@@ -194,6 +209,19 @@
 
         let response = JSON.parse(getSoal(url));
         console.log(response);
+        var editkey;
+        if (response.key== response.a) {
+            editkey = "a";
+        }else if(response.key== response.b){
+            editkey = "b";
+        }else if(response.key== response.c){
+            editkey = "c";
+        }else if(response.key== response.d){
+            editkey = "d";
+        } else{
+            editkey = "";
+        }  
+        $('#kategori').val(response.kategori);
         $('#id').val(response.id);
         $('#soal').val(response.soal);
         $('#a').val(response.a);
@@ -201,6 +229,7 @@
         $('#c').val(response.c);
         $('#d').val(response.d);
         $('#e').val(response.e);
+        $('#inputGroupSelect02').val(editkey);
 
         $('#formInputSoal').attr('action','{{ url('/admin/certified-update-soal') }}');
         // $.ajax({

@@ -253,16 +253,16 @@ function loadDeskripsi(){
         let url_upload;
 
         if(upload_action == "ktp"){
-          url_upload = "{{ url('/certified/ktp') }}";
+          url_upload = "{{ url('/sertifikasi/ktp') }}";
         }
         else if (upload_action == "cv"){
-          url_upload = "{{ url('/certified/upload-cv') }}";
+          url_upload = "{{ url('/sertifikasi/upload-cv') }}";
         }
         else if (upload_action == "ijazah"){
-          url_upload = "{{ url('/certified/upload-document') }}";
+          url_upload = "{{ url('/sertifikasi/upload-document') }}";
         }
         else{
-          url_upload = "{{ url('/certified/upload-document') }}";
+          url_upload = "{{ url('/sertifikasi/upload-document') }}";
         }
 
         console.log(url_upload);
@@ -293,7 +293,7 @@ function upload_sertifikat(){
 
   var deskripsi = "sertifikat_"+$("#sertifikat_deskripsi").val();
   console.log(deskripsi);
-  url_upload = "{{ url('/certified/upload-document') }}";
+  url_upload = "{{ url('/sertifikasi/upload-document') }}";
 
   uploadfile(fileName,url_upload,deskripsi);
   

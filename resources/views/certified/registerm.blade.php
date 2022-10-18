@@ -13,7 +13,7 @@
                 <div class="row text-center pb-2 pb-md-0 mb-md-5 ">
                     <div class="title-form">
                         <a href="{{ action('CertifiedMemberController@index') }}"><img src="{{ asset('assets/certified/img/lsp.png') }}" class="img-title" alt=""></a>
-                        <h3 class="">Registrasi LSP TPI</h3>
+                        <h3 class="">Daftar LSP TPI</h3>
                     </div>
                 </div>
 
@@ -37,6 +37,7 @@
   
                   </div>
 
+                 
                   <div class="col-md-6 mb-4">
                     <div class="form-outline">
                       <input type="text" name="email" id="Email" class="form-control form-control-lg"  required="required"/>
@@ -92,7 +93,7 @@
                     <div class="col-md-6 mb-4 rs">
                         <div class="form-outline ">
                             <label class="form-label" for="lastName">Provinsi Rumah Sakit</label>
-                            <select class="form-select" name="nama_provinsi" aria-label="Default select example">
+                            <select class="select form-control-lg form-select" name="nama_provinsi" aria-label="Default select example">
                                 <option selected value="">Propinsi Instansi</option>
                                 @foreach ($provinsi as $item)
                                     <option class="provinsi" value="{{ $item->provinsi }}">{{ $item->provinsi }}</option>
@@ -124,7 +125,7 @@
 
                     <div class="col-md-6 mb-4 text-end">
                         <div class="pt-2">
-                            <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+                            <input class="btn btn-primary btn-lg" type="submit" value="Daftar" />
                         </div>
                     </div>
                     
@@ -157,7 +158,6 @@
 
     const data= {!! $instansi !!};
 
-    // const data= {!! $provinsi !!};
     
     let nama_kota =[];
     let nama_instansi = [];

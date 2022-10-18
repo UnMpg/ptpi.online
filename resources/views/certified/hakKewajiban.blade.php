@@ -5,12 +5,12 @@
 <div class="page-view bg-light" >
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase mb-4">Hak dan kewajiban Person tersertifikasi </h2>
+            <h2 class="section-heading text-uppercase mb-4">Hak dan kewajiban Person Tersertifikasi </h2>
         </div>
         <br>
         <br>
         <div class="row">
-            <h3>Kewajiban Person</h3>
+            <h3>Kewajiban Person LSP</h3>
             <p> 1. Menjunjung tinggi kejujuran dan tidak mudah terpengaruh oleh siapapun.</p>
             <p> 2. Menjaga integritas dalam melaksanakan tugas.</p>
             <p> 3. Menjaga kerahasiaan informasi.            </p>
@@ -21,7 +21,7 @@
         <br>
         <br>
         <div class="row">
-            <h3>Hak Person </h3>
+            <h3>Hak Person LSP </h3>
             <p> 1. Menggunakan sertifikat sesuai dengan ruang lingkup yang dipilih.</p>
             <p> 2. Dapat menggunakan gelar sesuai dengan ruang lingkup yang dipilih dan tingkatan/level yang sesuai keputusan sertifikasi.</p>
             <p> 3. Dapat mengajukan pemutakhiran ruang lingkup atau naik  level/tingkat sesuai dengan ruang lingkup yang dipilih apabila memenuhi syarat sesuai dengan skema sertifikasi.</p>

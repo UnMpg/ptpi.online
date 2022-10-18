@@ -124,3 +124,181 @@ height: 100%;
     background-color: #007bff;
 }
 
+.high-light-title{
+    font-size: 1.2rem;
+    padding-top: 3.4rem;
+    color: #023047;
+}
+
+.high-light-img{
+    width: 19rem;
+    display: flex;
+    position: relative;
+    top: 4rem;
+    margin-right: 10px;
+    
+    
+}
+
+.high-light-content img{
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    box-shadow: rgba(0, 0, 0, 0.35) 5px 5px 15px;
+}
+
+.high-light-content{
+    position: relative;
+    width: 100%;
+    height: 10rem;
+    z-index: 15;
+    background-color: rgba(0, 0, 0, 0.164);
+    top: -10rem;
+    margin-bottom: -1rem;
+    
+}
+
+.high-light-img::before { 
+    content: "";
+    position: absolute;
+    width: 17.5rem;
+    top: 3rem;
+    border-bottom: 1px solid #023047;
+
+}
+
+
+.content-high h4{
+    color: #fff;
+    font-size: 1.2rem;
+    padding-top: 1rem;
+}
+
+.content-high p{
+    color: #fff;
+    font-size: 0.8rem;
+    line-height: 0.9rem;
+}
+
+#manfaat{
+    padding: 5rem 0;
+    background-image: url("../img/alur.jpeg");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+    
+
+}
+.uu{
+    padding: 5rem 0;
+}
+
+.uu-no{
+    margin: 2.5rem 0.5rem;
+    background: linear-gradient(180deg, rgb(41, 227, 210) 5%, rgb(27, 45, 41) 100%);
+    color: #fff;
+    text-align: center;
+    padding: 0.7rem 2rem;
+    
+}
+.uu-no h4{
+    line-height: 1.5rem;
+}
+.title-manfaat{
+    font-size: 2rem;
+    color: #023047;
+}
+
+.manfaat-detail{
+    font-size: 1rem;
+    line-height: 1.3rem;
+}
+
+.urutan{
+    margin: 1rem 0.5rem;
+    background: linear-gradient(180deg, rgb(41, 227, 210) 5%, rgb(27, 45, 41) 100%);
+    color: #fff;
+    height: 4.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.manfaat-no{
+    padding: 0 1rem;
+    font-size: 1.2rem;
+}
+
+.isi-urutan{
+    color: #023047;
+    font-size: 1rem;
+}
+.isi-urutan p{
+    line-height: 1.3rem;
+    padding: 0 1rem ;
+}
+
+@media screen and (min-width: 790px){
+    .title-manfaat{
+        font-size: 3.5rem;
+    }
+    .urutan{
+        margin: 2rem 0;
+        height: 4rem;
+    }
+    .manfaat-no{
+        padding: 0 2rem;
+        font-size: 1.5rem;
+    }
+    .manfaat-detail{
+        font-size: 1.5rem;
+        line-height: 1.8rem;
+    }
+    .isi-urutan{
+        font-size: 1.5rem;
+        
+    }
+    .isi-urutan p{
+        line-height: 1.8rem;
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 1219px) {
+    .high-light-content{
+        margin-bottom: 4rem;
+    }
+}
+
+
+
+@media only screen and (max-width: 660px) {
+    .high-light-content{
+        margin-bottom: 8rem;
+        
+    }
+
+    
+    .high-light-img{
+        width: 100%;
+        top: 6rem;
+    }
+
+    .content-high h4{
+        font-size: 2rem;
+        padding-top: 1rem;
+    }
+    
+    .content-high p{
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    .high-light-img::before { 
+       
+        width: 100%;
+        top: 7rem;
+    
+    }
+
+}

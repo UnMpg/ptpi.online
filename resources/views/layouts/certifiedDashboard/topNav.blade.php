@@ -17,13 +17,13 @@
                 <span>Settings</span>
               </a> --}}
               {{-- <a class="dropdown-item"  href="javascript:;">Help</a> --}}
-              <a class="dropdown-item"  href="{{ action('AuthController@logout') }}"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+              <a class="dropdown-item"  href="{{ action('CertifiedMemberController@logout') }}"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
             </div>
           </li>
 
           <li role="presentation" class="nav-item dropdown open">
             <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-              <i class="fa fa-envelope-o"></i>
+              <i class="fa fa-envelope-o" style="font-size: 20px;"></i>
               <span class="badge bg-green jml_notive"></span>
             </a>
             <ul class="dropdown-menu list-unstyled msg_list" role="menu" id="list-notive" aria-labelledby="navbarDropdown1">

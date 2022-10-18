@@ -114,3 +114,12 @@ input::-webkit-file-upload-button {
   .kop-lsp img{
     width: 48%;
   }
+
+  .form-melengkapi-data{
+    min-height: 70vh;
+  }
+
+  #link_aksi::before{
+    content: "";
+    background: none;
+  }

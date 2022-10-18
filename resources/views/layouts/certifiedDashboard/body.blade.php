@@ -12,3 +12,5 @@
 <script src="{{ asset('assets/certified/dashboard/jQuery-Smart-Wizard/js/jquery.smartWizard.js') }}"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.2.1/moment.min.js"></script>
+
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>

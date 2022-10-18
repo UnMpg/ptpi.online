@@ -9,8 +9,8 @@
             <br>
             <p>
                 Lembaga Sertifikasi Perkumpulan Teknik Perumahsakitan Indonesia (LSP TPI) didirikan dengan tujuan memenuhi ketersediaan para ahli yang kompeten di bidang pelayanan kesehatan. 
-                LSP TPI merupakan salah satu lembaga pendukung KAN yang bertanggung jawab melaksanakan sertifikasi kompetensi profesi di bidang pelayanan kesehatan. LSP TPI ini berbentuk badan hukum yang dibentuk oleh direktur PTPI dan diregistrasikan oleh KAN.
-
+                LSP TPI merupakan salah satu lembaga pendukung KAN yang bertanggung jawab melaksanakan sertifikasi kompetensi profesi di bidang pelayanan kesehatan. 
+                LSP TPI ini berbentuk badan hukum yang dibentuk oleh direktur PTPI dan diregistrasikan oleh KAN. </p>
             </p>
 
             <p>

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    @include('layouts.auth.header')
+    @include('layouts.certifiedUjian.header')
 </head>
 <body>
     @yield('content')
 
 
-    @include('layouts.auth.footer')
+    @include('layouts.certifiedUjian.footer')
     @yield('script')
 </body>
 </html>

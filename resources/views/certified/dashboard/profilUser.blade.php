@@ -21,12 +21,13 @@
 
             <ul class="list-unstyled user_data">
               <li><i class="fa fa-map-marker user-profile-icon"></i> {{ auth('certified')->user()->alamat  }}
-              </li>
+              </li>              
 
-              <li>
-                <i class="fa fa-briefcase user-profile-icon"></i> Software Engineer
+                @foreach ($pengalaman as $penga)
+                <li><i class="fa fa-briefcase user-profile-icon"></i> {{ $penga->jabatan }} - {{ $penga->institusi }}
               </li>
-
+                @endforeach
+                
               <li class="m-top-xs">
                 <i class="fa fa-external-link user-profile-icon"></i>
               <a href="" target="_blank">{{ auth('certified')->user()->email }}</a>

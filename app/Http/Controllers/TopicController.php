@@ -23,7 +23,7 @@ class TopicController extends Controller
     public function index()
     {
         $topics = Topic::all();
-        return view('admin.topic.index', compact('topics'));
+        return view('admin.topic.index', compact('topics')); 
     }
 
     /**
