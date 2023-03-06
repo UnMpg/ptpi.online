@@ -14,13 +14,13 @@
         <div class="row">
             <h3>Terdapat 3 level/tingkat yaitu :</h3>
             <h5>1. Level Muda</h5> 	
-            <p> a. Minimum Lulusan S1/sederajat pada bidang teknik pelayanan kesehatan, teknik biomedis, dan jurusan teknik yang relevan. </p>
+            <p> a. Minimum Lulusan S1/sederajat pada bidang teknik perumahsakitan, teknik biomedis, Teknik (non biomedis), ilmu kesehatan dan ilmu sosial. </p>
             <p> b. Memiliki pengalaman lebih dari 3 tahun dalam bidang teknik pelayanan kesehatan/tambahan pendidikan/pencapaian yang setara dan/atau kombinasi pengalaman, pendidikan dan pencapaian.</p>
             <h5>2. Level Madya </h5>
-            <p> a. Minimum Lulusan S1/sederajat pada bidang teknik pelayanan kesehatan, teknik biomedis, dan jurusan teknik yang relevan. </p>
+            <p> a. Minimum Lulusan S1/sederajat pada bidang teknik perumahsakitan, teknik biomedis, Teknik (non biomedis), ilmu kesehatan dan ilmu sosial. </p>
             <p> b. Memiliki pengalaman lebih dari 15 tahun dalam bidang pelayanan kesehatan/tambahan pendidikan/pencapaian yang setara dan/atau kombinasi pengalaman, pendidikan dan pencapaian.</p>
             <h5>3. Level Utama</h5>
-            <p> a. Minimum Lulusan S1/sederajat pada bidang teknik pelayanan kesehatan, teknik biomedis, dan jurusan teknik yang relevan.</p>
+            <p> a. Minimum Lulusan S1/sederajat pada bidang teknik perumahsakitan, teknik biomedis, Teknik (non biomedis), ilmu kesehatan dan ilmu sosial.</p>
             <p> b. Memiliki pengalaman lebih dari 28 tahun dalam bidang teknik pelayanan kesehatan/tambahan pendidikan/pencapaian yang setara dan/atau kombinasi pengalaman, pendidikan dan pencapaian.</p>
          
             <p> <span style="color: red">*</span> * Informasi lebih lanjut dapat mendownload skema atau buku panduan pada : <a href="{{ asset('assets/certified/file/[Versi 1.2] Buku Pedoman Umum Sertifikasi Ahli Teknik Perumahsakitan__.pdf') }}">Buku Panduan</a></p>

@@ -16,6 +16,8 @@
             $('.tentang').removeClass("show");
         }else{
             $('.tentang').addClass("show");
+            $('.lingkup').removeClass("show");
+            $('.sertifikasi').removeClass("show");
         }
     })
     $("#ruang_lingkup").click(function(){
@@ -24,6 +26,8 @@
         }else{
             
             $('.lingkup').addClass("show");
+            $('.tentang').removeClass("show");
+            $('.sertifikasi').removeClass("show");
         }
     })
 
@@ -33,6 +37,8 @@
         }else{
             
             $('.sertifikasi').addClass("show");
+            $('.tentang').removeClass("show");
+            $('.lingkup').removeClass("show");
         }
     })
 </script>

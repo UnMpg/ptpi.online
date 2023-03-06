@@ -139,6 +139,7 @@ class CertifiedUjianController extends Controller
             return redirect(action('CertifiedUjianController@index'))->with('warning', 'Jadwal Ujian Anda Belum Terkonfirmasi Silahkan Hubungi Panitia');
             
         }
+
         if($gettime->score_ujian != null && $gettime->lama_ujian != null){
             return redirect(action('CertifiedUjianController@index'))->with('warning', 'Terimas Kasih Anda Telah Melakukan Ujian');
             
@@ -158,7 +159,9 @@ class CertifiedUjianController extends Controller
                     }
                     
                 }
-
+                // if (auth('certified')->user()->id == 14) {
+                //     $items = "1,2,3,4,5,6,7,8,9,10,49,50,51,52,53,54,55,56,57,58,99,100,101,102,103,104,105,106,107,108,155,156,157,158,160,161,162,163,164,166,167,168,169,170,171,172,173,174,175,177,178,179,180,181,182,183,184,185,186,234,235,236,237,238,239,240,241,242,243,245,246,247,248,249,250,251,252,253,254,256,257,258,259,260,261,262,263,264,265,267,268,269,270,271,272,273,274,275,276,277,";
+                // }
                 // dd($items);
     
                 $mulaiUjian = CertifiedUjian:: where('id', $gettime->id);

@@ -69,6 +69,14 @@
                   </div>
   
                 <div class="row">
+
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <label class="form-label" for="lastName">Nomor HP</label>
+                      <input type="number" name="no_telp" id="no_telp" class="form-control form-control-lg" required="required"/>
+                      
+                    </div>
+                  </div>
                   
                   <div class="col-md-6 mb-4">  
                     <h6 class="mb-2 pb-1">Instansi: </h6>  

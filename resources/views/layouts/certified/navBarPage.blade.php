@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark" id="pagenavbar">
     <div class="container">
       <a class="navbar-brand" href="{{ action('CertifiedMemberController@index') }}"><img src="{{ asset('assets/certified/img/lsp.png') }}" alt="..." /></a>
+      <a class="navbar-brand" href="/sertifikasi/"><img src="{{ asset('assets/certified/img/kan.png') }}" style="padding-left:1rem; width: 8rem; height: auto;" alt="..." /></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLink" aria-controls="navbarLink" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars ms-1"></i>
@@ -9,7 +10,7 @@
         <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
           <li class="nav-item"><a class="nav-link" href="{{ action('CertifiedMemberController@index') }}">Home</a></li>  
           <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="tentang_kami" data-bs-toggle="collapse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle nav-drop" href="#" id="tentang_kami" data-bs-toggle="collapse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Profil
                 </a>
                 <div class="dropdown-menu tentang" aria-labelledby="#tentang_kami" >
@@ -35,7 +36,7 @@
                 </div>
             </li> --}}
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="sertifikasi" data-bs-toggle="collapse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle nav-drop" href="#" id="sertifikasi" data-bs-toggle="collapse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Sertifikasi
               </a>
               <div class="dropdown-menu sertifikasi" aria-label="sertifikasi" >
@@ -58,11 +59,12 @@
             {{-- <li class="nav-item"><a class="nav-link" href="{{ action('CertifiedMemberController@berita') }}">Berita</a></li>   --}}
             {{-- <li class="nav-item"><a class="nav-link" href="#">Klien</a></li>                     --}}
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="ruang_lingkup" data-bs-toggle="collapse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle nav-drop" href="#" id="ruang_lingkup" data-bs-toggle="collapse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Download
                 </a>
                 <div class="dropdown-menu lingkup" aria-label="ruang_lingkup" >
                   <a class="dropdown-item" href="{{ asset('assets/certified/file/[Versi 1.2] Buku Pedoman Umum Sertifikasi Ahli Teknik Perumahsakitan__.pdf') }}"> Download Buku Panduan</a>
+                  <a class="dropdown-item" href="{{ action('CertifiedMemberController@materiSosialisasi') }}">Materi Sosialisasi LSP TPI</a>
                 </div>
             </li>
             <li class="nav-item"><a class="nav-link" href="/sertifikasi/#contact">Contact</a></li>

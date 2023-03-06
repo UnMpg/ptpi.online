@@ -63,7 +63,8 @@
 
                     <div class="col-md-6  text-end">
                         <div class="pt-2">
-                            <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+                          <button class="btn btn-primary btn-lg" type="submit" value="Login"> Login </button>
+                            {{-- <input class="btn btn-primary btn-lg" type="submit" value="Submit" /> --}}
                         </div>
                     </div>
                     

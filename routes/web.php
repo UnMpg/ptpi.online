@@ -61,6 +61,7 @@ Route::group(['prefix'=>'sertifikasi'],function(){
     Route::get('/list-Tersertifikasi','CertifiedMemberController@listTersertifikasi');
     Route::get('/dewan-pakar','CertifiedMemberController@dewanPakar');
     Route::get('/dewan-pengarah','CertifiedMemberController@dewanPengarah');
+    Route::get('/materi-sosialisasi','CertifiedMemberController@materiSosialisasi');
 
     
     Route::get('/login','CertifiedMemberController@login')->middleware('CertifiedAuth');
@@ -128,6 +129,7 @@ Route::group(['prefix'=>'sertifikasi'],function(){
     Route::post('/sertifikasi-update-soal','CertifiedUjianController@updateSoal');
     Route::delete('/sertifikasi-delete-soal/{id}','CertifiedUjianController@deleteSoal');
     Route::get('/list-peserta-verifikasi','CertifiedMemberController@listPesertaVerifikasi');
+    Route::get('/hasil-peserta-verifikasi','CertifiedMemberController@hasilPesertaVerifikasi');
     Route::get('/data-user-verifikasi/{id}','CertifiedMemberController@dataUserVerifikasi');
     Route::get('/konfirmasi-peserta-sertifikasi','CertifiedMemberController@konfirmasiPesertaSertifikasi');
     Route::get('/tambah-notive-peserta','CertifiedMemberController@tambahNotivePeserta');  
@@ -326,6 +328,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/certified-edit-soal/{id}','CertifiedUjianController@editSoal');    
     Route::post('/certified-update-soal','CertifiedUjianController@updateSoal');
     Route::post('/konfirmasi-nilai','CertifiedMemberController@konfirmasiNilai');
+    Route::post('/reset-nilai','CertifiedMemberController@resetNilai');
     Route::delete('/delete-soal/{id}','CertifiedUjianController@deleteSoal');
     
 });

@@ -22,7 +22,31 @@
                     <div class="high-light-img">
                         
                         <div class="high-light-content">
-                            <img src="{{ asset('assets/certified/img/pendaftaran.jpeg') }}" class="card-img-top" alt="...">
+                            <a href="#portfolioModal1" data-bs-toggle="modal" ><img src="{{ asset('assets/certified/img/Reinventing Social Media1.png') }}" class="card-img-top" alt="..."></a>
+                            <div class="container content-high ">
+                                {{-- <h4>LSP TPI Membuka Pendaftaran Sertifikasi Pelayanan Kesehatan</h4>
+                                <p>pada tanggal 13 Oktober 2022 – 25 Oktober 2022</p> --}}
+                    
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="high-light-img">
+                        
+                        <div class="high-light-content">
+                            <a href="#portfolioModal2" data-bs-toggle="modal" ><img src="{{ asset('assets/certified/img/Reinventing Social Media2.png') }}" class="card-img-top" alt="..."></a>
+                            <div class="container content-high ">
+                                {{-- <h4>LSP TPI Membuka Pendaftaran Sertifikasi Pelayanan Kesehatan</h4>
+                                <p>pada tanggal 13 Oktober 2022 – 25 Oktober 2022</p> --}}
+                    
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="high-light-img">
+                        
+                        <div class="high-light-content">
+                            <a href="#portfolioModal3" data-bs-toggle="modal" ><img src="{{ asset('assets/certified/img/pendaftaran.jpeg') }}" class="card-img-top" alt="..."></a>
                             <div class="container content-high ">
                                 {{-- <h4>LSP TPI Membuka Pendaftaran Sertifikasi Pelayanan Kesehatan</h4>
                                 <p>pada tanggal 13 Oktober 2022 – 25 Oktober 2022</p> --}}
@@ -90,7 +114,7 @@
 <div class="manfaat-sertifikasi  " id="manfaat">
     <div class="container ">
         <div class="row ">
-            <h2 class="title-manfaat section-heading text-uppercase text-center ">MANFAAT SERTIFIKASI PROFESI</h2>
+            <h2 class="title-manfaat section-heading text-uppercase text-center ">MANFAAT SERTIFIKASI PERSON</h2>
             <p class="mt-4 manfaat-detail">Dengan adanya sertikasi person ini, maka anda akan mendapatkan beberapa  maanfaat diantara lain :</p>
         </div>
         
@@ -287,13 +311,39 @@
             <div class="col-lg-4 col-sm-6 mb-4 " style="justify-content: center;">
                 <!-- Portfolio item 1-->
                 <div class="card" >
-                    <a href="#portfolioModal1" data-bs-toggle="modal" ><img src="{{ asset('assets/certified/img/pendaftaran.jpeg') }}" class="card-img-top" alt="..."></a>
+                    <a href="#portfolioModal1" data-bs-toggle="modal" ><img src="{{ asset('assets/certified/img/Reinventing Social Media1.png') }}" class="card-img-top" alt="..."></a>
+                    
+                    <div class="card-body">
+                      <h5 class="card-title">Pendaftaran Sertifikasi Pelayanan Kesehatan Muda, Madya, dan Utama</h5>
+                      <p class="card-text">Badan Sertifikasi Pelayanan Kesehatan LSP TPI (Teknik Perumahsakitan Indonesia) membuka pendaftaran 
+                          sertifikasi Ahli Muda, Madya, dan Utama pada tanggal 23 November 2022 – 19 Desember 2022. </p>
+                      <a href="#portfolioModal1" data-bs-toggle="modal" class="btn btn-primary">Show</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4 " style="justify-content: center;">
+                <!-- Portfolio item 1-->
+                <div class="card" >
+                    <a href="#portfolioModal2" data-bs-toggle="modal" ><img src="{{ asset('assets/certified/img/Reinventing Social Media2.png') }}" class="card-img-top" alt="..."></a>
+                    
+                    <div class="card-body">
+                      <h5 class="card-title">Jadwal Ujian Tulis Sertifikasi Ahli Muda, Madya, dan Utama</h5>
+                      <p class="card-text">Jadwal Ujian Sertifikasi Ahli Teknik Perumahsakitan Indonesia tingkat Ahli Muda, Madya, dan Utama 
+                          Gelombang I pada tanggal 7 DESEMBER 2022 dan Gelombang II pada tanggal 29 DESEMBER 2022.</p>
+                      <a href="#portfolioModal2" data-bs-toggle="modal" class="btn btn-primary">Show</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4 " style="justify-content: center;">
+                <!-- Portfolio item 1-->
+                <div class="card" >
+                    <a href="#portfolioModal3" data-bs-toggle="modal" ><img src="{{ asset('assets/certified/img/pendaftaran.jpeg') }}" class="card-img-top" alt="..."></a>
                     
                     <div class="card-body">
                       <h5 class="card-title">LSP TPI Membuka Pendaftaran Sertifikasi Pelayanan Kesehatan</h5>
                       <p class="card-text">Badan Sertifikasi Pelayanan Kesehatan LSP TPI (Teknik Perumahsakitan Indonesia) membuka
                         pendaftaran sertifikasi Ahli Muda, Madya, dan Utama pada tanggal 13 Oktober 2022 – 25 Oktober 2022.</p>
-                      <a href="#portfolioModal1" data-bs-toggle="modal" class="btn btn-primary">Show</a>
+                      <a href="#portfolioModal3" data-bs-toggle="modal" class="btn btn-primary">Show</a>
                     </div>
                 </div>
             </div>
@@ -406,11 +456,11 @@
                     <div class="col-lg-8">
                         <div class="modal-body">
                             <!-- Project details-->
-                            <h2 class="text-uppercase" style="font-size: 2rem">Pendaftaran Sertifikasi Pelayanan Kesehatan</h2>
-                            <img class="img-fluid d-block mx-auto" src="{{ asset('assets/certified/img/pendaftaran.jpeg') }}" alt="..." />
-                            <p>Badan Sertifikasi Pelayanan Kesehatan LSP TPI (Teknik Perumahsakitan Indonesia) membuka
-                                pendaftaran sertifikasi Ahli Muda, Madya, dan Utama pada tanggal 13 Oktober 2022 – 25 Oktober 2022.
-                                Pendaftaran lebih lanjut dapat menghubungi kotak person atau membuka website ptpi.</p>
+                            <h2 class="text-uppercase" style="font-size: 2rem">Jadwal Pendaftaran Sertifikasi Pelayanan Kesehatan</h2>
+                            <img class="img-fluid d-block mx-auto" src="{{ asset('assets/certified/img/Reinventing Social Media1.png') }}" alt="..." />
+                            <p>Badan Sertifikasi Pelayanan Kesehatan LSP TPI (Teknik Perumahsakitan Indonesia) membuka pendaftaran 
+                                sertifikasi Ahli Muda, Madya, dan Utama pada tanggal 23 November 2022 – 19 Desember 2022. 
+                                Pendaftaran lebih lanjut dapat menghubungi kotak person atau membuka website PTPI.</p>
                             
                             <a class="btn btn-primary btn-xl text-uppercase btn-daftar" href="{{ action('CertifiedMemberController@register') }}">Daftar Sekarang</a>
                             <button class="btn btn-primary btn-xl text-uppercase btn-daftar" data-bs-dismiss="modal" type="button">
@@ -434,12 +484,14 @@
                     <div class="col-lg-8">
                         <div class="modal-body">
                             <!-- Project details-->
-                            <h2 class="text-uppercase">Berita</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="{{ asset('assets/home/img/news.jpg') }}" alt="..." />
-                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                            <h2 class="text-uppercase" style="font-size: 2rem">Jadwal UJian Sertifikasi Pelayanan Kesehatan</h2>
+                            <img class="img-fluid d-block mx-auto" src="{{ asset('assets/certified/img/Reinventing Social Media2.png') }}" alt="..." />
+                            <p>Badan Sertifikasi Pelayanan Kesehatan LSP TPI (Teknik Perumahsakitan Indonesia) membuka pendaftaran ujian 
+                                tulis Sertifikasi Ahli Teknik Perumahsakitan Indonesia tingkat Ahli Muda, Madya, dan Utama Gelombang I pada tanggal 7 DESEMBER 2022 dan Gelombang II pada tanggal 29 DESEMBER 2022. 
+                                Pendaftaran lebih lanjut dapat menghubungi kotak person atau membuka website PTPI.</p>
                             
-                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                            {{-- <a class="btn btn-primary btn-xl text-uppercase btn-daftar" href="{{ action('CertifiedMemberController@register') }}">Daftar Sekarang</a> --}}
+                            <button class="btn btn-primary btn-xl text-uppercase btn-daftar" data-bs-dismiss="modal" type="button">
                                 <i class="fas fa-xmark me-1"></i>
                                 Close
                             </button>
@@ -460,12 +512,14 @@
                     <div class="col-lg-8">
                         <div class="modal-body">
                             <!-- Project details-->
-                            <h2 class="text-uppercase">Berita 3</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="{{ asset('assets/home/img/news.jpg') }}" alt="..." />
-                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                            <h2 class="text-uppercase" style="font-size: 2rem">Pendaftaran Sertifikasi Pelayanan Kesehatan</h2>
+                            <img class="img-fluid d-block mx-auto" src="{{ asset('assets/certified/img/pendaftaran.jpeg') }}" alt="..." />
+                            <p>Badan Sertifikasi Pelayanan Kesehatan LSP TPI (Teknik Perumahsakitan Indonesia) membuka
+                                pendaftaran sertifikasi Ahli Muda, Madya, dan Utama pada tanggal 13 Oktober 2022 – 25 Oktober 2022.
+                                Pendaftaran lebih lanjut dapat menghubungi kotak person atau membuka website ptpi.</p>
                             
-                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                            <a class="btn btn-primary btn-xl text-uppercase btn-daftar" href="{{ action('CertifiedMemberController@register') }}">Daftar Sekarang</a>
+                            <button class="btn btn-primary btn-xl text-uppercase btn-daftar" data-bs-dismiss="modal" type="button">
                                 <i class="fas fa-xmark me-1"></i>
                                 Close
                             </button>
@@ -476,4 +530,5 @@
         </div>
     </div>
 </div>
+
 @endsection

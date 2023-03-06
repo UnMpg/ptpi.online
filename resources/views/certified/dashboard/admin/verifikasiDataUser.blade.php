@@ -131,6 +131,10 @@
                                                             @else
                                                             {{ $item->score_verified }}
                                                             <div><i class="fa fa-check"> </i><i>  Terverifikasi</i></div>
+
+                                                                @if ($datauser->certified_status < 4)
+                                                                    <div  class="reset-nilai" data-id="{{ $item->id }}" data-aksi="pendidikan" style="cursor: pointer"><i class="fa fa-trash" style="font-size: 2rem; color:red"></i>Reset Nilai</div>        
+                                                                @endif
                                                             
                                                             @endif 
                                                 </div>
@@ -199,7 +203,9 @@
                                                             @else
                                                             {{ $item->score_verified }}
                                                             <div><i class="fa fa-check"> </i><i>  Terverifikasi</i></div>
-                                                            
+                                                                @if ($datauser->certified_status < 4)
+                                                                    <div  class="reset-nilai" data-id="{{ $item->id }}" data-aksi="pengalaman" style="cursor: pointer"><i class="fa fa-trash" style="font-size: 2rem; color:red"></i>Reset Nilai</div>        
+                                                                @endif
                                                             @endif 
                                                 </div>
                                             </div>
@@ -251,6 +257,10 @@
                                                             @else
                                                             {{ $item->score_verified }}
                                                             <div><i class="fa fa-check"> </i><i>  Terverifikasi</i></div>
+
+                                                                @if ($datauser->certified_status < 4)
+                                                                    <div  class="reset-nilai" data-id="{{ $item->id }}" data-aksi="pelatihan" style="cursor: pointer"><i class="fa fa-trash" style="font-size: 2rem; color:red"></i>Reset Nilai</div>        
+                                                                @endif
                                                             @endif 
                                                     </div>
                                                   
@@ -445,7 +455,9 @@
                                                             @else
                                                             {{ $item->score_verified }}
                                                             <div><i class="fa fa-check"> </i><i>  Terverifikasi</i></div>
-                                                            
+                                                                @if ($datauser->certified_status < 4)
+                                                                    <div  class="reset-nilai" data-id="{{ $item->id }}" data-aksi="pencapaian" style="cursor: pointer"><i class="fa fa-trash" style="font-size: 2rem; color:red"></i>Reset Nilai</div>        
+                                                                @endif
                                                             @endif 
 
                                                     </div>
@@ -539,6 +551,7 @@
     $("#konfirmasi_score").click(function(){
         console.log("konfirmasi");
         var id = {!! $datauser->id !!} ;
+        var nama = data.nama;
         console.log(id);
         console.log($("#nilai_akhir").data("value"));
         var score =  $("#nilai_akhir").data("value");
@@ -552,6 +565,7 @@
             data : {
                 "_token" : `{{ csrf_token() }}`,
                 "id"    : id,
+                "nama"  : nama,
                 "score" : score,
                 "tingkat" : tingkat
             },
@@ -561,6 +575,26 @@
         }).responseText
         location.reload(); 
     })
+
+    $(".reset-nilai").click(function(){
+        console.log($(this).attr("data-id"));
+        console.log($(this).attr("data-aksi"));
+        var reset_id = $(this).attr("data-id");
+        var reset_aksi = $(this).attr("data-aksi");
+
+        $.ajax({
+            data : {
+                "_token" : `{{ csrf_token() }}`,
+                "id"    : reset_id,
+                "aksi" : reset_aksi
+            },
+            type: "POST",
+            url: `{{ url('/admin/reset-nilai') }}`,
+            async: false
+        }).responseText
+        location.reload(); 
+
+    });
 
     
 </script>

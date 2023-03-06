@@ -136,12 +136,17 @@ class CertifiedMemberController extends Controller
         return view('certified.berita');
     }
 
+    public function materiSosialisasi(){
+        return view('certified.materiSosialisasi');
+    }
+
     public function registerSubmit(Request $Request){
         
         CertifiedMember::create([
             'nama'=>$Request->nama,
             'email'=>$Request->email,
             'role'=>"user",
+            'telp'=>$Request->no_telp,
             'password'=>Hash::make($Request->password),
             'jenis_instansi'=>$Request->jenis_instansi,
             'nama_instansi'=>$Request->nama_instansi,
@@ -179,7 +184,7 @@ class CertifiedMemberController extends Controller
         }else {
             $tingkat = $request->tingkat;
         }
-
+        
         $score= (int)$request->score;
         if($score >= 2000){
             $insert_data = CertifiedMember::where('id', $request->id);
@@ -214,18 +219,17 @@ class CertifiedMemberController extends Controller
             ]);
         }
 
-
         $title = "LULUS Verifikasi Dokumen";
         $status = "1";
         $kategori = "lulus_verifikasi";
-        $body ="<p>Kepada Yth, <strong> asnanda</strong></p>
+        $body ="<p>Kepada Yth, <strong>" .$request->nama." </strong></p>
         <p>Berdasarkan hasil verifikasi dokumen/berkas yang diajukan, Selamat anda dinyatakan <strong><em>LULUS</em></strong> 
         tahapan verifikasi dengan potensi level teknik pelayanan kesehatan <strong><em>MUDA</em></strong>.</p>
         <p>Selanjutnya Melakukan Pembayara Rekening berikut :</p>
         <p>Nama : TEKNIK PERUMAHSAKITAN IN</p>
         <p>Nomor Rekening : 5290849995</p>
         <p>Bank : BCA</p>
-        <p>Jumlah : .....</p>
+        <p>Jumlah : RP 6.000.000</p>
         <p>Informasi lebih lanjut dapat menghubungi kami di Siti 082383477128</p><p>Sekian, terimakasih.</p>";
         $body_invoice  = "<p>Kepada Yth, <strong> asnanda</strong></p>
         <p>Berdasarkan hasil verifikasi dokumen/berkas yang diajukan, Selamat anda dinyatakan <strong><em>LULUS</em></strong> 
@@ -241,10 +245,54 @@ class CertifiedMemberController extends Controller
             'kategori'=>$kategori,
             'body'=>$body
         ]);
-        return response()->json($request->score, 200);
+        return response()->json($body, 200);
+    }
+
+    public function resetNilai(Request $request){
+
+        if ($request->aksi == "pendidikan") {
+            $update_pendidikan = CertifiedPendidikan::where('id',$request->id);
+            $update_pendidikan->update([
+                "score_verified"=> null
+            ]);
+
+            return response()->json($request->id, 200);
+        }elseif($request->aksi == "pelatihan"){
+            $update_pelatihan = CertifiedPelatihan::where('id',$request->id);
+            $update_pelatihan->update([
+                "score_verified"=> null
+            ]);
+
+            return response()->json($request->id, 200);
+        }elseif($request->aksi == "pengalaman"){
+            $update_pengalaman = CertifiedPengalaman::where('id',$request->id);
+            $update_pengalaman->update([
+                "score_verified"=> null
+            ]);
+
+            return response()->json($request->id, 200);
+        }elseif($request->aksi == "pencapaian"){
+            $update_pencapaian = CertifiedPencapaian::where('id',$request->id);
+            $update_pencapaian->update([
+                "score_verified"=> null
+            ]);
+
+            return response()->json($request->id, 200);
+        }else{
+            return response()->json($request->id, 200);
+        }
     }
 
     public function uploadBukti(){
+        $cek_upload = CertifiedUpload::where('certified_member_id',auth('certified')->user()->id)->whereIn('upload_deskripsi',['perjanjian','bukti_pembayaran'])->get();
+        
+        if (count($cek_upload) >= 2) {
+            $insert_data = CertifiedMember::where('id', auth('certified')->user()->id);
+            $insert_data->update([
+            'certified_status' => "5"
+            ]);
+        }
+
         $upload = CertifiedUpload::where('certified_member_id',auth('certified')->user()->id)->whereIn('upload_deskripsi',['perjanjian','bukti_pembayaran'])->get();
         return view('certified.dashboard.uploadBukti',compact('upload'));
     }
@@ -268,14 +316,7 @@ class CertifiedMemberController extends Controller
             'file_name'=>$documentName
         ]);
 
-        $upload = CertifiedUpload::whereIn('upload_deskripsi',['perjanjian','bukti_pembayaran'])->get();
-
-        if (count($upload) <= 2) {
-            $insert_data = CertifiedMember::where('id', auth('certified')->user()->id);
-            $insert_data->update([
-            'certified_status' => "5"
-            ]);
-        }
+        
         
     
         $request->file('file')->move(public_path($this->dir_upload.auth('certified')->user()->nama), $documentName);
@@ -381,7 +422,9 @@ class CertifiedMemberController extends Controller
                         'status'=>"1"
                     ]);
                 }
-                $update->update([
+
+                $update_status = CertifiedMember::where('id',$request->id)->first();
+                $update_status->update([
                     'certified_status'=>"6",
                 ]);
             } else {
@@ -427,8 +470,8 @@ class CertifiedMemberController extends Controller
                         'status'=>"1"
                     ]);
                 }
-                
-                $update->update([
+                $update_status = CertifiedMember::where('id',$request->id)->first();
+                $update_status->update([
                     'certified_status'=>"11",
                 ]);
             } else {
@@ -1545,14 +1588,14 @@ class CertifiedMemberController extends Controller
 
     public function downloadData(){
        
-        $datacertified = CertifiedMember::whereIn('certified_status',[4,5,6,7,8,9,10,11,12,13,14,15])->orderByDesc('created_at')->get();
+        $datacertified = CertifiedMember::whereIn('certified_status',[3,4,5,6,7,8,9,10,11,12,13,14,15])->orderByDesc('created_at')->get();
         return view('certified.dashboard.admin.downloadData', compact('datacertified'));
       
     }
 
     public function getStatusPeserta(Request $request){
        
-        $data = CertifiedMember::where('certified_status',$request->status)->get();
+        $data = CertifiedMember::where('certified_status',$request->status)->orderByDesc('created_at')->get();
         // $data = CertifiedMember::orderByDesc('created_at')->get();
         return response()->json($data, 200);
       
@@ -1627,6 +1670,13 @@ class CertifiedMemberController extends Controller
        
         $datacertified = CertifiedMember::where('certified_status', [3,4])->orderByDesc('created_at')->get();
         return view('certified.dashboard.admin.listPesertaVerifikasi', compact('datacertified'));
+      
+    }
+
+    public function hasilPesertaVerifikasi(){
+       
+        $datacertified = CertifiedMember::whereIn('certified_status', [4,5,6,7,8,9,10,11,12,13])->orderByDesc('created_at')->get();
+        return view('certified.dashboard.admin.hasilPesertaVerifikasi', compact('datacertified'));
       
     }
 

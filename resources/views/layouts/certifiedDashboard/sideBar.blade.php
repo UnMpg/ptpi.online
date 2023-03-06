@@ -7,6 +7,7 @@
           <li class=""><a href=""><i class="fa fa-home"></i> Home </a>        </li>
           {{-- <li class=""><a href="{{ action('CertifiedMemberController@listPesertaSertifikasi') }}"><i class="fa fa-user"></i> List Peserta </a></li>           --}}
           <li><a href="{{ action('CertifiedMemberController@listPesertaVerifikasi') }}"><i class="fa fa-user"></i> Verifikasi Datadiri Peserta </a></li>
+          <li><a href="{{ action('CertifiedMemberController@hasilPesertaVerifikasi') }}"><i class="fa fa-user"></i> Hasil Verifikasi Peserta </a></li>
           <li><a href="{{ action('CertifiedUjianController@sertifikasiInputSoal') }}"><i class="fa fa-edit"></i> Data Soal </a> </li>
           <li><a href="{{ action('CertifiedMemberController@dataPesertaUjian') }}"><i class="fa fa-edit"></i> Data Peserta Ujian </a> </li>
           <li><a href="{{ action('CertifiedMemberController@dataPesertaWawancara') }}"><i class="fa fa-user"></i> Data Peserta Wawancara </a></li>

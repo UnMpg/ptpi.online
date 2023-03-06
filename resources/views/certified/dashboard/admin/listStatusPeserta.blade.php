@@ -35,7 +35,7 @@
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th>Telpon</th>
-                                <th class="text-center">Aksi</th>
+                                {{-- <th class="text-center">Aksi</th> --}}
                             </tr>
                         </thead>
                         <tbody id="data-list">
@@ -44,13 +44,13 @@
                                 <td>{{ $datacertifi->nama }}</td>
                                 <td>{{ $datacertifi->email }}</td>
                                 <td>{{ $datacertifi->telp }}</td>
-                                <td class="text-center">
+                                {{-- <td class="text-center">
                                     <button type="submit"
                                     class="btn btn-sm ">
                                     <a href="{{ action('CertifiedMemberController@dataProfileUser', $datacertifi->id) }}"><i class="fa fa-edit"> </i></a>
                                     </button>
                                     
-                                </td>
+                                </td> --}}
                             </tr>
                             @endforeach
                         </tbody>
@@ -92,13 +92,7 @@
                         <td>${element.nama}</td>
                         <td>${element.email}</td>
                         <td>${element.telp}</td>
-                        <td class="text-center">
-                            <button type="submit"
-                            class="btn btn-sm ">
-                            <a href="/sertifikasi/data-profile-user/${element.id}"><i class="fa fa-edit"> </i></a>
-                            </button>
-                            
-                        </td>
+                        
                     </tr>
                     `;
                     $('#data-list').append(list);
